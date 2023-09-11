@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	}
+	
+	#page {
+	width: 1200px;
+	margin: 0 auto;
+	
+	}
+	
+	header{
+		border: 1px solid red;
+		height: 100px;
+	}
+	
+	#logo{
+		height: 49px;
+		border: 1px solid red;
+		text-align: center;
+		justify-content: center;
+		display: flex;
+		
+	}
+	#p_logo{
+		line-height: 42px;
+	}
+	
+	#h_button{
+		height: 49px;
+		border: 1px solid red;
+		display: flex;
+		justify-content: end;
+	}
+	
+	.h_button{
+		margin-left : 10px;
+	}
+	
+	nav {
+		border: 1px solid red;
+		height : 100px;
+		margin: 30px 0px;
+		
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+	#nav_div{
+		width : 1200px;
+		display: flex;
+		justify-content: space-between;
+		height: 50px;
+		align-items: center;
+	}
+	
+	ul{
+		display: flex;
+	}
+	li{
+		width: 100px;
+		list-style-type: none;
+	}
+	
+	#leftaside{
+		width: 180px;
+		border: 1px solid red;
+		height: 500px;
+		flex-direction: column;
+	}
+	
+	.left_aside_list{
+		flex-direction: column;
+		width: 180px;
+		display: flex;
+		margin-bottom: 24px;
+		
+	}
+	#left_aside_category{
+		width: 180px;
+		flex-direction: column;
+	}
+	
+	.sublist{
+		flex-direction: column;
+		width: 180px;
+		font-size: 12px;
+	}
+	
+	main {
+		border: 1px solid red;
+		height : 500px;
+		margin: 30px 0px;
+		display: flex;
+		overflow: hidden;
+	}
+	
+	section {
+		width: 1000px;
+	}
+	
+	#order_history{
+		display: flex;	
+		justify-content: center;
+		height: 70px;
+		margin : 40px 0px;
+	}
+	#history_val,.history_box{
+		margin: 0px 20px;
+		width: 65px;
+		display: flex;
+		justify-content: center;
+	}
+	
+	footer {
+		border: 1px solid red;
+		height : 200px;
+		margin: 30px 0px;
+	}
+</style>
+</head>
+<body>
+	<div id="page">
+		<header>
+			<div id="logo">
+				<p id="p_logo">ImageLogo</p>
+			</div>
+			
+			<div id="h_button">	
+				
+				<button class="h_button">로그아웃</button>
+				<button class="h_button">고객센터</button>
+			</div>		
+		</header>
+		<nav>
+			<div id="nav_div">
+				<div id="rootpage">
+					<a href="page.html">루트페이지로</a>
+				</div>
+				<div id="search">
+					<input type="search" placeholder="입력....">
+				</div>
+				<div>
+					<div>
+						<button><a href="cart.html">장바구니</a></button>
+						<button><a href="userinfo.html">내정보 보기</a></button>
+					</div>
+				</div>
+			</div>
+			<ul>
+				<li>만화</li>
+				<li>소설</li>
+				<li>중 / 고등용 교재</li>
+				<li>어린이용 교재</li>
+			</ul>
+		</nav>
+		<main>
+			<aside id="leftaside">
+				<ul id="left_aside_category">
+					<li class="left_aside_list">
+						<a href="orderpage.html">쇼핑 내역</a>
+						<ul class="sublist">
+							<li><a href="orderpage.html">주문/배송목록</a></li>
+							<li><a href="buypage.html">구매 내역</a></li>
+						</ul>
+					</li>
+					<li class="left_aside_list">
+						<a href="pointpage">혜택/포인트</a>
+						<ul class="sublist">
+							<li><a href="pointpage.html">포인트</a></li>
+						</ul>
+					</li>
+					<li class="left_aside_list">
+						<a href="inquirypage">문의 내역</a>
+						<ul class="sublist">
+							<li>1:1 문의</li>
+						</ul>
+					</li>
+					<li class="left_aside_list">
+						<a href="userpage">회원 정보</a>
+						<ul class="sublist">
+							<li>배송 주소록</li>
+							<li>회원정보관리</li>
+							<li>나의 회원등급</li>
+						</ul>
+					</li>
+				</ul>
+			</aside>
+			<section>
+				<div id="title">
+					<p><h2>주문/배송목록</h2></p>
+				</div>
+				<div id="order_history">
+					<div id="history_val"><span style="line-height: 70px;">주문내역</span></div>
+					<div class="history_box">
+						<button>준비중</button>
+					</div>
+					<div class="history_box">
+						<button>배송중</button>
+					</div>
+					<div class="history_box">
+						<button>배송완료</button>
+					</div>
+					<div class="history_box">
+						<button>취소</button>
+					</div>
+					<div class="history_box">
+						<button>교환/반품</button>
+					</div>
+				</div>
+				<div style="border: 1px solid red; height: 300px;">
+					도서 목록
+				</div>
+			</section>
+			<aside></aside>			
+		</main>
+		<footer></footer>		
+	</div>
+</body>
+</html>
