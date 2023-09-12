@@ -14,3 +14,4 @@ public class Notice {
 	private String noticeWriter;
 	private LocalDate noticeWriteday;
 }
+	
