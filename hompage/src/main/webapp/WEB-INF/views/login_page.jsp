@@ -44,7 +44,7 @@
 						<a href="/create"><button class="create_btn">회원가입</button></a>
 					</div>
 					<div class="non_user_btn_area">
-						<a href="/nonuser_order_list"><button class="non_user_btn">비회원 주문조회</button></a>
+						<a href="/non_user_order_list"><button class="non_user_btn">비회원 주문조회</button></a>
 					</div>
 				</div>
 			</section>

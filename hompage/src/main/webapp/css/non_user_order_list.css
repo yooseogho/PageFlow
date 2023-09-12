@@ -1,0 +1,95 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#page {
+	padding-top: 100px;
+	width: 1440px;
+	margin: 0 auto;
+
+}
+
+header,
+main {
+	width: 1440px;
+	margin: 0 auto;
+}
+
+header {
+	height: 54px;
+}
+
+.header_inner {
+	width: 400px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+main {
+	height:940px;
+}
+
+section {
+	height: 570px;
+	margin: 0 auto;
+}
+
+section,
+.create_btn, 
+.input_check,
+.non_user_btn
+.check_list,
+.check_btn {
+	width: 340px;
+}
+
+.input_check {
+	height: 44px;
+}
+
+.check_list{
+	display: flex;
+	list-style-type: none;
+	margin-top: 20px;
+	margin-bottom: 8px;
+}
+
+.check_item {
+	font-size: small;
+	width: 100px;
+}
+.create_btn,
+.non_user_btn{
+  cursor: pointer;
+}
+
+.checkbox {
+	height: 22px;
+}
+
+.form_check_group {
+	margin : 5px 0px;
+}
+
+.check_btn {
+	margin-top:20px;
+	margin-bottom: 10px;
+	height: 50px;
+	border-radius: 10px;
+}
+
+.create_btn,
+.non_user_btn {
+	height: 50px;
+	border-radius: 10px;
+	margin-top: 10px;
+}
+
+
+.create_question {
+	margin : 10px auto;
+}

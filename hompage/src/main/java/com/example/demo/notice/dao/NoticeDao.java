@@ -1,15 +1,13 @@
 package com.example.demo.notice.dao;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface NoticeDao {
-	@Insert()
+//	@Insert()
 	public Long save(String aaaa);
 	
-	@Select()
+//	@Select()
 	public Long aa(String aa);
 
 }
