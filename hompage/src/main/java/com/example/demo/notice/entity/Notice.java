@@ -2,6 +2,8 @@ package com.example.demo.notice.entity;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.*;
 
 @Data
@@ -12,5 +14,7 @@ public class Notice {
 	private String noticeTitle;
 	private String noticeContent;
 	private String noticeWriter;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate noticeWriteday;
 }
+	
