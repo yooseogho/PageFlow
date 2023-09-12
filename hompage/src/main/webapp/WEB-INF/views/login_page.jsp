@@ -20,10 +20,10 @@
 				<div class="login_form">
 					<div class="login_check">
 						<div class="login_check_id">
-							<input type="text" placeholder="아이디를 입력해주세요">
+							<input type="text" placeholder="아이디를 입력해주세요" class="input_check">
 						</div>
 						<div class="login_check_pw">
-							<input type="password" placeholder="비밀번호를 입력해주세요">
+							<input type="password" placeholder="비밀번호를 입력해주세요" class="input_check">
 						</div>
 					</div>
 					<div class="login_btn_area">
@@ -31,12 +31,10 @@
 					</div>
 					<div class="id_pw_info">
 						<span class="save-id">
-							<input type="checkbox">
-							<label for="formSaveId" style="font-size: small;">
-								아이디 저장
-							</label>
-							<a href="/find_id_page" style="font-size: small;">아이디/비밀번호 찾기</a>
+							<input type="checkbox" class="checkbox">
+							아이디 저장
 						</span>
+						<a href="/find_id_page" style="font-size: small;">아이디/비밀번호 찾기</a>
 					</div>
 					<div class="login_sns_box">
 						예) 네이버 / 카카오 로그인 등등

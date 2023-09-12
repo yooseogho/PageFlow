@@ -34,23 +34,54 @@ main {
 }
 
 section {
-	width: 370px;
 	height: 570px;
 	margin: 0 auto;
 }
 
+section,
+.login_form,
+.login_check,
+.create_btn, 
+.login_btn_area,
+.login_btn, 
+.input_check,
+.id_pw_info,
+.login_sns_box {
+	width: 340px;
+}
+
 .login_form {
-	width: 370px;
 	height: 490px;
 }
 
 .login_check {
-	width: 370px;
 	height: 90px;
+}
+
+input {
+	border-radius: 5px;
+	height: 44px;
 } 
 
-.login_btn_area {
-	width: 340px;
+.login_btn {
 	height: 50px;
 	margin-top: 20px;
+	border-radius: 10px;
+}
+
+.checkbox {
+	height: 22px;
+}
+
+.id_pw_info{
+	display: flex;
+	height: 22px;
+	margin-top:10px;
+	font-size: small;
+	justify-content: space-between;
+}
+
+.login_sns_box {
+	height: 95px;
+	margin-top:40px;
 }
