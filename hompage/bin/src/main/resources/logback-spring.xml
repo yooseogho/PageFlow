@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- 로깅을 콘솔로 출력하는 설정. 실상황에서는 파일로 출력 -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern> %d{HH:mm:ss.SSS} %highlight(%-5level) %magenta(%-4relative) --- [ %thread{10} ] %cyan(%logger{40}) : %msg%n </pattern>
+		</encoder>
+	</appender>
+	<!--  com.example 패키지 소속 클래스들의 로깅 레벨을 지정 -->
+	<logger name="com.example" level="info" />
+	
+	<!--  스프링의 로깅 레벨을 지정 -->
+	<logger name="org.springframework" level="info" />
+	
+	<!-- Controller에서 매핑한 주소들을 출력하도록 설정(trace) -->
+	<logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="trace" />
+	
+	<!--  log4jdbc DB 로깅 설정 -->
+	<logger name="jdbc.sqlonly" level="info"/>
+	<logger name="jdbc.connection" level="warn"/>
+	<logger name="jdbc.resultsettable" level="info"/>
+	<logger name="jdbc.audit" level="warn"/>
+	<logger name="jdbc.sqltiming" level="warn"/>
+	<logger name="jdbc.resultset" level="warn"/>
+	<root level="warn">
+		<appender-ref ref="console" />
+	</root>
+</configuration>

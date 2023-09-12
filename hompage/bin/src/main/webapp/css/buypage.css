@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	}
+	
+	#page {
+	width: 1200px;
+	margin: 0 auto;
+	
+	}
+	
+	header{
+		border: 1px solid red;
+		height: 100px;
+	}
+	
+	#logo{
+		height: 49px;
+		border: 1px solid red;
+		text-align: center;
+		justify-content: center;
+		display: flex;
+		
+	}
+	#p_logo{
+		line-height: 42px;
+	}
+	
+	#h_button{
+		height: 50px;
+		border: 1px solid red;
+		display: flex;
+		justify-content: end;
+	}
+	
+	.h_button{
+		margin-left : 10px;
+	}
+	
+	nav {
+		border: 1px solid red;
+		height : 100px;
+		margin: 30px 0px;
+		
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+	#nav_div{
+		width : 1200px;
+		display: flex;
+		justify-content: space-between;
+		height: 50px;
+		align-items: center;
+	}
+		
+	ul{
+		display: flex;
+	}
+	li{
+		width: 100px;
+		list-style-type: none;
+	}
+	
+	#leftaside{
+		margin: 4px 0px;
+		width: 180px;
+		border: 1px solid red;
+		height: 490px;
+		flex-direction: column;
+	}
+	
+	.left_aside_list{
+		flex-direction: column;
+		width: 180px;
+		display: flex;
+		margin-bottom: 24px;
+		
+	}
+	#left_aside_category{
+		width: 180px;
+		flex-direction: column;
+		padding: 0px;
+	}
+	
+	.sublist{
+		flex-direction: column;
+		width: 180px;
+		font-size: 12px;
+	}
+	
+	main {
+		border: 1px solid red;
+		height : 500px;
+		margin: 30px 0px;
+		display: flex;
+		overflow: hidden;
+	}
+	
+	section {
+		width: 1018px;
+	}
+	
+	footer {
+		border: 1px solid red;
+		height : 200px;
+		margin: 30px 0px;
+	}
