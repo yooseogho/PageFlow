@@ -46,7 +46,8 @@ section,
 .login_btn, 
 .input_check,
 .id_pw_info,
-.login_sns_box {
+.login_sns_box,
+.non_user_btn {
 	width: 340px;
 }
 
@@ -69,6 +70,12 @@ input {
 	border-radius: 10px;
 }
 
+.login_btn:hover,
+.create_btn,
+.non_user_btn{
+  cursor: pointer;
+}
+
 .checkbox {
 	height: 22px;
 }
@@ -84,4 +91,16 @@ input {
 .login_sns_box {
 	height: 95px;
 	margin-top:40px;
+	border: 1px solid olivedrab;
 }
+
+.create_btn,
+.non_user_btn {
+	height: 50px;
+	border-radius: 10px;
+	margin-top: 10px;
+}
+
+
+ 	
+

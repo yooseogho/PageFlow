@@ -41,5 +41,9 @@ public class SampleController {
 	public void login() {
 	}
 	
-		
+	@GetMapping("/nonuser_order_list")
+	public void nonuser_order_list() {
+	}
+
+	
 }

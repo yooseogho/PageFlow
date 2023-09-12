@@ -10,7 +10,8 @@
 		width:1200px;
 		align-items: center;
 		display: flex;
-		justify-content: center;	
+		justify-content: center;
+		margin : 0 auto;	
 	}
 	
 	h4 {
