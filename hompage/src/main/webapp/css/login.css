@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#page {
+	padding-top: 100px;
+	width: 1440px;
+	margin: 0 auto;
+
+}
+
+header,
+main {
+	width: 1440px;
+	margin: 0 auto;
+}
+
+header {
+	height: 54px;
+}
+
+.header_inner {
+	width: 400px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+main {
+	height:800px;
+}
+
+section {
+	width: 340px;
+	height: 570px;
+	margin: 0 auto;
+}
