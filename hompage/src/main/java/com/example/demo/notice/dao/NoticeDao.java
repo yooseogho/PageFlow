@@ -31,12 +31,10 @@ public interface NoticeDao {
 	@Select("select * from notice where nno=#{nno} and rownum=1")
 	public Notice findRead(Long nno);
 	
-	// 글 내용 변경
-	@Update("update set notice_content where nno=#{nno} ")
-	public Integer increaseContent();
-	// 글 제목 변경
-	@Update("update set notice_title where nno=#{nno} ")
-	public Integer increaseTitle();
+	// 글 내용 및 제목 변경
+	@Update("UPDATE notice SET notice_title=#{noticeTitle}, notice_content=#{noticeContent} WHERE nno=#{nno}")
+	public Integer updateNotice( Long nno,String noticeTitle, String noticeContent);
+
 	
 	// 글 삭제
 	@Delete("delete from notice where nno=#{nno}")
