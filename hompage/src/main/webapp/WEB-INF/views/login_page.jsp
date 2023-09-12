@@ -27,7 +27,7 @@
 						</div>
 					</div>
 					<div class="login_btn_area">
-						<button class="login_btn">로그인</button>
+						<a href="/"><button class="login_btn" >로그인</button></a>
 					</div>
 					<div class="id_pw_info">
 						<span class="save-id">
@@ -41,14 +41,17 @@
 						* 주의사항 등등
 					</div>
 					<div class="create_btn_area">
-						<button class="create_btn">회원가입</button>
+						<a href="/create"><button class="create_btn">회원가입</button></a>
 					</div>
 					<div class="non_user_btn_area">
-						<button class="non_user_btn">비회원 주문조회</button>
+						<a href="/nonuser_order_list"><button class="non_user_btn">비회원 주문조회</button></a>
 					</div>
 				</div>
 			</section>
 		</main>
+		<footer>
+			<jsp:include page="/WEB-INF/views/include/footer.jsp" />
+		</footer>
 	</div>
 </body>
 </html>
