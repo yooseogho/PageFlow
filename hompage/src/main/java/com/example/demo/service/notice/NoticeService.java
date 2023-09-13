@@ -11,6 +11,7 @@ public class NoticeService {
   @Autowired
   private NoticeDao noticeDao;
   
+//  1. 공지사항 등록 (INSERT 문)
   public Boolean insertNotice(String noticeTitle, String noticeContent) {
     if(noticeTitle.isEmpty()||noticeTitle.isBlank()||noticeContent.isEmpty()||noticeContent.isBlank()) {
       return false;
@@ -23,6 +24,7 @@ public class NoticeService {
     return noticeDao.save(notice)==1;
   }
   
+//  2. 공지사항 삭제 (DELETE 문)
   public Boolean deleteNotice(Long nno) {
     if(nno==null) {
       return false;
@@ -31,6 +33,7 @@ public class NoticeService {
     return deleteRows==1;
   }
   
+//  3. 공지사항 수정 (UPDATE 문)
   public Boolean updateNotice(Long nno, String noticeTitle, String noticeContent) {
     if(nno==null) {
       return false;
@@ -38,6 +41,7 @@ public class NoticeService {
     return noticeDao.updateNotice(nno, noticeTitle, noticeContent)==1;
   }
   
+//  4. 공지사항 보기 (SELECT 문)
   public Notice checkNotice(Long nno) {
     if(nno==null) {
       return null;
@@ -45,6 +49,7 @@ public class NoticeService {
     return noticeDao.findRead(nno);
   }
   
+//  5. 공지사항 페이지네이션 (SELECT 문)
   public Boolean count() {
     return noticeDao.count()==1;
   }
