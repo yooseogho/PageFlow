@@ -12,9 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.notice.dao.NoticeDao;
-import com.example.demo.notice.dto.Page;
-import com.example.demo.notice.entity.Notice;
+import com.example.demo.dao.notice.*;
+import com.example.demo.dto.notice.*;
+import com.example.demo.entity.notice.*;
 
 @SpringBootTest
 public class NoticeDaoTest {
