@@ -1,0 +1,145 @@
+
+
+create table member_grade (
+	grade_code	number(7)		not null,
+	grade_name	varchar2 (20 char)	default 'friends'	not null,
+	point_rate	number(1)		not null,
+    constraint member_grade_pk_grade_code primary key(grade_code)
+);
+
+create table member (
+	member_id	varchar2(20 char)		not null,
+	grade_code	number(7)		not null,
+	member_name	varchar2 (20 char)		not null,
+	member_email	varchar2 (50 char)		not null,
+	password	varchar2(60 char)		not null,
+	member_address	varchar2(100 char)		null,
+	member_tel	varchar2 (20 char)		null,
+	member_profile	varchar2 (300 char)	default 'defaultprofile.png'	not null,
+	member_point	number(7)		not null,
+	joinday	date	default sysdate	not null,
+	birthday	date		not null,
+    constraint member_pk_member_id primary key(member_id),
+    constraint member_fk_grade_code foreign key(grade_code) references member_grade(grade_code)
+);
+
+create table delivery (
+	dno	number(7)		not null,
+	member_id	varchar2(20 char)		not null,
+	zip_code	number(6)		not null,
+	receiver_name	varchar2 (20 char)		not null,
+	delivery_address	varchar2 (100 char)		not null,
+	second_address	varchar2 (100 char)		null,
+	third_address	varchar2 (100 char)		null,
+	receiver_tel	varchar2 (20 char)		not null,
+    constraint delivery_pk_dno primary key(dno),
+    constraint delivery_fk_member_id foreign key(member_id) references member(member_id)
+);
+
+create table orders(
+	ono	number(7)		not null,
+	member_id	varchar2 (20 char)		not null,
+	dno	number(7)		not null,
+	order_date	date	default sysdate	not null,
+	order_request	varchar2 (100 char)	default '조심히 와주세요'	not null,
+	order_price	number(7)		not null,
+	order_status	varchar2 (100 char)	default '주문이 완료되었습니다.'	not null,
+	payment	number(7)		not null,
+	point_earn	number(5)		not null,
+    constraint orders_pk_ono primary key(ono),
+    constraint orders_fk_dno foreign key(dno) references delivery(dno),
+    constraint orders_fk_member_id foreign key(member_id) references member(member_id)
+);
+
+create table publisher (
+	publisher_code	number(7)		not null,
+	publisher_name	varchar2 (30 char)		not null,
+    constraint publisher_pk_publisher_code primary key(publisher_code)
+);
+
+create table author (
+	author_code	number(7)		not null,
+	author_name	varchar2 (30 char)		not null,
+    constraint author_pk_author_code primary key(author_code)
+);
+
+create table book (
+	bno	number(7)		not null,
+	book_title	varchar2 (50 char)		not null,
+	subtitle	varchar2 (50 char)		null,
+	publish_date	date		not null,
+	book_price	number(7)		not null,
+	stock	number(4)		not null,
+	translator	varchar2 (30 char)		null,
+	publisher_code	number(7)		not null,
+	author_code	number(7)		not null,
+    constraint book_pk_bno primary key(bno),
+    constraint book_fk_publisher_code foreign key(publisher_code) references publisher(publisher_code),
+    constraint book_fk_author_code foreign key(author_code) references author(author_code)
+);
+
+create table book_review (
+	rno	number(7)		not null,
+	review_content	clob		not null,
+	review_writer	varchar2 (30 char)		not null,
+	review_date	date	default sysdate	not null,
+	bno	number(7)		not null,
+	ono	number(7)		not null,
+    constraint book_review_pk_rno primary key(rno),
+    constraint book_fk_bno foreign key(bno) references book(bno),
+    constraint book_fk_ono foreign key(ono) references orders(ono)
+);
+
+create table book_image (
+	bino	number(7)		not null,
+	image_name	varchar2 (100 char)	default 'default.png'	not null,
+	bno	number(7)		not null,
+    constraint book_image_pk primary key(bino, image_name),
+    constraint image_fk_bno foreign key(bno) references book(bno)
+);
+
+create table cart (
+	cno	number(7)		not null,
+	bno	number(7)		not null,
+	member_id	varchar2 (20 char)		not null,
+	cart_count	number(3)	default 1	not null,
+    constraint cart_pk_cno primary key(cno),
+    constraint cart_ck unique(bno, member_id)
+);
+
+create table order_details (
+	bno	number(7)		not null,
+	ono	number(7)		not null,
+	order_count	number(3)		not null,
+	order_total	number(7)		not null,
+	book_title	varchar2 (50 char)		not null,
+    constraint order_details_pk primary key(bno, ono)
+);
+
+create table inquiry (
+	inno	number(7)		not null,
+	member_id	varchar2 (20 char)		not null,
+	content	clob		not null,
+	inquiry_type	varchar2 (30 char)		not null,
+    constraint inquiry_pk_inno primary key(inno),
+    constraint inquiry_fk_member_id foreign key(member_id) references member(member_id)
+);
+
+create table notice (
+	nno	number(7)		not null,
+	notice_title	varchar2 (30 char)		not null,
+	notice_content	clob		not null,
+	notice_writer	varchar2 (20 char)		not null,
+	notice_writeday	date	default sysdate	not null,
+    constraint notice_pk_nno primary key(nno)
+);
+
+create table inquiry_image (
+	iino	number(7)		not null,
+	ii_name	varchar2 (300 char)		null,
+	inno	number(7)		not null,
+    constraint inquiry_image_pk primary key(iino, ii_name)
+);		
+CREATE SEQUENCE notice_seq; 
+CREATE SEQUENCE book_seq;
+CREATE SEQUENCE bookImage_seq;
