@@ -21,7 +21,7 @@
 </head>
 <body>
 	<div id="footer">
-		<h4>copyright &copy; 2023 ICIA Shop</h4>
+		<h3>&copy;PageFlow Shop</h3>
 	</div>	
 </body>
 </html>

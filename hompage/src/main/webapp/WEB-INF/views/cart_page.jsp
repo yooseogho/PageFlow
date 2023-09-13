@@ -19,8 +19,8 @@
 			</div>
 			
 			<div id="h_button">	
-				<button class="h_button"><a href="/cart_page">장바구니</a></button>
-				<button class="h_button"><a href="/user_info_page">내정보 보기</a></button>
+				<a href="/cart_page"><button class="h_button">장바구니</button></a>
+				<a href="/user_info_page"><button class="h_button">내정보 보기</button></a>
 				<button class="h_button">로그아웃</button>
 				<button class="h_button">고객센터</button>
 			</div>		
@@ -29,7 +29,9 @@
 		<main>
 			<aside></aside>
 			<section>
-				<div style="font-size: large; font-weight: bold;">장바구니</div>
+				<div style="font-size: large; font-weight: bold;">
+					<p>장바구니</p>
+				</div>
 				<div id="cart_body">
 					<div id="cart_body_inner">
 						<div id="cart_inner_list">
@@ -52,7 +54,7 @@
 									<li><p>적립 예정 포인트</p></li>
 								</ul>
 							</div>
-							<button id="order">주문하기</button>
+							<a href="/order_page"><button id="order">주문하기</button></a>
 						</div>
 					</div>
 				</div>

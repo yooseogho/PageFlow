@@ -44,6 +44,21 @@ public class SampleController {
 	@GetMapping("/non_user_order_list")
 	public void non_user_order_list() {
 	}
-
 	
+	@GetMapping("/find_id_page")
+	public void find_id_page() {
+	}
+	
+	@GetMapping("/find_id_result_page")
+	public void find_id_result_page() {
+	}
+	
+	@GetMapping("/order_page")
+	public void order_page() {
+	}
+
+
+
+
+
 }
