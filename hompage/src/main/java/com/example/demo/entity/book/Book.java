@@ -10,7 +10,7 @@ import lombok.*;
 public class Book {
 	private Long bno;
 	private String bookTitle;
-	private String subtitle;
+	private String subTitle;
 	private LocalDate publishDate;
 	private Long bookPrice;
 	private Long stock;
