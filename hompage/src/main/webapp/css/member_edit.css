@@ -39,10 +39,6 @@ header {
     margin-left: 10px;
 }
 
-main {
-	padding-bottom: 100px;
-}
-
 .contents_wrap {
     padding-top: 42px;
 }
@@ -79,12 +75,21 @@ main {
     flex-direction: column;
 }
 
+.main_top_top {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
 .main_top_title {
     font-size: 24px;
     line-height: 36px;
     letter-spacing: -0.01em;
     position: relative;
     font-weight: 700;
+}
+
+.main_top_bottom > .main_top_title {
+    font-size: 18px;
 }
 
 .info_text {
@@ -163,9 +168,9 @@ tbody td {
     text-align: center;
 }
 
-.btn {
+.confirm_btn,
+.cancel_btn {
     color: #fff;
-    background: #5055b1;
     border: 1px solid #a6a9d7;
     transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
     min-width: 200px;
@@ -179,6 +184,17 @@ tbody td {
     font-weight: 700;
 }
 
-.btn :hover {
+.cancel_btn :hover,
+.confirm_btn :hover {
     cursor: pointer;
 }
+
+.cancel_btn {
+    background: #767676;
+}
+
+.confirm_btn {
+    background: #5055b1;
+}
+
+
