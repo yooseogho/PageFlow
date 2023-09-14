@@ -58,7 +58,7 @@
                             </table>
                         </div>
                         <div class="inner_main_bottom">
-                            <a href="#"><button class="btn"><span class="text">확인</span></button></a>
+                            <a href="member_edit_page"><button class="btn"><span class="text">확인</span></button></a>
                         </div>
                     </div>
 

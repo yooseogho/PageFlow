@@ -60,6 +60,10 @@ public class SampleController {
 	@GetMapping("/member_check_page")
 	public void member_check_page() {
 	}
+	
+	@GetMapping("/member_edit_page")
+	public void member_edit_page() {
+	}
 
 
 
