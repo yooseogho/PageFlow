@@ -57,7 +57,9 @@ public class SampleController {
 	public void order_page() {
 	}
 
-
+	@GetMapping("/member_check_page")
+	public void member_check_page() {
+	}
 
 
 

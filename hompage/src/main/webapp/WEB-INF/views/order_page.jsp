@@ -206,7 +206,7 @@
                             </div>
                             
                             
-                            <div class="payment_info_area">
+                            <div class="payment_way_area">
                                 <div class="payment_info_header">
                                     <div class="payment_header_inner">
                                         <span class="payment_header_text">결제수단</span>
@@ -227,28 +227,58 @@
                                 <div class="payment_info_box">
                                     <ul style="list-style-type: none;">
                                         <li>
-                                            <p>상품금액</p>
+                                            <p class="label">상품금액</p>
+                                            <div class="label_right">
+                                                <span class="price">
+                                                    <span>xxx</span>
+                                                    <span class="unit">원</span>
+                                                </span>
+                                            </div>
                                         </li>
                                         <li>
-                                            <p>배송비</p>
+                                            <p class="label">배송비</p>
+                                            <div class="label_right">
+                                                <span class="price">
+                                                    <span>xxx</span>
+                                                    <span class="unit">원</span>
+                                                </span>
+                                            </div>
                                         </li>
                                         <li>
-                                            <p>포인트 사용</p>
+                                            <p class="label">포인트 사용</p>
+                                            <div class="label_right">
+                                                <span class="price">
+                                                    <span>xxx</span>
+                                                    <span class="unit">원</span>
+                                                </span>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="payment_info_box">
+                                <div class="payment_last_box">
                                     <ul style="list-style-type: none;">
                                         <li>
-                                            <p>최종결제금액 : xxx원</p>
+                                            <p class="label">최종결제금액</p>
+                                            <div class="label_right">
+                                                <span class="price">
+                                                    <span>xxx</span>
+                                                    <span class="unit">원</span>
+                                                </span>
+                                            </div>
                                         </li>
                                         <li>
-                                            <p style="font-size: small;">적립예정포인트 : xxxP</p>
+                                            <p class="label">적립예정포인트</p>
+                                            <div class="label_right">
+                                                <span class="price">
+                                                    <span>xxx</span>
+                                                    <span class="unit"> P</span>
+                                                </span>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
-                                <div>
-                                    <a href="/"><button class="payment_btn">결제하기</button></a>
+                                <div class="payment_btn_area">
+                                    <a href="/"><button class="payment_btn"><span class="btn_text">결제하기</span></button></a>
                                 </div>
                             </div>
                             <div class="payment_agree_text">

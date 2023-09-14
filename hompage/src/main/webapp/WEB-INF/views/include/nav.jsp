@@ -14,6 +14,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <meta charset="UTF-8">
+
 </head>
 <body>
 	<div id="nav_div">
@@ -24,19 +25,15 @@
 			<input type="search" placeholder="입력....">
 		</div>
 		<div>
-				<button>
-					<a href="/cart_page">장바구니</a>
-				</button>
-				<button>
-					<a href="/user_info_page">내정보 보기</a>
-				</button>
+				<a href="/cart_page"><button>장바구니</button></a>
+				<a href="/user_info_page"><button>내정보 보기</button></a>
 		</div>
 	</div>
-	<ul>
-		<li>만화</li>
-		<li>소설</li>
-		<li>중 / 고등용 교재</li>
-		<li>어린이용 교재</li>
+	<ul style="display: flex;">
+		<li style="width: 100px;">만화</li>
+		<li style="width: 100px;">소설</li>
+		<li style="width: 100px;">중 / 고등용 교재</li>
+		<li style="width: 100px;">어린이용 교재</li>
 	</ul>
 </body>
 </html>
