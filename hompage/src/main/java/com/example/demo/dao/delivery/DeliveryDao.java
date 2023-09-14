@@ -13,12 +13,12 @@ public interface DeliveryDao {
 	public List<Delivery> findAll();
 
 	// 특정 회원의 배송 정보 조회
-	@Select("select * from delivery where member_id=#{memberId}")
+	@Select("select * from delivery where member_id=#{memberId} and rownum=1")
 	public List<Delivery> findByMemberId(String memberId);
 
 	// 특정 배송 정보 조회
-	@Select("select * from delivery where dno=#{dno}")
-	public Delivery findByDNo(Long dno);
+	@Select("select * from delivery where dno=#{dno} and rownum=1")
+	public Delivery findByDno(Long dno);
 
 	// 새로운 배송 정보 추가
 	@Insert("insert into delivery(dno, member_id, zip_code, receiver_name, delivery_address, second_address, third_address, receiver_tel)"
@@ -32,5 +32,5 @@ public interface DeliveryDao {
 
 	// 특정 배송 정보 삭제
 	@Delete("delete from delivery where dno=#{dno}")
-	public Integer deleteByDNo(Long dno);
+	public Integer deleteByDno(Long dno);
 }

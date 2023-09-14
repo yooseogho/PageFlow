@@ -1,0 +1,32 @@
+package com.example.demo.service.bookImage;
+
+import java.util.*;
+
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
+
+import com.example.demo.dao.bookImage.*;
+import com.example.demo.entity.bookImage.*;
+
+@Service
+public class BookImageService {
+  @Autowired
+  private BookImageDao imageDao;
+
+  // 책 이미지 등록
+  public Boolean registerBookImage(BookImage image) {
+    Integer result = imageDao.save(image);
+    return result == 1;
+  }
+
+  // 책 이미지 조회
+  public List<String> getBookImages(Long bino) {
+    return imageDao.findByBino(bino);
+  }
+
+  // 책 이미지 삭제
+  public Boolean deleteBookImage(Long bino) {
+    Long result = imageDao.deleteByBino(bino);
+    return result != null && result > 0;
+  }
+}

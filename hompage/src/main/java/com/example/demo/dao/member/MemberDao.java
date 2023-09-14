@@ -27,7 +27,7 @@ public interface MemberDao {
 	public Integer changePassword(String password, String memberId);
 	
 	// 이메일 변경
-	@Update("update member set member_email=#{memberEmail} where password=#{password}")
+	@Update("update member set member_email=#{memberEmail} where member_id=#{memberId}")
 	public Integer changeMemberEmail(String memberEmail, String password);
 	
 	// 전화번호 변경

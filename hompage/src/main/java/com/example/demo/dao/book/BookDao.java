@@ -32,7 +32,7 @@ public interface BookDao {
 
   // 장바구니 상품 개수를 증가할 때 재고량을 확인하기 위해 사용한다
   @Select("select stock from book where bno=#{bno} and rownum=1")
-  public Long findStockById(Long bno);
+  public Integer findStockById(Long bno);
   
 //  도서 업데이트
   @Update("update book set book_title=#{bookTitle}, sub_title=#{subTitle}, book_price=#{bookPrice}"

@@ -14,15 +14,15 @@ public interface BookImageDao {
 	// book bno 외래키 활용 
 	
 	// 책 사진저장
-	@Insert("insert into  values(bookImage_seq.nextval, #{imageName}, #{bno})")
+	@Insert("insert into Book_Image values(bookImage_seq.nextval, #{imageName}, #{bno})")
 	public Integer save(BookImage bookImage);
 	
 	// 리스트에저장된 사진 꺼내기
-	@Select("select imageName from Book_Image where bno=#{bno}")
-	public List<String> findByPno(Long bno);
+	@Select("select imageName from Book_Image where bino=#{bino}")
+	public List<String> findByBino(Long bino);
 	
 	// 책 사진 삭제
-	@Delete("delete from Book_Image where bno=#{bno}")
-	public Integer deleteByPno(Long bno);
+	@Delete("delete from Book_Image where bino=#{bino}")
+	public Long deleteByBino(Long bino);
 	
 }
