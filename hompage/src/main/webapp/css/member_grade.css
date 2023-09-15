@@ -202,3 +202,8 @@ tbody td {
 footer {
 	margin : 50px auto;
 }
+
+.tab_item {
+    background-color: #5055b1;
+    border-color: #5055b1;
+}
