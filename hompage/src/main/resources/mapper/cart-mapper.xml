@@ -17,7 +17,7 @@
         ]]>
     </update>
 
- <update id="decrease">
+		<update id="decrease">
         <![CDATA[
         UPDATE cart
         SET cart_count = cart_count - 1 
@@ -25,7 +25,31 @@
         AND member_id = #{memberId}
         AND cart_count > 0 -- 수량이 0 이하로 내려가지 않도록 확인
         ]]>
-    </update>
+    	</update>
+    
+      <select id="findByUsername" parameterType="string" resultType="cart">
+        SELECT 
+        cart.cno,book.bno,member.member_id,cart_count,book.book_title,book.subtitle,book.publish_date,book.book_price,
+		book.stock,member.member_point,book_image.image_name
+        FROM cart 
+        INNER JOIN book ON cart.bno = book.bno
+        INNER JOIN member ON cart.member_id = member.member_id
+        INNER JOIN book_image ON cart.bno = book_image.bno
+        WHERE member.member_id = #{memberId}
+        
+    </select>
+    
+     <select id="findById" parameterType="long" resultType="cart">
+        SELECT *
+        FROM cart 
+        INNER JOIN book ON cart.bno = book.bno
+        INNER JOIN member ON cart.member_id = member.member_id
+        INNER JOIN book_image ON cart.bno = book_image.bno
+        WHERE cart.cno = #{cno}
+    </select>
+    
+    
+    
 
 </mapper>
 
