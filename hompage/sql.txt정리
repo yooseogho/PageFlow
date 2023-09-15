@@ -143,3 +143,5 @@ create table inquiry_image (
 CREATE SEQUENCE notice_seq; 
 CREATE SEQUENCE book_seq;
 CREATE SEQUENCE bookImage_seq;
+CREATE SEQUENCE book_review_seq ;
+CREATE SEQUENCE orders_ono_seq;

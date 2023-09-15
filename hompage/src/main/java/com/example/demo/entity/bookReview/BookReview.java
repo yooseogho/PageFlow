@@ -16,3 +16,4 @@ public class BookReview {
 	private Long ono;
 	
 }
+	
