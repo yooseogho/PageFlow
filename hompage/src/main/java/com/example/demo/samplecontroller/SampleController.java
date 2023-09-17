@@ -68,7 +68,9 @@ public class SampleController {
 	@GetMapping("/member_delivery_list_page")
 	public void member_delivery_list_page() {
 	}
-
-
+	
+	@GetMapping("/member_grade_page")
+	public void member_grade_page() {
+	}
 
 }

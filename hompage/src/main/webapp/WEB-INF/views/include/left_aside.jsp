@@ -40,7 +40,7 @@
 						<ul class="sublist">
 							<li><a href="/member_check_page">회원정보관리</a></li>
 							<li><a href="/member_delivery_list_page">배송 주소록</a></li>
-							<li><a href="/user_grade_page">나의 회원등급</a></li>
+							<li><a href="/member_grade_page">나의 회원등급</a></li>
 						</ul>
 					</li>
 				</ul>

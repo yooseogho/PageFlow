@@ -72,7 +72,7 @@ header {
 }
 
 .inner_main_top {
-    padding-bottom: 30px;
+    
     display: -webkit-flex;
     flex-direction: column;
 }
@@ -200,10 +200,342 @@ tbody td {
 }
 
 footer {
-	margin : 50px auto;
+    margin: 50px auto;
 }
 
 .tab_item {
     background-color: #5055b1;
     border-color: #5055b1;
+}
+
+.my_grade_info {
+    display: block;
+    border: 1px solid #eaeaea;
+    border-radius: 16px;
+    box-sizing: border-box;
+}
+
+.grade_info_header {
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    padding: 30px 50px;
+    border-radius: 16px 16px 0 0;
+    background-color: #f7f7f7;
+    box-sizing: border-box;
+
+}
+
+.left_area {
+    margin: 0 20px 0 180px;
+
+}
+
+.ico_grade_friends {
+    background-size: 90px 90px;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_grade_friends@2x.png);
+}
+
+.grade_info_title,
+.name {
+    display: inline-block;
+    color: #000;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -0.01em;
+    vertical-align: top;
+    word-break: break-all;
+}
+
+.name {
+    font-weight: 700;
+}
+
+.grade {
+    color: #474c98;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -0.01em;
+    vertical-align: top;
+    word-break: break-all;
+}
+
+.grade_state_info_list {
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+}
+
+.state_info_title {
+    display: inline;
+    margin-right: 5px;
+    color: #000;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+}
+
+
+
+
+.state_info_desc {
+    display: inline;
+    font-size: 14px;
+    margin-right: 30px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+}
+
+
+.right_area {
+    display: block;
+}
+
+.grade_info_contents {
+    display: -webkit-flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    padding: 40px 49px 40px 39px;
+    box-sizing: border-box;
+
+}
+
+.state_gauge_wrap {
+    display: block;
+    width: 100%;
+}
+
+.state_guage_title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #000;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    vertical-align: top;
+    min-height: 19px;
+}
+
+.val {
+    font-weight: 700;
+    text-align: center;
+    color: #000;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+}
+
+.state_bar {
+    width: 680px;
+    margin: auto;
+    height: 14px;
+    border-radius: 7px;
+    background-color: #f2f2f2;
+    position: relative;
+    display: block;
+}
+
+.state_dot {
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    width: auto;
+    display: -webkit-flex;
+    -webkit-justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+    position: absolute;
+}
+
+.state_guage_bar {
+    position: relative;
+}
+
+.dot {
+    width: 23px;
+    height: 21px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    color: #fff;
+    display: inline-block;
+    vertical-align: top;
+
+}
+
+.title_wrap {
+    padding-bottom: 30px;
+    position: relative;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.title_heading {
+    font-size: 24px;
+    line-height: 36px;
+    letter-spacing: -0.01em;
+    display: inline-block;
+    position: relative;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.tbl_grade_wrap {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #eaeaea;
+    box-sizing: border-box;
+}
+
+.tbl_col {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.tbl_col th {
+    padding: 40px 10px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    color: #767676;
+    font-weight: 500;
+    border-top: 1px solid #000;
+    vertical-align: middle;
+}
+
+.tbl_col th ~ th {
+    border-left: 1px solid #eaeaea;
+}
+
+.img_box {
+    display: block;
+    margin-bottom: 6px;
+    text-align: center;
+
+}
+
+.ico_grade_platinum {
+    background-size: 90px 90px;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_grade_platinum@2x.png);
+}
+
+.grade_title {
+    display: inline-block;
+    position: relative;
+    padding: 0 6px;
+    color: #000;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    vertical-align: top;
+}
+
+.grade_desc {
+    display: block;
+    margin-top: 6px;
+    color: #767676;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+}
+
+.grade_desc > .val {
+    display: block;
+}
+
+.ico_grade_gold {
+    background-size: 90px 90px;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_grade_gold@2x.png);
+}
+
+.ico_grade_silver {
+    background-size: 90px 90px;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_grade_silver@2x.png);
+}
+
+.ico_grade_platinum, .ico_grade_gold, .ico_grade_silver, .ico_grade_friends {
+    display: inline-block;
+    width: 90px;
+    height: 90px;
+    vertical-align: top;
+}
+
+.active {
+    background-color: #f5f5fa;
+}
+
+.tbl_grade_wrap .tbl_col tbody td {
+    border-top: 1px solid #eaeaea;
+}
+
+.vertical_middle {
+    padding: 40px 10px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+    vertical-align: middle;
+}
+
+.tbl_col td ~ td {
+    border-left: 1px solid #eaeaea;
+}
+
+
+.ico_point_plus {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-top: 2px;
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_point_plus@2x.png);
+    margin-right: 2px;
+}
+
+.tbl_row_wrap {
+    display: block;
+    width: 100%;
+    padding: 18px 0;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #eaeaea;
+    box-sizing: border-box;
+}
+
+.tbl_row_wrap .tbl_row tbody th {
+    padding: 12px 10px;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: #000;
+    font-weight: 700;
+    vertical-align: top;
+}
+.fc_black {
+    color: #000 !important;
+}
+
+.bul_list {
+    margin-top: 6px;
+    list-style: none;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    color: #767676;
+    font-weight: 400;
 }
