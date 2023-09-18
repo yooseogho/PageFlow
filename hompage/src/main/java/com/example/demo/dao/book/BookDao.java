@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.*;
 
+import com.example.demo.dto.book.BookDto.*;
 import com.example.demo.entity.book.Book;
 
 @Mapper
@@ -12,6 +13,10 @@ public interface BookDao {
 
   // 페이징 쿼리 (맵퍼 따로만듬)
   public List<Book> findAll(Long startRownum, Long endRownum);
+  
+//  전체 조회
+  @Select("select * from book")
+  public Read selectAll();
 
   // 셀렉트키 활용
   @SelectKey(statement = "select book_seq.nextval from dual", before = true, resultType = long.class, keyProperty = "bno")

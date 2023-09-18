@@ -9,11 +9,11 @@ import com.example.demo.entity.inquiry.*;
 @Mapper
 public interface InquiryDao {
 	// 문의사항 확인
-	@Select("select * from inquiry where inno=#{inno}")
+	@Select("select * from inquiry where inno=#{inno} and rownum=1")
 	public Inquiry findByInno(Long inno);
 	
 	// 회원이 작성한 모든 문의사항
-	@Select("select * from inquiry where memberId=#{memberId}")
+	@Select("select * from inquiry where memberId=#{memberId} and rownum=1")
 	public List<Inquiry> findByMemberId(String memberId);
 	
 	// 새로운 문의사항을 저장

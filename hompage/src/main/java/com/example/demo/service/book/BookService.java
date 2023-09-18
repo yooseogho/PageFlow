@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.dao.book.*;
 import com.example.demo.dto.book.*;
+import com.example.demo.dto.book.BookDto.*;
 import com.example.demo.entity.book.*;
 
 @Service
@@ -21,6 +22,11 @@ public class BookService {
   private String defaultBookImage;
   @Value("${bookImageFolder}")
   private String bookImageFolder;
+  
+//  0. 전체 조회
+  public List<Book> getAllBooks(Long startRownum, Long endRownum) {
+    return bookDao.findAll(startRownum, endRownum);
+  }
 
 //  1. 도서 등록(이미지 포함) 처리
   public Boolean registerBook(BookDto.Registration dto) {
@@ -49,13 +55,6 @@ public class BookService {
       // 예: 이미지 삭제, 기타 처리
       return false; // 도서 등록 실패
     }
-  }
-
-  // UUID를 사용하여 랜덤한 파일 이름 생성
-  private String generateRandomFileName(String originalFileName) {
-    String extension = getFileExtension(originalFileName);
-    UUID uuid = UUID.randomUUID();
-    return uuid.toString() + extension;
   }
 
   // 파일 확장자를 반환하는 메서드
@@ -110,11 +109,15 @@ public class BookService {
     Long findingBno = (long) bookDao.findById(bno);
     return bookDao.findStockById(findingBno) == 1;
   }
-  
+
 //  6. 상품 정보(제목, 부제, 가격, 엮은이(옮긴이)) 변경
   public Boolean updateBook(Long bno) {
     Long updatingBno = (long) bookDao.findById(bno);
-    return bookDao.updateBook(updatingBno)==1;
+    return bookDao.updateBook(updatingBno) == 1;
+  }
+
+  public Read getBookDetail(Long bno) {
+    return bookDao.selectAll();
   }
 
 }

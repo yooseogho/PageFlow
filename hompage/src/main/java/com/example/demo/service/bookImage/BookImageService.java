@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
 import com.example.demo.dao.bookImage.*;
-import com.example.demo.entity.bookImage.*;
 
 @Service
 public class BookImageService {
@@ -14,8 +13,8 @@ public class BookImageService {
   private BookImageDao imageDao;
 
   // 책 이미지 등록
-  public Boolean registerBookImage(BookImage image) {
-    Integer result = imageDao.save(image);
+  public Boolean registerBookImage(String imageName, Long bno) {
+    Integer result = imageDao.save(imageName, bno);
     return result == 1;
   }
 
