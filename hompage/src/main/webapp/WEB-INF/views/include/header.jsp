@@ -7,13 +7,12 @@
 </head>
 <body>
 	<div id="logo">
-				<p id="p_logo">ImageLogo</p>
-			</div>
+		<p id="p_logo">ImageLogo</p>
+	</div>
 			
-			<div id="h_button">	
-				
-				<button class="h_button">로그아웃</button>
-				<button class="h_button">고객센터</button>
-			</div>	
+	<div id="h_button">	
+		<button class="h_button">로그아웃</button>
+		<button class="h_button">고객센터</button>
+	</div>	
 </body>
 </html>

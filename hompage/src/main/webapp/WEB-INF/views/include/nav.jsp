@@ -25,8 +25,8 @@
 			<input type="search" placeholder="입력....">
 		</div>
 		<div>
-				<a href="/cart_page"><button>장바구니</button></a>
-				<a href="/user_info_page"><button>내정보 보기</button></a>
+			<a href="/cart_page"><button>장바구니</button></a>
+			<a href="/user_info_page"><button>내정보 보기</button></a>
 		</div>
 	</div>
 	<ul style="display: flex;">
