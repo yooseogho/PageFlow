@@ -4,6 +4,11 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<style>
+	ul {
+		padding-left: 0rem;
+	}
+</style>
 </head>
 <body>
 	 <div class="aside_header">
@@ -62,13 +67,13 @@
                                 </ul>
                             </li>
                             <li class="snb_item">
-                                <a href="https://www.kyobobook.co.kr/cscenter/qna-form" class="snb_link depth_title">1:1 문의</a>
+                                <a href="/customer_qna_page" class="snb_link depth_title">1:1 문의</a>
                                 <ul class="snb_list">
                                     <li class="snb_item">
-                                        <a href="https://www.kyobobook.co.kr/cscenter/qna-form" class="snb_link">1:1 문의 접수</a>
+                                        <a href="/customer_qna_page" class="snb_link">1:1 문의 접수</a>
                                     </li>
                                     <li class="snb_item">
-                                        <a href="#" class="snb_link">
+                                        <a href="/inquiry_page" class="snb_link">
                                             1:1 문의 내역
                                         </a>
                                     </li>

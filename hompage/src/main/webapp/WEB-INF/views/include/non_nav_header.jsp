@@ -15,7 +15,7 @@
                 <a href="/user_info_page"><button class="h_button">내정보 보기</button></a>
                 <a href="/member_grade_page"><button class="h_button">회원등급 혜택</button></a>
                 <button class="h_button">로그아웃</button>
-                <a href="#"><button class="h_button">고객센터</button></a>
+                <a href="/customer_service_page"><button class="h_button">고객센터</button></a>
         </div>
 </body>
 </html>
