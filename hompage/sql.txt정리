@@ -145,3 +145,6 @@ CREATE SEQUENCE book_seq;
 CREATE SEQUENCE bookImage_seq;
 CREATE SEQUENCE book_review_seq ;
 CREATE SEQUENCE orders_ono_seq;
+CREATE SEQUENCE inquiry_image_seq;
+CREATE SEQUENCE member_grade_seq;
+

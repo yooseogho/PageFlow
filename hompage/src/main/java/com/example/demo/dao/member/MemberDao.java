@@ -49,6 +49,18 @@ public interface MemberDao {
 	// 아이디 찾기 - 전화번호
 	@Select("select member_id from member where member_tel=#{memberTel}")
 	public Member findIdByTel(String memberTel);
+	
+    // 사용자의 누적 구매금액 조회 (등업을 하기 위해 쿼리)
+    @Select("SELECT SUM(order_price) FROM orders WHERE member_id = #{memberId}")
+    public Long PurchaseTotal ( String memberId);
+    
+    
+    
+
+	
+	
+	
+	
 }
 
 

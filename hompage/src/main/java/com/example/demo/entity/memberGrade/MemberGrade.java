@@ -8,5 +8,6 @@ import lombok.*;
 public class MemberGrade {
 	private Long gradeCode;
 	private String gradeName;
-	private Integer pointRate;
+	private Double pointRate;		
 }
+	
