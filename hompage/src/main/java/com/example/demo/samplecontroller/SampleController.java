@@ -72,5 +72,9 @@ public class SampleController {
 	@GetMapping("/member_grade_page")
 	public void member_grade_page() {
 	}
+	
+	@GetMapping("/customer_service_page")
+	public void customer_service_page() {
+	}
 
 }

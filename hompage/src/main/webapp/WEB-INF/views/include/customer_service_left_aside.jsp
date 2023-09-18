@@ -62,10 +62,10 @@
                                 </ul>
                             </li>
                             <li class="snb_item">
-                                <span class="snb_link depth_title" style="cursor:pointer;">1:1 문의</span>
+                                <a href="https://www.kyobobook.co.kr/cscenter/qna-form" class="snb_link depth_title">1:1 문의</a>
                                 <ul class="snb_list">
                                     <li class="snb_item">
-                                        <span class="snb_link" style="cursor:pointer;">1:1 문의 접수</span>
+                                        <a href="https://www.kyobobook.co.kr/cscenter/qna-form" class="snb_link">1:1 문의 접수</a>
                                     </li>
                                     <li class="snb_item">
                                         <a href="#" class="snb_link">
