@@ -7,7 +7,7 @@ import com.example.demo.entity.member.*;
 @Mapper
 public interface MemberDao {
 	// 회원가입
-	@Insert("insert into member values(#{memberId}, 'FRIENDS', #{memberName}, #{memberEmail}, #{password}, #{memberAddress}, #{memberTel}, #{memberProfile}, #{memberPoint}, #{joinday}, #{birthday})")	
+	@Insert("insert into member values(#{memberId}, '1', #{memberName}, #{memberEmail}, #{password}, #{memberAddress}, #{memberTel}, #{memberProfile}, #{memberPoint}, #{joinday}, #{birthday})")	
 	public Integer save(Member member);
 
 	// 아이디 중복
@@ -31,7 +31,7 @@ public interface MemberDao {
 	public Integer changeMemberEmail(String memberEmail, String password);
 	
 	// 전화번호 변경
-	@Update("update member set member_tel=#{memberTel} where password=#{password}")
+	@Update("update member set member_tel=#{memberTel} where  member_id=#{memberId}")
 	public Integer changeMemberTel(String memberTel, String password);
 	
 	// 프로필사진 변경
