@@ -76,5 +76,9 @@ public class SampleController {
 	@GetMapping("/customer_service_page")
 	public void customer_service_page() {
 	}
+	
+	@GetMapping("customer_qna_page")
+	public void customer_qna_page() {
+	}
 
 }

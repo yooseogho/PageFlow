@@ -4,6 +4,11 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<style>
+	ul {
+		padding-left: 0rem;
+	}
+</style>
 </head>
 <body>
 	<div id="leftaside">
