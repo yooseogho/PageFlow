@@ -22,7 +22,7 @@ public interface AuthorDao {
 	@Update("update author set author_name=#{authorName} where author_code=#{authorCode}")
 	public Integer changAuthorName(String authorName, Long authorCode);
 		
-	// 작가 삭제
+	// 작가 삭제 @
 	@Delete("delete from author where author_code=#{authorCode}")
 	public Integer deleteById(Long authorCode);
 }

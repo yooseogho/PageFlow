@@ -4,7 +4,6 @@ import java.util.*;
 
 import org.apache.ibatis.annotations.*;
 
-import com.example.demo.dto.orders.*;
 import com.example.demo.entity.inquiry.*;
 import com.example.demo.entity.orderDetails.*;
 import com.example.demo.entity.orders.*;
