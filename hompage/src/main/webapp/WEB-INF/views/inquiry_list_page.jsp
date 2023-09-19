@@ -46,7 +46,7 @@
 						</div>
 					</div>
 					<div id="right_area">
-						<button>1:1 문의하기</button>
+						<a href="/customer_qna_page"><button>1:1 문의하기</button></a>
 					</div>
 				</div>
 				<ul style="padding: 5px;">

@@ -55,11 +55,11 @@
                     </div>
                     <div class="inquiry_box">
                         <div class="box bg">
-                            <a href="#" class="inquiry">
+                            <a href="/customer_qna_page" class="inquiry">
                                 <span class="ico_inquiry01"></span>
                                 <p class="name">1:1 문의 접수</p>
                             </a>
-                            <a href="#" class="inquiry">
+                            <a href="/inquiry_list_page" class="inquiry">
                                 <span class="ico_inquiry02"></span>
                                 <p class="name">1:1 문의 내역</p>
                             </a>

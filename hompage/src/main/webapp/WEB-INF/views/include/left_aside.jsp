@@ -19,7 +19,7 @@
 				</ul>
 				<ul class="sublist">
 					<li><a href="/order_list_page">주문/배송목록</a></li>
-					<li><a href="/buy_page">구매 내역</a></li>
+					<li><a href="/buy_list_page">구매 내역</a></li>
 				</ul>
 			</li>
 			<li class="left_aside_list">
@@ -32,10 +32,10 @@
 			</li>
 			<li class="left_aside_list">
 				<ul>
-					<li><a href="/inquiry_page">문의 내역</a></li>
+					<li><a href="/inquiry_list_page">문의 내역</a></li>
 				</ul>
 				<ul class="sublist">
-					<li><a href="/inquiry_page">1:1 문의</a></li>
+					<li><a href="/inquiry_list_page">1:1 문의</a></li>
 				</ul>
 			</li>
 			<li class="left_aside_list">

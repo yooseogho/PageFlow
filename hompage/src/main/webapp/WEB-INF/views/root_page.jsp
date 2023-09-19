@@ -15,9 +15,9 @@
 			</div>
 			
 			<div id="h_button">	
-				<button class="h_button"><a href="/member_create_page">회원가입</a></button>
-				<button class="h_button"><a href="/login_page">로그인</a></button>
-				<button class="h_button"><a href="/customer_service_page">고객센터</a></button>
+				<a href="/member_create_page"><button class="h_button">회원가입</button></a>
+				<a href="/login_page"><button class="h_button">로그인</button></a>
+				<a href="/customer_service_page"><button class="h_button">고객센터</button></a>
 			</div>		
 		</header>
 		<nav>
@@ -31,8 +31,8 @@
 				</div>
 				<div>
 					<div>
-						<button><a href="/cart_page">장바구니</a></button>
-						<button><a href="/user_info_page">내정보 보기</a></button>
+						<a href="/cart_page"><button>장바구니</button></a>
+						<a href="/user_info_page"><button>내정보 보기</button></a>
 					</div>
 				</div>
 			</div>

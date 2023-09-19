@@ -41,7 +41,7 @@
 						* 주의사항 등등
 					</div>
 					<div class="create_btn_area">
-						<a href="/create"><button class="create_btn">회원가입</button></a>
+						<a href="/member_create_page"><button class="create_btn">회원가입</button></a>
 					</div>
 					<div class="non_user_btn_area">
 						<a href="/non_user_order_list"><button class="non_user_btn">비회원 주문조회</button></a>

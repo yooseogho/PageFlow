@@ -1,0 +1,493 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#page {
+	padding-top: 100px;
+	width: 1440px;
+	margin: 0 auto;
+
+}
+
+header {
+	width: 1440px;
+	margin: 0 auto;
+    height: 60px;
+}
+
+.header_inner {
+	height: 55px;
+	width: 400px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.container_wrapper {
+    flex: 1 0 auto;
+    width: 100%;
+    padding: 50px 0 100px;
+    min-height: calc(100vh - 54px - 68px - 250px);
+}
+
+.contents_wrap {
+    width: 400px;
+    margin: 0 auto;
+    padding-top: 0;
+}
+
+.title_wrap {
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.title_wrap.title_size_md {
+    padding-bottom: 20px;
+}
+
+.title_wrap.has_line {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #000;
+}
+
+.title_wrap.title_size_md .title_heading {
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -0.01em;
+}
+
+.title_wrap .title_heading {
+    display: inline-block;
+    position: relative;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.title_wrap.title_size_def {
+    padding-bottom: 20px;
+}
+
+.title_wrap.title_size_def .title_heading {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+}
+
+.right_area {
+    margin-left: auto;
+    flex-shrink: 0;
+    justify-content: flex-start;
+    display: -webkit-flex;
+    align-items: center;
+}
+
+.title_wrap .required {
+    display: inline-block;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    color: #595959;
+    vertical-align: top;
+}
+
+.title_wrap .required:before {
+    content: "*";
+    display: inline-block;
+    position: relative;
+    width: 6px;
+    height: 6px;
+    margin-right: 3px;
+    transform: translateY(6px);
+    background-size: 6px 6px;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_required@2x.png);
+    color: transparent;
+}
+
+.form_title {
+    justify-content: flex-start;
+    display: -webkit-flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.form_label {
+    display: inline-block;
+    color: #000;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+}
+
+.form_label .required {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    padding-left: 3px;
+    margin-top: 5px;
+    vertical-align: top;
+}
+
+.form_label .required:before {
+    content: "*";
+    display: inline-block;
+    position: relative;
+    width: 6px;
+    height: 6px;
+    background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_required@2x.png) 0% 0% no-repeat;
+    background-size: 6px 6px;
+    color: transparent;
+}
+
+.hidden {
+    position: absolute;
+    visibility: hidden;
+    overflow: hidden;
+    height: 0;
+    line-height: 0;
+    width: 0;
+    margin: 0;
+    padding: 0;
+    font: 0/0 Arial;
+}
+
+.form_wrap .form_box .form_cont {
+    margin-top: 8px;
+    color: #595959;
+}
+
+input, button {
+    border: 0;
+    border-radius: 0;
+    background: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.form_ip {
+    display: inline-block;
+    width: 100%;
+    height: 44px;
+    padding: 0 14px 2px;
+    color: #000;
+    font-size: 14px;
+    line-height: 42px;
+    letter-spacing: -0.01em;
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease-out;
+    outline: none;
+}
+
+.input_btn_box .time_limit + .btn_ip {
+    margin-left: 6px; 
+}
+
+button.btn_line_primary {
+    color: #474c98;
+    border: 1px solid #5055b1;
+    background: #fff;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.btn_ip {
+    display: -webkit-inline-flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 19px 1px;
+    border-radius: 6px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    justify-content: center;
+}
+
+.form_wrap .form_box ~ .form_box {
+    margin-top: 20px;
+}
+
+
+.form_ip_pw .form_ip {
+    padding: 0 48px 0 14px;
+}
+
+button[class^=btn_]:hover, a[class^=btn_]:hover {
+    cursor: pointer;
+}
+
+.form_ip_pw .btn_toggle_pw {
+    display: inline-block;
+    position: absolute;
+    right: 14px;
+    top: 11px;
+    width: 22px;
+    height: 20px;
+    background-size: 22px 20px;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_eye@2x.png);
+    transition: background 0.2s ease-out;
+}
+
+.form_ip_pw {
+    position: relative;
+}
+
+.pw_valid_wrap {
+        margin-top: 6px;
+}
+
+.pw_valid_wrap .valid_step_box {
+    display: -webkit-flex;    
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.pw_valid_wrap .valid_step_box .valid_step_list {
+    font-size: 0;
+    height: 3px;
+}
+
+.pw_valid_wrap .valid_step_box .valid_step_list .step_item {
+    display: inline-block;
+    width: 80px;
+    height: 3px;
+    background-color: #eaeaea;
+    border-radius: 2px;
+    vertical-align: top;
+}
+
+.pw_valid_wrap .valid_step_box .valid_step_list .step_item + .step_item {
+    margin-left: 3px;
+}
+
+.pw_valid_wrap .valid_step_box .bubble_speech_box {
+    margin-left: auto;
+    position: relative;
+}
+
+.valid_state {
+    display: block;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    color: #767676;
+}
+
+
+.pw_valid_list {
+    margin-top: 4px;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+.pw_valid_wrap .pw_valid_list .pw_valid_item {
+    padding-left: 15px;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/arw_valid_step@2x.png) left top 6px no-repeat;
+    background-size: 10px 7px;
+    color: #767676;
+}
+
+.pw_valid_wrap .pw_valid_list .pw_valid_item + .pw_valid_item {
+    margin-top: 6px;
+}
+
+.form_col_group .col_box ~ .col_box {
+    margin-top: 8px;
+}
+
+.input_btn_box {
+    display: -webkit-flex;
+    align-items: flex-start;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.time_limit {
+    position: relative;
+}
+
+.time_limit .form_ip {
+    padding-right: 58px;
+}
+
+.time_limit,
+.form_ip {
+    flex: 1;
+}
+
+.time_limit .time_count {
+    position: absolute;
+    right: 14px;
+    top: 12px;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    color: #ec1f2d;
+}
+
+.input_btn_box .time_limit + .btn_ip {
+    min-width: 133px;
+}
+
+.btn_primary {
+    color: #fff;
+    background: #5055b1;
+    border: 1px solid #5055b1;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+    margin-left: 6px;
+}
+
+.awesomplete {
+    flex: 1;
+}
+
+.form_filter_box {
+    margin-left: 6px;
+    display: -webkit-inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_filter_box .form_filter {
+    flex: 1 1 auto;
+}
+
+.form_filter_box .form_filter input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.form_filter_box .form_filter:first-child input + label {
+    border-radius: 6px 0 0 6px;
+}
+
+.form_filter_box .form_filter:last-child input + label {
+    border-radius: 0 6px 6px 0;
+}
+
+.form_filter_box .form_filter input:checked + label {
+    z-index: 2;
+    border-color: #5055b1;
+    color: #474c98;
+}
+
+.form_filter_box .form_filter input + label {
+    display: -webkit-inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-width: 60px;
+    height: 44px;
+    padding: 0 16px;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    box-sizing: border-box;
+    vertical-align: top;
+    transition: border-color 0.2s ease-out;
+    cursor: pointer
+}
+
+.form_filter_box .form_filter input:checked + label .text {
+    padding-left: 14px;
+}
+
+.form_filter_box .form_filter input + label .text {
+    position: relative;
+    text-align: left;
+}
+
+.form_filter_box .form_filter input:checked + label {
+    color: #474c98;
+}
+
+.form_filter_box .form_filter input:checked + label .text:before {
+    background-size: 10px 7px;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_checkbox_active_02@2x.png);
+}
+
+.form_filter_box .form_filter input + label .text:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 10px;
+    height: 7px;
+    margin-top: -3px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.valid_check .valid_desc {
+    display: block;
+    position: relative;
+    margin-top: 4px;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    color: #767676;
+}
+
+.btn_wrap.justify {
+    display: flex;
+}
+
+.btn_wrap {
+    display: block;
+    font-size: 0;
+    text-align: center;
+}
+
+.btn_wrap.page_bottom {
+    margin-top: 40px;
+}
+
+.btn_lg {
+    flex: 1;
+    min-width: auto;
+}
+
+.btn_wrap button.btn_lg.btn_primary {
+    color: #fff;
+    background: #5055b1;
+    border: 1px solid #5055b1;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+    height: 50px;
+    padding: 0 23px 1px;
+    border-radius: 6px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    display: -webkit-inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0;
+}        

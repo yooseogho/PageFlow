@@ -93,7 +93,7 @@
                                         <div class="form_col_group w_full">
                                             <div class="col_box">
                                                 <div class="valid_check">
-                                                    <input data-kbbfn-field="" id="InquiryTitle" type="text" class="form_ip w_full" title="제목 입력" placeholder="제목을 입력해 주세요." required="" maxlength="30">
+                                                    <input data-kbbfn-field="" id="InquiryTitle" type="text" class="form_ip w_full" title="제목 입력" placeholder="제목을 입력해 주세요." maxlength="30">
                                                     <span class="valid_desc"></span>
                                                 </div>
                                             </div>
@@ -157,7 +157,7 @@
                                                     <ul class="chk_row_list">
                                                         <li class="chk_row_item">
                                                             <span class="form_rdo">
-                                                                <input data-kbbfn-form="inquiryForm" data-kbbfn-field="" id="contactPhone1" name="InquiryPhoneType" type="radio" value="phone" checked="">
+                                                                <input data-kbbfn-form="inquiryForm" data-kbbfn-field="" id="contactPhone1" name="InquiryPhoneType" type="radio" value="phone">
                                                                 <label for="contactPhone1">휴대폰번호</label>
                                                             </span>
                                                         </li>
@@ -165,7 +165,7 @@
                                                 </div>
                                                 <div class="form_cont">
                                                     <div class="valid_check">
-                                                        <input data-kbbfn-form="inquiryForm" data-kbbfn-field="" id="InquiryPhoneNumber" required="" type="tel" class="form_ip" placeholder="-없이 입력해 주세요." title="연락처 입력" maxlength="30">
+                                                        <input data-kbbfn-form="inquiryForm" data-kbbfn-field="" id="InquiryPhoneNumber" type="tel" class="form_ip" placeholder="-없이 입력해 주세요." title="연락처 입력" maxlength="30">
                                                         <span class="valid_desc"></span>
                                                     </div>
                                                     <span class="form_chk">
@@ -198,7 +198,7 @@
                         <a href="/" class="btn_light_gray btn_lg">
                             <span class="text">취소</span>
                         </a>
-                        <a href="/inquiry_page">
+                        <a href="/inquiry_list_page">
                             <button data-kbbfn-form="inquiryForm" data-kbbfn-submit="" type="button" class="btn_primary btn_lg">
                                 <span class="text">문의접수</span>
                             </button>
