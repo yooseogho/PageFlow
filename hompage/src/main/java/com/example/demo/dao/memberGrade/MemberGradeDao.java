@@ -1,4 +1,4 @@
-package com.example.demo.demo.dao.memberGrade;
+package com.example.demo.dao.memberGrade;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;

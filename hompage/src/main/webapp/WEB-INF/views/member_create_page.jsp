@@ -231,9 +231,11 @@
                     </form>
                 </div>
                 <div class="btn_wrap justify page_bottom" id="joinComplete">
-                    <button class="btn_lg btn_primary">
-                        <span class="text">회원가입</span>
-                    </button>
+                	<a href="/member_create_success_page" style="width: 100%;">
+	                    <button class="btn_lg btn_primary" style="width: 100%;">
+	                        <span class="text">회원가입</span>
+	                    </button>
+	                </a>
                 </div>
             </section>
         </main>

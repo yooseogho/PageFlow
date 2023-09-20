@@ -1,0 +1,124 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#page {
+	padding-top: 100px;
+	width: 1440px;
+	margin: 0 auto;
+
+}
+
+header {
+	width: 1440px;
+	margin: 0 auto;
+    height: 60px;
+}
+
+.header_inner {
+	height: 55px;
+	width: 400px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.container_wrapper {
+    flex: 1 0 auto;
+    width: 100%;
+    padding: 50px 0 100px;
+}
+
+.contents_wrap {
+    width: 400px;
+    margin: 0 auto;
+    padding-top: 0;
+}
+
+button[class^=btn_]:hover, a[class^=btn_]:hover {
+    cursor: pointer;
+}
+
+.btn_primary {
+    color: #fff;
+    background: #5055b1;
+    border: 1px solid #5055b1;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+    margin-left: 6px;
+}
+
+.btn_wrap.justify {
+    display: flex;
+}
+
+.btn_wrap {
+    display: block;
+    font-size: 0;
+    text-align: center;
+}
+
+.btn_wrap.page_bottom {
+    margin-top: 40px;
+}
+
+.btn_lg {
+    flex: 1;
+    width: 100%;
+}
+
+.btn_wrap button.btn_lg.btn_primary {
+    color: #fff;
+    background: #5055b1;
+    border: 1px solid #5055b1;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+    height: 50px;
+    padding: 0 23px 1px;
+    border-radius: 6px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    display: -webkit-inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0;
+}        
+
+.contents_wrap .join_complete_wrap:before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 542px;
+    height: 260px;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/img_member_complete_particle.gif);
+    background-position: center;
+    background-size: 600px 312px;
+}
+
+.title_wrap {
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 40px;
+    position: relative;
+    display: -webkit-flex;
+    align-items: center;
+}
+
+.title_heading {
+        font-size: 24px;
+    line-height: 36px;
+    letter-spacing: -0.01em;
+    display: inline-block;
+    position: relative;
+    font-weight: 700;
+}
+
+.fc_green {
+    color: #3c9a17 !important;
+}

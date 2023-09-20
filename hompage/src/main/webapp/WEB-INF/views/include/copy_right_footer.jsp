@@ -14,7 +14,7 @@
 		margin : 0 auto;	
 	}
 	
-	h4 {
+	h3 {
 		text-align:center;
 	}
 </style>

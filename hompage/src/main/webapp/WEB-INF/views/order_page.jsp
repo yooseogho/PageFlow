@@ -278,7 +278,7 @@
                                     </ul>
                                 </div>
                                 <div class="payment_btn_area">
-                                    <a href="/"><button class="payment_btn"><span class="btn_text">결제하기</span></button></a>
+                                    <a href="/member_order_success_page"><button class="payment_btn"><span class="btn_text">결제하기</span></button></a>
                                 </div>
                             </div>
                             <div class="payment_agree_text">

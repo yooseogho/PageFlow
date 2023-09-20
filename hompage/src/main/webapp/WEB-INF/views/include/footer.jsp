@@ -9,9 +9,10 @@
 #footer {
 	width: 400px;
 	margin: 0 auto;
+	text-align: center;
 }
 
-h4 {
+h3 {
 	font-size: 13px;
 	line-height: 19px;
 	letter-spacing: -0.01em;

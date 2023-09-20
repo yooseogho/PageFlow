@@ -103,5 +103,15 @@ public class SampleController {
 	@GetMapping("/notice_list_page")
 	public void notice_list_page() {
 	}
+	
+	// 회원 가입 성공 페이지
+	@GetMapping("member_create_success_page")
+	public void member_create_success_page() {
+	}
+	
+	// 주문 완료 페이지
+	@GetMapping("member_order_success_page")
+	public void member_order_success_page() {
+	}
 
 }
