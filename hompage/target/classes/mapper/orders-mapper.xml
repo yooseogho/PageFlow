@@ -21,6 +21,7 @@
 		od.bno = b.bno
 		INNER JOIN book_image bi ON
 		b.bno = bi.bno
+		where o.member_id=#{memberId}
 		GROUP BY o.ono,
 		b.book_title,
 		bi.image_name, od.order_count, od.order_total
