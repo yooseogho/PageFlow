@@ -15,30 +15,8 @@ body {
 }
 
 #page {
-    width: 1200px;
     margin: 0 auto;
-
 }
-
-header {
-    border: 1px solid red;
-    height: 100px;
-    display: flex;
-    justify-content: space-between;
-}
-
-
-.h_button_area {
-    height: 49px;
-    display: flex;
-    justify-content: end;
-}
-
-.h_button {
-    height: 49px;
-    margin-left: 10px;
-}
-
 
 
 .section {

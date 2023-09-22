@@ -1,40 +1,37 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<meta charset="UTF-8">
-
+<link rel="stylesheet" href="/css/include/nav.css">
 </head>
 <body>
-	<div id="nav_div">
-		<div id="rootpage">
-			<a href="/page">루트페이지로</a>
+	<div class="pnf_search_wrap">
+		<div class="logo_box">
+			<a href="/page" class="logo_link"> <span class="hidden">PageFlow</span>
+			</a>
 		</div>
-		<div id="search">
-			<input type="search" placeholder="입력....">
+		<div class="pnf_search_box">
+			<div class="search_input_wrap">
+				<input type="search" class="ip_pnf_search" placeholder="검색어를 입력해주세요">
+			</div>
+			<a href="#" class="btn_pnf_search"></a>
 		</div>
-		<div>
-			<a href="/cart_page"><button>장바구니</button></a>
-			<a href="/user_info_page"><button>내정보 보기</button></a>
-		</div>
+		<ul class="user_menu_list">
+			<li class="user_menu_item cart"><a href="/cart_page"
+				class="user_menu_link"></a></li>
+			<li class="user_menu_item my"><a href="/member_info_page"
+				class="profile-icon user_menu_link done"></a></li>
+		</ul>
 	</div>
-	<ul style="display: flex;">
-		<li style="width: 100px;">만화</li>
-		<li style="width: 100px;">소설</li>
-		<li style="width: 100px;">중 / 고등용 교재</li>
-		<li style="width: 100px;">어린이용 교재</li>
-	</ul>
+	<div class="pnf_wrap">
+		<ul class="pnf_list">
+			<li class="pnf_item"><a href="#" class="pnf_link"> 소설 </a></li>
+			<li class="pnf_item"><a href="#" class="pnf_link"> 만화 </a></li>
+			<li class="pnf_item"><a href="#" class="pnf_link"> 시 </a></li>
+			<li class="pnf_item"><a href="#" class="pnf_link"> 참고도서 </a></li>
+		</ul>
+	</div>
 </body>
 </html>
 

@@ -16,7 +16,7 @@
 		where m.member_id=#{memberId}
 	</select>
 
-	<select id="OrdersByTotalpay" resultType="com.example.demo.entity.orders.OrdersDao">
+	<select id="OrdersByTotalpay" resultType="com.example.demo.entity.orders.Orders">
 		select b.book_price*od.order_count as 상품금액,
 		m.member_point  ,b.book_price*od.order_count*m.grade_code as 적립예정포인트,
 		b.book_price*od.order_count - m.member_point as 결제예정금액 

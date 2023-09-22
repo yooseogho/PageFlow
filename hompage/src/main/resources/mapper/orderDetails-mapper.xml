@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo.dao.orders.OrderDetailsDao">
+<mapper namespace="com.example.demo.dao.orderDetails.OrderDetailsDao">
     <select id="findDetailsByMemberId" parameterType="string" resultType="OrderDetails">
         SELECT bi.image_name, b.book_title, b.book_price, od.order_count,
                (b.book_price * od.order_count) AS total_price,o.order_status
