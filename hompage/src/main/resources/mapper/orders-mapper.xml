@@ -4,60 +4,28 @@
 
 <mapper namespace="com.example.demo.dao.orders.OrdersDao">
 
-	<select id="findAllOrders"
-		resultType="com.example.demo.dto.orders.OrdersDto">
-		SELECT o.ono,
-		b.book_title, bi.image_name,
-		od.order_total ,
-		od.order_count
-		FROM orders o
-		INNER JOIN order_details
-		od ON o.ono
-		= od.ono
-		INNER JOIN
-		member m on o.member_id=m.member_id
-		INNER
-		JOIN book b ON
-		od.bno = b.bno
-		INNER JOIN book_image bi ON
-		b.bno = bi.bno
-		where o.member_id=#{memberId}
-		GROUP BY o.ono,
-		b.book_title,
-		bi.image_name, od.order_count, od.order_total
+	<select id="cartByTotalpay" resultType="com.example.demo.entity.orders.Orders">
+		select b.book_price*od.order_count as 상품금액,
+		b.book_price*od.order_count*m.grade_code as 적립예정포인트,
+		b.book_price*od.order_count as 결제예정금액
+		from orders o 
+		inner join order_details od on o.ono=od.ono 
+		inner join book b on od.bno=b.bno 
+		inner join member m on o.member_id=m.member_id 
+		inner join member_grade mg on m.grade_code=mg.grade_code 
+		where m.member_id=#{memberId}
 	</select>
 
-	<select id="findByOrderDetails"
-		resultType="com.example.demo.dto.orders.OrdersDto">
-		SELECT o.ono, b.book_title, bi.image_name, od.order_total,
-		b.book_price, o.point_earn, od.order_count
-		,
-		d.zip_code, d.receiver_name
-		FROM
-		orders o
-		INNER JOIN
-		order_details od ON
-		o.ono = od.ono
-		INNER JOIN
-		member m
-		on
-		o.member_id=m.member_id
-		INNER JOIN
-		book b ON od.bno =
-		b.bno
-		INNER JOIN
-		book_image bi ON b.bno = bi.bno
-		INNER
-		JOIN delivery d
-		on
-		o.dno=
-		d.dno
-		GROUP BY o.ono, b.book_title,
-		bi.image_name,
-		od.order_total,
-		d.zip_code,
-		d.receiver_name,
-		od.order_count, b.book_price, o.point_earn
+	<select id="OrdersByTotalpay" resultType="com.example.demo.entity.orders.OrdersDao">
+		select b.book_price*od.order_count as 상품금액,
+		m.member_point  ,b.book_price*od.order_count*m.grade_code as 적립예정포인트,
+		b.book_price*od.order_count - m.member_point as 결제예정금액 
+		from orders o 
+		inner join order_details od on o.ono=od.ono 
+		inner join book b on od.bno=b.bno 
+		inner join member m on o.member_id=m.member_id 
+		inner join member_grade mg on m.grade_code=mg.grade_code 
+		where m.member_id=#{memberId}
 	</select>
 
 
