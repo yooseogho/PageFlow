@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.dao.member.MemberDao;
-import com.example.demo.demo.dao.memberGrade.MemberGradeDao;
+import com.example.demo.dao.memberGrade.*;
 import com.example.demo.entity.memberGrade.MemberGrade;
 
 @SpringBootTest

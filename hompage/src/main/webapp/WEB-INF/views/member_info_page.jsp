@@ -17,7 +17,7 @@
 		</nav>
 		<main>
 		<aside>
-			<jsp:include page="/WEB-INF/views/include/left_aside.jsp" />
+			<jsp:include page="/WEB-INF/views/include/member_info_left_aside.jsp" />
 		</aside>
 			<section>
 			</section>

@@ -19,23 +19,22 @@
 				</ul>
 				<ul class="sublist">
 					<li><a href="/order_list_page">주문/배송목록</a></li>
-					<li><a href="/buy_list_page">구매 내역</a></li>
 				</ul>
 			</li>
 			<li class="left_aside_list">
 				<ul>
-					<li><a href="/point_page"><span>혜택/포인트</span></a></li>
+					<li><a href="/member_point_page"><span>혜택/포인트</span></a></li>
 				</ul>
 				<ul class="sublist">
-					<li><a href="/point_page">포인트</a></li>
+					<li><a href="/member_point_page">포인트</a></li>
 				</ul>
 			</li>
 			<li class="left_aside_list">
 				<ul>
-					<li><a href="/inquiry_list_page">문의 내역</a></li>
+					<li><a href="/customer_inquiry_list_page">문의 내역</a></li>
 				</ul>
 				<ul class="sublist">
-					<li><a href="/inquiry_list_page">1:1 문의</a></li>
+					<li><a href="/customer_inquiry_list_page">1:1 문의</a></li>
 				</ul>
 			</li>
 			<li class="left_aside_list">
