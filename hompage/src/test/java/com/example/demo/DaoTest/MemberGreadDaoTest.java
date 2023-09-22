@@ -1,16 +1,12 @@
 package com.example.demo.DaoTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.boot.test.context.*;
 
-import com.example.demo.dao.member.MemberDao;
 import com.example.demo.dao.memberGrade.*;
-import com.example.demo.entity.memberGrade.MemberGrade;
+import com.example.demo.entity.memberGrade.*;
 
 @SpringBootTest
 public class MemberGreadDaoTest {
