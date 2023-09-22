@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.orders.OrderDetailsDao">
+    <select id="findDetailsByMemberId" parameterType="string" resultType="OrderDetails">
+        SELECT bi.image_name, b.book_title, b.book_price, od.order_count,
+               (b.book_price * od.order_count) AS total_price,o.order_status
+        FROM order_details od
+        JOIN book b ON od.bno = b.bno
+        JOIN cart c ON b.bno = c.bno
+        JOIN orders o ON od.ono = o.ono
+        JOIN book_image bi ON bi.bno = b.bno
+        WHERE c.member_id = #{memberId}
+    </select>
+</mapper>

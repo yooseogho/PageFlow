@@ -4,7 +4,9 @@
 	<select id="sumByUsername" resultType="Long">
 		select sum(b.book_price*c.cart_count) as 총합 from cart c
 		inner join book b on c.bno=b.bno
-		inner join member m on c.member_id=m.member_id;
+		inner join member m on c.member_id=m.member_id 
+		where m.member_id=#{memnerId} and 
+		;
 	</select>
 
 

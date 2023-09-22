@@ -26,7 +26,6 @@ create table member (
 create table delivery (
 	dno	number(7)		not null,
 	member_id	varchar2(20 char)		not null,
-	zip_code	number(6)		not null,
 	receiver_name	varchar2 (20 char)		not null,
 	delivery_address	varchar2 (100 char)		not null,
 	second_address	varchar2 (100 char)		null,
@@ -107,14 +106,14 @@ create table cart (
     constraint cart_ck unique(bno, member_id)
 );
 
-create table order_details (
-	bno	number(7)		not null,
-	ono	number(7)		not null,
-	order_count	number(3)		not null,
-	order_total	number(7)		not null,
-	book_title	varchar2 (50 char)		not null,
-    constraint order_details_pk primary key(bno, ono)
-);
+	create table order_details (
+		bno	number(7)		not null,
+		ono	number(7)		not null,
+		order_count	number(3)		not null,
+		order_total	number(7)		not null,
+		book_title	varchar2 (50 char)		not null,
+	    constraint order_details_pk primary key(bno, ono)
+	);
 
 create table inquiry (
 	inno	number(7)		not null,
@@ -147,4 +146,9 @@ CREATE SEQUENCE book_review_seq ;
 CREATE SEQUENCE orders_ono_seq;
 CREATE SEQUENCE inquiry_image_seq;
 CREATE SEQUENCE member_grade_seq;
+CREATE SEQUENCE cart_cno_seq
+  START WITH 101
+  INCREMENT BY 1;
+CREATE SEQUENCE order_details__seq;
+  
 
