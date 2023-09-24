@@ -1,65 +1,32 @@
 @charset "UTF-8";
 
+/* 공통 css 영역 */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 #page {
-    width: 1200px;
-    margin: 0 auto;
+	margin: 0 auto;
 
 }
 
-header {
-    height: 100px;
+a {
+	color: #000;
+	text-decoration: none;
 }
 
-#logo {
-    height: 49px;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-
+body {
+	font-size: 14px;
+	line-height: 1.4;
+	font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
+	min-width: 1440px;
+	color: #000;
 }
 
-#p_logo {
-    line-height: 42px;
-}
-
-#h_button {
-    height: 49px;
-    display: flex;
-    justify-content: end;
-}
-
-.h_button {
-    margin-left: 10px;
-}
-
-nav {
-    height: 100px;
-    margin: 30px 0px;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-#nav_div {
-    width: 1200px;
-    display: flex;
-    justify-content: space-between;
-    height: 50px;
-    align-items: center;
-}
-
-nav ul {
-    display: flex;
-}
-
-nav ul li {
-    width: 100px;
-    list-style-type: none;
+ul {
+	list-style: none;
 }
 
 

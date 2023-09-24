@@ -1,9 +1,20 @@
 @charset "UTF-8";
 
+/* 공통 css 영역 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+#page {
+    margin: 0 auto;
+
+}
+
+a {
+    color: #000;
+    text-decoration: none;
 }
 
 body {
@@ -14,30 +25,10 @@ body {
     color: #000;
 }
 
-#page {
-    width: 1200px;
-    margin: 0 auto;
-
+ul {
+    list-style: none;
 }
 
-header {
-    border: 1px solid red;
-    height: 100px;
-    display: flex;
-    justify-content: space-between;
-}
-
-
-.h_button_area {
-    height: 49px;
-    display: flex;
-    justify-content: end;
-}
-
-.h_button {
-    height: 49px;
-    margin-left: 10px;
-}
 
 
 
@@ -57,7 +48,6 @@ header {
 
 .order_inner_payment {
     position: relative;
-    min-height: calc(100vh - 80px);
     z-index: 1;
 }
 

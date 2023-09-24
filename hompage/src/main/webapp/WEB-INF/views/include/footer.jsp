@@ -38,28 +38,28 @@
                             <div class="footer_menu_box">
                                 <ul class="footer_menu_list">
                                     <li class="footer_menu_item">
-                                        <a class="footer_menu_link" onclick="ga360.GA_Event('click_공통_PC', 'FNB', '', '회사소개', '');" target="_blank" href="#">회사소개</a>
+                                        <a class="footer_menu_link" target="_blank" href="#">회사소개</a>
                                     </li>
                                     <li class="footer_menu_item">
-                                        <a class="footer_menu_link" onclick="ga360.GA_Event('click_공통_PC', 'FNB', '', '이용약관', '');" href="#">이용약관</a>
+                                        <a class="footer_menu_link" href="#">이용약관</a>
                                     </li>
                                     <li class="footer_menu_item privacy">
-                                        <a class="footer_menu_link" onclick="ga360.GA_Event('click_공통_PC', 'FNB', '', '개인정보처리방침', '');" href="#">개인정보처리방침</a>
+                                        <a class="footer_menu_link" href="#">개인정보처리방침</a>
                                     </li>
                                     <li class="footer_menu_item">
-                                        <a class="footer_menu_link" onclick="ga360.GA_Event('click_공통_PC', 'FNB', '', '청소년보호정책', '');" href="#">청소년보호정책</a>
+                                        <a class="footer_menu_link" href="#">청소년보호정책</a>
                                     </li>
                                     <li class="footer_menu_item">
-                                        <a class="footer_menu_link" onclick="ga360.GA_Event('click_공통_PC', 'FNB', '', '대량주문안내', '');" href="#">대량주문안내</a>
+                                        <a class="footer_menu_link" href="#">대량주문안내</a>
                                     </li>
                                     <li class="footer_menu_item">
-                                        <a class="footer_menu_link" onclick="ga360.GA_Event('click_공통_PC', 'FNB', '', '협력사여러분', '');" href="#">협력사여러분</a>
+                                        <a class="footer_menu_link" href="#">협력사여러분</a>
                                     </li>
                                     <li class="footer_menu_item">
-                                        <a class="footer_menu_link" onclick="ga360.GA_Event('click_공통_PC', 'FNB', '', '채용정보', '');" target="_blank" href="#">채용정보</a>
+                                        <a class="footer_menu_link" target="_blank" href="#">채용정보</a>
                                     </li>
                                     <li class="footer_menu_item">
-                                        <a class="footer_menu_link" onclick="ga360.GA_Event('click_공통_PC', 'FNB', '', '광고소개', '');" target="_blank" href="#">광고소개</a>
+                                        <a class="footer_menu_link" target="_blank" href="#">광고소개</a>
                                     </li>
                                 </ul>
                             </div>

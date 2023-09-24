@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/css/member_info.css">
+<link rel="stylesheet" href="/css/member_check.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -16,8 +16,8 @@
 
             <div class="h_button_area">
                 <a href="/member_check_page"><button class="h_button">회원정보관리</button></a>
-                <a href="/user_info_page"><button class="h_button">내정보 보기</button></a>
-                <a href="/member_benefit_page"><button class="h_button">회원등급 혜택</button></a>
+                <a href="/member_info_page"><button class="h_button">내정보 보기</button></a>
+                <a href="/member_grade_page"><button class="h_button">회원등급 혜택</button></a>
                 <button class="h_button">로그아웃</button>
                 <a href="#"><button class="h_button">고객센터</button></a>
             </div>
@@ -65,7 +65,7 @@
                 </div>
             </section>
         </main>
-        <footer>
+        <footer class="footer_wrapper">
             <jsp:include page="/WEB-INF/views/include/footer.jsp" />
         </footer>
     </div>

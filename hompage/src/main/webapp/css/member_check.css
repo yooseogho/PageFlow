@@ -1,0 +1,184 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 14px;
+    line-height: 1.4;
+    font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
+    min-width: 1440px;
+    color: #000;
+}
+
+#page {
+    margin: 0 auto;
+    width: 1200px;
+
+}
+
+header {
+    border: 1px solid red;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.h_button_area {
+    height: 49px;
+    display: flex;
+    justify-content: end;
+}
+
+.h_button {
+    height: 49px;
+    margin-left: 10px;
+}
+
+main {
+	padding-bottom: 100px;
+}
+
+.contents_wrap {
+    padding-top: 42px;
+}
+
+.contents_inner {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.inner_header {
+    width: 1200px;
+    margin: 0 auto 50px;
+
+}
+
+.header_text {
+    line-height: 30px;
+    height: 30px;
+    font-weight: 700;
+    font-size: 18px;
+
+}
+
+.inner_main {
+    padding: 0;
+    background: #fff;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.inner_main_top {
+    padding-bottom: 30px;
+    display: -webkit-flex;
+    flex-direction: column;
+}
+
+.main_top_title {
+    font-size: 24px;
+    line-height: 36px;
+    letter-spacing: -0.01em;
+    position: relative;
+    font-weight: 700;
+}
+
+.info_text {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    color: #595959;
+}
+
+.inner_main_mid {
+    display: block;
+    width: 100%;
+    padding: 18px 0;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #eaeaea;
+    box-sizing: border-box;
+}
+
+.tbl_row {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.has_ip {
+    padding: 24px 10px 12px 10px;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: #000;
+    font-weight: 500;
+    vertical-align: top;
+}
+
+tbody td {
+    padding: 12px 10px;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: #767676;
+    font-weight: 400;
+    vertical-align: top;
+}
+
+.valid_check {
+    width: 450px;
+}
+
+.form_ip_pw {
+    position: relative;
+}
+
+.form_ip_pw > input {
+    padding: 0 48px 0 14px;
+    display: inline-block;
+    width: 100%;
+    height: 44px;
+    padding: 0 14px 2px;
+    color: #000;
+    font-size: 14px;
+    line-height: 42px;
+    letter-spacing: -0.01em;
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease-out;
+    outline: none;
+}
+
+.inner_main_bottom {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.btn {
+    color: #fff;
+    background: #5055b1;
+    border: 1px solid #a6a9d7;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+    min-width: 200px;
+    height: 50px;
+    padding: 0 23px 1px;
+    border-radius: 6px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+}
+
+.btn :hover {
+    cursor: pointer;
+}

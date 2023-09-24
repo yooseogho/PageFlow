@@ -9,10 +9,10 @@
 </head>
 <body>
 	<div id="page">
-		<header>
+		<header class="header_wrapper">
 			<jsp:include page="/WEB-INF/views/include/header.jsp" />
 		</header>
-		<nav>
+		<nav class="nav_wrapper">
 			<jsp:include page="/WEB-INF/views/include/nav.jsp" />
 		</nav>
 		<main class="container_wrapper">
@@ -235,7 +235,7 @@
                 </div>
             </section>
         </main>
-		<footer>
+		<footer class="footer_wrapper">
 			<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 		</footer>
 	</div>

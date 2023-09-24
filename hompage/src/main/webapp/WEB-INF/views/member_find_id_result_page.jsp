@@ -50,8 +50,8 @@
 				</div>
 				
 				<div class="page_move_area">
-					<a href="/find_id_page"><button class="page_move_btn"><span>비밀번호 찾기</span></button></a>
-					<a href="/login_page"><button class="page_move_btn"><span>로그인</span></button></a>
+					<a href="/member_find_id_page"><button class="page_move_btn"><span>비밀번호 찾기</span></button></a>
+					<a href="/member_login_page"><button class="page_move_btn"><span>로그인</span></button></a>
 				</div>
 			</section>
 		</main>

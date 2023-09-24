@@ -9,22 +9,12 @@
 </head>
 <body>
 	<div id="page">
-        <header>
-            <div id="rootpage">
-                <a href="/page">루트페이지로</a>
-            </div>
-
-            <div id="search">
-                <input type="search" placeholder="입력....">
-            </div>
-
-            <div class="h_button_area">
-                <a href="/cart_page"><button class="h_button">장바구니</button></a>
-                <a href="/user_info_page"><button class="h_button">내정보 보기</button></a>
-                <button class="h_button">로그아웃</button>
-                <a href="/customer_service_page"><button class="h_button">고객센터</button></a>
-            </div>
-        </header>
+        <header class="header_wrapper">
+			<jsp:include page="/WEB-INF/views/include/header.jsp" />
+		</header>
+		<nav class="nav_wrapper">
+			<jsp:include page="/WEB-INF/views/include/nav.jsp" />
+		</nav>
 
         <main>
             <section class="section">
@@ -170,7 +160,7 @@
                 </div>
             </section>
         </main>
-		<footer>
+		<footer class="footer_wrapper">
 			<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 		</footer>
 	</div>

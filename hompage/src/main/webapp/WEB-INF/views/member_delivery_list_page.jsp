@@ -9,15 +9,15 @@
 </head>
 <body>
 	<div id="page">
-        <header>
+        <header class="header_wrapper">
             <jsp:include page="/WEB-INF/views/include/header.jsp"/>
         </header>
-        <nav>
+        <nav class="nav_wrapper">
             <jsp:include page="/WEB-INF/views/include/nav.jsp" />
         </nav>
         <main>
-            <aside>
-                <jsp:include page="/WEB-INF/views/include/left_aside.jsp" />
+            <aside class="aside_wrapper">
+                <jsp:include page="/WEB-INF/views/include/member_info_left_aside.jsp" />
             </aside>
             <section class="section_wrap">
                 <div class="title_wrap">
@@ -117,7 +117,7 @@
 
             </section>
         </main>
-        <footer>
+        <footer class="footer_wrapper">
             <jsp:include page="/WEB-INF/views/include/footer.jsp" />
         </footer>
     </div>

@@ -34,7 +34,7 @@
 							<input type="checkbox" class="checkbox">
 							아이디 저장
 						</span>
-						<a href="/find_id_page" style="font-size: small;">아이디/비밀번호 찾기</a>
+						<a href="/member_find_id_page" style="font-size: small;">아이디/비밀번호 찾기</a>
 					</div>
 					<div class="login_sns_box">
 						예) 네이버 / 카카오 로그인 등등
@@ -44,12 +44,12 @@
 						<a href="/member_create_page"><button class="create_btn">회원가입</button></a>
 					</div>
 					<div class="non_user_btn_area">
-						<a href="/non_user_order_list"><button class="non_user_btn">비회원 주문조회</button></a>
+						<a href="/non_user_order_list_page"><button class="non_user_btn">비회원 주문조회</button></a>
 					</div>
 				</div>
 			</section>
 		</main>
-		<footer>
+		<footer class="footer_wrapper">
 			<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 		</footer>
 	</div>

@@ -1,8 +1,8 @@
 package com.example.demo.samplecontroller;
 
-import org.springframework.stereotype.*;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class SampleController {
@@ -98,8 +98,8 @@ public class SampleController {
 	}
 	
 	// 주문 완료 페이지
-	@GetMapping("member_order_success_page")
-	public void member_order_success_page() {
+	@GetMapping("order_success_page")
+	public void order_success_page() {
 	}
 	
 	// 루트 페이지

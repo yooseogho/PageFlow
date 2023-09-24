@@ -1,0 +1,457 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#page {
+	margin: 0 auto;
+
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+body {
+	font-size: 14px;
+	line-height: 1.4;
+	font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
+	min-width: 1440px;
+	color: #000;
+}
+
+ul {
+	list-style: none;
+}
+
+.main_wrapper {
+    padding-top: 42px;
+}
+
+.main_wrapper .main_inner {
+    display: -webkit-flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.section_wrapper {
+    width: calc(100% - 216px);
+}
+
+.title_wrap.title_size_md.has_btn {
+    min-height: 38px;
+    padding-bottom: 16px;
+}
+
+.title_wrap {
+    position: relative;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+.title_wrap.title_size_md .title_heading {
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -0.01em;
+}
+
+.title_wrap .title_heading {
+    display: inline-block;
+    position: relative;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.tab_wrap {
+    position: relative;
+    width: 100%;
+    padding: 0;
+}
+
+.tab_wrap.type_md > .tab_list_wrap {
+    align-items: start;
+    height: 50px;
+}
+
+.tab_wrap > .tab_list_wrap {
+    display: -webkit-flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 30px;
+    background-color: #fff;
+    border-bottom: 1px solid #d5d5d5;
+    box-sizing: border-box;
+    font-size: 0;
+}
+
+.tab_wrap.type_md > .tab_list_wrap .tabs {
+    padding-bottom: 12px;
+}
+
+.tab_wrap > .tab_list_wrap .tabs {
+    display: inline-block;
+    flex: 1 1 auto;
+    position: relative;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.tab_wrap.type_md > .tab_list_wrap .tabs .tab_item {
+    padding: 0 20px;
+}
+
+.tab_wrap > .tab_list_wrap .tabs .tab_item {
+    position: relative;
+    height: 100%;
+    margin: 0;
+    float: left;
+    background: none;
+    box-sizing: border-box;
+}
+
+.tab_wrap > .tab_list_wrap .tabs .tab_item .tab_link {
+    position: relative;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.tab_wrap.type_md > .tab_list_wrap .tabs .tab_item .tab_link .tab_text {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+}
+
+.tab_wrap > .tab_list_wrap .tabs .tab_item .tab_link .tab_text {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    color: #5055b1;
+    font-weight: 700;
+    font-family: "Noto Sans KR", sans-serif;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+}
+
+.info_text_box.size_lg.my_benefit_summary {
+    border-radius: 16px;
+    padding: 38px 0;
+    margin-bottom: 20px;
+    display: -webkit-flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info_text_box.type_purple {
+    background-color: rgba(80, 85, 177, 0.06);
+}
+
+.info_text_box.size_lg {
+    padding: 24px;
+}
+
+.info_text_box {
+    display: block;
+    padding: 18px;
+    border-radius: 10px;
+    background-color: #f7f7f7;
+    box-sizing: border-box;
+}
+
+.info_text_box.my_benefit_summary .my_benefit_summary_item {
+    position: relative;
+    width: 50%;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info_text_box.my_benefit_summary .my_benefit_summary_item + .my_benefit_summary_item:before {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    font-size: 0;
+    top: 50%;
+    left: 0;
+    width: 1px;
+    height: 20px;
+    background-color: #d5d5d5;
+    vertical-align: top;
+    box-sizing: border-box;
+    transform: translateY(-50%);
+}
+
+.info_text_box.my_benefit_summary .my_benefit_summary_item .title {
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.info_text_box.my_benefit_summary .my_benefit_summary_item .title .text {
+    display: inline-block;
+    padding-top: 2px;
+    vertical-align: top;
+}
+
+.info_text_box.my_benefit_summary .my_benefit_summary_item .count .val {
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+}
+
+.info_text_box.my_benefit_summary .my_benefit_summary_item .count .unit {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+}
+
+.fc_spot {
+    color: #474c98 !important;
+}
+
+.info_text_box.my_benefit_summary + .list_result_wrap {
+    margin-top: 40px;
+}
+
+.list_result_wrap {
+    position: relative;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+
+.list_result_wrap .right_area {
+    margin-left: auto;
+    flex-shrink: 0;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin-bottom: 11px;
+}
+
+.list_result_wrap .bul_item_asterisk {
+    margin-bottom: 9px;
+}
+
+[class^=bul_item_].font_size_xxs {
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+}
+.bul_item_asterisk {
+    color: #767676;
+    padding-left: 8px;
+}
+[class^=bul_item_] {
+    position: relative;
+    color: #595959;
+    font-weight: 400;
+    text-align: left;
+}
+
+.bul_item_asterisk:before {
+    content: "*";
+    color: #474c98;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.list_result_wrap .bul_item_asterisk + .prod_filter_wrap {
+    margin-left: 20px;
+}
+
+.prod_filter_wrap {
+    position: relative;
+}
+
+a.btn_line_gray, button.btn_line_gray {
+    color: #000;
+    background: #fff;
+    border: 1px solid #ccc;
+}
+
+a.btn_sm, button.btn_sm {
+    cursor: pointer;
+}
+
+a.btn_sm, button.btn_sm {
+    display: -webkit-inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 38px;
+    padding: 0 13px 1px;
+    border-radius: 6px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+}
+
+a.btn_sm .ico_calendar, button.btn_sm .ico_calendar {
+    width: 14px;
+    background: url(	https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_calendar@2x.png) center no-repeat;
+    background-size: 14px 14px;
+}
+a.btn_sm [class^=ico_], button.btn_sm [class^=ico_] {
+    height: 19px;
+    margin-right: 3px;
+}
+
+button[class^=btn_] [class^=ico_], a[class^=btn_] [class^=ico_] {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+
+button[class^=btn_] .text, a[class^=btn_] .text {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+
+.tbl_col_wrap {
+    display: block;
+    width: 100%;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #eaeaea;
+    box-sizing: border-box;
+}
+
+.tbl_col_wrap .tbl_col, .tbl_col_wrap .tbl_col_line {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.tbl_col_wrap .tbl_col_line thead th {
+    border-bottom: 1px solid #eaeaea;
+}
+.tbl_col_wrap .tbl_col_line tr th {
+    padding: 16px 24px 14px;
+}
+
+.tbl_col_wrap .tbl_col tr th, .tbl_col_wrap .tbl_col_line tr th {
+    padding: 16px 10px 14px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    color: #767676;
+    font-weight: 700;
+    vertical-align: middle;
+}
+
+.tbl_col_wrap .tbl_col tr th.align_left, .tbl_col_wrap .tbl_col tr td.align_left, .tbl_col_wrap .tbl_col_line tr th.align_left, .tbl_col_wrap .tbl_col_line tr td.align_left {
+    text-align: left;
+}
+
+.tbl_col_wrap .tbl_col_line tbody td {
+    border-bottom: 1px solid #eaeaea;
+}
+
+.tbl_col_wrap.my_benefit .my_benefit_history {
+    display: -webkit-box;
+    font-weight: 700;
+}
+
+.tbl_col_wrap.my_benefit .my_benefit_ord_num {
+    display: block;
+    margin-top: 8px;
+    color: #595959;
+}
+
+.tbl_col_wrap .tbl_col tr td .fc_light_gray, .tbl_col_wrap .tbl_col_line tr td .fc_light_gray {
+    color: #767676;
+}
+.tbl_col_wrap .tbl_col tr td, .tbl_col_wrap .tbl_col_line tr td {
+    padding: 12px 10px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+    vertical-align: middle;
+}
+
+.tbl_col_wrap .tbl_col tr td .btn_text_link .text, .tbl_col_wrap .tbl_col_line tr td .btn_text_link .text {
+    text-decoration: underline;
+}
+
+.tbl_col_wrap .tbl_col_line tr td {
+    padding: 28px 24px;
+}
+
+.tbl_col_wrap.my_benefit .my_benefit_point {
+    display: block;
+    color: #595959;
+    height: 22px;
+    font-size: 0;
+}
+
+.fc_green {
+    color: #3c9a17 !important;
+}
+
+.tbl_col_wrap.my_benefit .my_benefit_point .val {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+}
+
+.tbl_col_wrap.my_benefit .my_benefit_point .unit, .tbl_col_wrap.my_benefit .my_benefit_point .sign {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    padding-right: 3px;
+}
+
+.tbl_col_wrap + .info_text_box{
+    margin: 60px 0 0;
+}
+.title_wrap.title_size_xs {
+    padding-bottom: 10px;
+}
+
+.bul_item_dot {
+    padding-left: 9px;
+}
+
+.bul_item_dot:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: #999;
+}
+
+.bul_list + .title_wrap.title_size_xs {
+    margin-top: 18px;
+}

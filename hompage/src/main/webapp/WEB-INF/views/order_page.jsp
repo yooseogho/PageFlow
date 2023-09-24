@@ -265,7 +265,7 @@
                                     </ul>
                                 </div>
                                 <div class="payment_btn_area">
-                                    <a href="/member_order_success_page"><button class="payment_btn"><span class="btn_text">결제하기</span></button></a>
+                                    <a href="/order_success_page"><button class="payment_btn"><span class="btn_text">결제하기</span></button></a>
                                 </div>
                             </div>
                             <div class="payment_agree_text">
@@ -276,7 +276,7 @@
                 </div>
             </section>
         </main>
-        <footer>
+        <footer class="footer_wrapper">
             <jsp:include page="/WEB-INF/views/include/footer.jsp" />
         </footer>
     </div>

@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/* 공통 css 영역 */
 * {
     margin: 0;
     padding: 0;
@@ -7,61 +8,28 @@
 }
 
 #page {
-    width: 1200px;
     margin: 0 auto;
 
 }
 
-header {
-    height: 100px;
+a {
+    color: #000;
+    text-decoration: none;
 }
 
-#logo {
-    height: 49px;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-
-}
-
-#p_logo {
-    line-height: 42px;
-}
-
-#h_button {
-    height: 49px;
-    display: flex;
-    justify-content: end;
-}
-
-.h_button {
-    margin-left: 10px;
-}
-
-nav {
-    height: 100px;
-    margin: 30px 0px;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-#nav_div {
-	padding-left: 2rem;
-    width: 1200px;
-    display: flex;
-    justify-content: space-between;
-    height: 50px;
-    align-items: center;
+body {
+    font-size: 14px;
+    line-height: 1.4;
+    font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
+    min-width: 1440px;
+    color: #000;
 }
 
 ul {
-    display: flex;
+    list-style: none;
 }
 
-li {
-    width: 100px;
-    list-style-type: none;
-}
+
 
 main {
 	justify-content: space-between;
@@ -175,7 +143,7 @@ footer {
 .badge_sm {
     margin-left: 6px;
     margin-bottom: 1px;
-    padding: 3px 7px 0;
+    padding: 4px 5px 0;
     border-radius: 20px;
     line-height: 1;
     font-weight: 400;
@@ -192,7 +160,6 @@ footer {
 .text {
     display: inline-block;
     position: relative;
-    vertical-align: top;
     line-height: 1;
     font-weight: 400;
     text-align: center;

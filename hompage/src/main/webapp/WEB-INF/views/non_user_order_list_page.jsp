@@ -62,14 +62,14 @@
 					</div>
 					
 					<div class="create_btn_area">
-						<a href="/create"><button class="create_btn">회원가입</button></a>
+						<a href="/member_create_page"><button class="create_btn">회원가입</button></a>
 					</div>
 					
 				</div>
 			</section>
 		</main>
 		<footer>
-			<jsp:include page="/WEB-INF/views/include/footer.jsp" />
+			<jsp:include page="/WEB-INF/views/include/copy_right_footer.jsp" />
 		</footer>
 	</div>
 </body>

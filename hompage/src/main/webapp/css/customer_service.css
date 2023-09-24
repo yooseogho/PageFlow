@@ -1,220 +1,49 @@
 @charset "UTF-8";
 
+
+/* 공통 css 영역 */
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 #page {
-	width: 1200px;
-	margin: 0 auto;
+    margin: 0 auto;
 
 }
 
-header {
-	height: 100px;
+a {
+    color: #000;
+    text-decoration: none;
 }
 
-#logo {
-	height: 49px;
-	text-align: center;
-	justify-content: center;
-	display: flex;
-
-}
-
-#p_logo {
-	line-height: 42px;
-}
-
-#h_button {
-	height: 49px;
-	display: flex;
-	justify-content: end;
-}
-
-.h_button {
-	margin-left: 10px;
-}
-
-nav {
-	height: 100px;
-	margin: 30px 0px;
-	justify-content: space-between;
-	align-items: flex-start;
-}
-
-#nav_div {
-	width: 1200px;
-	display: flex;
-	justify-content: space-between;
-	height: 50px;
-	align-items: center;
+body {
+    font-size: 14px;
+    line-height: 1.4;
+    font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
+    min-width: 1440px;
+    color: #000;
 }
 
 ul {
-	padding-left: 0rem;
+    list-style: none;
 }
 
-nav ul {
-	display: flex;
+/* main css 영역 */
+.main_wrapper {
+    padding-top: 42px;
 }
 
-nav ul li {
-	width: 100px;
-	list-style-type: none;
+.main_wrapper .main_inner {
+    display: -webkit-flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 1200px;
+    margin: 0 auto;
 }
 
-
-.container_wrapper {
-	min-height: calc(100vh - 80px);
-	display: -webkit-flex;
-	justify-content: flex-start;
-	align-items: flex-start;
-	width: 1200px;
-	margin-bottom: 120px;
-	padding-top: 50px;
-}
-
-.contents_wrap {
-	padding-top: 50px;
-}
-
-.contents_inner {
-	display: -webkit-flex;
-	justify-content: flex-start;
-	align-items: flex-start;
-	width: 1200px;
-	margin: 0 auto;
-}
-
-.aside_wrap {
-	width: 170px;
-	margin-right: 46px;
-}
-
-.aside_header {
-	margin-bottom: 30px;
-}
-
-.title_size_xxl {
-	position: relative;
-	display: -webkit-flex;
-	justify-content: flex-start;
-	align-items: center;
-}
-
-.title_heading {
-	font-size: 25px;
-	line-height: 40px;
-	letter-spacing: -0.01em;
-	display: inline-block;
-	position: relative;
-	font-weight: 700;
-	overflow-wrap: anywhere;
-}
-
-
-.snb_list {
-	list-style: none;
-	padding-left: 0rem;
-}
-
-.snb_list .snb_item .snb_link.depth_title {
-	margin-bottom: 8px;
-	margin-top: 15px;
-	font-size: 15px;
-	line-height: 23px;
-	letter-spacing: -0.01em;
-	font-weight: 700;
-}
-
-.snb_link.depth_title,
-.snb_link,
-.asked_category_list ul li a,
-.inquiry {
-	color: #000;
-	text-decoration: none;
-}
-.tel {
-	text-decoration: none;
-}
-
-.align_left a {
-	color: #000;
-}
-
-.snb_list .snb_item .snb_link {
-	display: block;
-	position: relative;
-	font-size: 14px;
-	line-height: 22px;
-	letter-spacing: -0.01em;
-}
-
-
-a {
-	color: #000;
-	text-decoration: none;
-}
-
-.snb_service_box {
-	margin-top: 50px;
-	padding-top: 24px;
-	border-top: 1px solid #eaeaea;
-}
-
-.snb_service_box .depth_title {
-	display: block;
-	margin-bottom: 16px;
-	font-size: 13px;
-	line-height: 22px;
-	letter-spacing: -0.01em;
-	font-weight: 500;
-}
-
-.ico_customer {
-	display: inline-block;
-	width: 21px;
-	height: 21px;
-	margin-right: 4px;
-	vertical-align: middle;
-	background-size: 21px 21px;
-	background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_customer_21x21@2x.png);
-	transform: translateY(-2px);
-}
-
-.tel {
-	font-size: 20px;
-	line-height: 30px;
-	letter-spacing: -0.01em;
-	font-weight: 700;
-	color: #474c98;
-}
-
-.unit {
-	font-size: 13px;
-	line-height: 19px;
-	letter-spacing: -0.01em;
-	color: #767676;
-	margin-left: 3px;
-}
-
-.desc {
-	margin-top: 6px;
-	font-size: 13px;
-	line-height: 19px;
-	letter-spacing: -0.01em;
-	color: #595959;
-}
-
-box .desc {
-	margin-top: 8px;
-	color: #595959;
-	font-size: 14px;
-}
-
+/* section css 영역 */
 .title_wrap.title_size_lg {
 	padding-bottom: 30px;
 }
@@ -312,10 +141,6 @@ box .desc {
 	padding-right: 45px;
 }
 
-.form_ip_search .form_ip {
-	padding-right: 45px;
-}
-
 .btn_ip {
 	margin-left: 6px;
 	display: -webkit-inline-flex;
@@ -337,13 +162,13 @@ box .desc {
 	background: #5055b1;
 	border: 1px solid #5055b1;
 	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	cursor: pointer;
 }
 
 .text {
 	display: inline-block;
 	position: relative;
 	vertical-align: top;
-	text-decoration: underline;
 }
 
 .asked_category_list {
@@ -464,6 +289,15 @@ box .desc {
 	font-weight: 700;
 }
 
+.tel {
+	font-size: 20px;
+	line-height: 30px;
+	letter-spacing: -0.01em;
+	font-weight: 700;
+	color: #474c98;
+	text-decoration: none;
+}
+
 .tbl_col_wrap {
 	display: block;
 	width: 100%;
@@ -563,16 +397,12 @@ button.btn_text_link {
 	background-size: 24px 24px;
 	background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_ip_search@2x.png);
 	box-sizing: border-box;
-	vertical-align: top;
+	border: none;
+	background-color: transparent;
 }
 
 .form_search_box .btn_ip_search:hover {
 	cursor: pointer;
-}
-
-button {
-	background-color: transparent;
-	border: 0;
 }
 
 .shortcut_service ul {

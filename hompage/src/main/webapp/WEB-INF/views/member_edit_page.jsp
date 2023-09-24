@@ -149,7 +149,7 @@
                 </div>
             </section>
         </main>
-        <footer>
+        <footer class="footer_wrapper">
             <jsp:include page="/WEB-INF/views/include/footer.jsp" />
         </footer>
     </div>

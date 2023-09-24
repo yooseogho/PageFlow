@@ -55,7 +55,7 @@
 							</div>
 						</div>
 						<div class="check_btn_area">
-							<a href="find_id_result_page"><button class="check_btn" >확인</button></a>
+							<a href="/member_find_id_result_page"><button class="check_btn" >확인</button></a>
 						</div>
 					</div>
 					
