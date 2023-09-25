@@ -82,14 +82,24 @@ public class SampleController {
 	public void pointpage() {
 	}
 	
+	// 프로필 변경 페이지
+	@GetMapping("/member_profile_page")
+	public void profile_page() {
+	}
+	
 	// 비회원 주문조회 페이지
 	@GetMapping("/non_user_order_list_page")
 	public void non_user_order_list() {
 	}
 	
-	// 주문/배송목록 페이지
+	// 주문상세 및 배송지 확인하는 페이지
 	@GetMapping("/order_detail_list_page")
-	public void orderpage() {
+	public void order_detail_page() {
+	}
+	
+	// 주문/배송목록 확인하는 페이지
+	@GetMapping("/order_list_page")
+	public void order_list_page() {
 	}
 	
 	// 주문/결제 페이지
