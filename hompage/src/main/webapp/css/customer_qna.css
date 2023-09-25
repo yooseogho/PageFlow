@@ -29,568 +29,436 @@ ul {
 	list-style: none;
 }
 
-
-.container_wrapper {
-    min-height: calc(100vh - 80px);
-    display: -webkit-flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 1200px;
-    margin-bottom: 120px;
-    padding-top: 50px;
+/* main css 영역 */
+.main_wrapper {
+	padding-top: 42px;
 }
 
-.contents_wrap {
-    padding-top: 50px;
+.main_wrapper .main_inner {
+	display: -webkit-flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	width: 1200px;
+	margin: 0 auto;
 }
 
-.contents_inner {
-    display: -webkit-flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 1200px;
-    margin: 0 auto;
-}
-
-.aside_wrap {
-    width: 170px;
-    margin-right: 46px;
-}
-
-.aside_header {
-    margin-bottom: 30px;
-}
-
-.title_size_xxl {
-    position: relative;
-    display: -webkit-flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.title_heading {
-    font-size: 25px;
-    line-height: 40px;
-    letter-spacing: -0.01em;
-    display: inline-block;
-    position: relative;
-    font-weight: 700;
-}
-
-.snb_list {
-    list-style: none;
-}
-
-.snb_list .snb_item .snb_link.depth_title {
-    margin-bottom: 8px;
-    margin-top: 15px;
-    font-size: 15px;
-    line-height: 23px;
-    letter-spacing: -0.01em;
-    font-weight: 700;
-}
-
-.snb_list .snb_item .snb_link {
-    display: block;
-    position: relative;
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: -0.01em;
-}
-
-
-a {
-    color: #000;
-    text-decoration: none;
-}
-
-.snb_service_box {
-    margin-top: 50px;
-    padding-top: 24px;
-    border-top: 1px solid #eaeaea;
-}
-
-.snb_service_box .depth_title {
-    display: block;
-    margin-bottom: 16px;
-    font-size: 13px;
-    line-height: 22px;
-    letter-spacing: -0.01em;
-    font-weight: 500;
-}
-
-.ico_customer {
-    display: inline-block;
-    width: 21px;
-    height: 21px;
-    margin-right: 4px;
-    vertical-align: middle;
-    background-size: 21px 21px;
-    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_customer_21x21@2x.png);
-    transform: translateY(-2px);
-}
-
-.tel {
-    font-size: 20px;
-    line-height: 30px;
-    letter-spacing: -0.01em;
-    font-weight: 700;
-    color: #474c98;
-}
-
-.unit {
-        font-size: 13px;
-    line-height: 19px;
-    letter-spacing: -0.01em;
-    color: #767676;
-    margin-left: 3px;
-}
-
-.desc {
-    margin-top: 6px;
-    font-size: 13px;
-    line-height: 19px;
-    letter-spacing: -0.01em;
-    color: #595959;
-}
-
-box .desc {
-    margin-top: 8px;
-    color: #595959;
-    font-size: 14px;
-}
-
-.section_wrap {
-    width: calc(100% - 216px);
+/* main 안의 section css 영역 */
+.section_wrapper {
+	width: calc(100% - 216px);
 }
 
 
 
 .title_wrap.title_size_lg {
-    padding-bottom: 30px;
+	padding-bottom: 30px;
 }
 
 [class^=bul_item_] {
-    position: relative;
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: -0.01em;
-    font-weight: 400;
-    text-align: left;
+	position: relative;
+	font-size: 14px;
+	line-height: 22px;
+	letter-spacing: -0.01em;
+	font-weight: 400;
+	text-align: left;
 }
 
 .bul_item_dot:before {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 8px;
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background-color: #999;
+	content: "";
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 8px;
+	width: 3px;
+	height: 3px;
+	border-radius: 50%;
+	background-color: #999;
 }
+
 .bul_item_dot {
-    padding-left: 9px;
+	padding-left: 9px;
 }
 
 .title_wrap {
-    position: relative;
-    display: -webkit-flex;
-    justify-content: flex-start;
-    align-items: center;
+	position: relative;
+	display: -webkit-flex;
+	justify-content: flex-start;
+	align-items: center;
 }
+
 .title_wrap.title_size_lg .title_heading {
-    font-size: 24px;
-    line-height: 36px;
-    letter-spacing: -0.01em;
+	font-size: 24px;
+	line-height: 36px;
+	letter-spacing: -0.01em;
 }
 
 .title_wrap .title_heading {
-    display: inline-block;
-    position: relative;
-    font-weight: 700;
+	display: inline-block;
+	position: relative;
+	font-weight: 700;
 }
 
 .tbl_row_wrap {
-    display: block;
-    width: 100%;
-    padding: 18px 0;
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #eaeaea;
-    box-sizing: border-box;
+	display: block;
+	width: 100%;
+	padding: 18px 0;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #eaeaea;
+	box-sizing: border-box;
 }
 
 .customer_wrap .tbl_row_wrap .title_wrap.title_size_sm {
-    padding: 12px 0 0 10px;
+	padding: 12px 0 0 10px;
 }
+
 .title_wrap.title_size_sm .title_heading {
-    font-size: 15px;
-    line-height: 23px;
-    letter-spacing: -0.01em;
-    display: inline-block;
-    position: relative;
-    font-weight: 700;
+	font-size: 15px;
+	line-height: 23px;
+	letter-spacing: -0.01em;
+	display: inline-block;
+	position: relative;
+	font-weight: 700;
 }
 
 .form_cont .valid_check {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .form_cont .valid_check .form_ip {
-    width: 450px;
-    
+	width: 450px;
+
 }
 
 
 
 
 .tbl_row {
-    width: 100%;
-    table-layout: fixed;
+	width: 100%;
+	table-layout: fixed;
 }
 
 .tbl_row_wrap .tbl_row tbody th.has_ip {
-    padding-top: 24px;
+	padding-top: 24px;
 }
 
 .tbl_row_wrap .tbl_row tbody th {
-    padding: 12px 10px;
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: -0.01em;
-    text-align: left;
-    color: #000;
-    font-weight: 500;
-    vertical-align: top;
+	padding: 12px 10px;
+	font-size: 14px;
+	line-height: 22px;
+	letter-spacing: -0.01em;
+	text-align: left;
+	color: #000;
+	font-weight: 500;
+	vertical-align: top;
 }
 
 label {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 
 .tbl_row_wrap .tbl_row tbody th .required {
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    padding-left: 3px;
-    margin-top: 5px;
-    vertical-align: top;
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	padding-left: 3px;
+	margin-top: 5px;
+	vertical-align: top;
 }
 
 .tbl_row_wrap .tbl_row tbody th .required:before {
-    content: "*";
-    display: inline-block;
-    position: relative;
-    width: 6px;
-    height: 6px;
-    background-size: 6px 6px;
-    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_required@2x.png);
-    color: transparent;
-}
-
-.hidden {
-    position: absolute;
-    visibility: hidden;
-    overflow: hidden;
-    height: 0;
-    line-height: 0;
-    width: 0;
-    margin: 0;
-    padding: 0;
-    font: 0/0 Arial;
+	content: "*";
+	display: inline-block;
+	position: relative;
+	width: 6px;
+	height: 6px;
+	background-size: 6px 6px;
+	background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_required@2x.png);
+	color: transparent;
 }
 
 .tbl_row_wrap .tbl_row tbody td {
-    padding: 12px 10px;
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: -0.01em;
-    text-align: left;
-    color: #767676;
-    font-weight: 400;
-    vertical-align: top;
+	padding: 12px 10px;
+	font-size: 14px;
+	line-height: 22px;
+	letter-spacing: -0.01em;
+	text-align: left;
+	color: #767676;
+	font-weight: 400;
+	vertical-align: top;
 }
+
 .valid_check {
-    width: 100%;
+	width: 100%;
 }
 
 select {
-    vertical-align: middle;
-    width: 100%;
-    height: 44px;
-    margin: 0;
-    padding: 0 10px;
-    background-color: #fff;
-    border: 1px solid #d5d5d5;
-    border-radius: 6px;
-    box-sizing: border-box;
-    transition: border-color 0.2s ease-out, border-radius 0.2s ease-out;
-    outline: none;
-}
-
-
-
-.form_col_group {
-    
+	vertical-align: middle;
+	width: 100%;
+	height: 44px;
+	margin: 0;
+	padding: 0 10px;
+	background-color: #fff;
+	border: 1px solid #d5d5d5;
+	border-radius: 6px;
+	box-sizing: border-box;
+	transition: border-color 0.2s ease-out, border-radius 0.2s ease-out;
+	outline: none;
 }
 
 .w_full {
-    width: 100%;
+	width: 100%;
 }
 
 .form_ip {
-    display: inline-block;
-    width: 100%;
-    height: 44px;
-    padding: 0 14px 2px;
-    color: #000;
-    font-size: 14px;
-    line-height: 42px;
-    letter-spacing: -0.01em;
-    font-family: "Noto Sans KR", sans-serif;
-    background-color: #fff;
-    border: 1px solid #d5d5d5;
-    border-radius: 6px;
-    box-sizing: border-box;
-    transition: border-color 0.2s ease-out;
-    outline: none;
+	display: inline-block;
+	width: 100%;
+	height: 44px;
+	padding: 0 14px 2px;
+	color: #000;
+	font-size: 14px;
+	line-height: 42px;
+	letter-spacing: -0.01em;
+	font-family: "Noto Sans KR", sans-serif;
+	background-color: #fff;
+	border: 1px solid #d5d5d5;
+	border-radius: 6px;
+	box-sizing: border-box;
+	transition: border-color 0.2s ease-out;
+	outline: none;
 }
 
-.form_col_group .col_box ~ .col_box {
-    margin-top: 8px;
+.form_col_group .col_box~.col_box {
+	margin-top: 8px;
 }
 
 .byte_check_wrap {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid #d5d5d5;
-    border-radius: 6px;
-    background: #fff;
-    font-size: 14px;
-    transition: background 0.2s ease-out, border-color 0.2s ease-out;
-    box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	overflow: hidden;
+	border: 1px solid #d5d5d5;
+	border-radius: 6px;
+	background: #fff;
+	font-size: 14px;
+	transition: background 0.2s ease-out, border-color 0.2s ease-out;
+	box-sizing: border-box;
 }
 
 .byte_check_wrap .form_textarea {
-    border: none;
-    padding: 11px 14px 0;
-    width: 100%;
-    border-radius: 6px;
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: -0.01em;
-    font-family: "Noto Sans KR", sans-serif;
-    box-sizing: border-box;
-    transition: background 0.2s ease-out, border-color 0.2s ease-out;
-    outline: 0;
-    overflow-y: auto;
-    resize: none;
+	border: none;
+	padding: 11px 14px 0;
+	width: 100%;
+	border-radius: 6px;
+	font-size: 14px;
+	line-height: 22px;
+	letter-spacing: -0.01em;
+	font-family: "Noto Sans KR", sans-serif;
+	box-sizing: border-box;
+	transition: background 0.2s ease-out, border-color 0.2s ease-out;
+	outline: 0;
+	overflow-y: auto;
+	resize: none;
 }
 
 .byte_check_footer {
-    color: #767676;
-    background-color: #f7f7f7;
-    display: -webkit-flex;
-    justify-content: flex-end;
-    padding: 10px 10px 10px 14px;
-    text-align: right;
-    transition: background 0.2s ease-out;
-    align-items: center;
+	color: #767676;
+	background-color: #f7f7f7;
+	display: -webkit-flex;
+	justify-content: flex-end;
+	padding: 10px 10px 10px 14px;
+	text-align: right;
+	transition: background 0.2s ease-out;
+	align-items: center;
 }
 
 .byte_check {
-    margin-top: 2px;
-    color: #767676;
-    display: inline-block;
-    line-height: 1;
+	margin-top: 2px;
+	color: #767676;
+	display: inline-block;
+	line-height: 1;
 }
 
 .byte_check_wrap .byte_check .count {
-    display: inline-block;
-    color: #292929;
-    font-size: 12px;
-    line-height: 18px;
-    letter-spacing: -0.01em;
+	display: inline-block;
+	color: #292929;
+	font-size: 12px;
+	line-height: 18px;
+	letter-spacing: -0.01em;
 }
 
 
 .total {
-    color: #767676;
-    display: inline-block;
-    font-size: 12px;
-    line-height: 18px;
-    letter-spacing: -0.01em;   
+	color: #767676;
+	display: inline-block;
+	font-size: 12px;
+	line-height: 18px;
+	letter-spacing: -0.01em;
 }
 
 .byte_check_wrap .byte_check .total:before {
-    content: "/";
+	content: "/";
 }
 
 .tbl_row_wrap .tbl_row .fc_gray {
-    color: #767676;
+	color: #767676;
 }
 
 .info_text.font_size_xxs {
-    font-size: 13px;
-    line-height: 19px;
-    letter-spacing: -0.01em;
+	font-size: 13px;
+	line-height: 19px;
+	letter-spacing: -0.01em;
 }
 
 .info_text {
-    color: #595959;
+	color: #595959;
 }
 
-.info_text + .file_list {
-    margin-top: 10px;
-}
-ul {
-    list-style: none;
+.info_text+.file_list {
+	margin-top: 10px;
 }
 
 .file_list .list_item {
-    display: inline-block;
-    margin-right: 10px;
-    vertical-align: top;
+	display: inline-block;
+	margin-right: 10px;
+	vertical-align: top;
 }
 
 .file_item {
-    position: relative;
-    display: inline-block;
-    font-size: 0;
+	position: relative;
+	display: inline-block;
+	font-size: 0;
 }
 
 .file_list .file_item .btn_box {
-    position: relative;
-    display: inline-block;
-    width: 94px;
-    height: 94px;
-    border: 1px dashed #e5e5e5;
-    background-color: #f7f7f7;
-    cursor: pointer;
-    border-radius: 6px;
-    vertical-align: top;
-    box-sizing: border-box;
+	position: relative;
+	display: inline-block;
+	width: 94px;
+	height: 94px;
+	border: 1px dashed #e5e5e5;
+	background-color: #f7f7f7;
+	cursor: pointer;
+	border-radius: 6px;
+	vertical-align: top;
+	box-sizing: border-box;
 }
 
 .file_list .file_item .btn_box input {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
 }
 
 .file_list .file_item .btn_box label {
-    display: block;
-    width: 100%;
-    height: 100%;
-    font-size: 0 !important;
-    background-size: 16px 16px;
-    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_attached_add@2x.png);
-    background-position: center;
-    background-repeat: no-repeat;
+	display: block;
+	width: 100%;
+	height: 100%;
+	font-size: 0 !important;
+	background-size: 16px 16px;
+	background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_attached_add@2x.png);
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 .bul_list {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
 .bul_item_asterisk {
-        font-size: 13px;
-    line-height: 19px;
-    letter-spacing: -0.01em;
-    color: #767676;
-    padding-left: 8px;
+	font-size: 13px;
+	line-height: 19px;
+	letter-spacing: -0.01em;
+	color: #767676;
+	padding-left: 8px;
 }
 
 .bul_item_asterisk:before {
-    content: "*";
-    color: #474c98;
-    margin-right: 4px;
+	content: "*";
+	color: #474c98;
+	margin-right: 4px;
 }
 
 #InquiryEmail {
-    width: 450px;
+	width: 450px;
 }
 
 .page_bottom {
-    margin-top: 40px;
+	margin-top: 40px;
 }
 
 .btn_wrap {
-    display: block;
-    font-size: 0;
-    text-align: center;
+	display: block;
+	font-size: 0;
+	text-align: center;
 }
 
-a.btn_light_gray, button.btn_light_gray {
-    color: #fff;
-    background: #767676;
-    border: 1px solid #767676;
-    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+a.btn_light_gray,
+button.btn_light_gray {
+	color: #fff;
+	background: #767676;
+	border: 1px solid #767676;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
 }
 
 
 .btn_lg {
-    display: -webkit-inline-flex;
-    align-items: center;
-    min-width: 200px;
-    height: 50px;
-    padding: 0 23px 1px;
-    border-radius: 6px;
-    font-family: "Noto Sans KR", sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: -0.01em;
-    font-weight: 700;
-    justify-content: center;
+	display: -webkit-inline-flex;
+	align-items: center;
+	min-width: 200px;
+	height: 50px;
+	padding: 0 23px 1px;
+	border-radius: 6px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: -0.01em;
+	font-weight: 700;
+	justify-content: center;
 }
 
 
-.btn_wrap .btn_lg + .btn_lg {
-    margin-left: 10px;
+.btn_wrap .btn_lg+.btn_lg {
+	margin-left: 10px;
 }
 
 
 .btn_primary {
-    color: #fff;
-    background: #5055b1;
-    border: 1px solid #5055b1;
-    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
-    cursor: pointer;
-    margin-left: 10px;
+	color: #fff;
+	background: #5055b1;
+	border: 1px solid #5055b1;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	cursor: pointer;
+	margin-left: 10px;
 }
 
 .info_text_box {
-    border-radius: 10px;
-    background-color: #f7f7f7;
-    box-sizing: border-box;
-    display: block;
-    padding: 24px;
-    margin-top: 60px;
+	border-radius: 10px;
+	background-color: #f7f7f7;
+	box-sizing: border-box;
+	display: block;
+	padding: 24px;
+	margin-top: 60px;
 }
 
 .title_wrap.title_size_xs {
-    padding-bottom: 10px;
-}
-.title_wrap.title_size_xs .title_heading {
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: -0.01em;
+	padding-bottom: 10px;
 }
 
-[class^=bul_item_].font_size_xxs + .font_size_xxs {
-    margin-top: 6px;
+.title_wrap.title_size_xs .title_heading {
+	font-size: 14px;
+	line-height: 22px;
+	letter-spacing: -0.01em;
+}
+
+[class^=bul_item_].font_size_xxs+.font_size_xxs {
+	margin-top: 6px;
 }
 
 [class^=bul_item_].font_size_xxs {
-    font-size: 13px;
-    line-height: 19px;
-    letter-spacing: -0.01em;
+	font-size: 13px;
+	line-height: 19px;
+	letter-spacing: -0.01em;
 }

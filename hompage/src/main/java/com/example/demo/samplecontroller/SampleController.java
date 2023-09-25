@@ -88,7 +88,7 @@ public class SampleController {
 	}
 	
 	// 주문/배송목록 페이지
-	@GetMapping("/order_list_page")
+	@GetMapping("/order_detail_list_page")
 	public void orderpage() {
 	}
 	

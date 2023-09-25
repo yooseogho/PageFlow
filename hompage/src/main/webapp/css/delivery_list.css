@@ -29,58 +29,199 @@ ul {
     list-style: none;
 }
 
-
-
-main {
-	justify-content: space-between;
+/* main css 영역 */
+.main_wrapper {
+    padding-top: 42px;
 }
 
-#leftaside {
-    margin: 4px 0px;
-    width: 180px;
-    height: 490px;
-    flex-direction: column;
+.main_wrapper .main_inner {
+    display: -webkit-flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 1200px;
+    margin: 0 auto;
 }
 
-.left_aside_list {
-    flex-direction: column;
-    width: 180px;
-    display: flex;
-    margin-bottom: 24px;
 
+/* main 안에 aside css 영역 */
+.main_wrapper .main_inner .aside_wrapper {
+    width: 170px;
+    margin-right: 46px;
 }
 
-#left_aside_category {
-    width: 180px;
-    flex-direction: column;
-    padding: 0px;
-}
 
-.sublist {
-    flex-direction: column;
-    width: 180px;
-    font-size: 12px;
-}
-
-main {
-    margin: 30px 0px;
-    display: flex;
+.my_profile_area {
+    position: relative;
     overflow: hidden;
+    margin-bottom: 30px;
+    padding: 24px;
+    border-radius: 16px;
 }
 
-section {
-    width: 1018px;
+.my_profile_area:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(80, 85, 177, 0.8);
+    z-index: 1;
 }
 
-footer {
-    height: 200px;
-    margin: 30px 0px;
+
+.my_profile_area .blur_img_box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
-.section_wrap {
-    
-    width: calc(100% - 216px);
+.my_profile_area .blur_img_box:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.my_profile_area .profile_inner {
+    position: relative;
+    z-index: 2;
+}
+
+.my_profile_area .profile_thumb_box {
+    position: relative;
+    width: 60px;
+    height: 60px;
+}
+
+.my_profile_area .profile_thumb_box.no_img .thumb_box {
+    border: none;
+}
+
+.profile_thumb_box .thumb_box {
+    border: 1px solid #eaeaea;
+    background-size: cover;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/img_no_profile@2x.png);
+    box-sizing: border-box;
+}
+
+.profile_thumb_box .thumb_box {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #fff;
+}
+
+.profile_thumb_box .btn_setting {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+}
+
+.profile_thumb_box .btn_setting:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: -12px;
     display: block;
+    width: 28px;
+    height: 28px;
+    background-repeat: no-repeat;
+    background-size: 28px 28px;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_profile_setting@2x.png);
+}
+
+.container_wrapper:not(.my_home) .my_profile_area .profile_name_box {
+    height: auto;
+    min-height: 52px;
+}
+
+.my_profile_area .profile_name_box {
+    position: relative;
+    margin-top: 10px;
+}
+
+.my_profile_area .profile_name_box .name {
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    color: #fff;
+}
+
+
+.badge_lg.badge_pill {
+    padding: 3px 10px 0;
+    border-radius: 22px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+[class^=badge_] {
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    vertical-align: top;
+}
+
+.badge_grade_friends {
+    border: 1px solid #33b052;
+    background-color: #33b052;
+}
+
+.badge_lg {
+    min-height: 24px;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+}
+
+.badge_grade_friends .text {
+    color: #fff;
+}
+
+
+.aside_wrapper .snb_wrap .snb_list.category > .snb_item ~ .snb_item {
+    margin-top: 24px;
+}
+
+.aside_wrapper .snb_wrap .snb_list .snb_item ~ .snb_item {
+    margin-top: 8px;
+}
+
+.aside_wrapper .snb_wrap .snb_list .snb_item .snb_link.depth_title {
+    margin-bottom: 8px;
+    font-size: 15px;
+    line-height: 23px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+}    
+
+.aside_wrapper .snb_wrap .snb_list .snb_item .snb_link {
+    display: block;
+    position: relative;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+}
+
+
+/* main 안에 section css 영역 */
+.section_wrapper {
+    width: calc(100% - 216px);
 }
 
 .title_wrap {
@@ -192,6 +333,10 @@ footer {
 .round_gray_box > .right_area {
     flex-shrink: 0;
     margin-left: auto;
+}
+
+.btn_wrap > .btn_sm {
+	margin-left: 48px;
 }
 
 .btn_sm {

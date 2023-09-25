@@ -31,10 +31,10 @@
 				<li class="snb_item">
 					<ul>
 						<li class="snb_item"><a class="snb_link depth_title"
-							href="/order_list_page"><span>쇼핑 내역</span></a></li>
+							href="/order_detail_list_page"><span>쇼핑 내역</span></a></li>
 					</ul>
 					<ul class="snb_list">
-						<li class="snb_item"><a href="/order_list_page">주문/배송목록</a></li>
+						<li class="snb_item"><a href="/order_detail_list_page">주문/배송목록</a></li>
 					</ul>
 				</li>
 				<li class="snb_item">

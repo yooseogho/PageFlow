@@ -205,7 +205,7 @@
                             <button type="button" class="btn_lg btn_line_primary" onclick="location.href=`/page`" style="cursor: pointer;">
                                 <span class="text">쇼핑 계속</span>
                             </button>
-                            <button type="button" class="btn_lg btn_primary" data-complete-order-detail-link-button="" value="001" onclick="location.href='/order_detail_list'" style="cursor: pointer;">
+                            <button type="button" class="btn_lg btn_primary" data-complete-order-detail-link-button="" value="001" onclick="location.href='/order_detail_list_page'" style="cursor: pointer;">
                                 <span class="text">주문내역상세</span>
                             </button>
                         </div>
