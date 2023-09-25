@@ -1,5 +1,7 @@
 package com.example.demo.dao.author;
 
+import java.util.*;
+
 import org.apache.ibatis.annotations.*;
 
 import com.example.demo.entity.author.*;
@@ -25,4 +27,8 @@ public interface AuthorDao {
 	// 작가 삭제 @
 	@Delete("delete from author where author_code=#{authorCode}")
 	public Integer deleteById(Long authorCode);
+	
+//	전체 조회
+	@Select("select * from author")
+	public List<Author> getAllAuthor();
 }
