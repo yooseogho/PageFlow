@@ -8,20 +8,26 @@ import com.example.demo.dto.orders.*;
 import com.example.demo.entity.orders.*;
 
 @Mapper
-public interface OrdersDao {
+public interface OrdersDao { 
+  
+//	전체 조회
+  @Select("select * from orders")
+  public List<Orders> getAllOrders();
+  
 	// 주문내역 저장
 	@Insert("INSERT INTO orders (ono, member_id, dno, order_date, order_request, order_price, order_status, payment, point_earn) "
 			+ "VALUES (#{ono}, #{memberId}, #{dno}, #{orderDate}, #{orderRequest}, #{orderPrice}, #{orderStatus}, #{payment}, #{pointEarn})")
 	public Integer save(Orders orders);
 
-	// 장바구니 - 결제예정금액
-	public Orders cartByTotalpay(String memberId);
-	
-	// 주문/결제 - 결제예정금액
-	public Orders ordersByTotalpay(String memberId);
+	// 주문내역 전체 보기(주문/배송 목록)
+	public List<OrdersDto> findAllOrders(@Param("memberId") String memberId);
+
+	// 주문내역 상세 보기
+	// 주문 상세 정보 조회
+	public Orders findByOrderDetails(@Param("memberId") String memberId, @Param("ono") Long ono);
+
 	// 주문내역 삭제
-	@Delete("DELETE FROM orders WHERE ono=#{ono}")
-	public Integer deleteByOrders(String memberId);
+	@Delete("DELETE FROM orders WHERE ono=#{ono} and member_id=#{memberId}")
+	public Integer deleteByOrders(Long ono, String memberId);
 	
-	// 
 }

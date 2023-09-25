@@ -49,7 +49,8 @@ public interface BookReviewDao {
 	public List<BookReview> findBybno(Long bno);
 	
 
-	
+	@Select("select * from book_review")
+	public List<BookReview> getAllBookReviews();
 	
 	
 
