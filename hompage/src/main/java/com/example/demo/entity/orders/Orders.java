@@ -14,7 +14,6 @@ public class Orders {
 	private LocalDate orderDate;
 	private String orderRequest;
 	private Long orderPrice;
-	private String orderStatus;
 	private Long payment;
 	private Long pointEarn;
 }

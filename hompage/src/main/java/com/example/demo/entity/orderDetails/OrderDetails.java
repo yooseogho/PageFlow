@@ -11,5 +11,6 @@ public class OrderDetails {
 	private Long orderCount;
 	private Long orderTotal;
 	private String bookTitle;
+	private String orderStatus;
 	
 }
