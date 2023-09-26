@@ -21,14 +21,14 @@ public interface OrderDetailsDao {
   @Select("SELECT * FROM order_details WHERE ono = #{ono}")
   public List<OrderDetails> selectOrderDetailsByOno(Long ono);
 
-  // 회원의 주문 내역 조회
-  public List<OrderDetails> findDetailsByMemberId(String memberId);
+  // 회원이 주문한 상세 내역 조회 ex)ono를 기준으로 해서 주문내역 전체를 저장하는게 아닌 상세 내역 저장
+  public List<OrderDetails> findDetailsByMemberId(String memberId, Long ono);
 
   // 취소 신청
-  @Update("UPDATE order_details SET order_status = '주문취소' WHERE bno = #{bno} AND member_id = #{memberId}")
-  public Integer changeStatus(String bno, String memberId);
+  @Update("UPDATE order_details SET order_status = '주문취소' WHERE bno = #{bno} AND ono = #{ono}")
+  public Integer changeStatus(Long bno, Long ono);
   
-//  전체 조회
+  // 주문 상세 전체 조회
   @Select("select * from order_details")
   public List<OrderDetails> getAllOrderDetails();
 

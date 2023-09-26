@@ -25,15 +25,15 @@ public class OrderDetailsService {
   }
 
   // 회원의 주문 내역 조회
-  public List<OrderDetails> findDetailsByMemberId(String memberId) {
-    List<OrderDetails> orderDetails = detailsDao.findDetailsByMemberId(memberId);
+  public List<OrderDetails> findDetailsByMemberId(String memberId,Long ono) {
+    List<OrderDetails> orderDetails = detailsDao.findDetailsByMemberId(memberId,ono);
     // 조회 결과가 null이면 null 반환
     return (orderDetails != null) ? orderDetails : null;
   }
 
   // 주문 상태 변경 (update)
-  public Integer changeStatus(String bno, String memberId) {
-    Integer result = detailsDao.changeStatus(bno, memberId);
+  public Integer changeStatus(Long bno, Long ono) {
+    Integer result = detailsDao.changeStatus(bno, ono);
     // update 실패 시 null 반환
     return (result != null) ? result : null;
   }

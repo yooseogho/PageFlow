@@ -42,7 +42,6 @@ create table orders(
 	order_date	date	default sysdate	not null,
 	order_request	varchar2 (100 char)	default '조심히 와주세요'	not null,
 	order_price	number(7)		not null,
-	order_status	varchar2 (100 char)	default '주문이 완료되었습니다.'	not null,
 	payment	number(7)		not null,
 	point_earn	number(5)		not null,
     constraint orders_pk_ono primary key(ono),
@@ -113,6 +112,7 @@ create table cart (
 		order_total	number(7)		not null,
 		book_title	varchar2 (50 char)		not null,
 	    constraint order_details_pk primary key(bno, ono)
+	    order_status	varchar2 (100 char)	default '주문이 완료되었습니다.'	not null,
 	);
 
 create table inquiry (
@@ -149,6 +149,5 @@ CREATE SEQUENCE member_grade_seq;
 CREATE SEQUENCE cart_cno_seq
   START WITH 101
   INCREMENT BY 1;
-CREATE SEQUENCE order_details__seq;
   
 
