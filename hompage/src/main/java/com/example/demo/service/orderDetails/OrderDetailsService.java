@@ -14,7 +14,7 @@ public class OrderDetailsService {
 
   // 주문 상세 정보 생성 (insert)
   public Integer insertOrderDetails(OrderDetails orderDetails) {
-    Integer result = detailsDao.insertOrderDetails(orderDetails);
+    Integer result = detailsDao.saveOrderDetails(orderDetails);
     // insert 실패 시 null 반환
     return (result != null) ? result : null;
   }
