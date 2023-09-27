@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 
+
 .header_wrapper {
     position: relative;
     background-color: #fff;
@@ -69,4 +70,9 @@
 
 .header_wrapper .text {
     opacity: 0.8;
+}
+
+.customer_service_list.customer_service_item.util_link {
+	text-decoration: none;
+	color: #000;
 }

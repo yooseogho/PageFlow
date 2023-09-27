@@ -16,7 +16,7 @@ public class NoticeController {
   private NoticeService noticeService;
 
   // 공지사항 목록을 표시하는 페이지 매핑
-  @GetMapping
+  @GetMapping("/notice")
   public String showNoticeList(Model model) {
     // NoticeService의 모든 공지사항을 가져옴
     List<Notice> notices = noticeService.getAllNotices();
@@ -27,7 +27,7 @@ public class NoticeController {
   }
 
   // 공지사항 상세 정보 페이지를 표시하는 페이지 매핑
-  @GetMapping("/{nno}")
+  @GetMapping("/nno")
   public String showNoticeDetails(@PathVariable Long nno, Model model) {
     // NoticeService의 공지사항 상세 정보를 가져옴
     Notice notice = noticeService.checkNotice(nno);

@@ -8,11 +8,6 @@
     box-sizing: border-box;
 }
 
-#page {
-    margin: 0 auto;
-
-}
-
 a {
     color: #000;
     text-decoration: none;
@@ -26,8 +21,34 @@ body {
     color: #000;
 }
 
+#page {
+    margin: 0 auto;
+}
+
 ul {
     list-style: none;
+}
+
+button {
+    background-color: transparent;
+}
+
+input,
+button,
+select,
+textarea {
+    vertical-align: middle;
+}
+
+input,
+button {
+    border: 0;
+    border-radius: 0;
+    background: none;
+}
+
+img {
+    vertical-align: middle;
 }
 
 /* main css 영역 */

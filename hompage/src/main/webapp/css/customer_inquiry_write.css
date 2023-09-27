@@ -2,32 +2,54 @@
 
 /* 공통 css 영역 */
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
-#page {
-	margin: 0 auto;
-
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 a {
-	color: #000;
-	text-decoration: none;
+    color: #000;
+    text-decoration: none;
 }
 
 body {
-	font-size: 14px;
-	line-height: 1.4;
-	font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
-	min-width: 1440px;
-	color: #000;
+    font-size: 14px;
+    line-height: 1.4;
+    font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
+    min-width: 1440px;
+    color: #000;
+}
+
+#page {
+    margin: 0 auto;
 }
 
 ul {
-	list-style: none;
+    list-style: none;
 }
+
+button {
+    background-color: transparent;
+}
+
+input,
+button,
+select,
+textarea {
+    vertical-align: middle;
+}
+
+input,
+button {
+    border: 0;
+    border-radius: 0;
+    background: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
 
 /* main css 영역 */
 .main_wrapper {
@@ -403,6 +425,10 @@ button.btn_light_gray {
 	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
 }
 
+.customer_wrap .tbl_row_wrap .tbl_row .form_wrap .form_box .form_cont .form_chk {
+    margin-top: 10px;
+}
+
 
 .btn_lg {
 	display: -webkit-inline-flex;
@@ -422,6 +448,7 @@ button.btn_light_gray {
 
 .btn_wrap .btn_lg+.btn_lg {
 	margin-left: 10px;
+	vertical-align: top;
 }
 
 
@@ -462,3 +489,4 @@ button.btn_light_gray {
 	line-height: 19px;
 	letter-spacing: -0.01em;
 }
+

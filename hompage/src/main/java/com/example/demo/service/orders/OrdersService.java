@@ -25,7 +25,7 @@ public class OrdersService {
   }
 
   // 2. 주문내역 전체 보기 (특정 회원의 주문 목록)
-  public List<OrdersDto> getAllOrdersForMember(String memberId) {
+  public List<Orders> getAllOrdersForMember(String memberId) {
     if (memberId == null) {
       return null;
     }
@@ -33,12 +33,12 @@ public class OrdersService {
   }
 
   // 3. 주문내역 상세 보기
-  public Orders getOrderDetails(String memberId, Long ono) {
-    if (ono == null) {
-      return null;
-    }
-    return ordersDao.findByOrderDetails(memberId, ono);
-  }
+//  public Orders getOrderDetails(String memberId, Long ono) {
+//    if (ono == null) {
+//      return null;
+//    }
+//    return ordersDao.findByOrderDetails(memberId, ono);
+//  }
 
   // 4. 주문 정보 삭제
   public Boolean deleteOrder(Long ono, String memberId) {

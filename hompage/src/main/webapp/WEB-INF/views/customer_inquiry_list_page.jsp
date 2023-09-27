@@ -47,7 +47,7 @@
 							</div>
 						</div>
 						<div id="right_area">
-							<a href="/customer_qna_page"><button>1:1 문의하기</button></a>
+							<a href="/customer_inquiry_write_page"><button>1:1 문의하기</button></a>
 						</div>
 					</div>
 					<ul style="padding: 5px;">

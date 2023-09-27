@@ -40,15 +40,15 @@
 						<li class="snb_item"><a href="#" class="snb_link">sam</a></li>
 						<li class="snb_item"><a href="#" class="snb_link">북모닝</a></li>
 					</ul></li>
-				<li class="snb_item"><a href="/customer_qna_page"
+				<li class="snb_item"><a href="/customer_inquiry_write_page"
 					class="snb_link depth_title">1:1 문의</a>
 					<ul class="snb_list">
-						<li class="snb_item"><a href="/customer_qna_page"
+						<li class="snb_item"><a href="/customer_inquiry_write_page"
 							class="snb_link">1:1 문의 접수</a></li>
 						<li class="snb_item"><a href="/customer_inquiry_list_page" class="snb_link">
 								1:1 문의 내역 </a></li>
 					</ul></li>
-				<li class="snb_item"><a href="#" class="snb_link depth_title">공지사항</a>
+				<li class="snb_item"><a href="/customer_notice_list_page" class="snb_link depth_title">공지사항</a>
 				</li>
 			</ul>
 			<div class="snb_service_box">

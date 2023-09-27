@@ -12,6 +12,11 @@
     padding: 31px 188px 0 206px;
 }
 
+.pnf_item a {
+	color: #000;
+	text-decoration: none;
+}
+
 
 .pnf_wrap {
     display: -webkit-flex;
@@ -19,6 +24,12 @@
     justify-content: flex-start;
     padding: 22px 0 20px;
     align-items: center;
+}
+
+.pnf_search_wrap .logo_box .hidden,
+.pnf_search_wrap .logo_box a {
+	color: #000;
+	text-decoration: none;
 }
 
 .pnf_search_wrap .logo_box {

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/css/customer_qna.css">
+<link rel="stylesheet" href="/css/customer_inquiry_write.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -23,7 +23,7 @@
                 <section class="section_wrapper">
                     <div class="customer_wrap">
                         <div class="title_wrap title_size_lg">
-                            <p class="title_heading">1:1문의 접수</p>
+                            <p class="title_heading">문의사항 답변</p>
                         </div>
 
                         <div class="tbl_row_wrap">
@@ -49,29 +49,16 @@
                                                                     <select data-kbbfn-field="" id="InquiryQuestList" title="문의유형 분류">
                                                                         <option value="-1" selected="selected">문의 유형을 선택해 주세요.</option>
                                                                         <option value="000">배송/수령예정일안내</option>
-                                                                        <option value="001">주문/결제/기프트카드</option>
+                                                                        <option value="001">주문/결제</option>
                                                                         <option value="002">검색 기능 관련</option>
                                                                         <option value="003">반품/교환/환불</option>
                                                                         <option value="004">도서/상품정보</option>
                                                                         <option value="005">회원정보서비스</option>
                                                                         <option value="006">웹사이트 이용 관련</option>
                                                                         <option value="007">시스템불편사항</option>
-                                                                        <option value="008">서양도서 검색/주문</option>
-                                                                        <option value="009">일본도서 검색/주문</option>
-                                                                        <option value="010">매장관련</option>
                                                                         <option value="012">택배사사례</option>
                                                                         <option value="013">고객제안/친절불친절</option>
                                                                         <option value="014">파본/상품불량신고</option>
-                                                                        <option value="926">북로그/리뷰&amp;리스트</option>
-                                                                        <option value="928">음반, DVD</option>
-                                                                        <option value="930">핫트랙스</option>
-                                                                        <option value="935">ebook상품/오류신고</option>
-                                                                        <option value="939">대량구매</option>
-                                                                        <option value="941">POD 주문형출판</option>
-                                                                        <option value="944">개인정보침해신고</option>
-                                                                        <option value="945">모바일교보문고</option>
-                                                                        <option value="947">sam</option>
-                                                                        <option value="948">동영상문의</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -99,35 +86,15 @@
                                                 <div class="col_box">
                                                     <div class="valid_check">
                                                         <div class="byte_check_wrap w_full">
-                                                            <textarea data-kbbfn-field="" id="InquiryContent" class="form_textarea" title="문의 내용 입력" placeholder="문의 유형을 먼저 선택 후 입력해주세요." maxlength="500" style="height: 246px;"></textarea>
+                                                            <textarea data-kbbfn-field="" id="InquiryContent" class="form_textarea" title="문의 내용 입력" placeholder="문의 유형을 먼저 선택 후 입력해주세요." maxlength="3000" style="height: 246px;"></textarea>
                                                             <div class="byte_check_footer">
-                                                                <div class="byte_check"><span class="count">0</span><span class="total">500</span></div>
+                                                                <div class="byte_check"><span class="count">0</span><span class="total">3000</span></div>
                                                             </div>
                                                         </div>
                                                         <span class="valid_desc"></span>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr id="InquiryFileForm">
-                                        <th scope="row"><span>사진첨부 </span><span>0</span><span class="fc_gray">/3</span></th>
-                                        <td>
-                                            <p class="info_text font_size_xxs">빠른 답변을 위해 이미지를 첨부해 주세요.</p>
-                                            <ul class="file_list">
-                                                <li class="list_item">
-                                                    <span class="file_item">
-                                                        <span class="btn_box">
-                                                            <input id="8134d774-24b5-4dc1-a26e-da15ddb2eeca" type="file">
-                                                            <label for="9fc29383-b618-461b-b36e-b6e29e5e95b9"></label>
-                                                        </span>
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                            <ul class="bul_list">
-                                                <li class="bul_item_asterisk font_size_xxs">JPG, PNG, GIF 파일만 최대 3장 업로드 가능합니다.</li>
-                                            </ul>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -197,11 +164,12 @@
                             <a href="/" class="btn_light_gray btn_lg">
                                 <span class="text">취소</span>
                             </a>
-                            <a href="/inquiry_list_page">
-                                <button data-kbbfn-form="inquiryForm" data-kbbfn-submit="" type="button" class="btn_primary btn_lg">
+                           
+                                <button data-kbbfn-form="inquiryForm" data-kbbfn-submit="" type="button" class="btn_primary btn_lg" 
+                                onclick="location.href=`/customer_inquiry_list_page`">
                                     <span class="text">문의접수</span>
                                 </button>
-                            </a>
+                
                         </div>
                         <div class="info_text_box size_lg">
                             <div class="title_wrap title_size_xs">

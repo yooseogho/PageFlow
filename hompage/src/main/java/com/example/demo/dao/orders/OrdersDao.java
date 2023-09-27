@@ -31,6 +31,7 @@ public interface OrdersDao {
 	@Select("select o.ono, bi.image_name, b.book_title, od.order_count, (sum(od.order_count * b.book_price), od.order_status)"
 			+ " from orders o inner join order_details od on o.ono=od.ono inner join member m on m.member_id=o.member_id inner join book b on b.bno=od.bno inner join book_image bi on bi.bno=b.bno group by  o.ono, bi.image_name, b.book_title, od.order_count, od.order_count, b.book_price, od.order_status")
 	List<Orders> findAllOrders(String memberId);
+
 	
 
 }

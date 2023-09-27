@@ -1,0 +1,570 @@
+@charset "UTF-8";
+
+/* 공통 css 영역 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+body {
+    font-size: 14px;
+    line-height: 1.4;
+    font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
+    min-width: 1440px;
+    color: #000;
+}
+
+#page {
+    margin: 0 auto;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    background-color: transparent;
+}
+
+input,
+button,
+select,
+textarea {
+    vertical-align: middle;
+}
+
+input,
+button {
+    border: 0;
+    border-radius: 0;
+    background: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+
+
+/* header css 영역 */
+.header_wrapper {
+    position: relative;
+    background-color: #fff;
+    border-bottom: 1px solid #eaeaea;
+    z-index: 1000;
+    background-color: #f4f4f4;
+}
+
+.service_mall_wrap .service_mall_inner {
+    position: relative;
+    padding-left: 172px;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    z-index: 2;
+    background-color: #f4f4f4;
+}
+
+.service_mall_wrap .service_mall_inner .customer_service_box {
+    margin: 9px 0 0 auto;
+}
+
+
+.service_mall_wrap .service_mall_inner .customer_service_box .customer_service_list .customer_service_item {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.service_mall_wrap .service_mall_inner .customer_service_box .customer_service_list .customer_service_item .util_link {
+    display: inline-block;
+    padding: 6px 0 8px;
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: -0.01em;
+    color: #595959;
+    opacity: 0.8;
+    vertical-align: top;
+}
+
+
+.service_mall_wrap .service_mall_inner .customer_service_box .customer_service_list .customer_service_item + .customer_service_item:before {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 8px;
+    margin: 10px 10px 0;
+    background-color: #595959;
+    opacity: 0.2;
+    vertical-align: top;
+}
+
+.service_mall_wrap .service_mall_inner .customer_service_box .customer_service_list .customer_service_item.member_benefit .btn_member_benefit {
+    padding: 6px 0 8px;
+    font-size: 13px;
+    line-height: 21px;
+    letter-spacing: -0.01em;
+    color: #595959;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.header_wrapper .text {
+    opacity: 0.8;
+}
+
+.customer_service_list .customer_service_item .util_link {
+	text-decoration: none;
+	color: #000;
+}
+
+
+/* main css 영역 */
+.main_wrapper {
+	padding-top: 42px;
+}
+
+.main_wrapper .main_inner {
+	display: -webkit-flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	width: 1200px;
+	margin: 0 auto;
+}
+
+/* main 안의 section css 영역 */
+.section_wrapper {
+	width: calc(100% - 216px);
+}
+
+
+
+.title_wrap.title_size_lg {
+	padding-bottom: 30px;
+}
+
+[class^=bul_item_] {
+	position: relative;
+	font-size: 14px;
+	line-height: 22px;
+	letter-spacing: -0.01em;
+	font-weight: 400;
+	text-align: left;
+}
+
+.bul_item_dot:before {
+	content: "";
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 8px;
+	width: 3px;
+	height: 3px;
+	border-radius: 50%;
+	background-color: #999;
+}
+
+.bul_item_dot {
+	padding-left: 9px;
+}
+
+.title_wrap {
+	position: relative;
+	display: -webkit-flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.title_wrap.title_size_lg .title_heading {
+	font-size: 24px;
+	line-height: 36px;
+	letter-spacing: -0.01em;
+}
+
+.title_wrap .title_heading {
+	display: inline-block;
+	position: relative;
+	font-weight: 700;
+}
+
+.tbl_row_wrap {
+	display: block;
+	width: 100%;
+	padding: 18px 0;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #eaeaea;
+	box-sizing: border-box;
+}
+
+.customer_wrap .tbl_row_wrap .title_wrap.title_size_sm {
+	padding: 12px 0 0 10px;
+}
+
+.title_wrap.title_size_sm .title_heading {
+	font-size: 15px;
+	line-height: 23px;
+	letter-spacing: -0.01em;
+	display: inline-block;
+	position: relative;
+	font-weight: 700;
+}
+
+.form_cont .valid_check {
+	margin-bottom: 10px;
+}
+
+.form_cont .valid_check .form_ip {
+	width: 450px;
+
+}
+
+
+
+
+.tbl_row {
+	width: 100%;
+	table-layout: fixed;
+}
+
+.tbl_row_wrap .tbl_row tbody th.has_ip {
+	padding-top: 24px;
+}
+
+.tbl_row_wrap .tbl_row tbody th {
+	padding: 12px 10px;
+	font-size: 14px;
+	line-height: 22px;
+	letter-spacing: -0.01em;
+	text-align: left;
+	color: #000;
+	font-weight: 500;
+	vertical-align: top;
+}
+
+label {
+	cursor: pointer;
+}
+
+
+.tbl_row_wrap .tbl_row tbody th .required {
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	padding-left: 3px;
+	margin-top: 5px;
+	vertical-align: top;
+}
+
+.tbl_row_wrap .tbl_row tbody th .required:before {
+	content: "*";
+	display: inline-block;
+	position: relative;
+	width: 6px;
+	height: 6px;
+	background-size: 6px 6px;
+	background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_required@2x.png);
+	color: transparent;
+}
+
+.tbl_row_wrap .tbl_row tbody td {
+	padding: 12px 10px;
+	font-size: 14px;
+	line-height: 22px;
+	letter-spacing: -0.01em;
+	text-align: left;
+	color: #767676;
+	font-weight: 400;
+	vertical-align: top;
+}
+
+.valid_check {
+	width: 100%;
+}
+
+select {
+	vertical-align: middle;
+	width: 100%;
+	height: 44px;
+	margin: 0;
+	padding: 0 10px;
+	background-color: #fff;
+	border: 1px solid #d5d5d5;
+	border-radius: 6px;
+	box-sizing: border-box;
+	transition: border-color 0.2s ease-out, border-radius 0.2s ease-out;
+	outline: none;
+}
+
+.w_full {
+	width: 100%;
+}
+
+.form_ip {
+	display: inline-block;
+	width: 100%;
+	height: 44px;
+	padding: 0 14px 2px;
+	color: #000;
+	font-size: 14px;
+	line-height: 42px;
+	letter-spacing: -0.01em;
+	font-family: "Noto Sans KR", sans-serif;
+	background-color: #fff;
+	border: 1px solid #d5d5d5;
+	border-radius: 6px;
+	box-sizing: border-box;
+	transition: border-color 0.2s ease-out;
+	outline: none;
+}
+
+.form_col_group .col_box~.col_box {
+	margin-top: 8px;
+}
+
+.byte_check_wrap {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	overflow: hidden;
+	border: 1px solid #d5d5d5;
+	border-radius: 6px;
+	background: #fff;
+	font-size: 14px;
+	transition: background 0.2s ease-out, border-color 0.2s ease-out;
+	box-sizing: border-box;
+}
+
+.byte_check_wrap .form_textarea {
+	border: none;
+	padding: 11px 14px 0;
+	width: 100%;
+	border-radius: 6px;
+	font-size: 14px;
+	line-height: 22px;
+	letter-spacing: -0.01em;
+	font-family: "Noto Sans KR", sans-serif;
+	box-sizing: border-box;
+	transition: background 0.2s ease-out, border-color 0.2s ease-out;
+	outline: 0;
+	overflow-y: auto;
+	resize: none;
+}
+
+.byte_check_footer {
+	color: #767676;
+	background-color: #f7f7f7;
+	display: -webkit-flex;
+	justify-content: flex-end;
+	padding: 10px 10px 10px 14px;
+	text-align: right;
+	transition: background 0.2s ease-out;
+	align-items: center;
+}
+
+.byte_check {
+	margin-top: 2px;
+	color: #767676;
+	display: inline-block;
+	line-height: 1;
+}
+
+.byte_check_wrap .byte_check .count {
+	display: inline-block;
+	color: #292929;
+	font-size: 12px;
+	line-height: 18px;
+	letter-spacing: -0.01em;
+}
+
+
+.total {
+	color: #767676;
+	display: inline-block;
+	font-size: 12px;
+	line-height: 18px;
+	letter-spacing: -0.01em;
+}
+
+.byte_check_wrap .byte_check .total:before {
+	content: "/";
+}
+
+.tbl_row_wrap .tbl_row .fc_gray {
+	color: #767676;
+}
+
+.info_text.font_size_xxs {
+	font-size: 13px;
+	line-height: 19px;
+	letter-spacing: -0.01em;
+}
+
+.info_text {
+	color: #595959;
+}
+
+.info_text+.file_list {
+	margin-top: 10px;
+}
+
+.file_list .list_item {
+	display: inline-block;
+	margin-right: 10px;
+	vertical-align: top;
+}
+
+.file_item {
+	position: relative;
+	display: inline-block;
+	font-size: 0;
+}
+
+.file_list .file_item .btn_box {
+	position: relative;
+	display: inline-block;
+	width: 94px;
+	height: 94px;
+	border: 1px dashed #e5e5e5;
+	background-color: #f7f7f7;
+	cursor: pointer;
+	border-radius: 6px;
+	vertical-align: top;
+	box-sizing: border-box;
+}
+
+.file_list .file_item .btn_box input {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+}
+
+.file_list .file_item .btn_box label {
+	display: block;
+	width: 100%;
+	height: 100%;
+	font-size: 0 !important;
+	background-size: 16px 16px;
+	background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_attached_add@2x.png);
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.bul_list {
+	margin-top: 10px;
+}
+
+.bul_item_asterisk {
+	font-size: 13px;
+	line-height: 19px;
+	letter-spacing: -0.01em;
+	color: #767676;
+	padding-left: 8px;
+}
+
+.bul_item_asterisk:before {
+	content: "*";
+	color: #474c98;
+	margin-right: 4px;
+}
+
+#InquiryEmail {
+	width: 450px;
+}
+
+.page_bottom {
+	margin-top: 40px;
+}
+
+.btn_wrap {
+	display: block;
+	font-size: 0;
+	text-align: center;
+}
+
+a.btn_light_gray,
+button.btn_light_gray {
+	color: #fff;
+	background: #767676;
+	border: 1px solid #767676;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.customer_wrap .tbl_row_wrap .tbl_row .form_wrap .form_box .form_cont .form_chk {
+    margin-top: 10px;
+}
+
+
+.btn_lg {
+	display: -webkit-inline-flex;
+	align-items: center;
+	min-width: 200px;
+	height: 50px;
+	padding: 0 23px 1px;
+	border-radius: 6px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: -0.01em;
+	font-weight: 700;
+	justify-content: center;
+}
+
+
+.btn_wrap .btn_lg+.btn_lg {
+	margin-left: 10px;
+	vertical-align: top;
+}
+
+
+.btn_primary {
+	color: #fff;
+	background: #5055b1;
+	border: 1px solid #5055b1;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.info_text_box {
+	border-radius: 10px;
+	background-color: #f7f7f7;
+	box-sizing: border-box;
+	display: block;
+	padding: 24px;
+	margin-top: 60px;
+}
+
+.title_wrap.title_size_xs {
+	padding-bottom: 10px;
+}
+
+.title_wrap.title_size_xs .title_heading {
+	font-size: 14px;
+	line-height: 22px;
+	letter-spacing: -0.01em;
+}
+
+[class^=bul_item_].font_size_xxs+.font_size_xxs {
+	margin-top: 6px;
+}
+
+[class^=bul_item_].font_size_xxs {
+	font-size: 13px;
+	line-height: 19px;
+	letter-spacing: -0.01em;
+}
+

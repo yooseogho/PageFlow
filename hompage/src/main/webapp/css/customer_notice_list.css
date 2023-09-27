@@ -1,0 +1,356 @@
+@charset "UTF-8";
+
+/* 공통 css 영역 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+body {
+    font-size: 14px;
+    line-height: 1.4;
+    font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
+    min-width: 1440px;
+    color: #000;
+}
+
+#page {
+    margin: 0 auto;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    background-color: transparent;
+}
+
+input,
+button,
+select,
+textarea {
+    vertical-align: middle;
+}
+
+input,
+button {
+    border: 0;
+    border-radius: 0;
+    background: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+/* main css 영역 */
+.main_wrapper {
+	padding-top: 42px;
+}
+
+.main_wrapper .main_inner {
+	display: -webkit-flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	width: 1200px;
+	margin: 0 auto;
+}
+
+/* main 안의 section css 영역 */
+.section_wrapper {
+    width: calc(100% - 216px);
+}
+
+.title_wrap.title_size_lg {
+    padding-bottom: 30px;
+}
+
+.title_wrap {
+    position: relative;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.title_wrap.title_size_lg .title_heading {
+    font-size: 24px;
+    line-height: 36px;
+    letter-spacing: -0.01em;
+}
+
+.title_wrap .title_heading {
+    display: inline-block;
+    position: relative;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.customer_wrapper .customer_search_box {
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.info_text_box.type_purple {
+    background-color: rgba(80, 85, 177, 0.06);
+}
+.info_text_box.size_lg {
+    padding: 24px;
+}
+.info_text_box {
+    display: block;
+    padding: 18px;
+    border-radius: 10px;
+    background-color: #f7f7f7;
+    box-sizing: border-box;
+}
+
+.customer_wrapper .customer_search_box .input_btn_box {
+    width: 500px;
+}
+
+.input_btn_box {
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.customer_wrapper .customer_search_box .input_btn_box .form_ip_search {
+    flex: 1;
+}
+
+.form_ip_search {
+    position: relative;
+}
+
+.form_ip_search .form_ip {
+    padding-right: 45px;
+}
+.form_ip {
+    display: inline-block;
+    width: 100%;
+    height: 44px;
+    padding: 0 14px 2px;
+    letter-spacing: -0.01em;
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+}
+
+.customer_wrapper .customer_search_box .input_btn_box .form_ip_search + .btn_ip {
+    margin-left: 6px;
+}
+
+a.btn_primary, button.btn_primary, a.btn_line_primary.active, button.btn_line_primary.active {
+    color: #fff;
+    background: #5055b1;
+}
+a.btn_ip, button.btn_ip {
+    display: -webkit-inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 86px;
+    height: 44px;
+    padding: 0 19px 1px;
+    border-radius: 6px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+}
+
+button[class^=btn_], a[class^=btn_] {
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+button[class^=btn_] .text, a[class^=btn_] .text {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+
+.customer_wrapper .customer_content_area {
+    margin-top: 70px;
+}
+
+.list_result_wrap {
+    position: relative;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.list_result_wrap .result_count {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.fc_green {
+    color: #3c9a17 !important;
+}
+
+.tbl_col_wrap {
+    display: block;
+    width: 100%;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #eaeaea;
+    box-sizing: border-box;
+}
+
+.tbl_col_wrap .tbl_col, .tbl_col_wrap .tbl_col_line {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.tbl_col_wrap .tbl_col_line thead th {
+    border-bottom: 1px solid #eaeaea;
+}
+
+.tbl_col_wrap .tbl_col_line tr th {
+    padding: 16px 24px 14px;
+}
+.tbl_col_wrap .tbl_col tr th, .tbl_col_wrap .tbl_col_line tr th {
+    padding: 16px 10px 14px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    color: #767676;
+    font-weight: 500;
+    vertical-align: middle;
+}
+
+.tbl_col_wrap .tbl_col tr td.fc_light_gray, .tbl_col_wrap .tbl_col tr td.fc_light_gray a, .tbl_col_wrap .tbl_col_line tr td.fc_light_gray, .tbl_col_wrap .tbl_col_line tr td.fc_light_gray a {
+    color: #767676;
+}
+
+.tbl_col_wrap .tbl_col tr td .btn_text_link, .tbl_col_wrap .tbl_col_line tr td .btn_text_link {
+    color: inherit;
+}
+
+a.btn_text_link.ellipsis, button.btn_text_link.ellipsis {
+    max-width: 100%;
+}
+a.btn_text_link, button.btn_text_link {
+    color: #767676;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+    text-align: left;
+}
+
+.tbl_col_wrap .tbl_col tr td .btn_text_link .text, .tbl_col_wrap .tbl_col_line tr td .btn_text_link .text {
+    text-decoration: underline;
+}
+
+a.btn_text_link.ellipsis .text, button.btn_text_link.ellipsis .text {
+    overflow: hidden;
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    max-height: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tbl_col_wrap .tbl_col_line tbody td {
+    border-bottom: 1px solid #eaeaea;
+}
+.tbl_col_wrap .tbl_col_line tr td {
+    padding: 28px 24px;
+}
+.tbl_col_wrap .tbl_col tr td, .tbl_col_wrap .tbl_col_line tr td {
+    text-align: center;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+    vertical-align: middle;
+}
+
+.tbl_col_wrap .tbl_col tr th.align_left, .tbl_col_wrap .tbl_col tr td.align_left, .tbl_col_wrap .tbl_col_line tr th.align_left, .tbl_col_wrap .tbl_col_line tr td.align_left {
+    text-align: left;
+}
+
+.pagination {
+    display: block;
+    text-align: center;
+    font-size: 0;
+    margin-top: 30px;
+}
+
+.pagination .btn_page.prev, .dialog_wrapper .pagination .btn_page.prev {
+    background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_pagination_prev@2x.png) center no-repeat;
+    background-size: 24px 24px;
+}
+
+.pagination .btn_page, .dialog_wrapper .pagination .btn_page {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: -0.01em;
+    vertical-align: top;
+}
+
+a[disabled], a[aria-disabled=true], a.disabled, button[disabled], button[aria-disabled=true], button.disabled {
+    pointer-events: none !important;
+    cursor: default !important;
+    text-decoration: none !important;
+}
+
+.pagination .page_num, .dialog_wrapper .pagination .page_num {
+    display: inline-block;
+    margin: 0 8px;
+    box-sizing: border-box; 
+    vertical-align: top; 
+}
+
+
+.pagination .page_num .btn_page_num.active, .dialog_wrapper .pagination .page_num .btn_page_num.active {
+    color: #fff;
+    font-weight: 700;
+    background-color: #767676;
+}
+
+.pagination .page_num .btn_page_num, .dialog_wrapper .pagination .page_num .btn_page_num {
+    min-width: 24px;
+    height: 24px;
+    padding: 5px 4px 6px 4px;
+    font-size: 13px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    font-family: "Roboto", sans-serif;
+    color: #767676;
+    border-radius: 12px;
+    background-color: transparent;
+}
+
+.pagination .page_num .btn_page_num ~ .btn_page_num, .dialog_wrapper .pagination .page_num .btn_page_num ~ .btn_page_num {
+    margin-left: 8px;
+}
+
+.pagination .btn_page.next, .dialog_wrapper .pagination .btn_page.next {
+    background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_pagination_next@2x.png) center no-repeat;
+    background-size: 24px 24px;
+}

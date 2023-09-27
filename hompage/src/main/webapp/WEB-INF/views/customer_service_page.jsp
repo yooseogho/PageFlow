@@ -56,11 +56,11 @@
                         </div>
                         <div class="inquiry_box">
                             <div class="box bg">
-                                <a href="/customer_qna_page" class="inquiry">
+                                <a href="/customer_inquiry_write_page" class="inquiry">
                                     <span class="ico_inquiry01"></span>
                                     <p class="name">1:1 문의 접수</p>
                                 </a>
-                                <a href="/inquiry_list_page" class="inquiry">
+                                <a href="/customer_inquiry_list_page" class="inquiry">
                                     <span class="ico_inquiry02"></span>
                                     <p class="name">1:1 문의 내역</p>
                                 </a>
@@ -74,7 +74,7 @@
                         <div class="title_wrap title_size_md">
                             <h2 class="title_heading">공지사항</h2>
                             <div class="right_area">
-                                <a href="#" class="btn_more_view size_lg"><span class="text">더보기</span><span class="ico_arw"></span></a>
+                                <a href="/customer_notice_list_page" class="btn_more_view size_lg"><span class="text">더보기</span><span class="ico_arw"></span></a>
                             </div>
                         </div>
                         <div class="tbl_col_wrap">

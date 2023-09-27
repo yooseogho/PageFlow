@@ -23,6 +23,8 @@
 					</li>
 					<li class="customer_service_item"><a
 						href="/customer_service_page" class="util_link">고객센터</a></li>
+					<li class="customer_service_item"><a
+						href="/admin_page" class="util_link">관리자 페이지</a></li>	
 				</ul>
 			</div>
 		</div>
