@@ -1,13 +1,16 @@
 package com.example.demo.service.member;
 
+import java.io.*;
 import java.time.*;
 import java.time.format.*;
 import java.time.temporal.*;
 
+import org.apache.commons.io.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.*;
+import org.springframework.web.multipart.*;
 
 import com.example.demo.dao.member.*;
 import com.example.demo.dto.member.*;
@@ -35,9 +38,33 @@ public class MemberService {
   
 //  2. 회원가입 (INSERT 문)
   public Boolean join(MemberDto.Join dto) {
-//    입력된 비밀번호를 암호화하여 변수에 담음
+    MultipartFile profile = dto.getProfile();
+    String profileName = defaultProfile;
+        
+//    프로필 사진이 비어있지 않다면
+    if(profile.isEmpty()==false) {
+//      파일의 확장자를 추출하고
+      String extension = FilenameUtils.getExtension(profile.getOriginalFilename());
+//      파일 이름을 아이디.확장자로 설정하고
+      profileName = dto.getMemberId() + "." + extension;
+//      파일의 폴더를 profileFolder 객체로,
+//      파일의 이름을 위 profileName 변수로 설정하고
+      File file = new File(profileFolder, profileName);
+//      profile의 내용을 file로 이동시키고
+//      예외 처리(try-catch 문, transferTo() 메서드를 사용하면
+//      자동으로 생성됨)를 수행함
+      try {
+        profile.transferTo(file);
+      } catch (IllegalStateException | IOException e) {
+        e.printStackTrace();
+      }
+    }
+//    프로필 사진을 넣지 않았다면
+//    입력된 비밀번호를 암호화하여 변수에 담고
+//    (BCryptPasswordEncoder 사용)
     String encodedPassword = encoder.encode(dto.getPassword());
-//    member 객체에 기본 프로필 사진과 위에서 암호화한 비밀번호를 담음
+//    member 객체에 기본 프로필 사진과 위에서 암호화한 비밀번호를 담고
+//    (DTO의 toEntity 메서드 사용)
     Member member = dto.toEntity(defaultProfile, encodedPassword);
 //    INSERT 문을 반환하여 행을 추가함
     return memberDao.save(member)==1;
@@ -45,6 +72,7 @@ public class MemberService {
   
 //  3. 전화번호 중복 확인 (SELECT 문)
   public Boolean telAvailable(String memberTel) {
+//    전화번호가 겹치면 false, 그렇지 않으면 true 반환
     return memberDao.findByTel(memberTel)==null;
   }
   
@@ -57,13 +85,11 @@ public class MemberService {
     String birthday = dtf.format(m.getBirthday());
     String joinday = dtf.format(m.getJoinday());
     
-//    days 변수에 입력되어 있는 가입일~현재 날짜 사이를 계산하여
+//    days에 입력되어 있는 가입일~현재 날짜 사이를 계산하여
 //    가입한 지 얼마나 되었는지를 담음
     Long days = ChronoUnit.DAYS.between(m.getJoinday(), LocalDate.now());
     
     String profile = profileUrl + m.getMemberProfile();
-    
-    System.out.println(profile);
     
     return new MemberDto.Read(m.getMemberId(), m.getMemberEmail(), birthday, joinday, days, profile);
   }
@@ -84,12 +110,22 @@ public class MemberService {
   }
   
 //  8. 프로필 사진 변경 (UPDATE 문)
-  public Boolean changeProfile(String memberProfile, String memberId) {
+  public Boolean changeProfile(MultipartFile memberProfile, String memberId) {
     return memberDao.changeProfile(memberProfile, memberId)==1;
   }
   
 //  9. 회원 탈퇴 (DELETE 문)
   public Boolean quit(String memberId) {
+//    아이디를 기준으로 조회를 하고
+    Member m = memberDao.findById(memberId);
+//    변수 f에 파일 폴더와 파일 이름을 담고
+    File f = new File(profileFolder, m.getMemberProfile());
+//    파일 이름이 기본 파일이 아니면서 파일이 존재한다면
+    if(!(m.getMemberProfile().equals(defaultProfile))&&f.exists()) {
+//      파일을 지우고
+      f.delete();
+    }
+//    DELETE 문을 실행함
     return memberDao.deleteById(memberId)==1;
   }
   
@@ -107,5 +143,15 @@ public class MemberService {
   public String findUsernameByTel(String memberTel) {
     Member member = memberDao.findIdByTel(memberTel);
     return member==null? null : member.getMemberId();
+  }
+  
+//  11. 비빌번호 확인
+  public Boolean checkPass(String password, String memberId) {
+    Member m = memberDao.findById(memberId);
+    if(m==null) {
+      return false;
+    }else {
+      return encoder.matches(password, m.getPassword());
+    }
   }
 }

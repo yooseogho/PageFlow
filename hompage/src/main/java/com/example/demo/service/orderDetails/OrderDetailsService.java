@@ -25,8 +25,8 @@ public class OrderDetailsService {
   }
 
   // 회원의 주문 내역 조회
-  public List<OrderDetails> findDetailsByMemberId(String memberId,Long ono) {
-    List<OrderDetails> orderDetails = detailsDao.findDetailsByMemberId(memberId,ono);
+  public List<OrderDetails> findDetailsByMemberId(String memberId, Long ono) {
+    List<OrderDetails> orderDetails = detailsDao.findDetailsByMemberId(memberId, ono);
     // 조회 결과가 null이면 null 반환
     return (orderDetails != null) ? orderDetails : null;
   }
@@ -39,7 +39,7 @@ public class OrderDetailsService {
   }
 
   // 전체 주문 상세 정보 조회
-  public List<OrderDetails> getAllOrderDetails() {
-    return detailsDao.getAllOrderDetails();
+  public List<OrderDetails> getAllOrderDetails(String memberId, Long ono) {
+    return detailsDao.getAllOrderDetails(memberId, ono);
   }
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 
 import com.example.demo.entity.orderDetails.OrderDetails;
@@ -29,6 +28,6 @@ public interface OrderDetailsDao {
   
   // 주문 상세 전체 조회
   @Select("select * from order_details")
-  public List<OrderDetails> getAllOrderDetails();
+  public List<OrderDetails> getAllOrderDetails(String memberId, Long ono);
 
 }

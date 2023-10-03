@@ -8,8 +8,9 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.dto.orders.*;
+import com.example.demo.entity.orderDetails.*;
 import com.example.demo.entity.orders.*;
+import com.example.demo.service.orderDetails.*;
 import com.example.demo.service.orders.*;
 
 @Controller
@@ -17,6 +18,8 @@ import com.example.demo.service.orders.*;
 public class OrdersController {
   @Autowired
   private OrdersService ordersService;
+  @Autowired
+  private OrderDetailsService detailsService;
 
   // 1. 주문내역 저장
   @PostMapping("/save")
@@ -45,19 +48,19 @@ public class OrdersController {
     }
   }
 
-    // 3. 주문내역 상세 보기
-//  @GetMapping("/{ono}")
-//  public String getOrderDetails(@PathVariable Long ono, Model model, Principal principal) {
-//    Orders order = ordersService.getOrderDetails(principal.getName(), ono);
-//
-//    if (order != null) {
-//      model.addAttribute("order", order); // 모델에 주문내역 상세 정보를 추가
-//      return "order-details"; // 주문내역 상세 정보를 표시하는 템플릿 반환
-//    } else {
-//      // 실패한 경우 오류 처리를 수행
-//      return "?error";
-//    }
-//  }
+  // 3. 주문내역 상세 보기
+  @GetMapping("/{ono}")
+  public String getOrderDetails(@PathVariable Long ono, Model model, Principal principal) {
+    List<OrderDetails> order = detailsService.getAllOrderDetails(principal.getName(), ono);
+
+    if (order != null) {
+      model.addAttribute("order", order); // 모델에 주문내역 상세 정보를 추가
+      return "order-details"; // 주문내역 상세 정보를 표시하는 템플릿 반환
+    } else {
+      // 실패한 경우 오류 처리를 수행
+      return "?error";
+    }
+  }
 
   // 4. 주문 정보 삭제
   @PostMapping("/{ono}/delete")

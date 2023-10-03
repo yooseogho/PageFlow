@@ -40,4 +40,14 @@ public class MemberDto {
 		private Long days;
 		private String memberProfile;	
 	}
+	
+	@Data
+	@AllArgsConstructor
+	@NoArgsConstructor
+	public static class Update {
+	  private String memberId;
+	  private String memeberName;
+	  private String memberEmail;
+	  private String memberTel;
+	}
 }

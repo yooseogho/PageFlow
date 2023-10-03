@@ -2,7 +2,6 @@ package com.example.demo.controller.notice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.*;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.service.notice.*;
@@ -10,24 +9,23 @@ import com.example.demo.entity.notice.*;
 
 import java.util.List;
 
-@Controller
 public class NoticeController {
   @Autowired
   private NoticeService noticeService;
 
   // 공지사항 목록을 표시하는 페이지 매핑
-  @GetMapping("/notice")
+  @GetMapping("notice")
   public String showNoticeList(Model model) {
     // NoticeService의 모든 공지사항을 가져옴
     List<Notice> notices = noticeService.getAllNotices();
 
     model.addAttribute("notices", notices); // 모델에 공지사항 목록을 추가
 
-    return "notice-list"; // 공지사항 목록을 표시하는 템플릿 반환
+    return "redirect:/"; // 루트 페이지로 리다이렉트
   }
 
   // 공지사항 상세 정보 페이지를 표시하는 페이지 매핑
-  @GetMapping("/nno")
+  @GetMapping("/{nno}")
   public String showNoticeDetails(@PathVariable Long nno, Model model) {
     // NoticeService의 공지사항 상세 정보를 가져옴
     Notice notice = noticeService.checkNotice(nno);
@@ -57,7 +55,7 @@ public class NoticeController {
     boolean isSuccess = noticeService.insertNotice(noticeTitle, noticeContent);
 
     if (isSuccess) {
-      return "redirect:/notices"; // 공지사항 등록 성공 시 공지사항 목록 페이지로 리다이렉션
+      return "redirect:/notices"; // 공지사항 등록 성공 시 공지사항 목록 페이지로 리다이렉트
     } else {
       // 실패한 경우 오류 처리를 수행
       return "?error";
@@ -89,7 +87,7 @@ public class NoticeController {
     boolean isSuccess = noticeService.updateNotice(nno, noticeTitle, noticeContent);
 
     if (isSuccess) {
-      return "redirect:/notices/" + nno; // 공지사항 수정 성공 시 해당 공지사항 상세 페이지로 리다이렉션
+      return "redirect:/notices/" + nno; // 공지사항 수정 성공 시 해당 공지사항 상세 페이지로 리다이렉트
     } else {
       // 실패한 경우 오류 처리를 수행
       return "?error";
@@ -104,10 +102,15 @@ public class NoticeController {
     boolean isSuccess = noticeService.deleteNotice(nno);
 
     if (isSuccess) {
-      return "redirect:/notices"; // 공지사항 삭제 성공 시 공지사항 목록 페이지로 리다이렉션
+      return "redirect:/notices"; // 공지사항 삭제 성공 시 공지사항 목록 페이지로 리다이렉트
     } else {
       // 실패한 경우 오류 처리를 수행
       return "?error";
     }
   }
+
+  /*
+   * [참고] 추후에 변동될 사항이 많으니, 기본 예로 볼 것 매핑 경로나 반환 경로는 임의로 정해둔 것이니 추후 상황에 맞게 수정할 것
+   * 컨트롤러에 대한 의견/아이디어가 있으면 고민하지 말고 말할 것
+   */
 }

@@ -34,9 +34,9 @@ public class OrderDetailsController {
   }
 
   @GetMapping("/orderDetails/member/{memberId}")
-  public List<OrderDetails> getOrderDetailsByMemberId(@PathVariable String memberId) {
+  public List<OrderDetails> getOrderDetailsByMemberId(@PathVariable String memberId, Long ono) {
     // 회원의 주문 내역 조회
-    List<OrderDetails> orderDetails = detailService.findDetailsByMemberId(memberId);
+    List<OrderDetails> orderDetails = detailService.findDetailsByMemberId(memberId, ono);
     if (orderDetails == null || orderDetails.isEmpty()) {
       return null;
     }
@@ -50,9 +50,9 @@ public class OrderDetailsController {
   }
 
   @GetMapping("/orderDetails")
-  public List<OrderDetails> getAllOrderDetails() {
+  public List<OrderDetails> getAllOrderDetails(String memberId, Long ono) {
     // 전체 주문 상세 정보 조회
-    List<OrderDetails> orderDetails = detailService.getAllOrderDetails();
+    List<OrderDetails> orderDetails = detailService.getAllOrderDetails(memberId, ono);
 //    주문 상세가 없거나 비어있다면 NULL 반환
     if (orderDetails == null || orderDetails.isEmpty()) {
       return null;
