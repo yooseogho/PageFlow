@@ -55,7 +55,7 @@
                                     <tr>
                                         <th scope="col">NO</th>
                                         <th scope="col">공지제목</th>
-                                        <th scope="col">유형</th>
+                                        <th scope="col">작성자</th>
                                         <th scope="col">날짜</th>
                                     </tr>
                                 </thead>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/css/welcome.css">
+<link rel="stylesheet" href="/css/index.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -16,11 +16,9 @@
 			<jsp:include page="/WEB-INF/views/include/nav.jsp" />
 		</nav>
 		<main>
-			<aside></aside>
 			<section>
 				<p>판매 관련</p>
 			</section>
-			<aside></aside>		
 		</main>
 		<footer class="footer_wrapper">
 			<jsp:include page="/WEB-INF/views/include/footer.jsp" />

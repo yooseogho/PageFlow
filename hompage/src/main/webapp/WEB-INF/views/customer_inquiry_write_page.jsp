@@ -23,7 +23,7 @@
                 <section class="section_wrapper">
                     <div class="customer_wrap">
                         <div class="title_wrap title_size_lg">
-                            <p class="title_heading">문의사항 답변</p>
+                            <p class="title_heading">1:1 문의 접수</p>
                         </div>
 
                         <div class="tbl_row_wrap">

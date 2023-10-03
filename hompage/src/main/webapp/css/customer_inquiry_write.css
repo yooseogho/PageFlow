@@ -84,21 +84,6 @@ img {
 	text-align: left;
 }
 
-.bul_item_dot:before {
-	content: "";
-	display: block;
-	position: absolute;
-	left: 0;
-	top: 8px;
-	width: 3px;
-	height: 3px;
-	border-radius: 50%;
-	background-color: #999;
-}
-
-.bul_item_dot {
-	padding-left: 9px;
-}
 
 .title_wrap {
 	position: relative;
@@ -149,9 +134,6 @@ img {
 	width: 450px;
 
 }
-
-
-
 
 .tbl_row {
 	width: 100%;
@@ -262,7 +244,6 @@ select {
 	border-radius: 6px;
 	background: #fff;
 	font-size: 14px;
-	transition: background 0.2s ease-out, border-color 0.2s ease-out;
 	box-sizing: border-box;
 }
 
@@ -276,7 +257,6 @@ select {
 	letter-spacing: -0.01em;
 	font-family: "Noto Sans KR", sans-serif;
 	box-sizing: border-box;
-	transition: background 0.2s ease-out, border-color 0.2s ease-out;
 	outline: 0;
 	overflow-y: auto;
 	resize: none;
@@ -289,7 +269,6 @@ select {
 	justify-content: flex-end;
 	padding: 10px 10px 10px 14px;
 	text-align: right;
-	transition: background 0.2s ease-out;
 	align-items: center;
 }
 
@@ -488,5 +467,21 @@ button.btn_light_gray {
 	font-size: 13px;
 	line-height: 19px;
 	letter-spacing: -0.01em;
+}
+
+.bul_item_dot:before {
+	content: "";
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 8px;
+	width: 3px;
+	height: 3px;
+	border-radius: 50%;
+	background-color: #999;
+}
+
+.bul_item_dot {
+	padding-left: 9px;
 }
 

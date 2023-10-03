@@ -12,6 +12,16 @@ public class SampleController {
 	public void admin_inquiry_answer() {
 	}
 	
+	// 관리자 공지사항 작성 페이지
+	@GetMapping("/admin_notice_write_page")
+	public void admin_notice_write_page() {
+	}
+	
+	// 관리자 페이지
+	@GetMapping("/admin_page")
+	public void admin_page() {
+	}
+	
 	// 장바구니 페이지
 	@GetMapping("/cart_page")
 	public void cart() {
@@ -40,6 +50,12 @@ public class SampleController {
 	// 고객센터 페이지
 	@GetMapping("/customer_service_page")
 	public void customer_service_page() {
+	}
+	
+	// 루트 페이지
+	@GetMapping({ "/", "/page" })
+	public ModelAndView page() {
+		return new ModelAndView("index");
 	}
 
 	// 회원 정보 수정 전 비밀번호 확인 페이지
@@ -86,6 +102,7 @@ public class SampleController {
 	@GetMapping("/member_info_page")
 	public void member_info_page() {
 	}
+	
 
 	// 로그인 페이지
 	@GetMapping("/member_login_page")
@@ -127,11 +144,6 @@ public class SampleController {
 	public void order_success_page() {
 	}
 
-	// 루트 페이지
-	@GetMapping({ "/", "/page" })
-	public ModelAndView page() {
-		return new ModelAndView("welcome_page");
-	}
 
 	// 공지 사항 페이지
 	@GetMapping("/notice_list_page")

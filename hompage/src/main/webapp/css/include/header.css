@@ -4,9 +4,7 @@
 
 .header_wrapper {
     position: relative;
-    background-color: #fff;
     border-bottom: 1px solid #eaeaea;
-    z-index: 1000;
     background-color: #f4f4f4;
 }
 
@@ -19,7 +17,6 @@
     width: 1200px;
     margin: 0 auto;
     box-sizing: border-box;
-    z-index: 2;
     background-color: #f4f4f4;
 }
 
@@ -76,3 +73,11 @@
 	text-decoration: none;
 	color: #000;
 }
+
+ul {
+	margin-bottom: 0px !important;
+	padding-left: 0px !important;
+}
+
+
+

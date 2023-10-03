@@ -28,26 +28,7 @@
 <body>
 	<div id="page">
 		<header class="header_wrapper">
-			<div class="service_mall_wrap">
-		<div class="service_mall_inner">
-			<div class="customer_service_box">
-				<ul class="customer_service_list">
-					<li class="customer_service_item"><a
-						href="/member_create_page" class="util_link">회원가입</a></li>
-					<li class="customer_service_item"><a class="util_link"
-						href="member_login_page">로그인</a></li>
-					<li class="customer_service_item member_benefit">
-						<button type="button" class="btn_member_benefit"
-							onclick="location.href=`/member_grade_page`">
-							<span class="text">회원혜택</span>
-						</button>
-					</li>
-					<li class="customer_service_item"><a
-						href="/customer_service_page" class="util_link">고객센터</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+			<jsp:include page="/WEB-INF/views/include/header.jsp" />
 		</header>
 		<nav class="nav_wrapper">
 			<jsp:include page="/WEB-INF/views/include/nav.jsp" />
@@ -193,7 +174,7 @@
                                 <span class="text">취소</span>
                             </a>
                             	<button data-kbbfn-form="inquiryForm" data-kbbfn-submit="" type="button" class="btn_primary btn_lg"
-                            	onclick="location.href='/'">
+                            	onclick="location.href='/admin_page'">
                                 	<span class="text">답변 완료</span>
                             	</button>
                         </div>

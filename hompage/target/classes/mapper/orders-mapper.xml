@@ -4,28 +4,29 @@
 
 <mapper namespace="com.example.demo.dao.orders.OrdersDao">
 
-	<select id="getCartInfoByTotalPay" resultType="com.example.demo.entity.orders.Orders">
-		select sum(b.book_price*od.order_count),
-        0 AS 배송비,
-        (sum(b.book_price*od.order_count))*mg.point_rate,
-        sum(b.book_price*od.order_count)
+	<select id="cartByTotalpay" resultType="com.example.demo.entity.orders.Orders">
+		select b.book_price*od.order_count as 상품금액,
+		b.book_price*od.order_count*m.grade_code as 적립예정포인트,
+		b.book_price*od.order_count as 결제예정금액
 		from orders o 
 		inner join order_details od on o.ono=od.ono 
 		inner join book b on od.bno=b.bno 
 		inner join member m on o.member_id=m.member_id 
-		inner join member_grade mg on m.grade_code=mg.grade_code where m.member_id=#{memberId} group by m.member_id, mg.point_rate, m.member_point
+		inner join member_grade mg on m.grade_code=mg.grade_code 
+		where m.member_id=#{memberId}
 	</select>
 
-	<select id="getOrdersByTotalpay" resultType="com.example.demo.entity.orders.Orders">
-		select sum(b.book_price*od.order_count),
-        0 AS 배송비,
-        m.member_point,
-        (sum(b.book_price*od.order_count)-m.member_point)*mg.point_rate,
-        sum(b.book_price*od.order_count)-m.member_point
+	<select id="OrdersByTotalpay" resultType="com.example.demo.entity.orders.Orders">
+		select b.book_price*od.order_count as 상품금액,
+		m.member_point  ,b.book_price*od.order_count*m.grade_code as 적립예정포인트,
+		b.book_price*od.order_count - m.member_point as 결제예정금액 
 		from orders o 
 		inner join order_details od on o.ono=od.ono 
 		inner join book b on od.bno=b.bno 
 		inner join member m on o.member_id=m.member_id 
-		inner join member_grade mg on m.grade_code=mg.grade_code where m.member_id=#{memberId} group by m.member_id, mg.point_rate, m.member_point
+		inner join member_grade mg on m.grade_code=mg.grade_code 
+		where m.member_id=#{memberId}
 	</select>
+
+
 </mapper>

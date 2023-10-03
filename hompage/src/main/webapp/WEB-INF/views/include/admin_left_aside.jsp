@@ -14,15 +14,15 @@
 	<div class="aside_body">
 		<div class="snb_wrap" style="width: 170px;">
 			<ul class="snb_list category">
-				<li class="snb_item"><a href="#" class="snb_link depth_title">메인</a>
+				<li class="snb_item"><a href="/admin_page" class="snb_link depth_title">메인</a>
 				</li>
-				<li class="snb_item"><a href="#" class="snb_link depth_title">할일</a>
+				<li class="snb_item"><a href="/admin_page" class="snb_link depth_title">할일</a>
 					<ul id="category_sublist" class="snb_list">
-						<li class="snb_item"><a href="#" class="snb_link">공지사항 작성</a>
+						<li class="snb_item"><a href="/admin_notice_write_page" class="snb_link">공지사항 작성</a>
 						</li>
-						<li class="snb_item"><a href="#" class="snb_link">1:1 문의사항 답변</a>
+						<li class="snb_item"><a href="/admin_inquiry_answer_page" class="snb_link">1:1 문의사항 답변</a>
 						</li>
-						<li class="snb_item"><a href="#" class="snb_link">도서 상품 등록</a>
+						<li class="snb_item"><a href="/admin_book_add" class="snb_link">도서 상품 등록</a>
 						</li>
 					</ul>
 				</li>

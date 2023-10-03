@@ -177,3 +177,7 @@
     padding: 5px 14px;
     vertical-align: top;
 }
+
+ul {
+	padding-left: 0px !important;
+}
