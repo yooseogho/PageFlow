@@ -12,6 +12,11 @@ public class SampleController {
 	public void admin_inquiry_answer() {
 	}
 	
+	// 관리자 1:1 문의사항 리스트 페이지
+	@GetMapping("/admin_inquiry_list_page")
+	public void admin_inquiry_list() {
+	}
+	
 	// 관리자 공지사항 작성 페이지
 	@GetMapping("/admin_notice_write_page")
 	public void admin_notice_write_page() {

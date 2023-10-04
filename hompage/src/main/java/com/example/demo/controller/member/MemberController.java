@@ -179,27 +179,27 @@ public class MemberController {
    * */
 
   // 13. 회원 비밀번호 변경 페이지 보기
-//  @Secured("ROLE_USER")
-//  @GetMapping("/member_edit_page")
-//  public ModelAndView changePasswordPage(Principal principal, HttpSession session) {
-//    if (session.getAttribute("checkPassword") == null) {
-//      return new ModelAndView("redirect:/member_check_page");
-//    } else {
-//      return new ModelAndView("/member_edit_page");
-//    }
-//  }
+  @Secured("ROLE_USER")
+  @GetMapping("/member_edit_page")
+  public ModelAndView changePasswordPage(Principal principal, HttpSession session) {
+    if (session.getAttribute("checkPassword") == null) {
+      return new ModelAndView("redirect:/member_check_page");
+    } else {
+      return new ModelAndView("/member_edit_page");
+    }
+  }
 
   // 14. 회원 비밀번호 변경 처리
-//  @Secured("ROLE_USER")
-//  @PostMapping("/member_edit_page")
-//  public String changePassword(@RequestParam String newPassword, Principal principal) {
-//    Boolean result = memberService.changePass(newPassword, principal.getName());
-//    if (result) {
-//      return "redirect:/member_info_page";
-//    } else {
-//      return "redirect:/member_edit_page?error";
-//    }
-//  }
+  @Secured("ROLE_USER")
+  @PostMapping("/member_edit_page")
+  public String changePassword(@RequestParam String newPassword, Principal principal) {
+    Boolean result = memberService.changePass(newPassword, principal.getName());
+    if (result) {
+      return "redirect:/member_info_page";
+    } else {
+      return "redirect:/member_edit_page?error";
+    }
+  }
 
   // 15. 회원 로그아웃 처리
   @Secured("ROLE_USER")

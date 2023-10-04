@@ -22,7 +22,7 @@
                    	<jsp:include page="/WEB-INF/views/include/admin_left_aside.jsp" />
                 </aside>
                 <section class="section_wrapper">
-                    <div class="customer_wrap">
+                    <div class="admin_wrap">
                         <div class="title_wrap title_size_lg">
                             <p class="title_heading">관리자님 환영합니다.</p>
                         </div>

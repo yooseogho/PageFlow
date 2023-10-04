@@ -77,7 +77,7 @@
                         <div class="tbl_myorder_inner">
                             <div class="tbl_order_info">
                                 <span class="order_date">주문날짜(주문번호)</span>
-                                <a href="#" class="btn_more_view" data-order-detail-link="N">
+                                <a href="/order_detail_list_page" class="btn_more_view" data-order-detail-link="N">
                                     <span class="text">상세보기</span>
                                     <span class="ico_arw"></span>
                                 </a>
@@ -154,7 +154,7 @@
                         <div class="tbl_myorder_inner">
                             <div class="tbl_order_info">
                                 <span class="order_date">주문날짜(주문번호)</span>
-                                <a href="#" class="btn_more_view" data-order-detail-link="N">
+                                <a href="/order_detail_list_page" class="btn_more_view" data-order-detail-link="N">
                                     <span class="text">상세보기</span>
                                     <span class="ico_arw"></span>
                                 </a>
