@@ -8,7 +8,7 @@ import com.example.demo.entity.member.*;
 @Mapper
 public interface MemberDao {
 	// 회원가입
-	@Insert("insert into member values(#{memberId}, '1', #{memberName}, #{memberEmail}, #{password}, #{memberAddress}, #{memberTel}, #{memberProfile}, #{memberPoint}, #{joinday}, #{birthday})")	
+	@Insert("insert into member values(#{memberId}, '1', #{memberName}, #{memberEmail}, #{password}, #{memberTel}, #{memberProfile}, #{memberPoint}, sysdate, #{birthday})")	
 	public Integer save(Member member);
 
 	// 아이디 중복
