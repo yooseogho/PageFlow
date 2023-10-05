@@ -16,7 +16,7 @@
                     <div class="footer_inner">
                         <div class="footer_logo_box">
                             <div class="logo_box">
-                                <a href="https://www.kyobobook.co.kr/" class="logo_link" onclick="ga360.GA_Event('click_공통_PC', 'FNB', '', '교보문고', '');">
+                                <a href="https://www.kyobobook.co.kr/" class="logo_link">
                                     <img alt="KYOBO 교보문고" srcset="https://contents.kyobobook.co.kr/resources/fo/images/common/ink/img_logo_kyobo_footer.png">
                                 </a>
                             </div>

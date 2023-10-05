@@ -1,18 +1,14 @@
 package com.example.demo.DaoTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.List;
+import java.util.*;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.boot.test.context.*;
 
-import com.example.demo.dao.orderDetails.OrderDetailsDao;
-import com.example.demo.entity.orderDetails.OrderDetails;
+import com.example.demo.dao.orderDetails.*;
+import com.example.demo.entity.orderDetails.*;
 
 
 
@@ -79,7 +75,7 @@ public class OrderDetailsTest {
     
 //    @Test
     public void testGetAllOrderDetails() {
-        List<OrderDetails> orderDetailsList = detailsDao.getAllOrderDetails();
+        List<OrderDetails> orderDetailsList = detailsDao.getAllOrderDetails(null, null);
 
         // 반환된 주문 상세 리스트가 비어있지 않음을 확인합니다.
         assertFalse(orderDetailsList.isEmpty());

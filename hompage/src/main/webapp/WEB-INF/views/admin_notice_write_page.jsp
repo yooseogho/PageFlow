@@ -97,7 +97,7 @@
                             <a href="/admin_page" class="btn_light_gray btn_lg">
                                 <span class="text">취소</span>
                             </a>
-                            <button type="button" class="btn_primary btn_lg" onclick="location.href=`/admin_page`">
+                            <button type="button" class="btn_primary btn_lg" onclick="location.href=`/customer_service_page`">
                                 <span class="text">공지사항 작성</span>
                             </button>
                         </div>

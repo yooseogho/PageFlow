@@ -29,7 +29,6 @@ public class MemberDaoTest {
 		Member newMember = new Member();
 		newMember.setGradeCode(1L); // or any appropriate value
 		newMember.setPassword(encoder.encode("1234"));
-		newMember.setMemberAddress("Some address");
 		newMember.setMemberTel("1234567890");
 		newMember.setMemberProfile("defaultprofile.png");
 		newMember.setMemberPoint(0L); // or any appropriate value
@@ -52,7 +51,6 @@ public class MemberDaoTest {
 		member.setPassword("password123");
 
 		// 나머지 필드 설정
-		member.setMemberAddress("123 Test Street, Test City, 12345"); // 주소 설정
 		member.setMemberTel(null); // 전화번호는 null로 설정 (예시)
 		member.setMemberProfile("defaultprofile.png"); // 프로필 이미지 이름 설정
 		member.setMemberPoint(0L); // 포인트는 초기값으로 0을 설정
