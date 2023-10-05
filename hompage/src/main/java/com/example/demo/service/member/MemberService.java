@@ -36,39 +36,47 @@ public class MemberService {
     return memberDao.findById(memberId)==null;  
   }
   
-//  2. 회원가입 (INSERT 문)
+//  2. 회원가입 (INSERT 문)															// profile 객체가 null인 경우에 대한 처리를 추가해야 합니다:
   public Boolean join(MemberDto.Join dto) {
-    MultipartFile profile = dto.getProfile();
-    String profileName = defaultProfile;
-        
-//    프로필 사진이 비어있지 않다면
-    if(profile.isEmpty()==false) {
-//      파일의 확장자를 추출하고
-      String extension = FilenameUtils.getExtension(profile.getOriginalFilename());
-//      파일 이름을 아이디.확장자로 설정하고
-      profileName = dto.getMemberId() + "." + extension;
-//      파일의 폴더를 profileFolder 객체로,
-//      파일의 이름을 위 profileName 변수로 설정하고
-      File file = new File(profileFolder, profileName);
-//      profile의 내용을 file로 이동시키고
-//      예외 처리(try-catch 문, transferTo() 메서드를 사용하면
-//      자동으로 생성됨)를 수행함
-      try {
-        profile.transferTo(file);
-      } catch (IllegalStateException | IOException e) {
-        e.printStackTrace();
-      }
-    }
-//    프로필 사진을 넣지 않았다면
-//    입력된 비밀번호를 암호화하여 변수에 담고
-//    (BCryptPasswordEncoder 사용)
-    String encodedPassword = encoder.encode(dto.getPassword());
-//    member 객체에 기본 프로필 사진과 위에서 암호화한 비밀번호를 담고
-//    (DTO의 toEntity 메서드 사용)
-    Member member = dto.toEntity(defaultProfile, encodedPassword);
-//    INSERT 문을 반환하여 행을 추가함
-    return memberDao.save(member)==1;
-  }
+	    MultipartFile profile = dto.getProfile();
+	    String profileName = defaultProfile;
+	        
+//	    프로필 사진이 제공되었으며 비어있지 않다면
+	    if(profile != null && !profile.isEmpty()) {
+//	      파일의 확장자를 추출하고
+	        String extension = FilenameUtils.getExtension(profile.getOriginalFilename());
+//	      파일 이름을 아이디.확장자로 설정하고
+	        profileName = dto.getMemberId() + "." + extension;
+//	      파일의 폴더를 profileFolder 객체로,
+//	      파일의 이름을 위 profileName 변수로 설정하고
+	        File file = new File(profileFolder, profileName);
+//	      profile의 내용을 file로 이동시키고
+//	      예외 처리(try-catch 문, transferTo() 메서드를 사용하면
+//	      자동으로 생성됨)를 수행함
+	        try {
+	            profile.transferTo(file);
+	        } catch (IllegalStateException | IOException e) {
+	            e.printStackTrace();
+	            return false; // If file transfer fails return false early.
+	        }
+	    }
+
+	    // If the user uploaded a photo update the filename.
+	    if (profile != null && !profile.isEmpty()) {
+	       defaultProfile = profileName;
+	    }
+
+//	    입력된 비밀번호를 암호화하여 변수에 담고 (BCryptPasswordEncoder 사용)
+	    String encodedPassword = encoder.encode(dto.getPassword());
+	    
+	//  member 객체에 기본 프로필 사진과 위에서 암호화한 비밀번호를 담고(DTO의 toEntity 메서드 사용)
+	   Member member = dto.toEntity(defaultProfile, encodedPassword);
+	    
+	   // INSERT 문을 반환하여 행을 추가함 
+	   return memberDao.save(member)==1;
+	}
+
+  
   
 //  3. 전화번호 중복 확인 (SELECT 문)
   public Boolean telAvailable(String memberTel) {

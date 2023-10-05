@@ -332,15 +332,6 @@ ol, ul {
     flex: 1;
 }
 
-.time_limit .time_count {
-    position: absolute;
-    right: 14px;
-    top: 12px;
-    font-size: 13px;
-    line-height: 19px;
-    letter-spacing: -0.01em;
-    color: #ec1f2d;
-}
 
 .input_btn_box .time_limit + .btn_ip {
     min-width: 133px;
@@ -414,35 +405,7 @@ ol, ul {
     cursor: pointer
 }
 
-.form_filter_box .form_filter input:checked + label .text {
-    padding-left: 14px;
-}
 
-.form_filter_box .form_filter input + label .text {
-    position: relative;
-    text-align: left;
-}
-
-.form_filter_box .form_filter input:checked + label {
-    color: #474c98;
-}
-
-.form_filter_box .form_filter input:checked + label .text:before {
-    background-size: 10px 7px;
-    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_checkbox_active_02@2x.png);
-}
-
-.form_filter_box .form_filter input + label .text:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 10px;
-    height: 7px;
-    margin-top: -3px;
-    background-position: center;
-    background-repeat: no-repeat;
-}
 
 .valid_check .valid_desc {
     display: block;

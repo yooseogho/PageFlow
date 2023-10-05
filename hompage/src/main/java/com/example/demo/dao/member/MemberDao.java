@@ -1,14 +1,18 @@
 package com.example.demo.dao.member;
 
-import org.apache.ibatis.annotations.*;
-import org.springframework.web.multipart.*;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.entity.member.*;
+import com.example.demo.entity.member.Member;
 
 @Mapper
 public interface MemberDao {
 	// 회원가입
-	@Insert("insert into member values(#{memberId}, '1', #{memberName}, #{memberEmail}, #{password}, #{memberTel}, #{memberProfile}, #{memberPoint}, sysdate, #{birthday})")	
+	@Insert("insert into member (member_id, grade_code, member_name, member_email, password, member_tel, member_profile, joinday, birthday, member_point) values(#{memberId}, '1', #{memberName}, #{memberEmail}, #{password}, #{memberTel}, #{memberProfile}, sysdate, #{birthday}, 0)")
 	public Integer save(Member member);
 
 	// 아이디 중복

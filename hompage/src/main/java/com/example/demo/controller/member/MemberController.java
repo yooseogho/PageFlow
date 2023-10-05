@@ -116,7 +116,7 @@ public class MemberController {
     }
   }
 
-//  9. 회원 탈퇴
+//  9. 회원 탈퇴	
   @Secured("ROLE_USER")
   @PostMapping("/quit")
   public ModelAndView quit(Principal principal, HttpSession session) {
@@ -180,24 +180,24 @@ public class MemberController {
 
   // 13. 회원 비밀번호 변경 페이지 보기
   @Secured("ROLE_USER")
-  @GetMapping("/member_edit_page")
+  @GetMapping("/member_change_password_page")
   public ModelAndView changePasswordPage(Principal principal, HttpSession session) {
     if (session.getAttribute("checkPassword") == null) {
       return new ModelAndView("redirect:/member_check_page");
     } else {
-      return new ModelAndView("/member_edit_page");
+      return new ModelAndView("/member_change_password_page");
     }
   }
 
   // 14. 회원 비밀번호 변경 처리
   @Secured("ROLE_USER")
-  @PostMapping("/member_edit_page")
+  @PostMapping("/member_change_password")
   public String changePassword(@RequestParam String newPassword, Principal principal) {
     Boolean result = memberService.changePass(newPassword, principal.getName());
     if (result) {
       return "redirect:/member_info_page";
     } else {
-      return "redirect:/member_edit_page?error";
+      return "redirect://member_change_password?error";
     }
   }
 

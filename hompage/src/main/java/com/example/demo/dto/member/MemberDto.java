@@ -21,12 +21,12 @@ public class MemberDto {
 		private String memberTel;
 		private Long memberPoint;
 		
-		@DateTimeFormat(pattern="yyyy-MM-dd")
+		@DateTimeFormat(pattern="yyyyMMdd")
 		private LocalDate birthday;
 		private MultipartFile profile;
 		
 		public Member toEntity(String profileName, String pwd) {
-			return new Member(memberId, 1L, memberName, memberEmail, pwd, memberAddress, profileName, memberTel, memberPoint, LocalDate.now(), birthday);
+			return new Member(memberId, 1L, memberName, memberEmail, pwd,  profileName, memberTel, memberPoint, LocalDate.now(), birthday);
 		}
 	}
 	
