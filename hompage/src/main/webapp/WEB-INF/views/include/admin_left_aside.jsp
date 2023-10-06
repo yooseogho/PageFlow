@@ -22,7 +22,7 @@
 						</li>
 						<li class="snb_item"><a href="/admin_inquiry_list_page" class="snb_link">1:1 문의사항 답변</a>
 						</li>
-						<li class="snb_item"><a href="/admin_book_add" class="snb_link">도서 상품 등록</a>
+						<li class="snb_item"><a href="/admin_product_list_page" class="snb_link">도서 상품 관리</a>
 						</li>
 					</ul>
 				</li>

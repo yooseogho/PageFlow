@@ -161,7 +161,7 @@
                                                     <div class="prod_area horizontal">
                                                         <!-- 상품1의 이미지 영역 -->
                                                         <div class="prod_thumb_box size_lg">
-                                                            <a href="https://localhost:8081/product_read_page" class="prod_link">
+                                                            <a href="/product_read_page" class="prod_link">
                                                                 <span class="img_box">
                                                                     <img data-kbbfn="s3-image" loading="lazy" alt="2023 해커스 토익 실전 1000제 1 RC Reading(리딩) 토익문제집" src="https://contents.kyobobook.co.kr/sih/fit-in/200x0/pdt/9788965425052.jpg">
                                                                 </span>
@@ -174,7 +174,7 @@
                                                             <div class="auto_overflow_wrap prod_name_group">
                                                                 <div class="auto_overflow_contents">
                                                                     <div class="auto_overflow_inner">
-                                                                        <a href="https://localhost:8081/product_read_page" class="prod_info">
+                                                                        <a href="/product_read_page" class="prod_info">
                                                                             <span class="prod_category">[국내도서]</span>
                                                                             <span id="cmdtName_S000200429481">2023 해커스 토익 실전 1000제 1 RC Reading(리딩) 토익문제집</span>
                                                                         </a>
@@ -196,7 +196,7 @@
                                                                 <div class="auto_overflow_wrap prod_author_group">
                                                                     <div class="auto_overflow_contents">
                                                                         <div class="auto_overflow_inner">
-                                                                            <a href="https://localhost:8081/author_book_page" class="author rep">해커스 어학연구소</a>
+                                                                            <a href="/author_book_page" class="author rep">해커스 어학연구소</a>
                                                                             <span class="type">저자(글)</span>
                                                                         </div>
                                                                     </div>
@@ -205,7 +205,7 @@
 
                                                             <!-- 상품의 출판사 소개 -->
                                                             <div class="prod_publish">
-                                                                <a href="https://localhost:8081/publisher_page" class="text">해커스어학연구소</a>
+                                                                <a href="/publisher_page" class="text">해커스어학연구소</a>
                                                                 <span class="gap">·</span>
                                                                 <span class="date">2023년 01월 02일</span>
                                                             </div>
@@ -263,7 +263,7 @@
                                                     <div class="prod_area horizontal">
                                                         <!-- 상품의 이미지 영역 -->
                                                         <div class="prod_thumb_box size_lg">
-                                                            <a href="https://localhost:8081/product_read_page" class="prod_link">
+                                                            <a href="/product_read_page" class="prod_link">
                                                                 <span class="img_box">
                                                                     <img data-kbbfn="s3-image" loading="lazy" alt="2023 해커스 토익 실전 1000제 1 LC Listening(리스닝) 토익문제집" src="https://contents.kyobobook.co.kr/sih/fit-in/200x0/pdt/9788965425076.jpg">
                                                                 </span>
@@ -276,7 +276,7 @@
                                                             <div class="auto_overflow_wrap prod_name_group">
                                                                 <div class="auto_overflow_contents">
                                                                     <div class="auto_overflow_inner">
-                                                                        <a href="https://localhost:8081/product_read_page" class="prod_info">
+                                                                        <a href="/product_read_page" class="prod_info">
                                                                             <span class="prod_category">[국내도서]</span>
                                                                             <span id="cmdtName_S000200429491">2023 해커스 토익 실전 1000제 1 LC Listening(리스닝) 토익문제집</span>
                                                                         </a>
@@ -298,7 +298,7 @@
                                                                 <div class="auto_overflow_wrap prod_author_group">
                                                                     <div class="auto_overflow_contents">
                                                                         <div class="auto_overflow_inner">
-                                                                            <a href="https://localhost:8081/author_book_page" class="author rep">해커스 어학연구소</a>
+                                                                            <a href="/author_book_page" class="author rep">해커스 어학연구소</a>
                                                                             <span class="type">저자(글)</span>
                                                                         </div>
                                                                     </div>
@@ -307,7 +307,7 @@
 
                                                             <!-- 상품의 출판사 소개 -->
                                                             <div class="prod_publish">
-                                                                <a href="https://localhost:8081/publisher_page" class="text">해커스어학연구소</a>
+                                                                <a href="/publisher_page" class="text">해커스어학연구소</a>
                                                                 <span class="gap">·</span>
                                                                 <span class="date">2023년 01월 02일</span>
                                                             </div>
@@ -365,7 +365,7 @@
                                                     <div class="prod_area horizontal">
                                                         <!-- 상품의 이미지 영역 -->
                                                         <div class="prod_thumb_box size_lg">
-                                                            <a href="https://localhost:8081/product_read_page" class="prod_link">
+                                                            <a href="/product_read_page" class="prod_link">
                                                                 <span class="img_box">
                                                                     <img data-kbbfn="s3-image" loading="lazy" alt="2023 해커스 토익 RC 리딩(Reading) 토익 기본서" src="https://contents.kyobobook.co.kr/sih/fit-in/200x0/pdt/9788965424765.jpg">
                                                                 </span>
@@ -378,7 +378,7 @@
                                                             <div class="auto_overflow_wrap prod_name_group">
                                                                 <div class="auto_overflow_contents">
                                                                     <div class="auto_overflow_inner">
-                                                                        <a href="https://localhost:8081/product_read_page" class="prod_info">
+                                                                        <a href="/product_read_page" class="prod_info">
                                                                             <span class="prod_category">[국내도서]</span>
                                                                             <span id="cmdtName_S000200406668">2023 해커스 토익 RC 리딩(Reading) 토익 기본서</span>
                                                                         </a>
@@ -396,7 +396,7 @@
                                                                 <div class="auto_overflow_wrap prod_author_group">
                                                                     <div class="auto_overflow_contents">
                                                                         <div class="auto_overflow_inner">
-                                                                            <a href="https://localhost:8081/author_book_page" class="author rep">David Cho</a>
+                                                                            <a href="/author_book_page" class="author rep">David Cho</a>
                                                                             <span class="type">저자(글)</span>
                                                                         </div>
                                                                     </div>
@@ -405,7 +405,7 @@
 
                                                             <!-- 상품의 출판사 소개 -->
                                                             <div class="prod_publish">
-                                                                <a href="https://localhost:8081/publisher_page" class="text">해커스어학연구소</a>
+                                                                <a href="/publisher_page" class="text">해커스어학연구소</a>
                                                                 <span class="gap">·</span>
                                                                 <span class="date">2023년 01월 02일</span>
                                                             </div>
@@ -463,7 +463,7 @@
                                                     <div class="prod_area horizontal">
                                                         <!-- 상품의 이미지 영역 -->
                                                         <div class="prod_thumb_box size_lg">
-                                                            <a href="https://localhost:8081/product_read_page" class="prod_link">
+                                                            <a href="/product_read_page" class="prod_link">
                                                                 <span class="img_box">
                                                                     <img data-kbbfn="s3-image" loading="lazy" alt="2023 해커스 토익 LC 리스닝(Listening) 토익 기본서" src="https://contents.kyobobook.co.kr/sih/fit-in/200x0/pdt/9788965424772.jpg">
                                                                 </span>
@@ -476,7 +476,7 @@
                                                             <div class="auto_overflow_wrap prod_name_group">
                                                                 <div class="auto_overflow_contents">
                                                                     <div class="auto_overflow_inner">
-                                                                        <a href="https://localhost:8081/product_read_page" class="prod_info">
+                                                                        <a href="/product_read_page" class="prod_info">
                                                                             <span class="prod_category">[국내도서]</span>
                                                                             <span id="cmdtName_S000200406673">2023 해커스 토익 LC 리스닝(Listening) 토익 기본서</span>
                                                                         </a>
@@ -494,7 +494,7 @@
                                                                 <div class="auto_overflow_wrap prod_author_group">
                                                                     <div class="auto_overflow_contents">
                                                                         <div class="auto_overflow_inner">
-                                                                            <a href="https://localhost:8081/author_book_page" class="author rep">David Cho</a>
+                                                                            <a href="/author_book_page" class="author rep">David Cho</a>
                                                                             <span class="type">저자(글)</span>
                                                                         </div>
                                                                     </div>
@@ -503,7 +503,7 @@
 
                                                             <!-- 상품의 출판사 소개 -->
                                                             <div class="prod_publish">
-                                                                <a href="https://localhost:8081/publisher_page" class="text">해커스어학연구소</a>
+                                                                <a href="/publisher_page" class="text">해커스어학연구소</a>
                                                                 <span class="gap">·</span>
                                                                 <span class="date">2023년 01월 02일</span>
                                                             </div>
@@ -561,7 +561,7 @@
                                                     <div class="prod_area horizontal">
                                                         <!-- 상품의 이미지 영역 -->
                                                         <div class="prod_thumb_box size_lg">
-                                                            <a href="https://localhost:8081/product_read_page" class="prod_link">
+                                                            <a href="/product_read_page" class="prod_link">
                                                                 <span class="img_box">
                                                                     <img data-kbbfn="s3-image" loading="lazy" alt="YBM 실전토익 RC 1000 1" src="https://contents.kyobobook.co.kr/sih/fit-in/200x0/pdt/9788917232134.jpg">
                                                                 </span>
@@ -574,7 +574,7 @@
                                                             <div class="auto_overflow_wrap prod_name_group">
                                                                 <div class="auto_overflow_contents">
                                                                     <div class="auto_overflow_inner">
-                                                                        <a href="https://localhost:8081/product_read_page" class="prod_info">
+                                                                        <a href="/product_read_page" class="prod_info">
                                                                             <span class="prod_category">[국내도서]</span>
                                                                             <span id="cmdtName_S000000450423">YBM 실전토익 RC 1000 1</span>
                                                                         </a>
@@ -592,7 +592,7 @@
                                                                 <div class="auto_overflow_wrap prod_author_group">
                                                                     <div class="auto_overflow_contents">
                                                                         <div class="auto_overflow_inner">
-                                                                            <a href="https://localhost:8081/author_book_page" class="author rep">YBM 토익연구소</a>
+                                                                            <a href="/author_book_page" class="author rep">YBM 토익연구소</a>
                                                                             <span class="type">저자(글)</span>
                                                                         </div>
                                                                     </div>
@@ -601,7 +601,7 @@
 
                                                             <!-- 상품의 출판사 소개 -->
                                                             <div class="prod_publish">
-                                                                <a href="https://localhost:8081/publisher_page" class="text">YBM</a>
+                                                                <a href="/publisher_page" class="text">YBM</a>
                                                                 <span class="gap">·</span>
                                                                 <span class="date">2019년 10월 01일</span>
                                                             </div>

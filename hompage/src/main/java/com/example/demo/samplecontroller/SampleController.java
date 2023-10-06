@@ -7,9 +7,19 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SampleController {
 
+	// SF/과학 소설 책 목록 페이지
+	@GetMapping("/category/novel/fantasy_novel_book")
+	public void fantasy_novel_book() {
+	}
+	
 	// 소설 책 목록 페이지
 	@GetMapping("/category/novel/novel_book")
 	public void novel_book() {
+	}
+	
+	// SF/과학 소설 책 목록 페이지
+	@GetMapping("/category/novel/science_novel_book")
+	public void science_novel_book() {
 	}
 	
 	// 관리자 1:1 문의사항 답변 페이지
@@ -30,6 +40,16 @@ public class SampleController {
 	// 관리자 페이지
 	@GetMapping("/admin_page")
 	public void admin_page() {
+	}
+	
+	// 관리자 상품 등록 페이지
+	@GetMapping("/admin_product_add_page")
+	public void admin_product_add() {
+	}
+	
+	// 관리자 상품 관리 리스트 페이지
+	@GetMapping("/admin_product_list_page")
+	public void admin_product_list() {
 	}
 	
 	// 장바구니 페이지

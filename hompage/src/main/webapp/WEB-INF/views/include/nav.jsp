@@ -30,7 +30,6 @@
 		<ul class="pnf_list">
 			<li class="pnf_item"><a href="/category/novel/novel_book" class="pnf_link"> 소설 </a></li>
 			<li class="pnf_item"><a href="#" class="pnf_link"> 만화 </a></li>
-			<li class="pnf_item"><a href="#" class="pnf_link"> 시 </a></li>
 			<li class="pnf_item"><a href="#" class="pnf_link"> 참고도서 </a></li>
 		</ul>
 	</div>

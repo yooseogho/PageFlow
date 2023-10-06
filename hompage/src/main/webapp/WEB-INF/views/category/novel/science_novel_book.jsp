@@ -18,10 +18,10 @@
 		<main class="container_wrapper">
             <div class="main_inner">
                 <aside class="aside_wrap sub_category">
-                   <jsp:include page="/WEB-INF/views/include/book/novel_left_aside.jsp" />
+                   <jsp:include page="/WEB-INF/views/include/book/science_novel_left_aside.jsp" />
                 </aside>
 
-                <section class="contents_wrap">
+               <section class="contents_wrap">
                     <div class="contents_inner">
                         <div class="search_result_top">
 
@@ -51,8 +51,8 @@
                                                     <!-- 상품 1 영역 -->
                                                     <li class="prod_item">
                                                         <span class="form_chk no_label">
-                                                            <input class="result_checkbox spec_checkbox" id="chkBest14" type="checkbox">
-                                                            <label for="chkBest14"><span class="hidden">상품선택</span></label>
+                                                            <input class="result_checkbox spec_checkbox" id="chkAll11" type="checkbox">
+                                                            <label for="chkAll11"><span class="hidden">상품선택</span></label>
                                                         </span>
 
                                                         <!-- 상품 이미지 & 정보 영역 -->
@@ -61,7 +61,7 @@
                                                             <div class="prod_thumb_box size_lg">
                                                                 <a href="/product_read_page" class="prod_link">
                                                                     <span class="img_box">
-                                                                        <img data-kbbfn="s3-image" loading="lazy" alt="푸틴을 죽이는 완벽한 방법" src="https://contents.kyobobook.co.kr/sih/fit-in/300x0/pdt/9791167763983.jpg">
+                                                                        <img data-kbbfn="s3-image" loading="lazy" alt="일곱 번째 약속" src="https://contents.kyobobook.co.kr/sih/fit-in/300x0/pdt/9791166687396.jpg">
                                                                     </span>
                                                                 </a>
                                                             </div>
@@ -74,7 +74,7 @@
                                                                         <div class="auto_overflow_inner">
                                                                             <a href="/product_read_page" class="prod_info">
                                                                                 <span class="prod_category">[국내도서]</span>
-                                                                                <span>푸틴을 죽이는 완벽한 방법</span>
+                                                                                <span>일곱 번째 약속</span>
                                                                             </a>
                                                                         </div>
                                                                     </div>
@@ -83,7 +83,7 @@
                                                                 <!-- 상품 설명 -->
                                                                 <div class="prod_desc_info">
                                                                     <span class="prod_desc">
-                                                                        우크라이나 키이우 북쪽의 도시 부차. 미하일은 생일을 맞아 가족과 저녁 식사를 하던 중 갑자기 나타난 러시아군에 의해 칼에 찔려 의식을 잃고, 아내와 딸은 끔찍한 일을 당한 후 목숨을 잃는다.
+                                                                        SF 소설집 《공산주의자가 온다!》, 호러 소설집 《균형 잡힌 기적》에 이은 이신주 작가의 세 번째이자 판타지 소설집 《일곱 번째 약속》. 수사적 의미로 그저 “장르를 넘나드는” 게 아니라 다양한 장르의 세계를 마음껏 즐기는 이 작가가 과연 앞으로 무엇을 쓸 수 있을지, 함께 지켜보자는 의미로 신인 작가의 데뷔작을 유례없이 세 권으로 나누어 출간했습니다.
                                                                     </span>
                                                                 </div>
 
@@ -92,7 +92,7 @@
                                                                     <div class="auto_overflow_wrap prod_author_group">
                                                                         <div class="auto_overflow_contents">
                                                                             <div class="auto_overflow_inner">
-                                                                                <a href="/author_book_page" class="author rep">김진명</a>
+                                                                                <a href="/author_book_page" class="author rep">이신주</a>
                                                                                 <span class="type">저자(글)</span>
                                                                             </div>
                                                                         </div>
@@ -101,20 +101,20 @@
 
                                                                 <!-- 상품의 출판사 소개 -->
                                                                 <div class="prod_publish">
-                                                                    <a href="/publisher_page" class="text">이타북스</a>
+                                                                    <a href="/publisher_page" class="text">아작</a>
                                                                     <span class="gap">·</span>
-                                                                    <span class="date">2023년 09월 20일</span>
+                                                                    <span class="date">2023년 10월 10일</span>
                                                                 </div>
 
                                                                 <!-- 상품의 가격 및 적립 정보 -->
                                                                 <div class="prod_price">
                                                                     <span class="price_normal">
                                                                         <span class="text">정가</span>
-                                                                        <span class="val">18,000원</span>
+                                                                        <span class="val">16,800원</span>
                                                                     </span>
                                                                     <span class="gap">|</span>
                                                                     <span class="point">
-                                                                        900p
+                                                                        840p
                                                                         <span class="rate">(5%)</span>
                                                                     </span>
 
@@ -124,7 +124,7 @@
                                                                 <div class="prod_bottom">
                                                                     <span class="review_klover_box">
                                                                         <span class="review_klover_text font_size_xxs">9.68</span>
-                                                                        <span class="review_desc">(55개의 리뷰)</span>
+                                                                        <span class="review_desc">(60개의 리뷰)</span>
                                                                     </span>
                                                                 </div>
                                                             </div>
@@ -151,8 +151,8 @@
                                                     <!-- 상품 2 영역 -->
                                                     <li class="prod_item">
                                                         <span class="form_chk no_label">
-                                                            <input class="result_checkbox spec_checkbox" id="chkBest115" type="checkbox">
-                                                            <label for="chkBest115"><span class="hidden">상품선택</span></label>
+                                                            <input class="result_checkbox spec_checkbox" id="chkAll15" type="checkbox">
+                                                            <label for="chkAll15"><span class="hidden">상품선택</span></label>
                                                         </span>
 
                                                         <!-- 상품 이미지 & 정보 영역 -->
@@ -161,7 +161,7 @@
                                                             <div class="prod_thumb_box size_lg">
                                                                 <a href="/product_read_page" class="prod_link">
                                                                     <span class="img_box">
-                                                                        <img data-kbbfn="s3-image" loading="lazy" alt="달의 아이" src="https://contents.kyobobook.co.kr/sih/fit-in/300x0/pdt/9791192625652.jpg">
+                                                                        <img data-kbbfn="s3-image" loading="lazy" alt="위그드라실의 여신들" src="https://contents.kyobobook.co.kr/sih/fit-in/300x0/pdt/9791193024287.jpg">
                                                                     </span>
                                                                 </a>
                                                             </div>
@@ -174,7 +174,7 @@
                                                                         <div class="auto_overflow_inner">
                                                                             <a href="/product_read_page" class="prod_info">
                                                                                 <span class="prod_category">[국내도서]</span>
-                                                                                <span>달의 아이</span>
+                                                                                <span>위그드라실의 여신들</span>
                                                                             </a>
                                                                         </div>
                                                                     </div>
@@ -183,7 +183,7 @@
                                                                 <!-- 상품 설명 -->
                                                                 <div class="prod_desc_info">
                                                                     <span class="prod_desc">
-                                                                        우리는 내일도 오늘과 같은 일들이 펼쳐지고, 소중한 존재는 언제나 그 자리에 있을 것으로 생각한다. 《달의 아이》는 평범한 일상에 갑자기 불어닥친 재난으로 한순간에 자신들의 가장 소중한 ‘무언가’를 잃고 만 사람들의 이야기를 다룬 감동 판타지 소설이다.
+                                                                        SF 독자는 과학에 대한 갈증을 품고 있다. 과학 이론과 기술 관련 정보를 심도 깊게 다루면서 이를 흥미진진한 이야기 속에 녹인 작품은 아무래도 소수인 까닭이다.
                                                                     </span>
                                                                 </div>
 
@@ -192,7 +192,7 @@
                                                                     <div class="auto_overflow_wrap prod_author_group">
                                                                         <div class="auto_overflow_contents">
                                                                             <div class="auto_overflow_inner">
-                                                                                <a href="/author_book_page" class="author rep">최윤석</a>
+                                                                                <a href="/author_book_page" class="author rep">해도연</a>
                                                                                 <span class="type">저자(글)</span>
                                                                             </div>
                                                                         </div>
@@ -201,20 +201,20 @@
 
                                                                 <!-- 상품의 출판사 소개 -->
                                                                 <div class="prod_publish">
-                                                                    <a href="/publisher_page" class="text">포레스트북스</a>
+                                                                    <a href="/publisher_page" class="text">안전가옥</a>
                                                                     <span class="gap">·</span>
-                                                                    <span class="date">2023년 09월 15일</span>
+                                                                    <span class="date">2023년 09월 13일</span>
                                                                 </div>
 
                                                                 <!-- 상품의 가격 및 적립 정보 -->
                                                                 <div class="prod_price">
                                                                     <span class="price_normal">
                                                                         <span class="text">정가</span>
-                                                                        <span class="val">17,000원</span>
+                                                                        <span class="val">12,000원</span>
                                                                     </span>
                                                                     <span class="gap">|</span>
                                                                     <span class="point">
-                                                                        850p
+                                                                        600p
                                                                         <span class="rate">(5%)</span>
                                                                     </span>
 
@@ -224,7 +224,7 @@
                                                                 <div class="prod_bottom">
                                                                     <span class="review_klover_box">
                                                                         <span class="review_klover_text font_size_xxs">9.5</span>
-                                                                        <span class="review_desc">(47개의 리뷰)</span>
+                                                                        <span class="review_desc">(407개의 리뷰)</span>
                                                                     </span>
                                                                 </div>
                                                             </div>
@@ -251,8 +251,8 @@
                                                     <!-- 상품 3 영역 -->
                                                     <li class="prod_item">
                                                         <span class="form_chk no_label">
-                                                            <input class="result_checkbox spec_checkbox" id="chkBest19" type="checkbox">
-                                                            <label for="chkBest19"><span class="hidden">상품선택</span></label>
+                                                            <input class="result_checkbox spec_checkbox" id="chkAll18" type="checkbox">
+                                                            <label for="chkAll18"><span class="hidden">상품선택</span></label>
                                                         </span>
 
                                                         <!-- 상품 이미지 & 정보 영역 -->
@@ -261,7 +261,7 @@
                                                             <div class="prod_thumb_box size_lg">
                                                                 <a href="/product_read_page" class="prod_link">
                                                                     <span class="img_box">
-                                                                        <img data-kbbfn="s3-image" loading="lazy" alt="테디베어는 죽지 않아" src="https://contents.kyobobook.co.kr/sih/fit-in/300x0/pdt/9791193024225.jpg">
+                                                                        <img data-kbbfn="s3-image" loading="lazy" alt="네가 있는 요일" src="https://contents.kyobobook.co.kr/sih/fit-in/300x0/pdt/9788936439293.jpg">
                                                                     </span>
                                                                 </a>
                                                             </div>
@@ -274,7 +274,7 @@
                                                                         <div class="auto_overflow_inner">
                                                                             <a href="/product_read_page" class="prod_info">
                                                                                 <span class="prod_category">[국내도서]</span>
-                                                                                <span>테디베어는 죽지 않아</span>
+                                                                                <span>네가 있는 요일</span>
                                                                             </a>
                                                                         </div>
                                                                     </div>
@@ -282,7 +282,9 @@
 
                                                                 <!-- 상품 설명 -->
                                                                 <div class="prod_desc_info">
-                                                                    <span class="prod_desc">그 구원, 제가 살게요. 얼마예요?”《테디베어는 죽지 않아》는 《칵테일, 러브, 좀비》, 《뉴서울파크 젤리장수 대학살》 등 섬뜩하고도 경쾌한 호러 스릴러의 세계 ‘조예은 월드’를 구축해 온 조예은 작가의 세 번째 장편소설이다.</span>
+                                                                    <span class="prod_desc">
+                                                                        첫 작품 『스노볼』이 미국·프랑스·이탈리아 등 6개국에 번역 수출되고 영상화가 결정되며 새로운 문학의 얼굴로 주목받고 있는 박소영의 두 번째 장편소설 『네가 있는 요일』(소설Y)이 출간되었다.
+                                                                    </span>
                                                                 </div>
 
                                                                 <!-- 상품의 작가 소개 -->
@@ -290,7 +292,7 @@
                                                                     <div class="auto_overflow_wrap prod_author_group">
                                                                         <div class="auto_overflow_contents">
                                                                             <div class="auto_overflow_inner">
-                                                                                <a href="/author_book_page" class="author rep">조예은</a>
+                                                                                <a href="/author_book_page" class="author rep">박소영</a>
                                                                                 <span class="type">저자(글)</span>
                                                                             </div>
                                                                         </div>
@@ -299,20 +301,20 @@
 
                                                                 <!-- 상품의 출판사 소개 -->
                                                                 <div class="prod_publish">
-                                                                    <a href="/publisher_page" class="text">안전가옥</a>
+                                                                    <a href="/publisher_page" class="text">창비</a>
                                                                     <span class="gap">·</span>
-                                                                    <span class="date">2023년 06월 09일</span>
+                                                                    <span class="date">2023년 09월 08일</span>
                                                                 </div>
 
                                                                 <!-- 상품의 가격 및 적립 정보 -->
                                                                 <div class="prod_price">
                                                                     <span class="price_normal">
                                                                         <span class="text">정가</span>
-                                                                        <span class="val">16,700원</span>
+                                                                        <span class="val">16,000원</span>
                                                                     </span>
                                                                     <span class="gap">|</span>
                                                                     <span class="point">
-                                                                        835p
+                                                                        800p
                                                                         <span class="rate">(5%)</span>
                                                                     </span>
 
@@ -321,7 +323,7 @@
                                                                 <!-- 리뷰 영역 -->
                                                                 <div class="prod_bottom">
                                                                     <span class="review_klover_box">
-                                                                        <span class="review_klover_text font_size_xxs">9.86</span>
+                                                                        <span class="review_klover_text font_size_xxs">9.76</span>
                                                                         <span class="review_desc">(29개의 리뷰)</span>
                                                                     </span>
                                                                 </div>
@@ -349,8 +351,8 @@
                                                     <!-- 상품 4 영역 -->
                                                     <li class="prod_item">
                                                         <span class="form_chk no_label">
-                                                            <input class="result_checkbox spec_checkbox" id="chkAll120" type="checkbox">
-                                                            <label for="chkAll120"><span class="hidden">상품선택</span></label>
+                                                            <input class="result_checkbox spec_checkbox" id="chkAll111" type="checkbox">
+                                                            <label for="chkAll111"><span class="hidden">상품선택</span></label>
                                                         </span>
 
                                                         <!-- 상품 이미지 & 정보 영역 -->
@@ -359,7 +361,7 @@
                                                             <div class="prod_thumb_box size_lg">
                                                                 <a href="/product_read_page" class="prod_link">
                                                                     <span class="img_box">
-                                                                        <img data-kbbfn="s3-image" loading="lazy" alt="2레벨로 회귀한 무신 27" src="https://contents.kyobobook.co.kr/sih/fit-in/300x0/pdt/9791136447364.jpg">
+                                                                        <img data-kbbfn="s3-image" loading="lazy" alt="잼 한 병을 받았습니다" src="https://contents.kyobobook.co.kr/sih/fit-in/300x0/pdt/9791189836504.jpg">
                                                                     </span>
                                                                 </a>
                                                             </div>
@@ -372,7 +374,7 @@
                                                                         <div class="auto_overflow_inner">
                                                                             <a href="/product_read_page" class="prod_info">
                                                                                 <span class="prod_category">[국내도서]</span>
-                                                                                <span>2레벨로 회귀한 무신 27</span>
+                                                                                <span>잼 한 병을 받았습니다</span>
                                                                             </a>
                                                                         </div>
                                                                     </div>
@@ -380,8 +382,9 @@
 
                                                                 <!-- 상품 설명 -->
                                                                 <div class="prod_desc_info">
-                                                                    <span class="prod_desc">『내 상태창 2개』, 『1000년 만에 귀환한 검신』 염비의 야심작!『2레벨로 회귀한 무신』[NO. 4212.’인류’, 강등전 패배.]
-                                                                        [인류의 삭제를 시작합니다.]
+                                                                    <span class="prod_desc">
+                                                                        텀블벅 펀딩으로 '인기 프로젝트' 1위, 목표액 2535% 달성!
+                                                                        드래곤이 쌓아놓은 산더미 같은 금에 세금을 매겨야 한다면?
                                                                     </span>
                                                                 </div>
 
@@ -390,7 +393,7 @@
                                                                     <div class="auto_overflow_wrap prod_author_group">
                                                                         <div class="auto_overflow_contents">
                                                                             <div class="auto_overflow_inner">
-                                                                                <a href="/author_book_page" class="author rep">염비</a>
+                                                                                <a href="/author_book_page" class="author rep">홍락훈</a>
                                                                                 <span class="type">저자(글)</span>
                                                                             </div>
                                                                         </div>
@@ -399,20 +402,20 @@
 
                                                                 <!-- 상품의 출판사 소개 -->
                                                                 <div class="prod_publish">
-                                                                    <a href="/publisher_page" class="text">파피루스</a>
+                                                                    <a href="/publisher_page" class="text">에이플랫</a>
                                                                     <span class="gap">·</span>
-                                                                    <span class="date">2023년 09월 27일</span>
+                                                                    <span class="date">2023년 09월 13일</span>
                                                                 </div>
 
                                                                 <!-- 상품의 가격 및 적립 정보 -->
                                                                 <div class="prod_price">
                                                                     <span class="price_normal">
                                                                         <span class="text">정가</span>
-                                                                        <span class="val">9,000원</span>
+                                                                        <span class="val">17,500원</span>
                                                                     </span>
                                                                     <span class="gap">|</span>
                                                                     <span class="point">
-                                                                        450p
+                                                                        870p
                                                                         <span class="rate">(5%)</span>
                                                                     </span>
 
@@ -449,8 +452,8 @@
                                                     <!-- 상품 5 영역 -->
                                                     <li class="prod_item">
                                                         <span class="form_chk no_label">
-                                                            <input class="result_checkbox spec_checkbox" id="chkAll12" type="checkbox">
-                                                            <label for="chkAll12"><span class="hidden">상품선택</span></label>
+                                                            <input class="result_checkbox spec_checkbox" id="chkAll117" type="checkbox">
+                                                            <label for="chkAll117"><span class="hidden">상품선택</span></label>
                                                         </span>
 
                                                         <!-- 상품 이미지 & 정보 영역 -->
@@ -459,7 +462,7 @@
                                                             <div class="prod_thumb_box size_lg">
                                                                 <a href="/product_read_page" class="prod_link">
                                                                     <span class="img_box">
-                                                                        <img data-kbbfn="s3-image" loading="lazy" alt="열일곱, 오늘도 괜찮기로 마음먹다" src="https://contents.kyobobook.co.kr/sih/fit-in/300x0/pdt/9791193162026.jpg">
+                                                                        <img data-kbbfn="s3-image" loading="lazy" alt="100년 후 학교" src="https://contents.kyobobook.co.kr/sih/fit-in/300x0/pdt/9791191360868.jpg">
                                                                     </span>
                                                                 </a>
                                                             </div>
@@ -472,7 +475,7 @@
                                                                         <div class="auto_overflow_inner">
                                                                             <a href="/product_read_page" class="prod_info">
                                                                                 <span class="prod_category">[국내도서]</span>
-                                                                                <span>열일곱, 오늘도 괜찮기로 마음먹다</span>
+                                                                                <span>100년 후 학교</span>
                                                                             </a>
                                                                         </div>
                                                                     </div>
@@ -480,7 +483,9 @@
 
                                                                 <!-- 상품 설명 -->
                                                                 <div class="prod_desc_info">
-                                                                    <span class="prod_desc">10대의 현실을 예리하게 파고들어 온 박하령 작가가 이번에는 밝은 마음의 방향을 바라본다. 무미건조한 일상이 뒤흔들리는 변화, 바로 ‘짝사랑’과 ‘썸’이다.</span>
+                                                                    <span class="prod_desc">
+                                                                        참신한 주제와 풍부한 내용으로 1318들이 자신을 이해하고 더 넓은 세상을 바라볼 수 있도록 돕는 생각학교의 문학 시리즈, 클클문고의 아홉 번째 작품.
+                                                                    </span>
                                                                 </div>
 
                                                                 <!-- 상품의 작가 소개 -->
@@ -488,7 +493,7 @@
                                                                     <div class="auto_overflow_wrap prod_author_group">
                                                                         <div class="auto_overflow_contents">
                                                                             <div class="auto_overflow_inner">
-                                                                                <a href="/author_book_page" class="author rep">박하령</a>
+                                                                                <a href="/author_book_page" class="author rep">소향 외</a>
                                                                                 <span class="type">저자(글)</span>
                                                                             </div>
                                                                         </div>
@@ -497,20 +502,20 @@
 
                                                                 <!-- 상품의 출판사 소개 -->
                                                                 <div class="prod_publish">
-                                                                    <a href="/publisher_page" class="text">책폴</a>
+                                                                    <a href="/publisher_page" class="text">생각학교</a>
                                                                     <span class="gap">·</span>
-                                                                    <span class="date">2023년 08월 10일</span>
+                                                                    <span class="date">2023년 08월 23일</span>
                                                                 </div>
 
                                                                 <!-- 상품의 가격 및 적립 정보 -->
                                                                 <div class="prod_price">
                                                                     <span class="price_normal">
                                                                         <span class="text">정가</span>
-                                                                        <span class="val">12,000원</span>
+                                                                        <span class="val">13,500원</span>
                                                                     </span>
                                                                     <span class="gap">|</span>
                                                                     <span class="point">
-                                                                        600p
+                                                                        675p
                                                                         <span class="rate">(5%)</span>
                                                                     </span>
 
@@ -543,7 +548,7 @@
                                                         </div>
 
                                                     </li>
-                                                    
+
                                                 </ul>
                                             </div>
 

@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/css/book/book.css">
+<link rel="stylesheet" href="/css/admin_product_list.css">
 <title>Insert title here</title>
+
 </head>
 <body>
 	<div id="page">
@@ -15,14 +16,41 @@
 		<nav class="nav_wrapper">
 			<jsp:include page="/WEB-INF/views/include/nav.jsp" />
 		</nav>
-		<main class="container_wrapper">
+		<main class="main_wrapper">
             <div class="main_inner">
-                <aside class="aside_wrap sub_category">
-                   <jsp:include page="/WEB-INF/views/include/book/novel_left_aside.jsp" />
+
+                <aside class="aside_wrapper">
+                    <jsp:include page="/WEB-INF/views/include/admin_left_aside.jsp" />
                 </aside>
 
-                <section class="contents_wrap">
-                    <div class="contents_inner">
+                <section class="section_wrapper">
+                    <div class="admin_wrap">
+
+                        <div class="title_wrap title_size_lg">
+                            <p class="title_heading">관리자님 환영합니다.</p>
+                        </div>
+
+                        <div class="title_wrap title_size_md first">
+                            <p class="title_heading">상품 검색 및 등록</p>
+                        </div>
+
+                        <div class="list_sort_wrap type_purple">
+                            <div class="admin_search_wrap">
+                                <div class="admin_search_box">
+                                    <input id="searchKeyword" type="search" class="ip_gnb_search" title="통합검색어 입력" autocomplete="off" value="" placeholder="검색어를 입력해주세요">
+                                </div>
+                                <a href="#" class="btn_pnf_search"></a>
+                            </div>
+
+                            <div class="right_area">
+                                <a href="/admin_product_add_page" class="btn_ip btn_primary"><span class="ico_comment_white"></span><span class="text">상품 등록하기</span></a>
+                            </div>
+                        </div>
+                        
+                        <div class="title_wrap title_size_md second">
+                            <p class="title_heading">상품 리스트</p>
+                        </div>
+                        
                         <div class="search_result_top">
 
                             <div class="tab_wrap type_line justify ui-tabs ui-corner-all ui-widget ui-widget-content">
@@ -30,17 +58,11 @@
                                 <div id="tabSearch" class="tab_content ui-tabs-panel ui-corner-bottom ui-widget-content">
                                     <div class="search_result_wrap">
 
+
                                         <!-- 상품 결과 영역 -->
                                         <div class="result_area">
                                             <div class="list_result_wrap">
                                                 <p class="result_count">전체 <b class="fc_green">xx</b>건</p>
-                                                <div class="right_area">
-                                                    <div class="item_group">
-                                                        <button type="button" class="btn_sm btn_line_gray">
-                                                            <span class="ico_cart"></span><span class="text">장바구니 담기</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
                                             </div>
 
 
@@ -112,37 +134,16 @@
                                                                         <span class="text">정가</span>
                                                                         <span class="val">18,000원</span>
                                                                     </span>
-                                                                    <span class="gap">|</span>
-                                                                    <span class="point">
-                                                                        900p
-                                                                        <span class="rate">(5%)</span>
-                                                                    </span>
 
-                                                                </div>
-
-                                                                <!-- 리뷰 영역 -->
-                                                                <div class="prod_bottom">
-                                                                    <span class="review_klover_box">
-                                                                        <span class="review_klover_text font_size_xxs">9.68</span>
-                                                                        <span class="review_desc">(55개의 리뷰)</span>
-                                                                    </span>
                                                                 </div>
                                                             </div>
                                                         </div>
 
-                                                        <!-- 예상 배송 날짜 입력란 -->
-                                                        <div class="prod_order_state">
-                                                            <span class="badge_sm badge_pill badge_primary">
-                                                                <span class="text">배송</span>
-                                                            </span>
-                                                            <p class="order_state_desc">주문 시<br> <span class="fw_bold">3일 후 </span><br>도착예정</p>
-                                                        </div>
-
-                                                        <!-- 장바구니 or 바로구매 버튼 영역 -->
+                                                        <!-- 수정하기 or 삭제 버튼 영역 -->
                                                         <div class="prod_btn_wrap">
                                                             <div class="btn_wrap full">
-                                                                <a href="/cart_page" class="btn_sm btn_light_gray"><span class="text">장바구니</span></a>
-                                                                <a href="/order_page" class="btn_sm btn_primary"><span class="text">바로구매</span></a>
+                                                                <a href="/product/update" class="btn_sm btn_light_gray"><span class="text">수정하기</span></a>
+                                                                <a href="#" class="btn_sm btn_primary"><span class="text">삭제</span></a>
                                                             </div>
                                                         </div>
 
@@ -212,37 +213,18 @@
                                                                         <span class="text">정가</span>
                                                                         <span class="val">17,000원</span>
                                                                     </span>
-                                                                    <span class="gap">|</span>
-                                                                    <span class="point">
-                                                                        850p
-                                                                        <span class="rate">(5%)</span>
-                                                                    </span>
-
+                                                                    
                                                                 </div>
 
-                                                                <!-- 리뷰 영역 -->
-                                                                <div class="prod_bottom">
-                                                                    <span class="review_klover_box">
-                                                                        <span class="review_klover_text font_size_xxs">9.5</span>
-                                                                        <span class="review_desc">(47개의 리뷰)</span>
-                                                                    </span>
-                                                                </div>
+                                                                
                                                             </div>
                                                         </div>
 
-                                                        <!-- 예상 배송 날짜 입력란 -->
-                                                        <div class="prod_order_state">
-                                                            <span class="badge_sm badge_pill badge_primary">
-                                                                <span class="text">배송</span>
-                                                            </span>
-                                                            <p class="order_state_desc">주문 시<br> <span class="fw_bold">3일 후 </span><br>도착예정</p>
-                                                        </div>
-
-                                                        <!-- 장바구니 or 바로구매 버튼 영역 -->
+                                                        <!-- 수정하기 or 삭제 버튼 영역 -->
                                                         <div class="prod_btn_wrap">
                                                             <div class="btn_wrap full">
-                                                                <a href="/cart_page" class="btn_sm btn_light_gray"><span class="text">장바구니</span></a>
-                                                                <a href="/order_page" class="btn_sm btn_primary"><span class="text">바로구매</span></a>
+                                                                <a href="/product/update" class="btn_sm btn_light_gray"><span class="text">수정하기</span></a>
+                                                                <a href="#" class="btn_sm btn_primary"><span class="text">삭제</span></a>
                                                             </div>
                                                         </div>
 
@@ -310,37 +292,16 @@
                                                                         <span class="text">정가</span>
                                                                         <span class="val">16,700원</span>
                                                                     </span>
-                                                                    <span class="gap">|</span>
-                                                                    <span class="point">
-                                                                        835p
-                                                                        <span class="rate">(5%)</span>
-                                                                    </span>
 
-                                                                </div>
-
-                                                                <!-- 리뷰 영역 -->
-                                                                <div class="prod_bottom">
-                                                                    <span class="review_klover_box">
-                                                                        <span class="review_klover_text font_size_xxs">9.86</span>
-                                                                        <span class="review_desc">(29개의 리뷰)</span>
-                                                                    </span>
                                                                 </div>
                                                             </div>
                                                         </div>
 
-                                                        <!-- 예상 배송 날짜 입력란 -->
-                                                        <div class="prod_order_state">
-                                                            <span class="badge_sm badge_pill badge_primary">
-                                                                <span class="text">배송</span>
-                                                            </span>
-                                                            <p class="order_state_desc">주문 시<br> <span class="fw_bold">3일 후 </span><br>도착예정</p>
-                                                        </div>
-
-                                                        <!-- 장바구니 or 바로구매 버튼 영역 -->
+                                                        <!-- 수정하기 or 삭제 버튼 영역 -->
                                                         <div class="prod_btn_wrap">
                                                             <div class="btn_wrap full">
-                                                                <a href="/cart_page" class="btn_sm btn_light_gray"><span class="text">장바구니</span></a>
-                                                                <a href="/order_page" class="btn_sm btn_primary"><span class="text">바로구매</span></a>
+                                                                <a href="/product/update" class="btn_sm btn_light_gray"><span class="text">수정하기</span></a>
+                                                                <a href="#" class="btn_sm btn_primary"><span class="text">삭제</span></a>
                                                             </div>
                                                         </div>
 
@@ -349,7 +310,7 @@
                                                     <!-- 상품 4 영역 -->
                                                     <li class="prod_item">
                                                         <span class="form_chk no_label">
-                                                            <input class="result_checkbox spec_checkbox" id="chkAll120" type="checkbox">
+                                                            <input class="result_checkbox spec_checkbox" id="chkAll120" type="checkbox" data-name="2023 해커스 토익 LC 리스닝(Listening) 토익 기본서">
                                                             <label for="chkAll120"><span class="hidden">상품선택</span></label>
                                                         </span>
 
@@ -410,37 +371,16 @@
                                                                         <span class="text">정가</span>
                                                                         <span class="val">9,000원</span>
                                                                     </span>
-                                                                    <span class="gap">|</span>
-                                                                    <span class="point">
-                                                                        450p
-                                                                        <span class="rate">(5%)</span>
-                                                                    </span>
 
-                                                                </div>
-
-                                                                <!-- 리뷰 영역 -->
-                                                                <div class="prod_bottom">
-                                                                    <span class="review_klover_box">
-                                                                        <span class="review_klover_text font_size_xxs">0.0</span>
-                                                                        <span class="review_desc"></span>
-                                                                    </span>
                                                                 </div>
                                                             </div>
                                                         </div>
 
-                                                        <!-- 예상 배송 날짜 입력란 -->
-                                                        <div class="prod_order_state">
-                                                            <span class="badge_sm badge_pill badge_primary">
-                                                                <span class="text">배송</span>
-                                                            </span>
-                                                            <p class="order_state_desc">주문 시<br> <span class="fw_bold">3일 후 </span><br>도착예정</p>
-                                                        </div>
-
-                                                        <!-- 장바구니 or 바로구매 버튼 영역 -->
+                                                        <!-- 수정하기 or 삭제 버튼 영역 -->
                                                         <div class="prod_btn_wrap">
                                                             <div class="btn_wrap full">
-                                                                <a href="/cart_page" class="btn_sm btn_light_gray"><span class="text">장바구니</span></a>
-                                                                <a href="/order_page" class="btn_sm btn_primary"><span class="text">바로구매</span></a>
+                                                                <a href="/product/update" class="btn_sm btn_light_gray"><span class="text">수정하기</span></a>
+                                                                <a href="#" class="btn_sm btn_primary"><span class="text">삭제</span></a>
                                                             </div>
                                                         </div>
 
@@ -449,7 +389,7 @@
                                                     <!-- 상품 5 영역 -->
                                                     <li class="prod_item">
                                                         <span class="form_chk no_label">
-                                                            <input class="result_checkbox spec_checkbox" id="chkAll12" type="checkbox">
+                                                            <input class="result_checkbox spec_checkbox" id="chkAll12" type="checkbox" data-name="YBM 실전토익 RC 1000 1">
                                                             <label for="chkAll12"><span class="hidden">상품선택</span></label>
                                                         </span>
 
@@ -508,37 +448,17 @@
                                                                         <span class="text">정가</span>
                                                                         <span class="val">12,000원</span>
                                                                     </span>
-                                                                    <span class="gap">|</span>
-                                                                    <span class="point">
-                                                                        600p
-                                                                        <span class="rate">(5%)</span>
-                                                                    </span>
 
                                                                 </div>
 
-                                                                <!-- 리뷰 영역 -->
-                                                                <div class="prod_bottom">
-                                                                    <span class="review_klover_box">
-                                                                        <span class="review_klover_text font_size_xxs">10</span>
-                                                                        <span class="review_desc">(10개의 리뷰)</span>
-                                                                    </span>
-                                                                </div>
                                                             </div>
                                                         </div>
 
-                                                        <!-- 예상 배송 날짜 입력란 -->
-                                                        <div class="prod_order_state">
-                                                            <span class="badge_sm badge_pill badge_primary">
-                                                                <span class="text">배송</span>
-                                                            </span>
-                                                            <p class="order_state_desc">주문 시<br> <span class="fw_bold">3일 후 </span><br>도착예정</p>
-                                                        </div>
-
-                                                        <!-- 장바구니 or 바로구매 버튼 영역 -->
+                                                        <!-- 수정하기 or 삭제 버튼 영역 -->
                                                         <div class="prod_btn_wrap">
                                                             <div class="btn_wrap full">
-                                                                <a href="/cart_page" class="btn_sm btn_light_gray"><span class="text">장바구니</span></a>
-                                                                <a href="/order_page" class="btn_sm btn_primary"><span class="text">바로구매</span></a>
+                                                                <a href="/product/update" class="btn_sm btn_light_gray"><span class="text">수정하기</span></a>
+                                                                <a href="#" class="btn_sm btn_primary"><span class="text">삭제</span></a>
                                                             </div>
                                                         </div>
 
@@ -569,8 +489,10 @@
                             </div>
 
                         </div>
+
                     </div>
                 </section>
+
             </div>
         </main>
 		<footer class="footer_wrapper">
