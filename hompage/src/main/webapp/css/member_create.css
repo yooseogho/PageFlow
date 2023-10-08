@@ -349,64 +349,6 @@ ol, ul {
     flex: 1;
 }
 
-.form_filter_box {
-    margin-left: 6px;
-    display: -webkit-inline-flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.form_filter_box .form_filter {
-    flex: 1 1 auto;
-}
-
-.form_filter_box .form_filter input {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-}
-
-.form_filter_box .form_filter:first-child input + label {
-    border-radius: 6px 0 0 6px;
-}
-
-.form_filter_box .form_filter:last-child input + label {
-    border-radius: 0 6px 6px 0;
-}
-
-.form_filter_box .form_filter input:checked + label {
-    z-index: 2;
-    border-color: #5055b1;
-    color: #474c98;
-}
-
-.form_filter_box .form_filter input + label {
-    display: -webkit-inline-flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    min-width: 60px;
-    height: 44px;
-    padding: 0 16px;
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: -0.01em;
-    font-family: "Noto Sans KR", sans-serif;
-    background-color: #fff;
-    border: 1px solid #d5d5d5;
-    box-sizing: border-box;
-    vertical-align: top;
-    transition: border-color 0.2s ease-out;
-    cursor: pointer
-}
-
-
-
 .valid_check .valid_desc {
     display: block;
     position: relative;

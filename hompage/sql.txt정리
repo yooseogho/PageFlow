@@ -3,7 +3,7 @@
 create table member_grade (
 	grade_code	number(7)		not null,
 	grade_name	varchar2 (20 char)	default 'friends'	not null,
-	point_rate	number(1)		not null,
+	point_rate	number(5,2)		not null,
     constraint member_grade_pk_grade_code primary key(grade_code)
 );
 
@@ -13,19 +13,19 @@ create table member (
 	member_name	varchar2 (20 char)		not null,
 	member_email	varchar2 (50 char)		not null,
 	password	varchar2(60 char)		not null,
-	member_address	varchar2(100 char)		null,
-	member_tel	varchar2 (20 char)		null,
+	member_tel	varchar2 (20 char)	 not null,
 	member_profile	varchar2 (300 char)	default 'defaultprofile.png'	not null,
 	member_point	number(7)		not null,
 	joinday	date	default sysdate	not null,
 	birthday	date		not null,
-    constraint member_pk_member_id primary key(member_id),
+    constraint member_pk_member_id primary key(member_id),	
     constraint member_fk_grade_code foreign key(grade_code) references member_grade(grade_code)
 );
 
 create table delivery (
 	dno	number(7)		not null,
 	member_id	varchar2(20 char)		not null,
+	zip_code number(6)	null,
 	receiver_name	varchar2 (20 char)		not null,
 	delivery_address	varchar2 (100 char)		not null,
 	second_address	varchar2 (100 char)		null,
@@ -102,18 +102,25 @@ create table cart (
 	member_id	varchar2 (20 char)		not null,
 	cart_count	number(3)	default 1	not null,
     constraint cart_pk_cno primary key(cno),
-    constraint cart_ck unique(bno, member_id)
+    constraint cart_fk_bno foreign key(bno) references book(bno),
+    constraint cart_fk_member_id foreign key(member_id) references member(member_id)
 );
 
-	create table order_details (
-		bno	number(7)		not null,
-		ono	number(7)		not null,
-		order_count	number(3)		not null,
-		order_total	number(7)		not null,
-		book_title	varchar2 (50 char)		not null,
-	    constraint order_details_pk primary key(bno, ono)
-	    order_status	varchar2 (100 char)	default '주문이 완료되었습니다.'	not null,
-	);
+CREATE TABLE order_details (
+    odno NUMBER(7) NOT NULL,
+    bno NUMBER(7) NOT NULL,
+    ono NUMBER(7) NOT NULL,
+    order_count NUMBER(3) NOT NULL,
+    order_total NUMBER(7) NOT NULL,
+    book_title VARCHAR2 (50 CHAR) NOT NULL,
+    order_status VARCHAR2 (100 CHAR) DEFAULT '주문이 완료되었습니다.' NOT NULL,
+    CONSTRAINT order_details_pk_odno PRIMARY KEY(odno),
+    CONSTRAINT order_details_fk_bno FOREIGN KEY(bno) REFERENCES book(bno),
+    CONSTRAINT order_details_fk_ono FOREIGN KEY(ono) REFERENCES orders(ono)
+);
+
+
+	
 
 create table inquiry (
 	inno	number(7)		not null,
@@ -133,21 +140,15 @@ create table notice (
     constraint notice_pk_nno primary key(nno)
 );
 
-create table inquiry_image (
-	iino	number(7)		not null,
-	ii_name	varchar2 (300 char)		null,
-	inno	number(7)		not null,
-    constraint inquiry_image_pk primary key(iino, ii_name)
-);		
+
 CREATE SEQUENCE notice_seq; 
 CREATE SEQUENCE book_seq;
 CREATE SEQUENCE bookImage_seq;
 CREATE SEQUENCE book_review_seq ;
-CREATE SEQUENCE orders_ono_seq;
-CREATE SEQUENCE inquiry_image_seq;
+CREATE SEQUENCE orders_seq;
+CREATE SEQUENCE inquiry_seq;
 CREATE SEQUENCE member_grade_seq;
-CREATE SEQUENCE cart_cno_seq
-  START WITH 101
-  INCREMENT BY 1;
+CREATE SEQUENCE cart_seq;
+
   
 

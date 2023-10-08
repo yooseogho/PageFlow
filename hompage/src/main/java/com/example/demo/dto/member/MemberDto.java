@@ -1,13 +1,16 @@
 package com.example.demo.dto.member;
 
-import java.time.*;
+import java.time.LocalDate;
 
-import org.springframework.format.annotation.*;
-import org.springframework.web.multipart.*;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.entity.member.*;
+import com.example.demo.entity.member.Member;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access=AccessLevel.PRIVATE)
 public class MemberDto {
@@ -17,7 +20,6 @@ public class MemberDto {
 		private String password;
 		private String memberEmail;
 		private String memberName;
-		private String memberAddress;
 		private String memberTel;
 		private Long memberPoint;
 		

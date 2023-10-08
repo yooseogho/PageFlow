@@ -1,11 +1,12 @@
-package com.example.demo.dao.member;
+	package com.example.demo.dao.member;
+
+
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.entity.member.Member;
 
@@ -41,7 +42,7 @@ public interface MemberDao {
 	
 	// 프로필사진 변경
 	@Update("update member set member_profile=#{memberProfile} where member_id=#{memberId}")
-	public Integer changeProfile(MultipartFile memberProfile, String memberId);
+	public Integer changeProfile(String memberProfile, String memberId);
 	
 	// 회원 탈퇴
 	@Delete("delete from member where member_id=#{memberId}")
@@ -64,5 +65,3 @@ public interface MemberDao {
 	
 	
 }
-
-

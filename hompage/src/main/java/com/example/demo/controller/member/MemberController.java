@@ -1,28 +1,26 @@
-/*
- * 2023-09-27 pm|19:20
- * 최근 수정자: 갈현
- * 수정 내용:
- * memer_create => mem_cre
- * 전화번호 인증 코드 추가 구현 완료
- * 비밀번호 암복호화 코드 수정 확인 바람
- * */
-
 package com.example.demo.controller.member;
 
-import com.example.demo.dto.member.MemberDto;
-import com.example.demo.service.member.MemberService;
+import java.security.Principal;
+import java.util.Map;
 
-import java.security.*;
-
-import javax.servlet.http.*;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.*;
-import org.springframework.security.access.prepost.*;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.example.demo.dto.book.BookDto.Read;
+import com.example.demo.dto.member.MemberDto;
+import com.example.demo.service.member.MemberService;
 
 @Controller
 public class MemberController {
@@ -48,11 +46,17 @@ public class MemberController {
     }
   }
 
+  	
+  
 //  2. 아이디 중복 확인
   @PostMapping("/checkId")
-  public Boolean checkId(@RequestParam String memberId) {
-    return memberService.idAvailable(memberId);
+  @ResponseBody
+  public Boolean checkId(@RequestBody Map<String, String> params) {
+	  String memberId = params.get("memberId");
+      return memberService.idAvailable(memberId);
   }
+
+
 
 //  3. 전화번호 중복 확인
   @PostMapping("/checkTel")
@@ -105,16 +109,16 @@ public class MemberController {
   }
 
 //  8. 프로필 사진 변경
-  @Secured("ROLE_USER")
-  @PostMapping("/changeProfile")
-  public String changeProfile(@RequestParam MultipartFile newProfile, @RequestParam String memberId) {
-    Boolean result = memberService.changeProfile(newProfile, memberId);
-    if (result) {
-      return "redirect:/members/myInfo?memberId=" + memberId;
-    } else {
-      return "redirect:/members/myInfo?memberId=" + memberId + "&error";
-    }
-  }
+//  @Secured("ROLE_USER")
+//  @PostMapping("/changeProfile")
+//  public String changeProfile(@RequestParam MultipartFile newProfile, @RequestParam String memberId) {
+//    Boolean result = memberService.changeProfile(newProfile, memberId);
+//    if (result) {
+//      return "redirect:/members/myInfo?memberId=" + memberId;
+//    } else {
+//      return "redirect:/members/myInfo?memberId=" + memberId + "&error";
+//    }
+//  }
 
 //  9. 회원 탈퇴	
   @Secured("ROLE_USER")
@@ -150,29 +154,29 @@ public class MemberController {
     }
   }
 
-  // 11. 회원 정보 수정 페이지 보기
-  @Secured("ROLE_USER")
-  @GetMapping("/member_edit_page")
-  public ModelAndView editProfile(Principal principal, HttpSession session) {
-    if (session.getAttribute("checkPassword") == null) {
-      return new ModelAndView("redirect:/member_check_page");
-    } else {
-      MemberDto.Read dto = memberService.read(principal.getName());
-      return new ModelAndView("/member_edit_page").addObject("member", dto);
-    }
-  }
+//  // 11. 회원 정보 수정 페이지 보기
+//  @Secured("ROLE_USER")
+//  @GetMapping("/member_edit_page")
+//  public ModelAndView editProfile(Principal principal, HttpSession session) {
+//    if (session.getAttribute("checkPassword") == null) {
+//      return new ModelAndView("redirect:/member_check_page");
+//    } else {
+//      Read dto = memberService.read(principal.getName());
+//      return new ModelAndView("/member_edit_page").addObject("member", dto);
+//    }
+//  }
 
   // 12. 회원 정보 수정 처리
-  @Secured("ROLE_USER")
-  @PostMapping("/member_edit_page")
-  public String updateProfile(@ModelAttribute MultipartFile newProfile, Principal principal) {
-    Boolean result = memberService.changeProfile(newProfile, principal.getName());
-    if (result) {
-      return "redirect:/member_info_page";
-    } else {
-      return "redirect:/member_edit_page?error";
-    }
-  }
+//  @Secured("ROLE_USER")
+//  @PostMapping("/member_edit_page")
+//  public String updateProfile(@ModelAttribute MultipartFile newProfile, Principal principal) {
+//    Boolean result = memberService.changeProfile(newProfile, principal.getName());
+//    if (result) {
+//      return "redirect:/member_info_page";
+//    } else {
+//      return "redirect:/member_edit_page?error";
+//    }
+//  }
   /*
    * 추후 수정 및 추가할 부분임(updateProfile)
    * 건들지 않기
