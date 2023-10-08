@@ -80,7 +80,7 @@ img {
 
 /* main 안에 section css 영역 */
 .container_wrapper .contents_wrap .contents_inner {
-    width: 1030px;
+    width: 1000px;
     margin: 0 auto;
 }
 
@@ -258,6 +258,7 @@ a[class^=btn_] [class^=ico_] {
 .switch_prod_wrap .prod_list {
     padding-top: 30px;
     border-top: 1px solid #d5d5d5;
+    border-bottom: 1px solid #d5d5d5;
 }
 
 .prod_list {
@@ -280,9 +281,10 @@ a[class^=btn_] [class^=ico_] {
 }
 
 .switch_prod_wrap.view_type_list .prod_list .prod_item + .prod_item {
-    padding-top: 36px;
+    padding: 36px 0px;
     margin-top: 36px;
     border-top: 1px solid #eaeaea;
+    align-items: baseline;
 }
 
 .switch_prod_wrap.view_type_list .prod_list .prod_item .form_chk {

@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-
-
 .header_wrapper {
     position: relative;
     border-bottom: 1px solid #eaeaea;
@@ -77,6 +75,10 @@
 ul {
 	margin-bottom: 0px !important;
 	padding-left: 0px !important;
+}
+
+a {
+	text-decoration: none !important;
 }
 
 

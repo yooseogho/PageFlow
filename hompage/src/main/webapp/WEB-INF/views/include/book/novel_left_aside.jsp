@@ -13,7 +13,7 @@
 	</div>
 	<div class="aside_body">
 		<div class="snb_wrap">
-			<a href="/category/book" class="snb_title">소설</a>
+		
 			<ul class="snb_list">
 
 				<li class="snb_item"><a

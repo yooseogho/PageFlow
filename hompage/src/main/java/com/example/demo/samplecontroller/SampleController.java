@@ -6,15 +6,30 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class SampleController {
-
-	// SF/과학 소설 책 목록 페이지
+	
+	// 판타지 소설 책 목록 페이지
 	@GetMapping("/category/novel/fantasy_novel_book")
 	public void fantasy_novel_book() {
+	}
+	
+	// 공포/호러 소설 책 목록 페이지
+	@GetMapping("/category/novel/horror_novel_book")
+	public void horror_novel_book() {
 	}
 	
 	// 소설 책 목록 페이지
 	@GetMapping("/category/novel/novel_book")
 	public void novel_book() {
+	}
+	
+	// 드라마/영화 소설 책 목록 페이지
+	@GetMapping("/category/novel/original_novel_book")
+	public void original_novel_book() {
+	}
+	
+	// 로맨스 소설 책 목록 페이지
+	@GetMapping("/category/novel/romance_novel_book")
+	public void romance_novel_book() {
 	}
 	
 	// SF/과학 소설 책 목록 페이지
