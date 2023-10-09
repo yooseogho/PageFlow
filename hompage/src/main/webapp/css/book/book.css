@@ -278,13 +278,12 @@ a[class^=btn_] [class^=ico_] {
     display: -webkit-flex;
     justify-content: flex-start;
     align-items: stretch;
+    padding-bottom: 36px;
 }
 
 .switch_prod_wrap.view_type_list .prod_list .prod_item + .prod_item {
     padding: 36px 0px;
-    margin-top: 36px;
     border-top: 1px solid #eaeaea;
-    align-items: baseline;
 }
 
 .switch_prod_wrap.view_type_list .prod_list .prod_item .form_chk {

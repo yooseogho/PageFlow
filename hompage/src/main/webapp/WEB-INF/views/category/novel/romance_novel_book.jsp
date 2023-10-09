@@ -18,7 +18,7 @@
 		<main class="container_wrapper">
             <div class="main_inner">
                 <aside class="aside_wrap sub_category">
-                   <jsp:include page="/WEB-INF/views/include/book/romance_novel_left_aside.jsp" />
+                   <jsp:include page="/WEB-INF/views/include/book/novel/romance_novel_left_aside.jsp" />
                 </aside>
 
               <section class="contents_wrap">

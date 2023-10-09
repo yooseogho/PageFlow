@@ -1,0 +1,320 @@
+@charset "UTF-8";
+
+/* 공통 css 영역 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+body {
+    font-size: 14px;
+    line-height: 1.4;
+    font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
+    min-width: 1440px;
+    color: #000;
+}
+
+#page {
+    margin: 0 auto;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+input,
+button,
+select,
+textarea {
+    vertical-align: middle;
+}
+
+input,
+button {
+    border: 0;
+    border-radius: 0;
+    background: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+.hidden {
+    position: absolute;
+    visibility: hidden;
+    overflow: hidden;
+    height: 0;
+    line-height: 0;
+    width: 0;
+    margin: 0;
+    padding: 0;
+    font: 0/0 Arial;
+}
+
+
+/* main css 영역 */
+.container_wrapper {
+    padding-top: 80px;
+    min-height: calc(100vh - 80px);
+}
+
+.container_wrapper .main_inner {
+    display: -webkit-flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/* main 안에 section css 영역 */
+.container_wrapper .contents_wrap .contents_inner {
+    width: 1030px;
+    margin: 0 auto;
+}
+
+.contents_inner .template_row ~ .template_row {
+    margin-top: 70px;
+}
+
+.contents_inner .template_row {
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+
+.contents_inner .template_row .template_col {
+    flex: 1;
+    max-width: 984px;
+}
+
+.contents_inner .title_wrap {
+    height: 44px;
+    padding-bottom: 13px;
+}
+
+.title_wrap {
+    position: relative;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.title_wrap.title_size_md .title_heading {
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -0.01em;
+}
+
+.title_wrap .title_heading {
+    display: inline-block;
+    position: relative;
+    font-weight: 700;
+}
+
+.title_wrap .right_area {
+    margin-left: auto;
+    flex-shrink: 0;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.btn_more_view.size_lg {
+    font-size: 14px;
+    line-height: 30px;
+    letter-spacing: -0.01em;
+}
+
+button[class^=btn_], a[class^=btn_] {
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+.btn_more_view {
+    color: #000;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    text-align: left;
+}
+
+button[class^=btn_] .text, a[class^=btn_] .text {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+
+.btn_more_view.size_lg .ico_arw {
+    margin-top: 6px;
+}
+
+button[class^=btn_] [class^=ico_], a[class^=btn_] [class^=ico_] {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+.btn_more_view .ico_arw {
+    display: inline-block;
+    width: 5px;
+    height: 9px;
+    margin-top: 5px;
+    background: url(	https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_more_view@2x.png) center no-repeat;
+    background-size: 5px 9px;
+    vertical-align: top;
+}
+.btn_more_view [class^=ico_] {
+    height: 18px;
+    margin-left: 4px;
+}
+
+.swiper-container {
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+}
+
+.swiper-container-android .swiper-slide, .swiper-wrapper {
+    transform: translate3d(0,0,0);
+}
+
+.swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform,-webkit-transform;
+    box-sizing: content-box;
+}
+
+.contents_inner .template_common_swiper .swiper-slide {
+    height: auto;
+}
+.swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+    position: relative;
+    -o-transition-property: transform;
+    transition-property: transform,-webkit-transform;
+}
+
+.contents_inner .prod_list {
+    font-size: 0;
+}
+
+.contents_inner .prod_list .prod_item:nth-child(6n+1) {
+    margin-left: 0;
+}
+
+.contents_inner .prod_list .prod_item {
+    display: inline-block;
+    width: 142px;
+    margin-left: calc((100% - (142px * 6)) / 5);
+    vertical-align: top;
+}
+
+.prod_area .prod_thumb_box {
+    position: relative;
+    overflow: hidden;
+    width: 142px;
+}
+
+.prod_area .prod_thumb_box .prod_link {
+    display: block;
+    height: 100%;
+}
+
+.prod_area .prod_thumb_box .img_box {
+    overflow: hidden;
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    border: 1px solid #eaeaea;
+}
+
+.prod_area .prod_thumb_box .img_box img {
+    width: 100%;
+    max-height: calc((100% - 2px) * 1.618 - 10px);
+}
+
+.swiper-slide img[loading=lazy] {
+    min-height: 50px;
+}
+
+.prod_area:not(.horizontal) .prod_info_box {
+    margin-top: 16px;
+}
+
+.prod_area .prod_info_box .prod_info {
+    display: block;
+    height: 100%;
+    font-size: 0;
+}
+
+
+.prod_area .prod_info_box .prod_name {
+    display: -webkit-box;
+    overflow: hidden;
+    max-height: 46px;
+    white-space: normal;
+    word-break: break-all;
+    font-size: 15px;
+    line-height: 23px;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+}
+
+.prod_area .prod_info_box .prod_author, .prod_area .prod_info_box .prod_author a, .prod_area .prod_info_box .prod_last_update, .prod_area .prod_info_box .prod_last_update a, .prod_area .prod_info_box .popular_prod_name, .prod_area .prod_info_box .popular_prod_name a {
+    color: #595959;
+}
+
+.prod_area .prod_info_box .prod_author, .prod_area .prod_info_box .prod_last_update, .prod_area .prod_info_box .popular_prod_name {
+    margin-top: 5px;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    display: -webkit-box;
+    overflow: hidden;
+    max-height: 38px;
+    line-height: 19px;
+    white-space: normal;
+    word-break: break-all;
+}
+
+.prod_area .prod_info_box .prod_price {
+    display: block;
+    margin-top: 12px;
+    font-size: 0;
+}
+
+.prod_area .prod_info_box .prod_price .price {
+    display: inline-block;
+    font-size: 0;
+    vertical-align: top;
+}
+
+.prod_area .prod_info_box .prod_price .price .val {
+    font-weight: 700;
+}
+
+.prod_area .prod_info_box .prod_price .price .val, .prod_area .prod_info_box .prod_price .price .unit {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+}

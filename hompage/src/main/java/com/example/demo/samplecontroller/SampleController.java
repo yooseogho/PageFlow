@@ -7,6 +7,21 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SampleController {
 	
+	// 만화책 목록 페이지
+	@GetMapping("/category/comicBook/comic_book")
+	public void comic_book() {
+	}
+	
+	// 요리 만화책 목록 페이지
+	@GetMapping("/category/comicBook/cooking_comic_book")
+	public void cooking_comic_book() {
+	}
+	
+	// 웹툰 만화책 목록 페이지
+	@GetMapping("/category/comicBook/webtoon_book")
+	public void webtoon_book() {
+	}
+	
 	// 판타지 소설 책 목록 페이지
 	@GetMapping("/category/novel/fantasy_novel_book")
 	public void fantasy_novel_book() {
@@ -35,6 +50,12 @@ public class SampleController {
 	// SF/과학 소설 책 목록 페이지
 	@GetMapping("/category/novel/science_novel_book")
 	public void science_novel_book() {
+	}
+	
+	
+	// 모든 책 목록 페이지
+	@GetMapping("/category/book")
+	public void book() {
 	}
 	
 	// 관리자 1:1 문의사항 답변 페이지
@@ -98,7 +119,7 @@ public class SampleController {
 	}
 	
 	// 루트 페이지
-	@GetMapping({ "/", "/page" })
+	@GetMapping({"/", "/page"})
 	public ModelAndView page() {
 		return new ModelAndView("index");
 	}

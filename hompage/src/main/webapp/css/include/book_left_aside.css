@@ -29,8 +29,7 @@
 		position: relative;
 		font-weight: 700;
 	}
-
-
+	
 	.container_wrapper .aside_wrap .snb_wrap .snb_title {
 		position: relative;
 		display: block;
@@ -55,7 +54,7 @@
 	}
 
 	.container_wrapper .aside_wrap .snb_wrap .snb_list .snb_item~.snb_item {
-		margin-top: 8px;
+		margin-top: 20px;
 	}
 
 	.container_wrapper .aside_wrap.sub_category .snb_wrap .snb_list .snb_item .snb_link {
@@ -66,7 +65,7 @@
 	.container_wrapper .aside_wrap .snb_wrap .snb_list .snb_item .snb_link {
 		display: block;
 		position: relative;
-		font-size: 14px;
+		font-size: 19px;
 		line-height: 22px;
 		letter-spacing: -0.01em;
 	}

@@ -1,26 +1,19 @@
 package com.example.demo.controller.member;
 
-import java.security.Principal;
-import java.util.Map;
+import java.security.*;
+import java.util.*;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.security.access.annotation.*;
+import org.springframework.security.access.prepost.*;
+import org.springframework.stereotype.*;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.*;
 
-import com.example.demo.dto.book.BookDto.Read;
-import com.example.demo.dto.member.MemberDto;
-import com.example.demo.service.member.MemberService;
+import com.example.demo.dto.member.*;
+import com.example.demo.service.member.*;
 
 @Controller
 public class MemberController {
