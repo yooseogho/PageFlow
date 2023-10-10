@@ -23,7 +23,7 @@ public class MemberDto {
 		private String memberTel;
 		private Long memberPoint;
 		
-		@DateTimeFormat(pattern="yyyyMMdd")
+		@DateTimeFormat(pattern="yyyy-MM-dd")
 		private LocalDate birthday;
 		private MultipartFile profile;
 		

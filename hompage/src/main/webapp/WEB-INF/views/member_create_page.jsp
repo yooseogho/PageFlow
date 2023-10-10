@@ -10,13 +10,29 @@
 <title>Insert title here</title>
 <script src="/script/join.js"></script>
 <style>
-#memberId-msg.true {
+#memberTel-msg.true,
+#checkPassword-msg.true,
+#memberName-msg.true,
+#memberId-msg.true,
+#password-msg.true,
+#email-msg.true,
+#birthday-msg.true {
 	color: green;
 }
-
-#memberId-msg.fail {
+#memberTel-msg.fail,
+#checkPassword-msg.fail,
+#memberName-msg.fail,
+#memberId-msg.fail,
+#password-msg.fail,
+#email-msg.fail,
+#birthday-msg.fail {
 	color: red;
 }
+.small-text {
+  font-size: 12px;
+}
+
+
 </style>
 </head>
 <body>
@@ -30,7 +46,7 @@
 		<main class="container_wrapper">
 
 			<section class="contents_wrap">
-					<form action="/member_create_page" method="post" id="join-form">
+				<form action="/member_create_page" method="post" id="join-form">
 					<div class="title_wrap title_size_md has_line">
 						<p class="title_heading">회원가입</p>
 					</div>
@@ -62,7 +78,7 @@
 												aria-expanded="false" name="memberId"
 												aria-owns="awesomplete_list_1" role="combobox">
 										</div>
-										<span id="memberId-msg"></span>
+										<span id="memberId-msg"class="small-text"></span>
 									</div>
 								</div>
 							</div>
@@ -82,13 +98,12 @@
 								<input type="password" class="form_ip" name="password"
 									placeholder="비밀번호를 입력해 주세요." id="password" maxlength="15">
 								<button type="button" class="btn_toggle_pw"></button>
-								  <span id='password-msg'></span>
+								<span id='password-msg'class="small-text"></span>
 							</div>
 							<div class="pw_valid_wrap">
 
 								<ul class="pw_valid_list">
-									<li class="pw_valid_item">영문, 숫자, 특수문자 3가지 조합 8자리 이상 또는<br>2가지
-										조합 10자리 이상
+									<li class="pw_valid_item">영문, 숫자, 특수문자 3가지 조합 8자리 이상 <br>
 									</li>
 									<li class="pw_valid_item">공백 및 3자 이상의 연속 또는 중복 문자는 사용 불가</li>
 									<li class="pw_valid_item" style="display: none;">생일, 전화번호,
@@ -110,11 +125,11 @@
 							<div class="valid_check">
 								<div class="form_ip_pw">
 									<input type="password" class="form_ip" name="confirmPassword"
-										placeholder="비밀번호를 한 번 더 입력해 주세요." id="formJoin03"
+										placeholder="비밀번호를 한 번 더 입력해 주세요." id="checkPassword"
 										maxlength="15">
-
 									<button type="button" class="btn_toggle_pw"></button>
 								</div>
+										<span id='checkPassword-msg'></span>
 							</div>
 						</div>
 					</div>
@@ -129,9 +144,10 @@
 
 						<div class="form_cont">
 							<div class="valid_check success">
-								<input type="text" class="form_ip" id="formJoin04"
+								<input type="text" class="form_ip" id="memberName"
 									name="memberName" placeholder="이름을 입력해 주세요.">
 							</div>
+						<span id='memberName-msg' class="small-text"></span>
 						</div>
 					</div>
 					<div class="form_box">
@@ -147,13 +163,16 @@
 							<div class="col_box">
 								<div class="valid_check">
 									<div class="input_btn_box">
-										<input type="text" maxlength="13" id="formJoin07"
+										<input type="text" maxlength="13" id="memberTel"
 											class="form_ip" placeholder="숫자만 입력해 주세요." name="memberTel">
+												
 										<button type="button" class="btn_ip btn_light_gray"
 											style="display: none;">
+											
 											<span class="text">인증번호 발송</span>
 										</button>
 									</div>
+									<span id='memberTel-msg'class="small-text"></span>
 								</div>
 							</div>
 
@@ -179,12 +198,13 @@
 															aria-expanded="false" aria-owns="awesomplete_list_2"
 															role="combobox">
 													</div>
-													    <span id='email-msg'></span>
+												
 													<button type="button" data-email="formJoin08"
 														class="btn_ip btn_primary">
 														<span class="text">인증번호 발송</span>
 													</button>
 												</div>
+												<span id='email-msg'class="small-text"></span>
 											</div>
 										</div>
 										<div class="col_box">
@@ -214,12 +234,13 @@
 
 								<div class="form_cont">
 									<div class="valid_check">
-										<div class="input_btn_box">
-											<input type="text" maxlength="8" id="birthday"
-												name="birthday" class="form_ip"
-												placeholder="생년월일 8자리를 입력해 주세요.">
+										<div class="input_btn_box1">
+											<div class="input_btn_box">
+												<input type="date" id="birthday" name="birthday"
+													class="form_ip">
+											</div>
 										</div>
-								 	  <span id='birthday-msg'></span> 
+										<span id='birthday-msg' class="small-text"></span>
 									</div>
 								</div>
 							</div>
@@ -227,10 +248,11 @@
 						</div>
 					</div>
 					<div class="btn_wrap justify page_bottom" id="joinComplete">
-						<button type="submit" class="btn_lg btn_primary"
+						<button type="button" class="btn_lg btn_primary" id="join"
 							style="width: 100%;">
 							<span class="text">회원가입</span>
 						</button>
+
 					</div>
 				</form>
 			</section>
