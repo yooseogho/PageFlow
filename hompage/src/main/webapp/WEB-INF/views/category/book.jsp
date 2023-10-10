@@ -245,7 +245,7 @@
                                     <p class="title_heading">새로나온 책 l 만화</p>
 
                                     <div class="right_area">
-                                        <a href="/category/webtoon/webtoon_book" class="btn_more_view size_lg"><span class="text">더보기</span><span class="ico_arw"></span></a>
+                                        <a href="/category/comicBook/comic_book" class="btn_more_view size_lg"><span class="text">더보기</span><span class="ico_arw"></span></a>
                                     </div>
                                 </div>
                                 <div class="template_common_swiper swiper-container">

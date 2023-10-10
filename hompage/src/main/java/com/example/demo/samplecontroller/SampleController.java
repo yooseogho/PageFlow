@@ -7,6 +7,16 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SampleController {
 	
+	// 학원 만화책 목록 페이지
+	@GetMapping("/category/comicBook/academy_comic_book")
+	public void academy_comic_book() {
+	}
+	
+	// 액션 만화책 목록 페이지
+	@GetMapping("/category/comicBook/action_comic_book")
+	public void action_comic_book() {
+	}
+	
 	// 만화책 목록 페이지
 	@GetMapping("/category/comicBook/comic_book")
 	public void comic_book() {
@@ -52,6 +62,25 @@ public class SampleController {
 	public void science_novel_book() {
 	}
 	
+	// EBS교재 책 목록 페이지
+	@GetMapping("/category/textbook/ebs_book")
+	public void ebs_book() {
+	}
+	
+	// 중/고등참고서 책 목록 페이지
+	@GetMapping("/category/textbook/secondary_book")
+	public void secondary_book() {
+	}
+	
+	// 참고도서 책 목록 페이지
+	@GetMapping("/category/textbook/text_book")
+	public void text_book() {
+	}
+	
+	// 토익교재 책 목록 페이지
+	@GetMapping("/category/textbook/toeic_book")
+	public void toeic_book() {
+	}
 	
 	// 모든 책 목록 페이지
 	@GetMapping("/category/book")
@@ -213,6 +242,11 @@ public class SampleController {
 	// 공지 사항 페이지
 	@GetMapping("/notice_list_page")
 	public void notice_list_page() {
+	}
+	
+	// product read 페이지 
+	@GetMapping("/product_read_page")
+	public void product_read() {
 	}
 	
 	// 검색 결과에 매칭되는 book 리스트 페이지

@@ -1,35 +1,36 @@
 @charset "UTF-8";
 
-/* 공통 css 영역*/
+/* 공통 css 영역 */
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 a {
-	color: #000;
-	text-decoration: none;
+    color: #000;
+    text-decoration: none;
 }
 
 body {
-	font-size: 14px;
-	line-height: 1.4;
-	font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
-	min-width: 1440px;
-	color: #000;
-}
-
-ul {
-	list-style: none;
+    font-size: 14px;
+    line-height: 1.4;
+    font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
+    min-width: 1440px;
+    color: #000;
 }
 
 #page {
-	margin: 0 auto;
+    margin: 0 auto;
+}
+
+ul {
+    list-style: none;
 }
 
 button {
     background-color: transparent;
+    cursor: pointer;
 }
 
 input,
@@ -48,6 +49,18 @@ button {
 
 img {
     vertical-align: middle;
+}
+
+.hidden {
+    position: absolute;
+    visibility: hidden;
+    overflow: hidden;
+    height: 0;
+    line-height: 0;
+    width: 0;
+    margin: 0;
+    padding: 0;
+    font: 0/0 Arial;
 }
 
 /* main css 영역 */
