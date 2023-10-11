@@ -15,7 +15,7 @@ public class EmailController {
   @Autowired
   private final EmailService emailService;
 
-  @PostMapping("login/mailConfirm")
+  @PostMapping("/login/mailConfirm")
   public String mailConfirm(@RequestBody EmailAuthRequestDto emailDto)
       throws MessagingException, UnsupportedEncodingException {
 
