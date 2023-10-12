@@ -17,14 +17,13 @@
 
         <main class="container_wrapper">
             <section class="contents_wrap">
-
-                <div class="join_complete_wrap">
-                    <div class="title_wrap title_size_lg">
-                        <p class="title_heading">
-                            반갑습니다. <span class="fc_green">xxx</span> 님!<br>
-                            회원이 되신 것을 축하드립니다.
-                        </p>
-                    </div>
+	                <div class="join_complete_wrap">
+	                    <div class="title_wrap title_size_lg">
+	                        <p class="title_heading">
+	                            반갑습니다. <span class="fc_green">${memberName }</span> 님!<br>
+	                            회원이 되신 것을 축하드립니다.
+	                        </p>
+	                    </div>
 
                     <div class="btn_wrap justify page_bottom" id="joinComplete">
                         <a href="/" style="width: 100%">

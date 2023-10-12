@@ -1,38 +1,35 @@
-
 async function memberIdCheck() {
-	const pattern = /^[a-z0-9]{6,10}$/
-	$('#memberId-msg').text('');
-	const memberId = $('#memberId').val();
+    const pattern = /^(?=.*[a-z])(?=.*\d)[a-z\d]{6,10}$/i;
+    const memberId = $('#memberId').val();
+    const msgElement = $('#memberId-msg');
 
-	if (memberId === '') {
-		$('#memberId-msg').text('아이디를 입력하세요').attr('class', 'fail small-text');
-		return false;
-	}
+    msgElement.text('');
+    
+    if (!memberId) {
+        msgElement.text('아이디를 입력하세요').addClass('fail small-text');
+        return false;
+    }
 
-	if (pattern.test(memberId) === false) {
-		$('#memberId-msg').text('아이디는 영숫자 6~10자입니다').attr('class', 'fail small-text');
-		return false;
-	}
+    if (!pattern.test(memberId)) {
+        msgElement.text('아이디는 영숫자 6~10자입니다').addClass('fail small-text');
+        return false;
+    }
 
-	try {
-		await $.ajax('/member/username/available/' + memberId);
+    try {
+      await $.get('/member/username/available/' + memberId);
+      // 사용 가능한 아이디인 경우 메시지 출력
+	 msgElement.removeClass().addClass('true small-text').text('사용 가능한 아이디입니다.');
 
-		// 사용 가능한 아이디인 경우 메시지 출력
-		$('#memberId-msg').text('사용 가능한 아이디입니다.').attr('class', 'true small-text');
+      return true;
+      
+    } catch (error) {
+      console.log(error.responseJSON || error.responseText || error);
+      msgElement.text('사용중인 아이디입니다.').addClass('fail small-text');
+      return false;
+      
+   }
+};
 
-		return true;
-
-	} catch (err) {
-
-		console.log(err.responseJSON || err.responseText || err);
-
-		// 이미 사용 중인 아이디인 경우 메시지 출력
-		$('#memberId-msg').text('사용중인 아이디입니다.').attr('class', 'fail small-text');
-
-		return false;
-
-	}
-}
 
 
 
@@ -244,10 +241,30 @@ $(document).ready(function() {
        $('#memberId').on('input', function(e) {
         memberIdCheck();
     });
+   $('#password_icon').on('click', function() {
+    const passwordField = $("#password");
+    if (passwordField.attr('type') === "password") {
+        passwordField.attr('type', "text");
+    } else {
+        passwordField.attr('type', "password");
+    }
+});
+   $('#password_icon1').on('click', function() {
+    const passwordField = $("#checkPassword");
+    if (passwordField.attr('type') === "password") {
+        passwordField.attr('type', "text");
+    } else {
+        passwordField.attr('type', "password");
+    }
+});
+
+
     
-
-
-			$('#join').on('click', async function() {
+    	
+    
+    
+   
+    $('#join').on('click', async function() {
 				let conditionChecked = await memberIdCheck();
 				console.log(conditionChecked);
 				conditionChecked = passwordCheck() && conditionChecked;
@@ -268,4 +285,5 @@ $(document).ready(function() {
 					$('#join-form').submit();
 				}
 			});
+			
 });	 		

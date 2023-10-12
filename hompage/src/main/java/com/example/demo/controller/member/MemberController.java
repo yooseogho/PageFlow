@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.access.annotation.*;
 import org.springframework.security.access.prepost.*;
 import org.springframework.stereotype.*;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
 
 import com.example.demo.dto.member.*;
+import com.example.demo.entity.member.Member;
 import com.example.demo.service.member.*;
 
 @Controller
@@ -27,19 +29,33 @@ public class MemberController {
     return new ModelAndView("member_create_page");
   }
 
-//  1-2. 회원가입 처리
-  @PreAuthorize("isAnonymous()")
-  @PostMapping("/member_create_page")
-  public String join(MemberDto.Join joinDto) {
-    Boolean result = memberService.join(joinDto);
-    if (result) { // result == true 와 같음
-      return "redirect:/member_create_success_page"; // 회원가입 성공 시 로그인 페이지로 이동
-    } else {
-      return "redirect:/members/member_create_page?error"; // 회원가입 실패 시 오류 메시지와 함께 회원가입 페이지로 다시 이동
-    }
-  }
+  /*
+   * 10/12 유석호 회원가입 수정
+   * 
+   */
+	//  1-2. 회원가입 처리
+		  @PreAuthorize("isAnonymous()")
+		  @PostMapping("/member_create_page")
+		  public String join(MemberDto.Join joinDto ,HttpServletRequest request ) {
+		    Boolean result = memberService.join(joinDto);
+		    if (result) { // result == true 와 같음
+		    	// 회원가입 성공시 memberName을 꺼내와서 ~~ 님 반갑습니다.를 가져오기 위해 
+		    	// joinDto.getMemberName()을 호출하여 'memberName' 필드의 값을 가져옴
+		    	 String memberId = joinDto.getMemberId();
+		         String memberName = joinDto.getMemberName();
+		        HttpSession session = request.getSession();
+		        session.setAttribute("memberId", memberId);
+		        session.setAttribute("memberName", memberName);
+		      return "redirect:/member_create_success_page"; // 회원가입 성공 시 로그인 페이지로 이동
+		    } else {
+		      return "redirect:/member_create_page?error"; // 회원가입 실패 시 오류 메시지와 함께 회원가입 페이지로 다시 이동
+		    }
+		    
+		  }
 
-  	
+	  
+
+
   
 //  2. 아이디 중복 확인
   @PostMapping("/checkId")
