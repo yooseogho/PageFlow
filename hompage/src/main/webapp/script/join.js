@@ -241,20 +241,26 @@ $(document).ready(function() {
        $('#memberId').on('input', function(e) {
         memberIdCheck();
     });
-   $('#password_icon').on('click', function() {
+$('#password_icon').on('click', function() {
     const passwordField = $("#password");
     if (passwordField.attr('type') === "password") {
         passwordField.attr('type', "text");
+        $(this).css("background-image", "url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_eye_active@2x.png)");
     } else {
         passwordField.attr('type', "password");
+        $(this).css("background-image", "url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_eye@2x.png)");
     }
 });
-   $('#password_icon1').on('click', function() {
+
+
+$('#password_icon1').on('click', function() {
     const passwordField = $("#checkPassword");
     if (passwordField.attr('type') === "password") {
         passwordField.attr('type', "text");
+        $(this).css("background-image", "url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_eye_active@2x.png)");
     } else {
         passwordField.attr('type', "password");
+        $(this).css("background-image", "url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_eye@2x.png)");
     }
 });
 
