@@ -16,27 +16,21 @@ import org.springframework.security.web.access.*;
 // 2. UserDetailsService : UserDetails를 생성하는 인터페이스
 // 3. SecurityFilterChain : 스프링 시큐리티의 필터들이 나열되는 것
 
-@EnableMethodSecurity(prePostEnabled=true, securedEnabled=true)
+@EnableMethodSecurity(prePostEnabled = true, securedEnabled = true)
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
 	@Autowired
-	private AccessDeniedHandler accessDeniedHandler;  
-	
+	private AccessDeniedHandler accessDeniedHandler;
+
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf().disable();
-		http.formLogin().loginPage("/login_page")
-			.loginProcessingUrl("/login_page")
-			.defaultSuccessUrl("/")
-			.failureUrl("/login?error");
-		http.logout().logoutUrl("/logout").logoutSuccessUrl("/");
+		http.formLogin().loginPage("/member_login_page").loginProcessingUrl("/member_login_page").defaultSuccessUrl("/")
+				.failureUrl("/member_login_page?error");
 		http.exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+		http.logout().logoutUrl("/logout").logoutSuccessUrl("/");
 		return http.build();
-		
+
 	}
 }
-
-
-
-
