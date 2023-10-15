@@ -1,6 +1,8 @@
 package com.example.demo.email;
 
 import java.io.*;
+import java.nio.charset.*;
+import java.nio.file.*;
 import java.util.*;
 
 import javax.mail.*;
@@ -8,8 +10,6 @@ import javax.mail.internet.*;
 
 import org.springframework.mail.javamail.*;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.context.*;
-import org.thymeleaf.spring5.*;
 
 import lombok.*;
 
@@ -18,7 +18,6 @@ import lombok.*;
 public class EmailService {
 
   private final JavaMailSender emailSender;
-  private final SpringTemplateEngine templateEngine;
   private String authNum;
 
   public void createCode() {
@@ -43,10 +42,11 @@ public class EmailService {
     authNum = key.toString();
   }
 
-  public MimeMessage createEmailForm(String email) throws MessagingException, UnsupportedEncodingException {
+  public MimeMessage createEmailForm(String email)
+      throws MessagingException, UnsupportedEncodingException, IOException {
 
     createCode();
-    String setFrom = "grow0728@naver.com";
+    String setFrom = "pageflow@naver.com";
     String toEmail = email;
     String title = "PageFlow 회원가입 인증 번호";
 
@@ -57,23 +57,31 @@ public class EmailService {
 
     message.addRecipients(MimeMessage.RecipientType.TO, toEmail);
     message.setSubject(title);
-    message.setText(setContext(authNum), "utf-8", "html");
+
+    String htmlContent = readHtmlFile("mail.html");
+
+    htmlContent = htmlContent.replace("{code}", authNum);
+
+    message.setText(htmlContent, "utf-8", "html");
 
     return message;
   }
 
-  public String sendEmail(String toEmail) throws MessagingException, UnsupportedEncodingException {
-
-    MimeMessage emailForm = createEmailForm(toEmail);
-    emailSender.send(emailForm);
-
+  public String sendEmail(String toEmail) throws MessagingException, UnsupportedEncodingException, IOException {
+    try {
+      MimeMessage emailForm = createEmailForm(toEmail);
+      emailSender.send(emailForm);
+      return authNum;
+    } catch (MessagingException | IOException e) {
+      System.out.println(e); // 예외 확인용
+      e.printStackTrace();
+    }
     return authNum;
   }
 
-  public String setContext(String code) {
-    Context context = new Context();
-    context.setVariable("code", code);
-    return templateEngine.process("mail", context); // mail.html
+  private String readHtmlFile(String filename) throws IOException {
+    byte[] encoded = Files.readAllBytes(Paths.get("src/main/resources/" + filename));
+    return new String(encoded, StandardCharsets.UTF_8);
   }
 
 }

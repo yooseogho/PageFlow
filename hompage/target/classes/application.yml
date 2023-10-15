@@ -10,8 +10,8 @@ spring:
   mail:
     host: smtp.naver.com #smtp 서버 주소
     port: 465 # 메일 인증서버 포트
-    username: grow0728 #네이버 아이디
-    password: bohemCigarno.6 #네이버 비밀번호
+    username: pageflow #네이버 아이디
+    password: bohemCigarNo.6 #네이버 비밀번호
     properties:
       mail:
         smtp:

@@ -167,7 +167,7 @@
 								</div>
 							</div>
 
-
+				<!-- 이메일 부분 -->
 
 							<div class="form_box">
 								<div class="form_title">
@@ -189,26 +189,14 @@
 															aria-expanded="false" aria-owns="awesomplete_list_2"
 															role="combobox">
 													</div>
-
+			<!-- 인증번호 발송 부분 -->
 													<button type="button" data-email="formJoin08"
-														class="btn_ip btn_primary">
-														<span class="text">인증번호 발송</span>
+														class="btn_ip btn_primary" onclick="location.href='mail_code_check_page'"
+														id="sendEmail">
+														<span class="text">이메일 인증하기</span>
 													</button>
 												</div>
 												<span id='email-msg' class="small-text"></span>
-											</div>
-										</div>
-										<div class="col_box">
-											<div class="valid_check">
-												<div class="input_btn_box">
-													<div class="time_limit">
-														<input type="number" class="form_ip" title="인증번호 입력"
-															placeholder="인증번호 6자리" maxlength="6">
-													</div>
-													<button type="button" class="btn_ip btn_line_primary">
-														<span class="text">인증번호 확인</span>
-													</button>
-												</div>
 											</div>
 										</div>
 									</div>

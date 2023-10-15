@@ -20,17 +20,17 @@ import org.springframework.security.web.access.*;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
-	@Autowired
-	private AccessDeniedHandler accessDeniedHandler;
+  @Autowired
+  private AccessDeniedHandler accessDeniedHandler;
 
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.csrf().disable();
-		http.formLogin().loginPage("/member_login_page").loginProcessingUrl("/member_login_page").defaultSuccessUrl("/")
-				.failureUrl("/member_login_page?error");
-		http.exceptionHandling().accessDeniedHandler(accessDeniedHandler);
-		http.logout().logoutUrl("/logout").logoutSuccessUrl("/");
-		return http.build();
+  @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http.csrf().disable();
+    http.formLogin().loginPage("/member_login_page").loginProcessingUrl("/member_login_page").defaultSuccessUrl("/")
+        .failureUrl("/member_login_page?error");
+    http.exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+    http.logout().logoutUrl("/logout").logoutSuccessUrl("/");
+    return http.build();
+  }
 
-	}
 }
