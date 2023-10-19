@@ -9,6 +9,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <title>Insert title here</title>
 <script src="/script/join.js"></script>
+
 <style>
 #memberTel-msg.true, #checkPassword-msg.true, #memberName-msg.true,
 	#memberId-msg.true, #password-msg.true, #email-msg.true, #birthday-msg.true
@@ -26,7 +27,6 @@
 	font-size: 12px;
 }
 </style>
-
 </head>
 <body>
 	<div id="page">
@@ -167,7 +167,7 @@
 								</div>
 							</div>
 
-				<!-- 이메일 부분 -->
+							<!-- 이메일 부분 -->
 
 							<div class="form_box">
 								<div class="form_title">
@@ -175,6 +175,8 @@
 										class="required"> <span class="hidden">필수입력</span>
 									</span>
 									</label>
+									<!-- 이메일 입력란(#memberEmail로 호출) -->
+									<input type="email" name="memberEmail" id="memberEmail" disabled>
 								</div>
 
 								<div class="form_cont">
@@ -182,21 +184,15 @@
 										<div class="col_box">
 											<div class="valid_check success">
 												<div class="input_btn_box">
-													<div class="awesomplete">
-														<input type="email" id="memberEmail" name="memberEmail"
-															class="form_ip" placeholder="이메일을 입력해 주세요."
-															data-autocomplete="85" autocomplete="off"
-															aria-expanded="false" aria-owns="awesomplete_list_2"
-															role="combobox">
-													</div>
-			<!-- 인증번호 발송 부분 -->
+													<!-- 인증번호 발송 부분 -->
 													<button type="button" data-email="formJoin08"
-														class="btn_ip btn_primary" onclick="location.href='mail_code_check_page'"
+														class="btn_ip btn_primary"
+														onclick="location.href='mail_code_check_page'"
 														id="sendEmail">
-														<span class="text">이메일 인증하기</span>
+														<span class="text">이메일 인증하러 가기</span>
 													</button>
 												</div>
-												<span id='email-msg' class="small-text"></span>
+												<span id="email-msg" class="small-text"></span>
 											</div>
 										</div>
 									</div>

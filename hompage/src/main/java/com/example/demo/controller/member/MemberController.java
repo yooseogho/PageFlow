@@ -37,13 +37,25 @@ public class MemberController {
 	@PreAuthorize("isAnonymous()")
 	@PostMapping("/member_create_page")
 	public String join(MemberDto.Join joinDto, HttpServletRequest request) {
-		Boolean result = memberService.join(joinDto);
+		HttpSession session = request.getSession();
+		String email = (String) session.getAttribute("email");
+		
+		if(email==null || email.isEmpty()) {
+//		  예외 던지기
+		  throw new IllegalStateException("세션에 이메일이 없습니다.");
+//		  에러 처리(예외 처리가 더 좋을 것 같아 throw 사용)
+		  // return "redirect:/member_create_page?error=noEmail";
+		}
+		
+		joinDto.setMemberEmail(email);
+	  
+	  Boolean result = memberService.join(joinDto);
 		if (result) { // result == true 와 같음
 			// 회원가입 성공시 memberName을 꺼내와서 ~~ 님 반갑습니다.를 가져오기 위해
 			// joinDto.getMemberName()을 호출하여 'memberName' 필드의 값을 가져옴
 			String memberId = joinDto.getMemberId();
 			String memberName = joinDto.getMemberName();
-			HttpSession session = request.getSession();
+			
 			session.setAttribute("memberId", memberId);
 			session.setAttribute("memberName", memberName);
 			return "redirect:/member_create_success_page"; // 회원가입 성공 시 로그인 페이지로 이동

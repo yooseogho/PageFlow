@@ -5,8 +5,9 @@ import javax.validation.constraints.*;
 import lombok.*;
 
 @Data
-public class EmailAuthRequestDto {
+public class EmailRequestDto {
   @NotEmpty(message = "이메일을 입력해주세요")
   @Email
-  public String email;
+  private String email;
 }
+

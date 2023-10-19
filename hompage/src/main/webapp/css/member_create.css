@@ -342,7 +342,6 @@ ol, ul {
     background: #5055b1;
     border: 1px solid #5055b1;
     transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
-    margin-left: 6px;
 }
 
 .awesomplete {
@@ -396,3 +395,7 @@ ol, ul {
     align-items: center;
     margin-left: 0;
 }        
+
+#sendEmail {
+	width: 100%;
+}
