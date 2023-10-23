@@ -164,17 +164,6 @@ public class SampleController {
 	public void member_grade_page() {
 	}
 
-	// 내정보보기 페이지
-//	@GetMapping("/member_info_page")
-//	public void member_info_page() {
-//	}
-	
-
-	// 로그인 페이지
-//	@GetMapping("/member_login_page")
-//	public void login() {
-//	}
-
 	// 회원 포인트 확인하는 페이지
 	@GetMapping("/member_point_page")
 	public void pointpage() {
