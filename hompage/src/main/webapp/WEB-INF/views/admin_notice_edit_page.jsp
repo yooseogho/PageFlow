@@ -20,41 +20,38 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.js"></script>
 <title>Insert title here</title>
-</head>
 <script type="text/javascript">
 	var jq = jQuery.noConflict(); // jQuery.noConflict()를 사용하여 $ 충돌 방지
 	jq(document).ready(function() {
-		var fontList = [ '맑은 고딕', '굴림', '돋움', '바탕', '궁서', 'NotoSansKR' ];
-		jq('#summernote').summernote({
-			height : 450,
-			lang : "ko-KR",
-			fontNames : fontList,
-			fontNamesIgnoreCheck : fontList,
-		});
-	});
+	    var fontList = [ '맑은 고딕', '굴림', '돋움', '바탕', '궁서', 'NotoSansKR' ];
+	    jq('#summernote').summernote({
+	        height : 450,
+	        lang : "ko-KR",
+	        fontNames : fontList,
+	        fontNamesIgnoreCheck : fontList,
+	    });
 	
-    var jq = jQuery.noConflict(); // jQuery.noConflict()를 사용하여 $ 충돌 방지
-    jq(document).ready(function() {
-        jq('form').on('submit', function(e) {
-            var noticeTitle = jq('#noticeTitle').val();
-            var noticeContent = jq('#summernote').val();
-
-            if (!noticeTitle || noticeTitle.length < 1) {
-                alert('제목을 입력해주세요.');
-                e.preventDefault();
-                return false;
-            }
-
-            if (!noticeContent || noticeContent.length < 1) {
-                alert('내용을 입력해주세요.');
-                e.preventDefault();
-                return false;
-            }
-
-            alert('공지사항 작성되었습니다.');
-        });
-    });
+	    jq('form').on('submit', function(e) {
+	        var noticeTitle = jq('#noticeTitle').val();
+	        var noticeContent = jq('#summernote').summernote('code');
+	
+	        if (!noticeTitle || noticeTitle.trim().length < 1) {
+	            alert('제목을 입력해주세요.');
+	            e.preventDefault();
+	            return false;
+	        }
+	
+	       if (!noticeContent || noticeContent.trim().length < 1 || noticeContent == '<p><br></p>') { // summernote default empty value is '<p><br></p>'
+	           alert('내용을 입력해주세요.');
+	           e.preventDefault();
+	           return false;
+	       }
+	
+	       alert('공지사항 작성되었습니다.');
+	   });
+	});
 </script>
+</head>
 <body>
 	<div id="page">
 		<header class="header_wrapper">
@@ -72,9 +69,12 @@
 				<section class="section_wrapper">
 					<div class="admin_wrap">
 						<div class="title_wrap title_size_lg">
-							<p class="title_heading">공지사항 작성</p>
+							<p class="title_heading">공지사항 수정</p>
+							<!-- 제목 변경 -->
 						</div>
-						<form action="/admin_notice_write_page" method="post">
+
+						<form action="/admin_notice_edit_page/${notice.nno}" method="post">
+							<!-- action 경로 변경 -->
 							<div class="tbl_row_wrap">
 
 								<table class="tbl_row">
@@ -91,7 +91,10 @@
 													<div class="valid_check">
 														<input name='noticeTitle' id='noticeTitle' type='text'
 															class='form_ip w_full' title='제목입력'
-															placeholder='제목을 입력해 주세요.' maxlength='30'>
+															placeholder='제목을 입력해 주세요.' maxlength='30'
+															value="${notice.noticeTitle}">
+														<!-- value 추가 -->
+
 													</div>
 												</div>
 											</td>
@@ -107,7 +110,7 @@
 																<textarea data-kbbfn-field="" name="noticeContent"
 																	id="summernote" class="form_textarea" title="공지 내용 입력"
 																	placeholder="공지할 내용을 입력해주세요." maxlength="3000"
-																	style="height: 246px;"></textarea>
+																	style="height: 246px;">${notice.noticeContent}</textarea>
 																<div class="byte_check_footer">
 																	<div class="byte_check">
 																		<span class="count">0</span><span class="total">3000</span>
@@ -126,12 +129,15 @@
 							</div>
 
 							<div class="btn_wrap page_bottom">
-								<a href="/admin_page" class="btn_light_gray btn_lg"> <span
-									class="text">취소</span>
-								</a>
+
+								<a href="/notices/${notice.nno}" class="btn_light_gray btn_lg"><span
+									class="text"> 취소 </span></a>
+								<!-- 취소 버튼 링크 변경 -->
+
 								<button type="submit" class="btn_primary btn_lg">
-									<span class="text">공지사항 작성</span>
+									<span class="text"> 공지사항 저장 </span>
 								</button>
+								<!-- 버튼 텍스트 변경 -->
 							</div>
 						</form>
 					</div>

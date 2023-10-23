@@ -6,9 +6,36 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/customer_notice_list.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
+	<script>
+	$(document).ready(function() {
+	    $('.deleteBtn').click(function() {
+	        var nno = $(this).data('nno');
+	        if (confirm("정말로 삭제하시겠습니까?")) {
+	            $.ajax({
+	                url : '/admin_notice_delete/' + nno,
+	                type : 'DELETE',
+	                success : function(response) {
+	                    // 공지사항 삭제가 성공했을 경우만 페이지 리다이렉트
+	                    if (response.success) {
+	                        alert("삭제 되었습니다."); // 여기에 메시지 추가
+	                        window.location.href = "/admin_notice_list_page";
+	                    } else {
+	                        alert("삭제 실패: " + response.message);
+	                    }
+	                },
+	                error : function(jqXHR, textStatus, errorThrown) {
+	                    console.log(textStatus, errorThrown);
+	                }
+	            });
+	        }
+	    });
+	});
+	</script>
 	<div id="page">
 		<header class="header_wrapper">
 			<jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -19,12 +46,10 @@
 		<main class="main_wrapper">
 			<div class="main_inner">
 				<aside class="aside_wrapper">
-					<jsp:include
-						page="/WEB-INF/views/include/customer_service_left_aside.jsp" />
+					<jsp:include page="/WEB-INF/views/include/admin_left_aside.jsp" />
 				</aside>
 				<section class="section_wrapper">
 					<div class="customer_wrapper">
-
 						<div class="title_wrap title_size_lg">
 							<h1 class="title_heading">공지사항</h1>
 						</div>
@@ -47,6 +72,7 @@
 							<div class="list_result_wrap">
 								<p class="result_count">
 									<span class="fc_green">${countOfNotices}</span>건
+								</p>
 							</div>
 						</div>
 
@@ -64,6 +90,7 @@
 										<th scope="col">공지제목</th>
 										<th scope="col">작성자</th>
 										<th scope="col">날짜</th>
+										<th scope="col">수정/삭제</th>
 									</tr>
 								</thead>
 								<tbody class="notice_body">
@@ -75,17 +102,27 @@
 												class="btn_text_link ellipsis"> <span class="text">${notice.noticeTitle}</span></a></td>
 											<td class="fc_light_gray">${notice.noticeWriter}</td>
 											<td class="fc_light_gray">${notice.noticeWriteday}</td>
+
+											<td class="fc_light_gray">
+												<button
+													onclick='location.href="/admin_notice_edit_page/${notice.nno}"'
+													class="btn_ip btn_primary">수정</button> <!-- 공지사항 수정 페이지로 이동 -->
+
+												<button class="deleteBtn btn_ip btn_primary"
+													data-nno="${notice.nno}">삭제</button>
+											</td>
+
 										</tr>
 									</c:forEach>
+
 								</tbody>
 							</table>
 						</div>
-
 						<div class="pagination">
 							<div class="page_num">
 								<!-- 이전 페이지 버튼: 이전 페이지가 없으면 disabled -->
 								<a
-									href="<c:if test='${page.prev != null}'>/customer_notice_list_page?pageno=${page.prev}</c:if>"
+									href="<c:if test='${page.prev != null}'>/admin_notice_list_page?pageno=${page.prev}</c:if>"
 									class="btn_page prev"
 									<c:if test="${page.prev == null}">onclick="event.preventDefault();"</c:if>></a>
 
@@ -93,23 +130,22 @@
 									end="${page.totalPages}">
 									<c:choose>
 										<c:when test="${status.index == page.pageno}">
-											<a href="/customer_notice_list_page?pageno=${status.index}"
+											<a href="/admin_notice_list_page?pageno=${status.index}"
 												class="btn_page_num active">${status.index}</a>
 										</c:when>
 										<c:otherwise>
-											<a href="/customer_notice_list_page?pageno=${status.index}"
+											<a href="/admin_notice_list_page?pageno=${status.index}"
 												class="btn_page_num">${status.index}</a>
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>
 								<!-- 다음 페이지 버튼 : 다음페이지가 없으면 disabled -->
 								<a
-									href="<c:if test='${page.next != null}'>/customer_notice_list_page?pageno=${page.next}</c:if>"
+									href="<c:if test='${page.next != null}'>/admin_notice_list_page?pageno=${page.next}</c:if>"
 									class="btn_page next"
 									<c:if test="${empty page.next}">onclick="event.preventDefault();"</c:if>></a>
 							</div>
 						</div>
-
 					</div>
 				</section>
 			</div>

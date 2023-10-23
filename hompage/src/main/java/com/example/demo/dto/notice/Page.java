@@ -11,9 +11,8 @@ import lombok.*;
 @AllArgsConstructor
 public class Page {
   private Long prev;
-  private Long start;
-  private Long end;
   private Long next;
   private Long pageno;
-  private List<Notice> notice;
+  private Long totalPages;
+  private List<Notice> notices;
 }

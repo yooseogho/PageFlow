@@ -16,8 +16,8 @@ public interface NoticeDao {
 
   // 글 저장
   @SelectKey(statement = "select notice_seq.nextval from dual", before = true, resultType = long.class, keyProperty = "nno")
-  @Insert("insert into notice values(#{nno},#{noticeTitle},#{noticeContent},'고객센터',#{noticeWriteday})")
-  public Integer save(Notice notice);
+  @Insert("insert into notice values(#{nno},#{noticeTitle},#{noticeContent},'고객센터',sysdate)")
+  public Long save(Notice notice);
 
   // 페이징 - 글의 개수
   @Select("select count(*) from notice")
@@ -38,8 +38,20 @@ public interface NoticeDao {
   @Delete("delete from notice where nno=#{nno}")
   public Integer deleteByNno(Long nno);
 
-//	글 모두 불러오기
-  @Select("select * from notice")
+ //	글 모두 불러오기
+  @Select("select * from notice Notices ORDER BY nno DESC")
   public List<Notice> getAllNotices();
+  
+  // 고객센터 공지사항 최신순 3개 불러오기
+  @Select("SELECT * FROM (SELECT * FROM notice ORDER BY nno DESC) WHERE ROWNUM <= 3")
+  public List<Notice> findTop3ByOrderByNoticeWritedayDesc();
+  
+  
+  // 공지사항 이전글 불러오기
+  public Notice findPrev(Long nno);
+  
+  // 공지사항 다음글 불러오기
+  public Notice findNext(Long nno);
+ 
 
 }
