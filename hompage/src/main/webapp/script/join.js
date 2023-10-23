@@ -188,18 +188,6 @@ function email() {
 		$("#memberEmail").val(data);
 	});
 
-	if (email) {
-		$("#email-msg").text("이메일 인증이 완료 되었습니다.").css(
-			"color", "green"
-		);
-		$("#sendEmail").prop("disabled", true);
-	} else {
-		$("#email-msg").text("이메일 인증이 필요합니다.").css(
-			"color", "red"
-		);
-		$("#sendEmail").prop("disabled", false);
-	}
-
 }
 
 
@@ -209,10 +197,45 @@ function email() {
 
 
 $(document).ready(function() {
+	$('#memberId').val(localStorage.getItem('memberId'));
+	$('#password').val(localStorage.getItem('password'));
+	$('#checkPassword').val(localStorage.getItem('checkPassword'));
+
 	$('#memberName').on('blur', nameCheck);
 	$('#birthday').on('blur', birthdayCheck);
 	$('#memberTel').on('blur', memberTelCheck);
 	$('#sendEmail').on('blur', email);
+
+	/* --------------------------------------------------------------------------- */
+	// 이메일 값 들어 갔는지 확인하는 함수 생성
+	function checkEmailInput() {
+		let input = $('#memberEmail').val();
+
+		if (input) {
+			$('#sendEmail').prop('disabled', true).css('background-color', '#ccc').css('cursor', 'default')
+				.text('이메일 인증이 완료되었습니다.').css('border', '1px solid #ccc');
+		} else {
+			$('#email-msg').attr('class', 'fail');
+			$('#email-msg').text('이메일 인증이 필요합니다.').css('font-size', '13px');
+			$('#sendEmail').prop('disabled', false);
+		}
+
+		$('#sendEmail').on('click', function() {
+			localStorage.setItem('memberId', $('#memberId').val());
+			localStorage.setItem('password', $('#password').val());
+			localStorage.setItem('checkPassword', $('#checkPassword').val());
+			localStorage.setItem('memberName', $('#memberName').val());
+			localStorage.setItem('memberTel', $('#memberTel').val());
+			localStorage.setItem('birthday', $('#birthday').val());
+		});
+	}
+
+	// 페이지 로딩 시 한 번 실행
+	checkEmailInput();
+
+	// input 이벤트 발생 시마다 실행
+	$('#memberEmail').on('input', checkEmailInput);
+	/* --------------------------------------------------------------------------- */
 
 	// input 및 compositionend 이벤트 발생 시마다 nameCheck 함수를 호출합니다.
 	$('#memberName')
@@ -252,7 +275,6 @@ $(document).ready(function() {
 		}
 	});
 
-
 	$('#password_icon1').on('click', function() {
 		const passwordField = $("#checkPassword");
 		if (passwordField.attr('type') === "password") {
@@ -263,16 +285,6 @@ $(document).ready(function() {
 			$(this).css("background-image", "url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_eye@2x.png)");
 		}
 	});
-
-
-
-
-
-
-
-
-
-
 
 	$('#join').on('click', async function() {
 		let conditionChecked = await memberIdCheck();
@@ -287,12 +299,15 @@ $(document).ready(function() {
 		console.log(conditionChecked);
 		// 비밀번호 확인 체크 추가
 		conditionChecked = checkPasswordCheck() && conditionChecked;
-		conditionChecked = email && conditionChecked;
-		console.log(conditionChecked);
 
 		if (conditionChecked) {
 			$('#join-form').submit();
+			localStorage.removeItem('memberId');
+			localStorage.removeItem('password');
+			localStorage.removeItem('checkPassword');
+			localStorage.removeItem('memberName');
+			localStorage.removeItem('memberTel');
+			localStorage.removeItem('birthday');
 		}
 	});
-
-});	 		
+});

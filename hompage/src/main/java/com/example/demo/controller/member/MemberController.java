@@ -58,6 +58,9 @@ public class MemberController {
 			
 			session.setAttribute("memberId", memberId);
 			session.setAttribute("memberName", memberName);
+			
+//			이메일 값 날리기
+			session.removeAttribute("email");
 			return "redirect:/member_create_success_page"; // 회원가입 성공 시 로그인 페이지로 이동
 		} else {
 			return "redirect:/member_create_page?error"; // 회원가입 실패 시 오류 메시지와 함께 회원가입 페이지로 다시 이동

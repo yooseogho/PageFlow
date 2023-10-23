@@ -176,7 +176,7 @@
 									</span>
 									</label>
 									<!-- 이메일 입력란(#memberEmail로 호출) -->
-									<input type="email" name="memberEmail" id="memberEmail" disabled>
+									<input type="email" name="memberEmail" id="memberEmail" value="${email}" disabled>
 								</div>
 
 								<div class="form_cont">

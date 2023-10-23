@@ -130,9 +130,9 @@ public class SampleController {
 	}
 
 	// 회원 가입 페이지
-	@GetMapping("/member_create_page")
-	public void member_create_page() {
-	}
+//	@GetMapping("/member_create_page")
+//	public void member_create_page() {
+//	}
 
 	// 회원 가입 성공 페이지
 	@GetMapping("member_create_success_page")
@@ -165,15 +165,15 @@ public class SampleController {
 	}
 
 	// 내정보보기 페이지
-	@GetMapping("/member_info_page")
-	public void member_info_page() {
-	}
+//	@GetMapping("/member_info_page")
+//	public void member_info_page() {
+//	}
 	
 
 	// 로그인 페이지
-	@GetMapping("/member_login_page")
-	public void login() {
-	}
+//	@GetMapping("/member_login_page")
+//	public void login() {
+//	}
 
 	// 회원 포인트 확인하는 페이지
 	@GetMapping("/member_point_page")
