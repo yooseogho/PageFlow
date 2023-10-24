@@ -1,39 +1,100 @@
 package com.example.demo.controller.member;
 
-import java.security.*;
-import java.util.*;
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.security.access.annotation.*;
-import org.springframework.security.access.prepost.*;
-import org.springframework.stereotype.*;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.dto.member.*;
+import com.example.demo.dto.member.MemberDto;
+import com.example.demo.dto.member.MemberDto.Login;
+import com.example.demo.dto.member.MemberDto.Read;
 import com.example.demo.entity.member.Member;
-import com.example.demo.service.member.*;
+import com.example.demo.service.member.MemberService;
+
+/*
+ * 10-24 유석호 
+ * 컨트롤러 순서 정리
+ * GetMapping은 다위로
+ * 그아래 PostMapping
+ */
 
 @Controller
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private PasswordEncoder encoder;
 
-//  1-1. 회원가입 페이지 보여줌
+	// 1.회원가입 페이지를 반환
 	@PreAuthorize("isAnonymous()")
 	@GetMapping("/member_create_page")
 	public ModelAndView getJoinForm() {
 		return new ModelAndView("member_create_page");
 	}
+	
+	// 1-1 회원 정보 수정 전 비밀번호 확인 페이지를 보여줍니다
+	@GetMapping("/member_check_page")
+	public void member_check_page() {
+	}
+	
+	
+	// 아직 사용안함.
+//  1-2 현재 로그인된 사용자의 정보를 보여주는 페이지를 반환합니다.
+	@Secured("ROLE_USER")
+	@GetMapping("/member_info_page")
+	public ModelAndView myInfo(Principal principal, HttpSession session) {
+		if (session.getAttribute("checkPassword") == null) {
+			return new ModelAndView("redirect:/member_check_page");
+		} else {
+			MemberDto.Read dto = memberService.read(principal.getName());
+			return new ModelAndView("/member_info_page").addObject("member", dto);
+		}
+	}
+	
+	// 1-3.회원 정보 수정 페이지 보기 ( 현재 로그인된 사용자의 정보를 수정하는 페이지를 반환합니다.)
+	  @Secured("ROLE_USER")
+	  @GetMapping("/member_edit_page")
+	  public ModelAndView edit(Principal principal){
+	      Read dto = memberService.read(principal.getName());
+	      return new ModelAndView("member_edit_page").addObject("member", dto);  
+	      // addObject("member", dto) 부분이 그 역할을 합니다. 
+	      //이렇게 하면 dto 객체가 "member"라는 이름으로 뷰에 전달되며, JSP 페이지에서 ${member}로 접근할 수 있습니다.
 
-	/*
-	 * 10/12 유석호 회원가입 수정
-	 * 
-	 */
-	// 1-2. 회원가입 처리
+	  }
+	  
+		
+//		1-4 로그인 처리(로그인 페이지를 보여줍니다.)
+		@PreAuthorize("isAnonymous()")
+		@GetMapping("/member_login_page")
+		public void login() {
+		}
+
+		
+	// 2. 회원가입 처리( 새로운 회원을 생성하고, 성공 시 로그인 페이지로 리다이렉트하며, 실패 시 오류 메시지와 함께 회원 가입 페이지로 다시 이동합니다.)
 	@PreAuthorize("isAnonymous()")
 	@PostMapping("/member_create_page")
 	public String join(MemberDto.Join joinDto, HttpServletRequest request) {
@@ -67,65 +128,49 @@ public class MemberController {
 		}
 
 	}
+	
 
-//  2. 아이디 중복 확인
-	@PostMapping("/checkId")
-	@ResponseBody
-	public Boolean checkId(@RequestBody Map<String, String> params) {
-		String memberId = params.get("memberId");
-		return memberService.idAvailable(memberId);
-	}
 
-//  3. 전화번호 중복 확인
-	@PostMapping("/checkTel")
-	public Boolean checkTel(@RequestParam String memberTel) {
-		return memberService.telAvailable(memberTel);
-	}
-
-//  4. 내 정보 보기
-	@Secured("ROLE_USER")
-	@GetMapping("/member_info_page")
-	public ModelAndView myInfo(Principal principal, HttpSession session) {
-		if (session.getAttribute("checkPassword") == null) {
-			return new ModelAndView("redirect:/member_check_page");
-		} else {
-			MemberDto.Read dto = memberService.read(principal.getName());
-			return new ModelAndView("/member_info_page").addObject("member", dto);
-		}
-	}
-
-//  5. 비밀번호 변경
+//  3. 비밀번호 변경(현재 로그인 된 사용자의 비밀번호 변경 처리 후 결과에 따라 해당 경로로 리다이렉트 합니다.)
 	@Secured("ROLE_USER")
 	@PostMapping("/changePass")
-	public String changePassword(@RequestParam String newPassword, @RequestParam String memberId) {
-		Boolean result = memberService.changePass(newPassword, memberId);
-		if (result) {
-			return "redirect:/members/myInfo?memberId=" + memberId;
-		} else {
-			return "redirect:/members/myInfo?memberId=" + memberId + "&error";
-		}
+	public String changePassword(@RequestParam("password") String password, @RequestParam("memberId") String memberId) {
+	    Boolean result = memberService.changePass(password,memberId);
+	    if (result) {
+	        return "redirect:/member_edit_page?memberId=" ;
+	    } else {
+	        return "redirect:/member_edit_page?memberId="  + "&error";
+	    }
 	}
 
-//  6. 이메일 변경
+//  4. 이메일 변경(현재 로그인 된 사용자의 이메일 변경 처리 후 결과에 따라 해당 경로로 리다이렉트 합니다.)
 	@Secured("ROLE_USER")
 	@PostMapping("/changeEmail")
-	public ModelAndView changeEmail(@RequestParam String newEmail, @RequestParam Principal principal) {
-		memberService.changeEmail(newEmail, principal.getName());
-		return new ModelAndView("redirect:/read");
+	public ModelAndView changeEmail(@RequestParam String newEmail, Principal principal) {
+	Boolean result = memberService.changeEmail(principal.getName(), newEmail);
+	if (result) {
+	    return new ModelAndView("redirect:/member_edit_page");
+	} else {
+	    return new ModelAndView("redirect:/member_edit_page?error");
+	}
 	}
 
-//  7. 전화번호 변경
+//  5. 전화번호 변경( 현재 로그인 된 사용자의 전화번호 변경 처리 후 결과에 따라 해당 경로로 리다이렉트 합니다.)
 	@Secured("ROLE_USER")
 	@PostMapping("/changeTel")
-	public String changeTel(@RequestParam String newTel, @RequestParam String password, @RequestParam String memberId) {
-		Boolean result = memberService.changeTel(newTel, password);
-		if (result) {
-			return "redirect:/members/myInfo?memberId=" + memberId;
-		} else {
-			return "redirect:/members/myInfo?memberId=" + memberId + "&error";
-		}
-	}
+	public ModelAndView changeTel(@RequestParam String newTel) {
+	 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	 String memberId = authentication.getName();
 
+	 Boolean result = memberService.changeTel(memberId, newTel);
+	 if (result) {
+	     return new ModelAndView("redirect:/member_edit_page");
+	 } else {
+	     return new ModelAndView("redirect:/member_edit_page?error");
+	 }
+	}
+	
+    // 추후 할 예정
 //  8. 프로필 사진 변경
 //  @Secured("ROLE_USER")
 //  @PostMapping("/changeProfile")
@@ -138,7 +183,8 @@ public class MemberController {
 //    }
 //  }
 
-//  9. 회원 탈퇴	
+	
+//  6 회원 탈퇴	edit_page에서 활용(현재 세션을 종료하고, 탈퇴처리 후 루트페이지('/')으로 리다이렉트 합니다.)
 	@Secured("ROLE_USER")
 	@PostMapping("/quit")
 	public ModelAndView quit(Principal principal, HttpSession session) {
@@ -150,67 +196,28 @@ public class MemberController {
 		return new ModelAndView("redirect:/");
 	}
 
-//  10. 비빌번호 확인(내 정보 보기를 했을 때 먼저 이동)
-	@Secured("ROLE_USER")
-	@PostMapping("/member_check")
-	public ModelAndView checkPassword(@RequestParam String password, Principal principal, HttpSession session) {
-		String checkPass = "redirect:/member_check";
-		String checkPassErr = checkPass + "?error";
-//    비밀번호 확인이 되어있는 상태가 아니라면
-		if (password.isEmpty()) {
-//      checkPassword 페이지로 이동
-			return new ModelAndView(checkPass);
+	
+	//7. 비빌번호 확인(내 정보 보기를 했을 때 먼저 이동)    (입력 받은 비밀번호가 일치하는지 확인하고, 일치한다면 세션 설정 등 필요한 작업 수행 후 응답을 보냅니다.)
+		@Secured("ROLE_USER")
+		@PostMapping("/member_check_page")
+		public ResponseEntity<?> checkPassword(@RequestParam String password, Principal principal) {
+		    if (password.isEmpty()) {
+		        return ResponseEntity.badRequest().body("※비밀번호가 입력되지 않았습니다.");
+		    }
+		    
+		    Boolean result = memberService.checkPass(password, principal.getName());
+		    
+		    if (result == false || password.trim().isEmpty()) {
+		        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("※입력하신 정보가 일치하지 않습니다.\r\n"
+		        		+ "다시 확인해 주세요..");
+		    } 
+		        return ResponseEntity.ok().build();
 		}
-		Boolean result = memberService.checkPass(password, principal.getName());
-//    checkPass() 메서드가 실패했거나 공백을 없앤 비밀번호도 비어있다면
-		if (result == false || password.trim().isEmpty()) {
-//      에러 페이지로 이동
-			return new ModelAndView(checkPassErr);
-		} else {
-			session.setAttribute("checkPassword", true);
-			return new ModelAndView("redirect:/member_info_page");
-		}
-	}
 
-//  // 11. 회원 정보 수정 페이지 보기
-//  @Secured("ROLE_USER")
-//  @GetMapping("/member_edit_page")
-//  public ModelAndView editProfile(Principal principal, HttpSession session) {
-//    if (session.getAttribute("checkPassword") == null) {
-//      return new ModelAndView("redirect:/member_check_page");
-//    } else {
-//      Read dto = memberService.read(principal.getName());
-//      return new ModelAndView("/member_edit_page").addObject("member", dto);
-//    }
-//  }
 
-	// 12. 회원 정보 수정 처리
-//  @Secured("ROLE_USER")
-//  @PostMapping("/member_edit_page")
-//  public String updateProfile(@ModelAttribute MultipartFile newProfile, Principal principal) {
-//    Boolean result = memberService.changeProfile(newProfile, principal.getName());
-//    if (result) {
-//      return "redirect:/member_info_page";
-//    } else {
-//      return "redirect:/member_edit_page?error";
-//    }
-//  }
-	/*
-	 * 추후 수정 및 추가할 부분임(updateProfile) 건들지 않기
-	 */
 
-	// 13. 회원 비밀번호 변경 페이지 보기
-	@Secured("ROLE_USER")
-	@GetMapping("/member_change_password_page")
-	public ModelAndView changePasswordPage(Principal principal, HttpSession session) {
-		if (session.getAttribute("checkPassword") == null) {
-			return new ModelAndView("redirect:/member_check_page");
-		} else {
-			return new ModelAndView("/member_change_password_page");
-		}
-	}
 
-	// 14. 회원 비밀번호 변경 처리
+	// 8. 회원 비밀번호 변경 처리
 	@Secured("ROLE_USER")
 	@PostMapping("/member_change_password")
 	public String changePassword(@RequestParam String newPassword, Principal principal) {
@@ -222,7 +229,7 @@ public class MemberController {
 		}
 	}
 
-	// 15. 회원 로그아웃 처리
+	// 9. 회원 로그아웃 처리 (현재 세션을 종료하고, 루트페이지('/')으로 리다이렉트 합니다.)
 	@Secured("ROLE_USER")
 	@PostMapping("/logout")
 	public ModelAndView logout(HttpSession session) {
@@ -230,13 +237,52 @@ public class MemberController {
 		session.invalidate();
 		return new ModelAndView("redirect:/");
 	}
+
+
+	
+	// 10. 로그인 처리( 입력 받은 ID와 비밀번호가 유효한 경우 인증 객체 생성 및 저장 후, 정상적으로 응답을 보내며 실패시 에러 메시지와 함께 응답을 보냅니다.)
+	@PreAuthorize("isAnonymous()")
+	@PostMapping("/login")
+	public ResponseEntity<?> login(Login request) {
+	    try {
+	        Member loggedInMember;
+	        if (request.getMemberId().equals("admin")) {
+	            if (!encoder.matches(request.getPassword(), encoder.encode("1234"))) {
+	                throw new BadCredentialsException("입력하신 정보가 일치하지 않습니다.");
+	            }
+	            loggedInMember = new Member(); // create a Member instance for admin user here.
+	        } else {
+	            loggedInMember = memberService.login(request.getMemberId(), request.getPassword());
+	        }
+	        
+	        List<GrantedAuthority> authorities = new ArrayList<>();
+	        if (request.getMemberId().equals("admin")) {
+	            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+	        } else {
+	            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+	        }
+
+	        Authentication auth = new UsernamePasswordAuthenticationToken(loggedInMember.getMemberId(), loggedInMember.getPassword(), authorities);
+
+
+	        
+	        // Security Context에 Authentication 객체 저장
+	        SecurityContextHolder.getContext().setAuthentication(auth);
+	        
+	        return ResponseEntity.ok(loggedInMember);  // 로그인 성공 시 사용자 정보 반환 
+
+	    } catch (UsernameNotFoundException e) {
+	       return ResponseEntity.status(401).body("일치하는 아이디가 없습니다.");  // 아이디 불일치 
+
+	    } catch (BadCredentialsException e) {
+	       return ResponseEntity.status(401).body("입력하신 정보가 일치하지 않습니다.");  // 비밀번호 불일치 
+	    }
+	}
+	
 	/*
 	 * [참고] 추후에 변동될 사항이 많으니, 기본 예로 볼 것 매핑 경로나 반환 경로는 임의로 정해둔 것이니 추후 상황에 맞게 수정할 것
 	 * 컨트롤러에 대한 의견/아이디어가 있으면 고민하지 말고 말할 것
 	 */
 
-	@PreAuthorize("isAnonymous()")
-	@GetMapping("/member_login_page")
-	public void login() {
-	}
+
 }

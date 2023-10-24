@@ -10,5 +10,6 @@ public class Inquiry {
 	private String memberId;
 	private String content;
 	private String inquiryType;
+	private String inquiryTitle;
 	
 }

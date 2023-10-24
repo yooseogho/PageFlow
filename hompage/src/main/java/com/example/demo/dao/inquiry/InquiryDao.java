@@ -17,7 +17,8 @@ public interface InquiryDao {
 	public List<Inquiry> findByMemberId(String memberId);
 	
 	// 새로운 문의사항을 저장
-	@Insert("insert into inquiry(inno, memberId, content, inquiryType) values(#{inno}, #{memberId}, #{content}, #{inquiryType})")
+	@Insert("insert into inquiry(inno, content, inquiryType,inquiryTitle) values(#{inno}, #{content}, #{inquiryType},#{inquiryTitle})")
+	@SelectKey(statement = "select inquiry_seq.nextval from dual", keyProperty = "inno", before = true, resultType = Long.class)
 	public Integer save(Inquiry inquiry);
 	
 	// 문의사항 내용 수정

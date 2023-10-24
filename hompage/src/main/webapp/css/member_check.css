@@ -20,51 +20,7 @@ body {
 
 }
 
-header {
-    border: 1px solid red;
-    height: 100px;
-    display: flex;
-    justify-content: space-between;
-}
 
-
-.h_button_area {
-    height: 49px;
-    display: flex;
-    justify-content: end;
-}
-
-.h_button {
-    height: 49px;
-    margin-left: 10px;
-}
-
-main {
-	padding-bottom: 100px;
-}
-
-.contents_wrap {
-    padding-top: 42px;
-}
-
-.contents_inner {
-    width: 1200px;
-    margin: 0 auto;
-}
-
-.inner_header {
-    width: 1200px;
-    margin: 0 auto 50px;
-
-}
-
-.header_text {
-    line-height: 30px;
-    height: 30px;
-    font-weight: 700;
-    font-size: 18px;
-
-}
 
 .inner_main {
     padding: 0;

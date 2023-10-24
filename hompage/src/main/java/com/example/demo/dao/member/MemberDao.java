@@ -16,7 +16,7 @@ public interface MemberDao {
 	@Insert("insert into member (member_id, grade_code, member_name, member_email, password, member_tel, member_profile, joinday, birthday, member_point) values(#{memberId}, '1', #{memberName}, #{memberEmail}, #{password}, #{memberTel}, #{memberProfile}, sysdate, #{birthday}, 0)")
 	public Integer save(Member member);
 
-	// 아이디 중복
+	// 아이디 중복 	
 	@Select("select * from member where member_id=#{memberId} and rownum=1")
 	public Member findById(String memberId);
 	
@@ -34,11 +34,12 @@ public interface MemberDao {
 	
 	// 이메일 변경
 	@Update("update member set member_email=#{memberEmail} where member_id=#{memberId}")
-	public Integer changeMemberEmail(String memberEmail, String password);
+	public Integer changeMemberEmail(String memberId, String memberEmail);
+
 	
 	// 전화번호 변경
 	@Update("update member set member_tel=#{memberTel} where  member_id=#{memberId}")
-	public Integer changeMemberTel(String memberTel, String password);
+	public Integer changeMemberTel(String memberId,String memberTel);
 	
 	// 프로필사진 변경
 	@Update("update member set member_profile=#{memberProfile} where member_id=#{memberId}")
@@ -56,8 +57,17 @@ public interface MemberDao {
 	@Select("select member_id from member where member_tel=#{memberTel}")
 	public Member findIdByTel(String memberTel);
 	
-    
-    
+	
+	// 이메일 중복 확인
+	@Select("select * from member where member_email=#{memberEmail} and rownum=1")
+	public Member findByEmail(String memberEmail);
+	
+
+
+	
+	
+
+	
     
 
 	

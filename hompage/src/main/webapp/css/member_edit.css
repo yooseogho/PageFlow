@@ -142,9 +142,11 @@ tbody td {
     width: 450px;
 }
 
+
 .form_ip_pw {
     position: relative;
 }
+
 
 .form_ip_pw > input {
     padding: 0 48px 0 14px;
@@ -164,6 +166,138 @@ tbody td {
     transition: border-color 0.2s ease-out;
     outline: none;
 }
+
+
+.changeEmail_passwordCheck > input ,
+.changeTel_passwordCheck > input,
+.changeTel > input
+{
+    padding: 0 48px 0 14px;
+    display: inline-block;
+    width: 50%;
+    height: 44px;
+    padding: 0 14px 2px;
+    color: #000;
+    font-size: 14px;
+    line-height: 42px;
+    letter-spacing: -0.01em;
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease-out;
+    outline: none;
+}
+
+.changeEmail > input {
+	margin-top: 10px;
+    padding: 0 48px 0 14px;
+    display: inline-block;
+    width: 50%;
+    height: 44px;
+    padding: 0 14px 2px;
+    color: #000;
+    font-size: 14px;
+    line-height: 42px;
+    letter-spacing: -0.01em;
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease-out;
+    outline: none;
+}
+
+.changeEmail_passwordCheck .btn_ip,
+.changeEmail .btn_ip,
+.changeTelPassword_btn
+.changeTel_btn,
+.changeTelPassword_btn,
+.changeTel_btn
+{
+	
+	margin-left: 6px;
+	padding: 0 5px;
+    min-width: 133px;
+    width: 133px;
+     color: #474c98;
+    border: 1px solid #5055b1;
+    background: #fff;
+    display: -webkit-inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 86px;
+    height: 44px;
+    padding: 0 19px 1px;
+    border-radius: 6px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    cursor: pointer;
+    
+}
+
+button[class^=btn_], a[class^=btn_] {
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+button[class^=btn_] .text, a[class^=btn_] .text {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+
+.changeEmail .btn_ip {
+	margin-top: 10px;
+}
+
+
+	label span {
+    position: relative;
+    top: -20px;  /* 위로 10px 이동 */
+}
+
+
+	#emailChangeButton,
+	#telChange_btn,
+	#quit
+	
+	{
+		
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    display: -webkit-inline-flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -moz-box-orient: horizontal;
+    -moz-box-direction: normal;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    height: 38px;
+    padding: 0 13px 1px;
+    border-radius: 6px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    }
+
 
 .inner_main_bottom {
     margin-top: 40px;
@@ -202,3 +336,5 @@ tbody td {
 footer {
 	margin : 50px auto;
 }
+
+

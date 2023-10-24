@@ -9,6 +9,9 @@ import java.time.temporal.ChronoUnit;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +28,7 @@ public class MemberService {
   MemberDao memberDao;
   @Autowired
   private PasswordEncoder encoder;
+  
   @Value("${profileFolder}")
   private String profileFolder;
   @Value("${defaultProfile}")
@@ -42,7 +46,10 @@ public class MemberService {
   public Boolean join(MemberDto.Join dto) {
     MultipartFile profile = dto.getProfile();
     String profileName = defaultProfile;
-        
+
+    
+//  dtf 객체에 날짜 형식을 지정
+
     // 프로필 사진이 존재하고 비어있지 않다면
     if(profile != null && !profile.isEmpty()) {
         // 파일의 확장자를 추출하고
@@ -71,11 +78,33 @@ public class MemberService {
     return memberDao.save(member)==1;
   }
   
-//  3. 전화번호 중복 확인 (SELECT 문)
-  public Boolean telAvailable(String memberTel) {
-//    전화번호가 겹치면 false, 그렇지 않으면 true 반환
-    return memberDao.findByTel(memberTel)==null;
+//3. 전화번호 중복 확인 (SELECT 문)
+public Boolean telAvailable(String memberTel) {
+//  전화번호가 겹치면 false, 그렇지 않으면 true 반환
+  return memberDao.findByTel(memberTel)==null;
+}
+
+//  3-1 이메일 중복 확인
+  public Boolean checkEmailAvailable(String memberEmail) {
+      return memberDao.findByEmail(memberEmail) == null;
   }
+  
+  // 3-2 로그인 
+  public Member login(String memberId, String password) {
+	    // 아이디로 사용자 정보를 조회합니다.
+	    Member member = memberDao.findById(memberId);
+
+	    // 사용자 정보가 없으면
+	    if (member == null) {
+	        throw new UsernameNotFoundException("일치하는 아이디가 없습니다.");
+	    }
+	    // 비밀번호가 일치하지 않으면
+	    if (!encoder.matches(password, member.getPassword())) {
+	        throw new BadCredentialsException("입력하신 정보가 일치하지 않습니다.");
+	    }
+	    return member;  // 로그인 성공 시 사용자 정보를 반환합니다.
+	}
+
   
 //  4. 내 정보 보기 (SELECT 문)
   public Read read(String memberId) {
@@ -83,33 +112,53 @@ public class MemberService {
     
 //    dtf 객체에 날짜 형식을 지정
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");
+   
     String birthday = dtf.format(m.getBirthday());
     String joinday = dtf.format(m.getJoinday());
+ 
     
 //    days에 입력되어 있는 가입일~현재 날짜 사이를 계산하여
 //    가입한 지 얼마나 되었는지를 담음
     Long days = ChronoUnit.DAYS.between(m.getJoinday(), LocalDate.now());
     
     String profile = profileUrl + m.getMemberProfile();
-    
-    return new MemberDto.Read(m.getMemberId(), m.getMemberEmail(), birthday, joinday, days, profile);
+    // DTO에서 전화번호 및 이름 추가 수정10-15 유석호
+    return new MemberDto.Read(m.getMemberId(), m.getMemberEmail(), birthday, joinday, days, profile,m.getMemberName(),m.getMemberTel());
   }
   
 //  5. 비밀번호 변경 (UPDATE 문)
   public Boolean changePass(String password, String memberId) {
-    return memberDao.changePassword(password, memberId)==1;
+	  String newpassword = encoder.encode(password);
+    return memberDao.changePassword(newpassword, memberId)==1;
+    
   }
+  
+  // 5.5 비밀번호 중복확인	 //10-17 유석호 
+  public Boolean passwordAvailable(String memberId, String newPassword) {
+      Member member = memberDao.findById(memberId);
+      if (member == null) {
+          throw new UsernameNotFoundException("User not found with username: " + memberId);
+      }
+
+      // 현재 비밀번호와 새로운 비밀번호가 같은지 확인
+      return !encoder.matches(newPassword, member.getPassword());
+  }
+
   
 //  6. 이메일 변경 (UPDATE 문)
-  public Boolean changeEmail(String memberEmail, String password) {
-    return memberDao.changeMemberEmail(memberEmail, password)==1;
-  }
-  
+public Boolean changeEmail(String memberId, String memberEmail) {
+   return memberDao.changeMemberEmail(memberId, memberEmail)==1;
+}
 //  7. 전화번호 변경 (UPDATE 문)
-  public Boolean changeTel(String memberTel, String password) {
-    return memberDao.changeMemberTel(memberTel, password)==1;
-  }
-  
+public Boolean changeTel(String memberId, String memberTel) {
+    Integer result = memberDao.changeMemberTel(memberId, memberTel);
+    
+    // Update 문은 성공적으로 실행되면 affected row의 수를 반환합니다.
+    // 따라서 결과가 0보다 크다면 업데이트가 성공적으로 이루어진 것입니다.
+    return (result > 0);
+}
+
+
 ////  8. 프로필 사진 변경 (UPDATE 문)
 //  public Boolean changeProfile(MultipartFile newProfile, String memberId) {
 //    return memberDao.changeProfile(newProfile, memberId)==1;

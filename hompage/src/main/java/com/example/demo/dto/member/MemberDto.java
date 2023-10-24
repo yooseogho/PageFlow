@@ -2,6 +2,7 @@ package com.example.demo.dto.member;
 
 import java.time.LocalDate;
 
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,7 +25,7 @@ public class MemberDto {
 		private Long memberPoint;
 		
 		@DateTimeFormat(pattern="yyyy-MM-dd")
-		private LocalDate birthday;
+		private  LocalDate birthday; 
 		private MultipartFile profile;
 		
 		public Member toEntity(String profileName, String pwd) {
@@ -32,6 +33,7 @@ public class MemberDto {
 		}
 	}
 	
+	//Read 에서 이름,번호 추가
 	@Data
 	@AllArgsConstructor
 	public static class Read {
@@ -41,6 +43,8 @@ public class MemberDto {
 		private String joinday;
 		private Long days;
 		private String memberProfile;	
+		private String memberName;
+		private String memberTel;
 	}
 	
 	@Data
@@ -51,5 +55,15 @@ public class MemberDto {
 	  private String memeberName;
 	  private String memberEmail;
 	  private String memberTel;
+	}
+	
+	// 로그인할 때 팔요함 10-20 유석호
+	@Data
+	@AllArgsConstructor
+	@NoArgsConstructor
+	public static class Login {
+	     private String memberId; 
+	     private String password;
+
 	}
 }

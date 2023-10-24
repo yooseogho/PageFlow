@@ -1,6 +1,7 @@
 package com.example.demo.controller.inquiry;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,23 +11,22 @@ import com.example.demo.entity.inquiry.Inquiry;
 import com.example.demo.service.inquiry.InquiryService;
 
 @Controller
-@RequestMapping("/inquiries")
 public class InquiryController {
   @Autowired
   private InquiryService inquiryService;
 
   // 문의사항 상세 정보 조회
-  @GetMapping("/{inno}")
-  public String viewInquiryDetails(@PathVariable Long inno, Model model) {
-    Inquiry inquiry = inquiryService.getInquiryByInno(inno);
-    if (inquiry == null) {
-      // 문의사항이 존재하지 않을 경우 에러 페이지로 리다이렉트 또는 다른 처리 수행
-      return "redirect:/error";
-    }
-
-    model.addAttribute("inquiry", inquiry);
-    return "inquiry/details"; // 상세 정보 페이지로 이동
-  }
+//  @GetMapping("/{inno}")
+//  public String viewInquiryDetails(@PathVariable Long inno, Model model) {
+//    Inquiry inquiry = inquiryService.getInquiryByInno(inno);
+//    if (inquiry == null) {
+//      // 문의사항이 존재하지 않을 경우 에러 페이지로 리다이렉트 또는 다른 처리 수행
+//      return "redirect:/error";
+//    }
+//
+//    model.addAttribute("inquiry", inquiry);
+//    return "inquiry/details"; // 상세 정보 페이지로 이동
+//  }
 
   // 문의사항 등록 양식 표시
   @GetMapping("/new")
@@ -34,19 +34,20 @@ public class InquiryController {
     return "inquiry/form"; // 문의사항 등록 양식 페이지로 이동
   }
 
-  // 문의사항 등록 처리
-  @PostMapping("/new")
-  public String createInquiry(@ModelAttribute Inquiry inquiry, RedirectAttributes redirectAttributes) {
-    Boolean result = inquiryService.createInquiry(inquiry);
-    if (result) {
-      // 등록 성공 시 메시지를 추가하고 성공 페이지로 리다이렉트
-      redirectAttributes.addFlashAttribute("successMessage", "문의사항이 등록되었습니다.");
-      return "redirect:/inquiries/" + inquiry.getInno();
-    } else {
-      // 등록 실패 시 에러 페이지로 리다이렉트 또는 다른 처리 수행
-      return "redirect:/error";
-    }
-  }
+		  // 문의사항 등록 처리
+  		 @Secured("ROLE_USER")
+		  @PostMapping("/customer_inquiry_write_page")
+		  public String createInquiry(@ModelAttribute Inquiry inquiry, RedirectAttributes redirectAttributes) {
+		    Boolean result = inquiryService.createInquiry(inquiry);
+		    if (result) {
+		      // 등록 성공 시 메시지를 추가하고 성공 페이지로 리다이렉트
+		      redirectAttributes.addFlashAttribute("successMessage", "문의사항이 등록되었습니다.");
+		      return "redirect:/customer_inquiry_list";
+		    } else {
+		      // 등록 실패 시 에러 페이지로 리다이렉트 또는 다른 처리 수행
+		      return "redirect:/error";
+		    }
+		  }
 
   // 문의사항 수정 양식 표시
   @GetMapping("/{inno}/edit")
@@ -71,7 +72,7 @@ public class InquiryController {
       redirectAttributes.addFlashAttribute("successMessage", "문의사항이 수정되었습니다.");
       return "redirect:/inquiries/" + inno;
     } else {
-      // 수정 실패 시 에러 페이지로 리다이렉트 또는 다른 처리 수행
+     // 수정 실패 시 에러 페이지로 리다이렉트 또는 다른 처리 수행
       return "redirect:/error";
     }
   }

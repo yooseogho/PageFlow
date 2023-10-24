@@ -7,8 +7,11 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/login.css">
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <title>Insert title here</title>
+<script src="script/login.js"></script>
+
 </head>
 
 
@@ -25,10 +28,10 @@
 		<main>
 			<section>
 				<div class="login_form">
-					<form action="member_login_page" method="post">
+					<form action="/member_login_page" method="post">
 						<div class="login_check">
 							<div class="login_check_id">
-								<input type="text" name="username" placeholder="아이디를 입력해주세요"
+								<input type="text" name="memberId" placeholder="아이디를 입력해주세요"
 									class="input_check">
 							</div>
 							<div class="login_check_pw">
@@ -36,6 +39,8 @@
 									placeholder="비밀번호를 입력해주세요" class="input_check">
 							</div>
 						</div>
+						<span id="login-msg"></span><br>
+							<span id="login-msg1"></span>
 						<div class="login_btn_area">
 							<button type=submit class="login_btn" id="login">로그인</button>
 						</div>

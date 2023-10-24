@@ -1,5 +1,7 @@
+
+// 회원가입시 아이디 패턴 체크
 async function memberIdCheck() {
-	const pattern = /^(?=.*[a-z])(?=.*\d)[a-z\d]{6,10}$/i;
+	const pattern = /^(?=.*[a-z])(?=.*\d)[a-z\d]{6,11}$/i;
 	const memberId = $('#memberId').val();
 	const msgElement = $('#memberId-msg');
 
@@ -11,7 +13,7 @@ async function memberIdCheck() {
 	}
 
 	if (!pattern.test(memberId)) {
-		msgElement.text('아이디는 영숫자 6~10자입니다').addClass('fail small-text');
+		msgElement.text('아이디는 영숫자 6~11자입니다').addClass('fail small-text');
 		return false;
 	}
 
@@ -33,11 +35,12 @@ async function memberIdCheck() {
 
 
 
-
+// 비밀번호 패턴체크 시 필요한 변수 설정
 let isPasswordValid = false;
 
+// 회원가입 비밀번호 패턴체크
 function passwordCheck() {
-	$('#password-msg').text('');
+	$('#password-msg').text(''); 
 
 	const password = $('#password').val();
 
@@ -49,6 +52,7 @@ function passwordCheck() {
 
 	let typesCount = [lowerCaseLetters.test(password), upperCaseLetters.test(password), numbers.test(password), specialCharacters.test(password)].filter(Boolean).length;
 
+	// 비밀번호가 공백일 경우 메세지 출력
 	if (password === '') {
 		$('#password-msg').text('비밀번호를 입력하세요').attr('class', 'fail small-text');
 		isPasswordValid = false;
@@ -85,6 +89,8 @@ function passwordCheck() {
 
 
 
+// 2번쨰 비밀번호 확인 입력란
+// 첫번째 유효성 검사 통과하고 첫번쨰 비밀번호랑 일치해야함.
 function checkPasswordCheck() {
 	const password = $("#password").val();
 	const confirmPassword = $("#checkPassword").val();
@@ -121,7 +127,7 @@ function checkPasswordCheck() {
 	return false;
 }
 
-
+// 생년월일 입력 date 타입으로 설정함
 function birthdayCheck() {
 	$('#birthday-msg').text('');
 	const birthday = $('#birthday').val();
@@ -132,27 +138,18 @@ function birthdayCheck() {
 	return true;
 }
 
-function memberTelCheck() {
-	$('#memberTel-msg').text('');  // 초기 메시지 제거
-	const memberTel = $('#memberTel').val();  // 입력값 가져오기
-
-	if (memberTel === '') {  // 입력값이 없는 경우
-		$('#memberTel-msg')
-			.text('핸드폰 번호를 입력해주세요.')
-			.attr('class', 'fail small-text');
-		return false;
-	}
-
-	const pattern = /^[0-9]{11}$/;  // 
-
-	if (!pattern.test(memberTel)) {  // 패턴 불일치 시
-		$('#memberTel-msg')
-			.text('올바른 핸드폰 번호를 입력해주세요.')
-			.attr('class', 'fail small-text');
-		return false;
-	}
-
-	return true;  // 모든 검사 통과 시 true 반환
+// 전화번호 중복확인
+async function checkTelAvailable(tel) {
+    let result = false;
+    await $.ajax({
+        url: '/member/memberTel/available',
+        method: 'GET',
+        data: { memberTel: tel },
+        success: function(response) {
+            result = response;
+        }
+    });
+    return result;
 }
 
 
@@ -160,10 +157,8 @@ function memberTelCheck() {
 
 
 
-
-
 let composing = false;
-
+// 이름 패턴 체크 국내 사이트 이기떄문에 한국어로만 입력 가능함
 function nameCheck() {
 	const name = $('#memberName').val();
 	const nonKorean = /[^가-힣]/;
@@ -183,6 +178,7 @@ function nameCheck() {
 	}
 }
 
+// 이메일 인증
 function email() {
 	$.get("/getSessionEmail", function(data) {
 		$("#memberEmail").val(data);
@@ -195,7 +191,7 @@ function email() {
 
 
 
-
+// 위 함수를을 출력하기 위한 JavaScript 코드를 정의하기 위한 함수
 $(document).ready(function() {
 	$('#memberId').val(localStorage.getItem('memberId'));
 	$('#password').val(localStorage.getItem('password'));
@@ -203,7 +199,6 @@ $(document).ready(function() {
 
 	$('#memberName').on('blur', nameCheck);
 	$('#birthday').on('blur', birthdayCheck);
-	$('#memberTel').on('blur', memberTelCheck);
 	$('#sendEmail').on('blur', email);
 
 	/* --------------------------------------------------------------------------- */
@@ -251,6 +246,7 @@ $(document).ready(function() {
 				nameCheck();
 			}
 		});
+	//  'input' 함수들을 실시간으로 체크한다
 	$('#password').on('input', function(e) {
 		passwordCheck();
 		checkPasswordCheck();  // 비밀번호 확인 필드도 체크합니다.
@@ -264,6 +260,13 @@ $(document).ready(function() {
 	$('#memberId').on('input', function(e) {
 		memberIdCheck();
 	});
+	
+		$('#memberTel').on('input',function(){
+		memberTelCheck();
+	})
+	//----------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	// password_icon눈모양  아이콘을 클릭시 password의 Type을 text으로 바꾼다
 	$('#password_icon').on('click', function() {
 		const passwordField = $("#password");
 		if (passwordField.attr('type') === "password") {
@@ -274,7 +277,8 @@ $(document).ready(function() {
 			$(this).css("background-image", "url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_eye@2x.png)");
 		}
 	});
-
+	
+	// password_icon눈모양  아이콘을 클릭시 password의 Type을 text으로 바꾼다
 	$('#password_icon1').on('click', function() {
 		const passwordField = $("#checkPassword");
 		if (passwordField.attr('type') === "password") {
@@ -285,7 +289,66 @@ $(document).ready(function() {
 			$(this).css("background-image", "url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_eye@2x.png)");
 		}
 	});
+		
+		
+	
+	
+	// 전화번호 패턴체크 및 중복확인
+		async function memberTelCheck() {
+    $('#memberTel-msg').text('');  // 초기 메시지 제거
+    let memberTel = $('#memberTel').val();  // 입력값 가져오기
 
+    if (memberTel === '') {  // 입력값이 없는 경우
+        $('#memberTel-msg')
+            .text('핸드폰 번호를 입력해주세요.')
+            .css({ 'color': 'red', 'font-size': '12px' });
+        return;
+    }
+
+    // '-' 제거 후 숫자만 추출하여 재조립  사용가능한 번호 입력시 하이픈(-)자동생성
+    memberTel = memberTel.replace(/-/g, '');
+    const onlyNumPattern = /^\d+$/; // 숫자만 있는 문자열에 대한 패턴
+
+    if (!onlyNumPattern.test(memberTel)) { // '-' 제거 후 숫자만 있는지 확인
+        $('#memberTel-msg').text('숫자만 입력 가능합니다.').addClass('fail small-text');
+        return false;
+    }
+
+
+	// 중복시 메세지 출력
+	if (!(await checkTelAvailable(memberTel))) {
+		$('#memberTel-msg').text('이미 사용중인 핸드폰 번호 입니다.').css('color','red');
+	    return false;
+	}
+
+
+const pattern = /^[0-9]{11}$/;
+
+// '-' 제거 후 숫자만 추출하여 재조립
+let pureNumber = memberTel.replace(/-/g, '');
+	
+if (!pattern.test(pureNumber)) {
+    $('#memberTel-msg')
+        .text('올바른 핸드폰 번호를 입력해주세요.')
+        .css({ 'color': 'red', 'font-size': '12px' });
+    return false;
+}
+
+// 위의 모든 검사가 통과한 경우 (즉, 전화번호 형식이 올바르고 중복되지 않은 경우)
+$('#memberTel-msg')
+    .text('사용 가능한 핸드폰 번호입니다.')
+    .css({ 'color': 'green', 'font-size': '12px' });
+
+if (memberTel.length >= 4 && memberTel.length < 7) {
+    memberTel = `${pureNumber.substr(0, 3)}-${memberTel.substr(3)}`;
+} else if (memberTel.length >= 7) {
+    memberTel = `${memberTel.substr(0, 3)}-${memberTel.substr(3, 4)}-${memberTel.substr(7)}`;
+}
+
+$('#memberTel').val(memberTel);
+}
+
+	// 회원가입 버튼 누르기 모든 유효성검사가 통과시  submit
 	$('#join').on('click', async function() {
 		let conditionChecked = await memberIdCheck();
 		console.log(conditionChecked);
