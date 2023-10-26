@@ -47,15 +47,17 @@ public class MemberDto {
 		private String memberTel;
 	}
 	
+	// profile_page에서 사용
 	@Data
 	@AllArgsConstructor
 	@NoArgsConstructor
-	public static class Update {
-	  private String memberId;
-	  private String memeberName;
-	  private String memberEmail;
-	  private String memberTel;
+	public static class Profile {
+	    private String memberId;
+	    private String memberName;
+	    private String memberProfile;
 	}
+
+	
 	
 	// 로그인할 때 팔요함 10-20 유석호
 	@Data
@@ -66,4 +68,8 @@ public class MemberDto {
 	     private String password;
 
 	}
+	
+	
+	
+	
 }

@@ -12,13 +12,21 @@
 			<div class="blur_img_box"></div>
 			<div class="profile_inner">
 				<div class="profile_thumb_box">
-					<a href="/member_profile_page" class="btn_setting">
-						<div class="thumb_box"></div>
+					<a href="/member_profile_page" class="btn_setting"> <img
+						src="${member.memberProfile}"
+						style="width: 62px; height: 62px; border-radius: 100%;">
 					</a>
+
 				</div>
+
+				<!--  
+<img src="${empty member.memberProfile ? '/upload/default/defaultProfile.png' : member.memberProfile}"
+	style="width: 140px; height: 140px; border-radius: 100%;">
+	-->
+
 				<div class="profile_name_box">
-					<span class="name" data-role="">xxx님</span> <span data-role="badge"
-						class="badge"> <a data-role="grade"
+					<span class="name" data-role="">${member.memberName}님</span> <span
+						data-role="badge" class="badge"> <a data-role="grade"
 						class="badge_lg badge_pill badge_grade_friends"
 						href="/member_grade_page"> <span class="text">프렌즈</span>
 					</a>
@@ -52,7 +60,8 @@
 							href="/customer_inquiry_list_page">문의 내역</a></li>
 					</ul>
 					<ul class="snb_list">
-						<li class="snb_item"><a href="/customer_inquiry_list_page">1:1 문의</a></li>
+						<li class="snb_item"><a href="/customer_inquiry_list_page">1:1
+								문의</a></li>
 					</ul>
 				</li>
 				<li class="snb_item">

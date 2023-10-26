@@ -9,8 +9,8 @@ import java.time.temporal.ChronoUnit;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -77,6 +77,54 @@ public class MemberService {
 //    INSERT 문을 반환하여 행을 추가함
     return memberDao.save(member)==1;
   }
+  
+  //------------------------------------------------------------------------------------------------------------
+  //10-24 유석호
+  // 2-1 member 정보 가져오기 위한 매서드
+  public MemberDto.Profile MemberProfile(String memberId) {
+	    Member member = memberDao.findById(memberId);
+
+	    if (member == null) {
+	        throw new UsernameNotFoundException("User not found: " + memberId);
+	    }
+
+	    return new MemberDto.Profile(member.getMemberId(), member.getMemberName(), member.getMemberProfile());
+	}
+
+
+  //------------------------------------------------------------------------------------------------------------
+  //2-2 프사변경
+  @Secured("ROLE_USER")
+  @Transactional
+  public Boolean changeProfile(MultipartFile newProfile, String memberId) {
+      Member member = memberDao.findById(memberId);
+
+      if (member == null) {
+          throw new UsernameNotFoundException("User not found: " + memberId);
+      }
+
+      String newProfileName;
+      if (newProfile != null && !newProfile.isEmpty()) {
+          newProfileName = memberId + "_" + newProfile.getOriginalFilename();
+
+          try {
+              // 파일을 저장
+              newProfile.transferTo(new File(profileFolder + newProfileName));
+          } catch (IOException e) {
+              // 파일 저장 실패
+              e.printStackTrace();
+              return false;
+          }
+      } else {
+          // newProfile가 null이거나 비어 있을 때 기본 이미지로 변경
+          newProfileName = "defaultProfile.png";
+      }
+
+      memberDao.changeProfile(newProfileName, memberId);
+
+      return true;
+  }
+
   
 //3. 전화번호 중복 확인 (SELECT 문)
 public Boolean telAvailable(String memberTel) {
@@ -159,10 +207,7 @@ public Boolean changeTel(String memberId, String memberTel) {
 }
 
 
-////  8. 프로필 사진 변경 (UPDATE 문)
-//  public Boolean changeProfile(MultipartFile newProfile, String memberId) {
-//    return memberDao.changeProfile(newProfile, memberId)==1;
-//  }
+
   
 //  9. 회원 탈퇴 (DELETE 문)
   public Boolean quit(String memberId) {
