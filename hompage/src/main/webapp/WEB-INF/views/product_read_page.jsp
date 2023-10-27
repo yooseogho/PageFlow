@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/product_read.css">
-<title>Insert title here</title>
+<title>상품 보기</title>
 </head>
 <body>
 	<div id="page">

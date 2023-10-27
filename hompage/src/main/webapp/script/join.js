@@ -200,6 +200,16 @@ $(document).ready(function() {
 	$('#memberName').on('blur', nameCheck);
 	$('#birthday').on('blur', birthdayCheck);
 	$('#sendEmail').on('blur', email);
+	
+	// 사용자가 이전 페이지로 돌아가는 등의 행동을 하면 모든 입력된 정보를 삭제
+	window.addEventListener('beforeunload', function(e) {
+    localStorage.removeItem('memberId');
+    localStorage.removeItem('password');
+    localStorage.removeItem('checkPassword');
+    localStorage.removeItem('memberName');
+    localStorage.removeItem('memberTel');
+    localStorage.removeItem('birthday');
+	});
 
 	/* --------------------------------------------------------------------------- */
 	// 이메일 값 들어 갔는지 확인하는 함수 생성
@@ -232,7 +242,7 @@ $(document).ready(function() {
 	$('#memberEmail').on('input', checkEmailInput);
 	/* --------------------------------------------------------------------------- */
 
-	// input 및 compositionend 이벤트 발생 시마다 nameCheck 함수를 호출합니다.
+	// input 및 compositionend 이벤트 발생 시마다 nameCheck 함수를 호출
 	$('#memberName')
 		.on('compositionstart', function(e) {
 			composing = true;

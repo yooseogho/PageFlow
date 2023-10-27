@@ -1,3 +1,13 @@
+/*
+ * 10/25 16:09
+ * 수정자 : 갈현
+ * 수정 내용 : 이메일 파일의 경로 변경
+ * *참고*
+ * 이메일 파일 경로는 실제로 변경되었음
+ * 원본 : src/main/resources/mail.html
+ * 수정본 : src/main/resources/toSend/mail.html
+ * */
+
 package com.example.demo.email;
 
 import java.io.*;
@@ -8,6 +18,7 @@ import javax.mail.*;
 import javax.mail.internet.*;
 import javax.servlet.http.*;
 
+import org.springframework.core.io.*;
 import org.springframework.mail.javamail.*;
 import org.springframework.stereotype.Service;
 
@@ -94,12 +105,14 @@ public class EmailService {
       e.printStackTrace();
     }
 
-    // 예외가 발생 후 진행 코드(이메일 전송 실패)
+    // 예외가 발생 후 진행 (이메일 전송 실패)
     return null;
   }
 
+//  이메일 파일 경로 변경
   private String readHtmlFile(String filename) throws IOException {
-    InputStream in = getClass().getResourceAsStream("/" + filename);
+    Resource resource = new ClassPathResource("toSend/" + filename);
+    InputStream in = resource.getInputStream();
 
     if (in == null) {
       throw new FileNotFoundException("file not found: " + filename);

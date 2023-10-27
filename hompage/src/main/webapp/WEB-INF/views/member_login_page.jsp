@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/css/login.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<title>Insert title here</title>
+<title>로그인</title>
 <script src="script/login.js"></script>
 
 </head>

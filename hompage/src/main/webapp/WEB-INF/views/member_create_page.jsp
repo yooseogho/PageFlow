@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="/css/member_create.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<title>Insert title here</title>
+<title>PageFlow - 회원 가입</title>
 <script src="/script/join.js"></script>
 
 <style>

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/non_user_order_list.css">
-<title>Insert title here</title>
+<title>비회원 주문 확인</title>
 </head>
 <body>
 	<div id="page">	

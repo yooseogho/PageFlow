@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/member_create_success.css">
-<title>Insert title here</title>
+<title>환영합니다!</title>
 </head>
 <body>
 	<div id="page">

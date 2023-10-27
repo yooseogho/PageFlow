@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/product_search_list.css">
-<title>Insert title here</title>
+<title>검색 결과</title>
 </head>
 <body>
 	<div id="page">

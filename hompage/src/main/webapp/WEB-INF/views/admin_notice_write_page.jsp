@@ -19,7 +19,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.js"></script>
-<title>Insert title here</title>
+<title>(관리자)공지사항 작성</title>
 </head>
 <script type="text/javascript">
 	var jq = jQuery.noConflict(); // jQuery.noConflict()를 사용하여 $ 충돌 방지

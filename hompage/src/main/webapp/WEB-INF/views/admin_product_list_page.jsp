@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/admin_product_list.css">
-<title>Insert title here</title>
+<title>(관리자)상품 목록</title>
 
 </head>
 <body>

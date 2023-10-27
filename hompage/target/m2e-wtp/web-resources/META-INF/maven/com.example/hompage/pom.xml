@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 10/13 14:
-	작성자(수정자) : 갈현
-	작성(수정) 내용 : 타임리프 비사용으로 인한 타임리프 의존성 제거
+<!-- 10/26 14:12
+		수정자 : 갈현
+		수정 내용 : 스프링 업데이트(2.7.16 => 2.7.17)
  -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -10,7 +10,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.16</version>
+		<version>2.7.17</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<packaging>war</packaging>
@@ -23,6 +23,30 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+		<!-- JSONObject(타입/클래스)를 사용하기 위한 의존성 추가 -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20210307</version>
+		</dependency>
+		<!-- 네이버 API 사용을 위한 의존성 부여 -->
+		<dependency>
+			<groupId>com.github.scribejava</groupId>
+			<artifactId>scribejava-apis</artifactId>
+			<version>6.9.0</version>
+		</dependency>
+		<!-- naver 로그인 -->
+		<dependency>
+			<groupId>com.github.scribejava</groupId>
+			<artifactId>scribejava-core</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+		<!-- 스프링 업데이트 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-properties-migrator</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		<!-- 아파치 톰캣 종속성 제공 의존성 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -45,11 +69,6 @@
 			<artifactId>accessors-smart</artifactId>
 			<version>2.4.11</version>
 		</dependency>
-		<!-- 타임리프 의존성 -->
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency> -->
 		<!-- YAML 사용 의존성 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>

@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 
 <link rel="stylesheet" href="/css/member_edit.css">
-<title>Insert title here</title>
+<title>PageFlow</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="script/member_edit.js"></script>

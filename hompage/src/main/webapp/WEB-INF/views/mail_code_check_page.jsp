@@ -4,55 +4,102 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/css/member_create.css">
+<link rel="stylesheet" href="/css/check.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<title>Insert title here</title>
+<title>PageFlow - 이메일 인증하기</title>
 <script>
-	$(document).ready(function() {
-		let authCode; // 서버에서 받은 인증코드 저장 변수
+  function appearAuthCode() {
+    document.getElementById('hasAuthcode').style.display='flex';
+  }
 
-		// 인증 코드 전송 버튼 클릭 이벤트
-		$("#sendEmail").click(function(e) {
-			e.preventDefault();
-			let email = $("input[name='email']").val(); // 이메일 값 가져오기
+  $(document).ready(function() {
+    let authCode; // 서버에서 받은 인증코드 저장 변수
 
-			$.ajax({
-				type : "POST",
-				url : "/login/mailConfirm",
-				data : JSON.stringify({
-					email : email
-				}),
-				contentType : "application/json",
-				success : function(data) {
-					authCode = data; // 서버에서 받은 인증 코드 저장
-					alert("인증 코드가 발송되었습니다. 이메일을 확인해주세요.");
-				},
-				error : function(err) {
-					console.log(err);
-					alert("이메일 전송 중 오류가 발생했습니다.");
-				}
-			});
-		});
+    // 인증 코드 전송 버튼 클릭 이벤트
+    $("#sendEmail").click(function(e) {
+      e.preventDefault();
+      let email = $("input[name='email']").val(); // 이메일 값 가져오기
+      let re = /\S+@\S+\.\S+/;
+      
+      if (email === "") { 
+        alert("이메일을 입력해주세요.");
+        return; 
+      }
+      
+      if (!re.test(email)) {  
+        alert("유효한 이메일 주소를 입력해주세요.");
+        return;  
+      }
+    
+      $.ajax({
+        type : "POST",
+        url : "/login/mailConfirm",
+        data : JSON.stringify({
+          email : email
+        }),
+        contentType : "application/json",
+        success : function(data) {
+          authCode = data; // 서버에서 받은 인증 코드 저장
+          alert("인증 코드가 발송되었습니다. 이메일을 확인해주세요.");
+          appearAuthCode();
+	      },
+	      error : function(err) {
+	        console.log(err);
+	        alert("이메일 전송 중 오류가 발생했습니다.");
+	      }
+	    });
 
-		// 인증 코드 확인 버튼 클릭 이벤트
-		$("#emailConfirm").click(function(e) {
-			e.preventDefault();
-			let inputAuthCode = $("input[name='authCode']").val(); // 입력한 인증코드 값 가져오기
+	    const Timer = document.getElementById('Timer'); //스코어 기록창-분
+	    let time = 180000;
+	    let min = 3;
+	    let sec = 60;
 
-			if (inputAuthCode === authCode) { // 입력한 인증코드와 서버에서 받은 인증코드 비교
-				alert("인증에 성공했습니다.");
+	    Timer.value = min + ":" + '00';
 
-				// /member_create_page 로 리다이렉션
-				window.location.href = "/member_create_page";
+	    function TIMER() {
+	      PlAYTIME = setInterval(function () {
+	        time -= 1000; 
+	        min = time / (60 * 1000); 
 
-			} else {
-				alert("인증에 실패했습니다. 다시 시도해주세요.");
-			}
+	        if (sec > 0) { 
+	          sec -=1;
+	          Timer.value = Math.floor(min) + ':' + sec;
 
-		});
-	});
+	        }
+	        
+	        if (sec === 0) {  
+	          sec=60;
+	          Timer.value=Math.floor(min)+':'+'00'
+	        }
+
+	      },1000);
+    	}
+
+    	TIMER();
+
+    	setTimeout(function () {
+      	clearInterval(PlAYTIME);
+    	},180000);   
+  	});
+
+  	// 인증 코드 확인 버튼 클릭 이벤트
+  	$("#emailConfirm").click(function(e) {
+  	  e.preventDefault();
+  	  let inputAuthCode=$("input[name='authCode']").val(); 
+
+  	  if(inputAuthCode===authCode){ 
+  	  	alert("인증에 성공했습니다.");
+
+  	  	window.location.href="/member_create_page";
+
+  	  }else{
+  	  	alert("인증에 실패했습니다. 다시 시도해주세요.");
+  	  }
+	  });
+});
 </script>
+
 
 </head>
 <body>
@@ -79,24 +126,28 @@
 										<div class="col_box">
 											<div class="valid_check">
 												<div class="input_btn_box">
-													<div class="time_limit">
+													<div class="input_btn_top">
 														<input type="email" class="form_ip" title="이메일 입력"
 															placeholder="실제로 사용하는 이메일을 입력해 주세요." name="email">
+
+														<button type="button" class="btn_lg btn_primary"
+															id="sendEmail">
+															<span class="text">인증 코드 전송</span>
+														</button>
 													</div>
-													<span id='email-msg' class="small-text"></span>
-													<button type="button" class="btn_lg btn_primary"
-														id="sendEmail" style="width: 100%;">
-														<span class="text">인증 코드 전송</span>
-													</button>
-													<div class="time_limit">
-														<input type="text" class="form_ip" title="인증 코드 입력"
-															placeholder="영 대/소문자 + 숫자 포함 8자" maxlength="8"
-															name="authCode">
+													<div id="hasAuthcode" class="time_limit">
+														<div class="has_time_limit">
+															<input type="text" class="form_ip" title="인증 코드 입력"
+																placeholder="영 대/소문자 + 숫자 포함 8자" maxlength="8"
+																name="authCode"> <input id="Timer" class="timer"
+																type="text" value="" readonly />
+														</div>
+
+														<button type="button" class="btn_ip btn_line_primary"
+															id="emailConfirm">
+															<span class="text">인증 코드 확인</span>
+														</button>
 													</div>
-													<button type="button" class="btn_ip btn_line_primary"
-														id="emailConfirm">
-														<span class="text">인증 코드 확인</span>
-													</button>
 												</div>
 											</div>
 											<p style="color: lightgrey;">입력하신 이메일로 발송된 인증 코드를 입력해
@@ -115,4 +166,5 @@
 		</footer>
 	</div>
 </body>
+
 </html>

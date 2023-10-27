@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/cart.css">
-<title>Insert title here</title>
+<title>장바구니</title>
 </head>
 <body>
 	<div id="page">

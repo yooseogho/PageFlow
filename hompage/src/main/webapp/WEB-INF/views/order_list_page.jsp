@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/order_list.css">
-<title>Insert title here</title>
+<title>주문 목록</title>
 </head>
 <body>
 	<div id="page">

@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/css/customer_notice_list.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<title>Insert title here</title>
+<title>(관리자)공지사항 목록</title>
 </head>
 <body>
 	<script>

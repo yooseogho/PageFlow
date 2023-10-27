@@ -52,7 +52,6 @@ public class SampleController {
 	public void science_novel_book() {
 	}
 	
-	
 	// 모든 책 목록 페이지
 	@GetMapping("/category/book")
 	public void book() {
@@ -66,11 +65,6 @@ public class SampleController {
 	// 관리자 1:1 문의사항 리스트 페이지
 	@GetMapping("/admin_inquiry_list_page")
 	public void admin_inquiry_list() {
-	}
-	
-	// 관리자 공지사항 작성 페이지
-	@GetMapping("/admin_notice_write_page")
-	public void admin_notice_write_page() {
 	}
 	
 	// 관리자 페이지
@@ -98,24 +92,9 @@ public class SampleController {
 	public void inquiry_list() {
 	}
 
-	// 공지사항 list 페이지
-	@GetMapping("/customer_notice_list_page")
-	public void notice_list() {
-	}
-
-	// 공지사항 read 페이지
-	@GetMapping("/customer_notice_read_page")
-	public void notice_read() {
-	}
-
 	// 1:1 문의하기 페이지
 	@GetMapping("customer_inquiry_write_page")
 	public void customer_inquiry_write_page() {
-	}
-
-	// 고객센터 페이지
-	@GetMapping("/customer_service_page")
-	public void customer_service_page() {
 	}
 	
 	// 루트 페이지
@@ -123,16 +102,6 @@ public class SampleController {
 	public ModelAndView page() {
 		return new ModelAndView("index");
 	}
-
-	// 회원 정보 수정 전 비밀번호 확인 페이지
-	@GetMapping("/member_check_page")
-	public void member_check_page() {
-	}
-
-	// 회원 가입 페이지
-//	@GetMapping("/member_create_page")
-//	public void member_create_page() {
-//	}
 
 	// 회원 가입 성공 페이지
 	@GetMapping("member_create_success_page")
@@ -142,11 +111,6 @@ public class SampleController {
 	// 배송주소록 페이지
 	@GetMapping("/member_delivery_list_page")
 	public void member_delivery_list_page() {
-	}
-
-	// 회원 정보 수정 페이지
-	@GetMapping("/member_edit_page")
-	public void member_edit_page() {
 	}
 
 	// 아이디 찾기 & 비밀번호 찾기 페이지

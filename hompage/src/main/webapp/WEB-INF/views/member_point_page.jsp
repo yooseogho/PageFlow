@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/member_point.css">
-<title>Insert title here</title>
+<title>내 포인트</title>
 </head>
 <body>
 	<div id="page">

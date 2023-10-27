@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/admin_inquiry_list.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<title>Insert title here</title>
+<title>(관리자)문의사항 답변 목록</title>
 <script>
 	$(document).ready(function(){
 		$('.fold_box_header').on('click', function() {

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/find_id_result.css">
-<title>Insert title here</title>
+<title>아이디 찾기</title>
 </head>
 <body>
 	<div id="page">	

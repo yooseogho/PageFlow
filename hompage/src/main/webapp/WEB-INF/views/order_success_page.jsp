@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/member_order_success.css">
-<title>Insert title here</title>
+<title>주문을 성공하였습니다!</title>
 </head>
 <body>
 	<div id="page">

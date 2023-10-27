@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/index.css">
-<title>Insert title here</title>
+<title>PageFlow</title>
 </head>
 <body>
 	<div id="page">
