@@ -12,9 +12,8 @@
 
 package com.example.demo;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.context.annotation.*;
+import org.springframework.web.servlet.config.annotation.*;
 
 @Configuration
 // WebMvcConfigurer 인터페이스를 상속받음
@@ -34,4 +33,5 @@ public class WebConfig implements WebMvcConfigurer {
 //    참고 : 이메일 코드 확인 페이지에서 회원 가입 페이지로 넘어가는 부분에서만 제외,
 //    사용자가 이전 페이지로 돌아가는 등의 작업으로 이메일 코드 확인 페이지로 갔다가 돌아와도 삭제됨
   }
+
 }

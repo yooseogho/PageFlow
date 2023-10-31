@@ -1,15 +1,11 @@
 package com.example.demo.controller.member;
 
-import java.io.*;
 import java.security.*;
 import java.util.*;
 
 import javax.servlet.http.*;
 
-import org.apache.tomcat.util.json.*;
-import org.json.*;
 import org.springframework.beans.factory.annotation.*;
-import org.springframework.expression.ParseException;
 import org.springframework.http.*;
 import org.springframework.security.access.annotation.*;
 import org.springframework.security.access.prepost.*;
@@ -26,9 +22,7 @@ import org.springframework.web.servlet.*;
 import com.example.demo.dto.member.*;
 import com.example.demo.dto.member.MemberDto.*;
 import com.example.demo.entity.member.*;
-import com.example.demo.entity.orderDetails.*;
 import com.example.demo.service.member.*;
-import com.github.scribejava.core.model.*;
 
 /*
  * 10-24 유석호 
@@ -38,11 +32,9 @@ import com.github.scribejava.core.model.*;
  */
 
 /*
- * 10/27 11:29
- * 작성자 : 갈현
- * 작성 내용 : 네이버 로그인 구현을 위한 컨트롤러 메서드 작성
- * *참고*
- * 절대로 작동할 리 없음, 에러 아니니까 걱정 ㄴㄴ
+ * 10/31 16:38
+ * 수정자 : 갈현
+ * 수정 내용 : 네이버 로그인 OpenAPI 포기로 인한 컨트롤러 메서드 삭제
  * */
 
 @Controller
@@ -51,56 +43,6 @@ public class MemberController {
   private MemberService memberService;
   @Autowired
   private PasswordEncoder encoder;
-  
-  @Autowired
-  private NaverLoginDto naverLoginDto;
-
-  /* ------------------------------------------------------------------------------------------------------ */
-  
-//  네이버 로그인 컨트롤러 메서드
-  @RequestMapping(value = "/member_login_page", produces = "application/json;charset=utf-8", method = {
-      RequestMethod.GET, RequestMethod.POST })
-  public ModelAndView naverLogin(@RequestParam String code, @RequestParam String state, HttpSession session)
-      throws IOException, ParseException {
-    ModelAndView mav = new ModelAndView();
-    OAuth2AccessToken oauthToken;
-    oauthToken = naverLoginDto.getAccessToken(session, state, code);
-
-//    로그인한 사용자의 모든 정보가 JSON 타입으로 저장됨
-    String apiResult = naverLoginDto.getUserProfile(oauthToken);
-
-//    원하는 정보만 JSON => String으로 바꾸어 가져옴
-    JSONParser parser = new JSONParser(apiResult);
-    Object obj = null;
-    
-//    예외 처리 구문
-    try {
-      obj = parser.parse();
-    } catch (ParseException e) {
-      e.printStackTrace();
-    } catch (org.apache.tomcat.util.json.ParseException e) {
-      e.printStackTrace();
-    }
-    
-    JSONObject jsonobj = (JSONObject) obj;
-    JSONObject response = (JSONObject) jsonobj.get("response");
-    String memberId = (String) response.get("id");
-    String memberEmail = (String) response.get("nemail");
-    String birthday = (String) response.get("nbirthday");
-    String profile = (String) response.get("nimage");
-
-//    로그인/로그아웃을 위한 세션 값 부여
-    session.setAttribute("memberId", memberId);
-    session.setAttribute("memberEmail", memberEmail);
-    session.setAttribute("birthday", birthday);
-    session.setAttribute("memberProfile", profile);
-
-//    네이버 로그인 성공 시 이동 경로
-    mav.setViewName("redirect:/");
-    return mav;
-  }
-  
-  /* ------------------------------------------------------------------------------------------------------ */
 
   // 1.회원가입 페이지를 반환
   @PreAuthorize("isAnonymous()")
@@ -270,7 +212,7 @@ public class MemberController {
     if (result) {
       return "redirect:/member_info_page";
     } else {
-      return "redirect://member_change_password?error";
+      return "redirect:/member_change_password?error";
     }
   }
 

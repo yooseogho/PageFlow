@@ -39,8 +39,7 @@
 									placeholder="비밀번호를 입력해주세요" class="input_check">
 							</div>
 						</div>
-						<span id="login-msg"></span><br>
-							<span id="login-msg1"></span>
+						<span id="login-msg"></span><br> <span id="login-msg1"></span>
 						<div class="login_btn_area">
 							<button type=submit class="login_btn" id="login">로그인</button>
 						</div>
@@ -50,7 +49,6 @@
 							class="checkbox"> 아이디 저장
 						</span> <a href="/member_find_id_page" style="font-size: small;">아이디/비밀번호찾기</a>
 					</div>
-					<div class="login_sns_box">예) 네이버 / 카카오 로그인 등등 * 주의사항 등등</div>
 					<div class="create_btn_area">
 						<a href="/member_create_page"><button class="create_btn">회원가입</button></a>
 					</div>
