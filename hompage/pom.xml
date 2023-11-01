@@ -2,6 +2,10 @@
 <!-- 10/26 14:12
 		수정자 : 갈현
 		수정 내용 : 스프링 업데이트(2.7.16 => 2.7.17)
+		
+		11/01 19:40
+		수정자 : 갈현
+		수정 내용 : 필요 없는 의존성 모두 제거(네이버 로그인 OpenAPI, JSONObject 타입 사용을 위한 의존성 등)
  -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -23,56 +27,6 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
-		<!-- JPARepository 인터페이스를 사용하기 위한 의존성 부여 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<!-- 파트를 나누어 둔 모든 의존성은 @Column 어노테이션을 사용하기 위한 의존성 -->
-		<!-- _________________________________________________________ -->
-		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>eclipselink</artifactId>
-			<version>2.7.8</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.persistence</groupId>
-			<artifactId>javax.persistence-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-		</dependency>
-		<!-- _________________________________________________________ -->
-
-		<!-- OAUTH2 방식 사용을 위한 의존성 부여 2 -->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-oauth2-client</artifactId>
-		</dependency>
-		<!-- OAUTH2 방식 사용을 위한 의존성 부여 -->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-oauth2-core</artifactId>
-		</dependency>
-		<!-- JSONObject(타입/클래스)를 사용하기 위한 의존성 추가 -->
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20210307</version>
-		</dependency>
-		<!-- 네이버 API 사용을 위한 의존성 부여 -->
-		<dependency>
-			<groupId>com.github.scribejava</groupId>
-			<artifactId>scribejava-apis</artifactId>
-			<version>6.9.0</version>
-		</dependency>
-		<!-- naver 로그인 -->
-		<dependency>
-			<groupId>com.github.scribejava</groupId>
-			<artifactId>scribejava-core</artifactId>
-			<version>2.8.1</version>
-		</dependency>
 		<!-- 스프링 업데이트 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
