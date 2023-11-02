@@ -175,8 +175,8 @@
 										class="required"> <span class="hidden">필수입력</span>
 									</span>
 									</label>
-									<!-- 이메일 입력란(#memberEmail로 호출) -->
-									<input type="email" name="memberEmail" id="memberEmail" value="${email}" disabled>
+									<!-- 이메일 입력란(#memberEmail로 호출, 디버깅 할 때에만 type 속성 값 변경하기) -->
+									<input type="hidden" name="memberEmail" id="memberEmail" value="${email}" disabled>
 								</div>
 
 								<div class="form_cont">
