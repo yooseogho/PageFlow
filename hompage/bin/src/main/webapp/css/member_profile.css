@@ -1,0 +1,426 @@
+@charset "UTF-8";
+
+/* 공통 css 영역 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+body {
+    font-size: 14px;
+    line-height: 1.4;
+    font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
+    min-width: 1440px;
+    color: #000;
+}
+
+#page {
+    margin: 0 auto;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+input,
+button,
+select,
+textarea {
+    vertical-align: middle;
+}
+
+input,
+button {
+    border: 0;
+    border-radius: 0;
+    background: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+.hidden {
+    position: absolute;
+    visibility: hidden;
+    overflow: hidden;
+    height: 0;
+    line-height: 0;
+    width: 0;
+    margin: 0;
+    padding: 0;
+    font: 0/0 Arial;
+}
+
+/* main css 영역 */
+.main_wrapper {
+    padding-top: 42px;
+}
+
+.main_wrapper .main_inner {
+    display: -webkit-flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+
+
+/* main 안에 section css 영역 */
+.section_wrapper {
+    width: calc(100% - 216px);
+}
+
+.title_wrap.title_size_md {
+    padding-bottom: 20px;
+    position: relative;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.title_wrap.title_size_md .title_heading {
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -0.01em;
+    position: relative;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.title_wrap .title_heading {
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.tbl_row_wrap {
+    display: block;
+    width: 100%;
+    padding: 18px 0;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #eaeaea;
+    box-sizing: border-box;
+}
+
+.tbl_row_wrap .tbl_row {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.tbl_row_wrap .tbl_row tbody th.has_ip {
+    padding-top: 24px;
+}
+.tbl_row_wrap .tbl_row tbody th {
+    padding: 12px 10px;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: #000;
+    font-weight: 700;
+    vertical-align: top;
+}
+
+label {
+    cursor: pointer;
+}
+    
+.tbl_row_wrap .tbl_row tbody th .required {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    padding-left: 3px;
+    margin-top: 5px;
+    vertical-align: top;
+}
+
+.tbl_row_wrap .tbl_row tbody th .required:before {
+    content: "*";
+    display: inline-block;
+    position: relative;
+    width: 6px;
+    height: 6px;
+    background-size: 6px 6px;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_required@2x.png);
+    color: transparent;   
+}
+
+.tbl_row_wrap .tbl_row tbody td {
+    padding: 12px 10px;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: #767676;
+    font-weight: 400;
+    vertical-align: top;
+}
+
+.tbl_row_wrap .tbl_row .valid_check,
+.tbl_row_wrap .tbl_row .byte_check_wrap,
+.tbl_row_wrap .tbl_row .form_ip {
+    width: 450px;
+}
+
+.byte_check_wrap.type_ip {
+    border: none;
+}
+
+.byte_check_wrap {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.byte_check_wrap.type_ip .form_ip {
+    padding-right: 50px;
+}
+.form_ip {
+    display: inline-block;
+    width: 100%;
+    height: 44px;
+    padding: 0 14px 2px;
+    color: #000;
+    font-size: 14px;
+    line-height: 42px;
+    letter-spacing: -0.01em;
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.byte_check_wrap.type_ip .byte_check {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.byte_check_wrap .byte_check {
+    display: inline-block;
+    line-height: 1;
+    font-size: 0;
+}
+
+.byte_check_wrap .byte_check .count {
+    display: inline-block;
+    color: #292929;
+}
+
+.byte_check_wrap .byte_check .count, .byte_check_wrap .byte_check .total {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+}
+
+.byte_check_wrap .byte_check .total {
+    color: #767676;
+}
+
+.byte_check_wrap .byte_check .total:before {
+    content: "/";
+}
+
+.profile_thumb_box {
+    position: relative;
+    width: 92px;
+    height: 92px;
+}
+
+.tbl_row_wrap .tbl_row tbody td .profile_thumb_box + .btn_wrap {
+    margin-top: 16px;
+    text-align: left;
+}
+
+.btn_wrap {
+    display: block;
+    font-size: 0;
+    text-align: center;
+}
+
+.btn_attach {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.btn_attach input[type=file] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+input, button, select, textarea {
+    vertical-align: middle;
+}
+
+.btn_attach label {
+    display: block;
+    min-width: 75px;
+    height: 38px;
+    padding: 9px 13px 0;
+    border-radius: 6px;
+    border: 1px solid #5055b1;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    color: #5055b1;
+    vertical-align: top;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.btn_attach label .ico_picture {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin: 2px 3px 0 0;
+    background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_picture@2x.png) 0% 0% no-repeat;
+    background-size: 14px 14px;
+    vertical-align: top;
+}
+
+.btn_wrap [class^=btn_] + [class^=btn_] {
+    margin-left: 6px;
+}
+
+a.btn_line_gray, button.btn_line_gray {
+    color: #000;
+    background: #fff;
+    border: 1px solid #ccc;
+}
+
+a.btn_sm, button.btn_sm {
+    display: -webkit-inline-flex;
+    justify-content: center;
+    height: 38px;
+    padding: 0 13px 1px;
+    border-radius: 6px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    align-items: center;
+}
+
+a.btn_sm .ico_delete, button.btn_sm .ico_delete {
+    width: 12px;
+    background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_delete_black_h12@2x.png) center no-repeat;
+    background-size: 12px 12px;
+}
+
+a.btn_sm [class^=ico_], button.btn_sm [class^=ico_] {
+    height: 19px;
+    margin-right: 3px;
+}
+button[class^=btn_] [class^=ico_], a[class^=btn_] [class^=ico_] {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+
+[class^=bul_item_].font_size_xxs {
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+}
+
+.tbl_row_wrap + .info_text, .tbl_row_wrap + .bul_list, .tbl_row_wrap + .bul_item_dot {
+    margin-top: 16px;
+}
+.bul_item_dot {
+    padding-left: 9px;
+}
+[class^=bul_item_] {
+    position: relative;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    color: #595959;
+    font-weight: 400;
+    text-align: left;
+}
+
+.bul_item_dot:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: #999;
+}
+
+[class^=bul_item_] a.btn_more_view:not(:first-child) {
+    margin-top: 6px;
+}
+
+.btn_more_view.fc_black .ico_arw {
+    background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_more_view_black@2x.png) center no-repeat;
+    background-size: 5px 9px;
+    width: 5px;
+    height: 9px;
+    margin-top: 5px;
+    margin-left: 4px;
+}
+
+button[class^=btn_], a[class^=btn_] {
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+.btn_wrap.page_bottom {
+    margin-top: 40px;
+}
+
+a.btn_primary, button.btn_primary, a.btn_line_primary.active, button.btn_line_primary.active {
+    color: #fff;
+    background: #5055b1;
+    border: 1px solid #5055b1;
+}
+a.btn_md, button.btn_md {
+    display: -webkit-inline-flex;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    min-width: 140px;
+    height: 44px;
+    padding: 0 23px 1px;
+    border-radius: 6px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 23px;
+    letter-spacing: -0.01em;
+}

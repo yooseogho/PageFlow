@@ -51,7 +51,7 @@ public class OrdersController {
   // 3. 주문내역 상세 보기
   @GetMapping("/{ono}")
   public String getOrderDetails(@PathVariable Long ono, Model model, Principal principal) {
-    List<OrderDetails> order = detailsService.getAllOrderDetails(principal.getName(), ono);
+    List<OrderDetails> order = detailsService.getAllOrderDetails();
 
     if (order != null) {
       model.addAttribute("order", order); // 모델에 주문내역 상세 정보를 추가

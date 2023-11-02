@@ -1,0 +1,471 @@
+@charset "UTF-8";
+
+/* 공통 css 영역 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#page {
+    margin: 0 auto;
+
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+body {
+    font-size: 14px;
+    line-height: 1.4;
+    font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
+    min-width: 1440px;
+    color: #000;
+}
+
+ul {
+    list-style: none;
+}
+
+
+
+.section {
+    padding-top: 50px;
+}
+
+.contents_inner {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.inner_top {
+    background: #fff;
+    padding-bottom: 30px;
+}
+
+.order_inner_payment {
+    position: relative;
+    min-height: calc(100vh - 80px);
+    z-index: 1;
+}
+
+.payment_left {
+    width: 890px;
+}
+
+.delivery_info_area,
+.product_info_area,
+.point_info_area {
+    margin-top: 24px;
+    border: solid 1px #d5d5d5;
+    border-radius: 12px;
+    height: 200px;
+}
+
+.delivery_info_detail {
+    display: block;
+    width: 100%;
+    padding: 18px 0;
+    border-bottom: 1px solid #eaeaea;
+    box-sizing: border-box;
+}
+
+.detail_table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+th {
+    text-align: left;
+    vertical-align: top;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    padding-left: 30px;
+}
+
+td {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: #767676;
+    font-weight: 400;
+    vertical-align: top;
+}
+
+
+.address_and_name {
+    display: -webkit-flex;
+
+}
+
+.name,
+.gap,
+.tel {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    color: #000;
+}
+
+.default_delivery {
+    margin-left: 8px;
+    border-radius: 10px;
+    width: 66px;
+}
+
+.text {
+    font-size: 12px;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+
+.name_and_tel {
+    margin-top: 8px;
+    display: inline-block;
+}
+
+.address {}
+
+.address_text {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    color: #595959;
+}
+
+.address_change {
+    width: 42px;
+    height: 30px;
+    margin-top: -4px;
+    margin-left: 12px;
+    color: #000;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.address_change:hover {
+    cursor: pointer;
+}
+
+.product_info_area {
+    height: 280px;
+}
+
+.product_info_header {
+    position: relative;
+    padding: 30px 0;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    height: 85px;
+    border-bottom: solid 1px #4a4545;
+}
+
+.table_head_area {
+    height: 27px;
+    display: block;
+    border: 0;
+    padding: 0;
+}
+
+.table_head {
+    position: relative;
+    height: 24px;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.title > tr > th,
+.table_middle > tbody > tr > td {
+    width: 200px;
+    border: 1px solid black;
+}
+
+.title > tr > th {
+    text-align: center;
+}
+
+
+.product {
+
+    padding: 24px 0px 24px 30px;
+}
+
+.product_area {
+    display: -webkit-flex;
+
+}
+
+.product_img {
+    width: 84px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.product_title {
+    margin-left: 12px;
+    overflow: hidden;
+
+}
+
+.product_td {
+    padding: 24px;
+
+
+}
+
+.delivery_info_item {
+    list-style-type: none;
+    display: -webkit-flex;
+    justify-content: flex-start;
+}
+
+.product_info_middle {
+    margin: 10px auto;
+}
+
+.delivery_info_list {
+    padding: 25px 0;
+}
+
+.product_info_bottom {
+    border-top: solid 1px #4a4545;
+}
+
+.delivery_info_item > span {
+    width: 200px;
+    padding-left: 20px;
+}
+
+.point_info_header,
+.payment_info_header {
+    position: relative;
+    border-top: solid 1px #eaeaea;
+    padding: 25px 0;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    border-bottom: solid 1px #eaeaea;
+}
+
+.point_header_text {
+    padding-left: 30px;
+    font-weight: 700;
+    float: left;
+    width: 146px;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+}
+
+.point_info_body {
+    height: auto;
+    margin-top: 20px;
+
+}
+
+.point_use_box {
+    background-color: #f7f7f7;
+    position: relative;
+    padding: 20px 30px;
+}
+
+.point_use_table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.has_point {
+    padding-top: 22px;
+    padding: 10px 10px;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+}
+
+.point_use_table td {
+    padding: 10px 10px;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+}
+
+.point_input_btn {
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+.point_input_box {
+    max-width: 300px;
+    width: 100%;
+    padding: 0 28px 0 14px;
+    position: relative;
+    display: inline-block;
+}
+
+.point_input_box > input {
+    font-weight: 700;
+    text-align: right;
+    max-width: 300px;
+    width: 100%;
+    height: 24px;
+    padding: 0 14px 2px;
+    color: #000;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease-out;
+    outline: none;
+}
+
+.unit {
+    right: 14px;
+    top: 16px;
+    color: #000;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    line-height: 1;
+}
+
+.point_input_box > span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    background-color: #f0f0f0;
+}
+
+.payment_header_inner {
+    flex-direction: row;
+    padding-left: 30px;
+    display: -webkit-flex;
+    justify-content: flex-start;
+}
+
+.payment_header_text {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+}
+
+.payment_list_btn {
+    width: 157px;
+    height: 50px;
+    margin : 0 20px;
+    width: calc((100% - 40px) / 5);
+    text-align: center;
+    border-color: #eaeaea;
+}
+
+
+.payment_info_body {
+    margin-top: 40px;  
+    padding-left: 30px;
+}
+
+.payment_right {
+     transform: none !important;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 273px;
+}
+
+.payment_info_area {
+    padding: 24px;
+    background-color: #fff;    
+    border: solid 1px #d5d5d5;
+    border-radius: 12px;
+    height: 310px;
+}
+
+.payment_agree_text {
+    margin-top: 20px;
+    padding: 0 10px;
+}
+
+.agree_text {
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    color: #5055b1;
+    font-weight: 500;
+}
+
+.payment_info_box li,
+.payment_last_box li {
+    margin-bottom: 12px;
+    display: -webkit-flex;
+    justify-content: flex-start;
+}
+
+.price {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.label_right {
+    margin-left: auto;
+    padding-left: 10px;
+}
+
+.payment_info_box {
+    height: 120px;    
+    border-bottom: solid 1px #eaeaea;
+    padding: 10px;
+}
+
+.payment_last_box {
+    height: 100px;    
+    border-bottom: solid 1px #eaeaea;
+    padding: 20px 10px;
+}
+
+.payment_btn {
+    
+    width: 100%;
+    min-width: auto;
+    color: #fff;
+    background: #5055b1;
+    border: 1px solid #5055b1;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.btn_text {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+}
+
+.payment_btn_area {
+    margin-top : 20px;
+}
+
+.payment_way_area {
+    margin: 24px 0;
+    border: solid 1px #d5d5d5;
+    border-radius: 12px;
+    height: 200px;
+}
+
+footer {
+	margin-top: 50px;
+}

@@ -1,0 +1,150 @@
+@charset "UTF-8";
+
+/* 공통 css 영역 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+body {
+    font-size: 14px;
+    line-height: 1.4;
+    font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
+    min-width: 1440px;
+    color: #000;
+}
+
+#page {
+    margin: 0 auto;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+input,
+button,
+select,
+textarea {
+    vertical-align: middle;
+}
+
+input,
+button {
+    border: 0;
+    border-radius: 0;
+    background: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+.hidden {
+    position: absolute;
+    visibility: hidden;
+    overflow: hidden;
+    height: 0;
+    line-height: 0;
+    width: 0;
+    margin: 0;
+    padding: 0;
+    font: 0/0 Arial;
+}
+
+/* main css 영역 */
+.main_wrapper {
+    padding-top: 42px;
+}
+
+.main_wrapper .main_inner {
+    display: -webkit-flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/* section css 영역 */
+
+.section_wrapper {
+	width: calc(100% - 216px);
+}
+
+#inquiry_list_btn ul {
+	display: flex;
+}
+
+#inquiry_list_btn ul li {
+	width: 100px;
+	list-style-type: none;
+}
+
+
+
+#inquiry_check {
+	height: 50px;
+	margin: 20px 15px;
+	display: flex;
+	justify-content: space-around;
+	background-color: antiquewhite;
+	border-radius: 10px;
+
+
+}
+
+#inquiry_check_box {
+	justify-content: space-between;
+	align-items: center;
+	width: 550px;
+	height: 50px;
+	display: flex;
+	transform: translateX(-14%);
+}
+
+#date_select {
+	margin: 0px 10px;
+	height: 30px;
+	display: flex;
+
+}
+
+#date_select_box {
+	align-items: center;
+}
+
+.date_arrange_box {
+	margin: 11px 10px;
+	width: 132px;
+}
+
+#check {
+	height: 28px;
+	width: 85px;
+}
+
+#right_area {
+	height: 50px;
+	align-items: center;
+	display: flex;
+}
+
+#inquiry_text {
+	width: 1018px;
+	font-size: small;
+}
+
+.list_btn {
+	width: 95px;
+}

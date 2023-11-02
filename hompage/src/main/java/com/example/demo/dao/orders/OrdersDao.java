@@ -9,8 +9,10 @@ import com.example.demo.entity.orders.*;
 @Mapper
 public interface OrdersDao {
 	// 1. 주문내역 저장
+	
+	@SelectKey(statement = "select orders_seq.nextval from dual", before = true, resultType = long.class, keyProperty = "ono")
 	@Insert("INSERT INTO orders (ono, member_id, dno, order_date, order_request, order_price, payment, point_earn) "
-			+ "VALUES (#{ono}, #{memberId}, #{dno}, #{orderDate}, #{orderRequest}, #{orderPrice}, #{payment}, #{pointEarn})")
+	      + "VALUES (#{ono}, #{memberId}, #{dno}, #{orderDate}, #{orderRequest}, #{orderPrice}, #{payment}, #{pointEarn})")
 	public Integer save(Orders orders);
 
 	// 2. 전체 조회

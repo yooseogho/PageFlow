@@ -2,16 +2,30 @@
 
 
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.example.demo.dto.memberGrade.MemberGradeDto;
 import com.example.demo.entity.member.Member;
 
 @Mapper
 public interface MemberDao {
+	
+	// 10-27 유석호 추가 모든회원 등급업데이트 시킬때 필요 
+    // 모든 회원 정보를 가져오는 메소드
+    @Select("SELECT * FROM member")
+    public List<Member> getAllMembers();
+    
+    // 10-27 회원의 맵버등급 
+    // 특정 회원의 등급 코드 조회
+    @Select("SELECT grade_code FROM member WHERE member_id = #{memberId}")
+    public Long getGradeCodeByMemberId(String memberId);
+    
 	// 회원가입
 	@Insert("insert into member (member_id, grade_code, member_name, member_email, password, member_tel, member_profile, joinday, birthday, member_point) values(#{memberId}, '1', #{memberName}, #{memberEmail}, #{password}, #{memberTel}, #{memberProfile}, sysdate, #{birthday}, 0)")
 	public Integer save(Member member);
@@ -62,6 +76,15 @@ public interface MemberDao {
 	@Select("select * from member where member_email=#{memberEmail} and rownum=1")
 	public Member findByEmail(String memberEmail);
 	
+
+	// 회원의 등급 조회
+	@Select("SELECT grade_code FROM member WHERE member_id = #{memberId}")
+	public Long findGradeCodeByMemberId(String memberId);
+		
+	
+	@Select("SELECT m.member_id AS memberId, m.grade_code AS gradeCode, g.grade_name AS gradeName FROM member m INNER JOIN member_grade g ON m.grade_code = g.grade_code WHERE m.member_id = #{memberId}")
+	public MemberGradeDto.MemberInfoDto findMemberInfoById(String memberId);
+
 
 
 	

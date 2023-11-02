@@ -21,7 +21,7 @@ public interface BookDao {
   // 셀렉트키 활용
   @SelectKey(statement = "select book_seq.nextval from dual", before = true, resultType = long.class, keyProperty = "bno")
   @Insert("INSERT INTO book (bno, book_title, subtitle, publish_date, book_price, stock, translator, publisher_code, author_code) "
-      + "VALUES (#{bno}, #{bookTitle}, #{subtitle}, #{publishDate}, #{bookPrice}, #{stock}, #{translator}, #{publisherCode}, #{authorCode})")
+	      + "VALUES (#{bno}, #{bookTitle}, #{subTitle}, #{publishDate}, #{bookPrice}, #{stock}, #{translator}, #{publisherCode}, #{authorCode})")
   public Integer save(Book book);
 
   // 페이징을 위한 책 총 갯수 확인

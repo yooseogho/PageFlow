@@ -17,5 +17,5 @@ public class Member {
 	private String memberTel;
 	private Long memberPoint;
 	private LocalDate joinday;
-	private LocalDate birthday;
+	private LocalDate birthday;			
 }

@@ -21,8 +21,8 @@ public interface DeliveryDao {
 	public Delivery findByDno(Long dno);
 
 	// 새로운 배송 정보 추가
-	@Insert("insert into delivery(dno, member_id, zip_code, receiver_name, delivery_address, second_address, third_address, receiver_tel)"
-			+ " values(#{dno}, #{memberId}, #{zipCode}, #{receiverName}, #{deliveryAddress}, #{secondAddress}, #{thirdAddress}, #{receiverTel})")
+	@Insert("insert into delivery(dno, member_id, zip_code, receiver_name, delivery_address, receiver_tel)"
+			+ " values(#{dno}, #{memberId}, #{zipCode}, #{receiverName}, #{deliveryAddress}, #{receiverTel})")
 	public Integer save(Delivery delivery);
 
 	// 배송 정보 수정

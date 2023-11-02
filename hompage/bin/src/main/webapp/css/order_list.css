@@ -1,0 +1,726 @@
+@charset "UTF-8";
+
+/* 공통 css 영역 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+body {
+    font-size: 14px;
+    line-height: 1.4;
+    font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
+    min-width: 1440px;
+    color: #000;
+}
+
+#page {
+    margin: 0 auto;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+input,
+button,
+select,
+textarea {
+    vertical-align: middle;
+}
+
+input,
+button {
+    border: 0;
+    border-radius: 0;
+    background: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+.hidden {
+    position: absolute;
+    visibility: hidden;
+    overflow: hidden;
+    height: 0;
+    line-height: 0;
+    width: 0;
+    margin: 0;
+    padding: 0;
+    font: 0/0 Arial;
+}
+
+/* main css 영역 */
+.main_wrapper {
+    padding-top: 42px;
+}
+
+.main_wrapper .main_inner {
+    display: -webkit-flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* main 안에 section css 영역 */
+.section_wrapper {
+    width: calc(100% - 216px);
+}
+
+.title_wrap {
+    position: relative;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.title_wrap.title_size_md.has_btn {
+    min-height: 38px;
+    padding-bottom: 16px;
+}
+
+.title_wrap.title_size_md {
+    padding-bottom: 20px;
+}
+
+.title_wrap.title_size_md .title_heading {
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -0.01em;
+}
+
+.title_wrap .title_heading {
+    display: -webkit-flex;
+    align-items: center;
+    justify-content: flex-start;
+    display: inline-block;
+    position: relative;
+    font-weight: 700;
+}
+
+.title_wrap .right_area {
+    margin-left: auto;
+    flex-shrink: 0;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+[class^=bul_item_].font_size_xxs {
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+}
+
+.bul_item_asterisk {
+    color: #767676;
+    padding-left: 8px;
+}
+
+[class^=bul_item_] {
+    position: relative;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    color: #595959;
+    font-weight: 400;
+    text-align: left;
+}
+
+.bul_item_asterisk:before {
+    content: "*";
+    color: #474c98;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.title_wrap .right_area .bul_item_asterisk + .prod_filter_wrap {
+    margin-left: 20px;
+}
+
+.prod_filter_wrap {
+    position: relative;
+}
+
+a.btn_line_gray,
+button.btn_line_gray {
+    color: #000;
+    background: #fff;
+    border: 1px solid #ccc;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+a.btn_sm,
+button.btn_sm {
+    display: -webkit-inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 38px;
+    padding: 0 13px 1px;
+    border-radius: 6px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+}
+
+a.btn_sm .ico_calendar,
+button.btn_sm .ico_calendar {
+    width: 14px;
+    background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_calendar@2x.png) center no-repeat;
+    background-size: 14px 14px;
+}
+
+a.btn_sm [class^=ico_],
+button.btn_sm [class^=ico_] {
+    height: 19px;
+    margin-right: 3px;
+}
+
+button[class^=btn_] [class^=ico_],
+a[class^=btn_] [class^=ico_] {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+
+button[class^=btn_] .text,
+a[class^=btn_] .text {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+
+.order_history_group {
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 20px 0;
+    background-color: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 16px;
+    box-sizing: border-box;
+}
+
+.order_history_group .order_history_box.type_title {
+    width: 203px;
+    flex: 0 auto;
+}
+
+.order_history_group .order_history_box ~ .order_history_box:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 1px;
+    height: 44px;
+    background-color: #eaeaea;
+    transform: translateY(-50%);
+}
+
+.order_history_group .order_history_box .btn_filter_history {
+    display: inline-block;
+    text-align: left;
+    vertical-align: top;
+}
+
+.order_history_group + .tbl_prod_wrap {
+    margin-top: 30px;
+}
+
+.tbl_prod_wrap.type_myroom {
+    border-top: 1px solid #000;
+    margin-bottom: 20px;
+}
+
+.tbl_prod_wrap.type_myroom .tbl_order_info,
+.tbl_prod_wrap.type_notify .tbl_order_info {
+    height: 63px;
+    padding: 0 10px;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid #eaeaea;
+    box-sizing: border-box;
+}
+
+.tbl_prod_wrap.type_myroom .tbl_order_info .order_date,
+.tbl_prod_wrap.type_notify .tbl_order_info .order_date {
+    padding-top: 1px;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+}
+
+.tbl_prod_wrap.type_myroom .tbl_order_info .btn_more_view,
+.tbl_prod_wrap.type_notify .tbl_order_info .btn_more_view {
+    margin-left: 10px;
+}
+
+.btn_more_view {
+    color: #595959;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    text-align: left;
+}
+
+.btn_more_view .ico_arw {
+    display: inline-block;
+    width: 5px;
+    height: 9px;
+    margin-top: 5px;
+    background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_more_view@2x.png) center no-repeat;
+    background-size: 5px 9px;
+    vertical-align: top;
+}
+
+.btn_more_view [class^=ico_] {
+    margin-left: 4px;
+}
+
+.tbl_prod_wrap.type_myroom .tbl_order_info .right_area,
+.tbl_prod_wrap.type_notify .tbl_order_info .right_area {
+    margin-left: auto;
+    font-size: 0;
+}
+
+.btn_delete_text.size_xxs {
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+}
+
+.btn_delete_text {
+    color: #767676;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    font-weight: 700;
+}
+
+.btn_delete_text .ico_delete {
+    width: 13px;
+    height: 15px;
+    margin-top: 1px;
+    background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_delete@2x.png) 0% 0% no-repeat;
+    background-size: 13px 15px;
+}
+
+.btn_delete_text [class^=ico_] {
+    height: 18px;
+    margin-right: 4px;
+}
+
+.order_history_group .order_history_box {
+    display: block;
+    position: relative;
+    flex: 1 0;
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
+.order_history_group .order_history_box.type_title .history_val {
+    margin-top: 5px;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+}
+
+.order_history_group .order_history_box .history_val {
+    display: block;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -0.01em;
+    color: #000;
+    font-weight: 700;
+}
+
+.order_history_group .order_history_box.type_title .history_desc {
+    margin-top: 4px;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+}
+
+.order_history_group .order_history_box .history_desc {
+    display: block;
+    margin-top: 2px;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    color: #767676;
+}
+
+.order_history_group .order_history_box.type_title .history_desc .btn_info_popup {
+    margin-left: 3px;
+}
+
+button[class^=btn_],
+a[class^=btn_] {
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+.btn_info_popup {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+
+button {
+    background-color: transparent;
+}
+
+input,
+button,
+textarea {
+    vertical-align: middle;
+}
+
+input,
+button {
+    border: 0;
+    border-radius: 0;
+    background: none;
+}
+
+.tbl_prod_wrap.type_myroom .tbl_prod_inner .tbl_prod,
+.tbl_prod_wrap.type_notify .tbl_prod_inner .tbl_prod {
+    border-bottom: 1px solid #eaeaea;
+}
+
+.tbl_prod_wrap.type_myroom .tbl_prod:last-child,
+.tbl_prod_wrap.type_notify .tbl_prod:last-child {
+    border-bottom: 1px solid #eaeaea;
+}
+
+.tbl_prod_wrap.type_myroom .tbl_prod,
+.tbl_prod_wrap.type_notify .tbl_prod {
+    border: none;
+}
+
+.tbl_prod_wrap .tbl_prod {
+    width: 100%;
+    table-layout: fixed;
+    border-top: 1px solid #000;
+}
+
+.tbl_prod_wrap .tbl_prod thead tr th {
+    border-bottom: solid 1px #eaeaea;
+}
+
+.tbl_prod_wrap .tbl_prod thead tr th:first-child,
+.tbl_prod_wrap .tbl_prod tbody tr td:first-child {
+    border-right: solid 1px #eaeaea;
+    border-left: solid 1px #eaeaea;
+}
+
+.tbl_prod_wrap .tbl_prod thead tr th ~ th,
+.tbl_prod_wrap .tbl_prod tbody tr td ~ td {
+    border-right: solid 1px #eaeaea;
+}
+
+img {
+    vertical-align: middle;
+}
+
+.tbl_prod_wrap.type_myroom .tbl_prod tbody tr td.prod,
+.tbl_prod_wrap.type_notify .tbl_prod tbody tr td.prod {
+    vertical-align: middle;
+}
+
+.tbl_prod_wrap.type_myroom .tbl_prod tbody tr td,
+.tbl_prod_wrap.type_notify .tbl_prod tbody tr td {
+    padding: 24px 10px;
+    border-bottom: none;
+}
+
+.tbl_prod_wrap .tbl_prod tbody td.prod {
+    padding-left: 0;
+    text-align: left;
+    vertical-align: top;
+}
+
+.tbl_prod_wrap .tbl_prod tbody td {
+    position: relative;
+    padding: 24px;
+    text-align: center;
+    border-bottom: 1px solid #eaeaea;
+}
+
+
+.prod_area.horizontal {
+    width: 100%;
+    display: -webkit-flex;
+    justify-content: flex-start;
+}
+
+.prod_area.horizontal .prod_thumb_box.size_sm {
+    width: 84px;
+}
+
+.prod_area.horizontal .prod_thumb_box {
+    overflow: hidden;
+    flex-shrink: 0;
+    width: 100px;
+}
+
+.prod_area .prod_thumb_box.size_sm {
+    width: 118px;
+}
+
+.prod_area .prod_thumb_box {
+    position: relative;
+    overflow: hidden;
+    width: 142px;
+}
+
+.prod_area .prod_thumb_box .prod_link {
+    display: block;
+    height: 100%;
+}
+
+.prod_area .prod_thumb_box .img_box {
+    overflow: hidden;
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    border: 1px solid #eaeaea;
+}
+
+.tbl_prod_wrap.type_myroom .tbl_prod tbody tr td.prod .prod_area,
+.tbl_prod_wrap.type_notify .tbl_prod tbody tr td.prod .prod_area {
+    align-items: center;
+}
+
+.prod_area .prod_thumb_box .img_box img {
+    width: 100%;
+    max-height: calc((100% - 2px) * 1.618 - 10px);
+}
+
+.prod_area.horizontal .prod_info_box.size_sm {
+    margin-left: 12px;
+}
+
+.prod_area.horizontal .prod_info_box {
+    overflow: hidden;
+    margin-left: 16px;
+}
+
+.prod_area .prod_info_box .badge_flag,
+.prod_area .prod_info_box .badge_sm {
+    margin-bottom: 5px;
+}
+
+[class^=badge_] .text {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+
+.prod_area .prod_info_box .prod_info {
+    display: block;
+    height: 100%;
+    font-size: 0;
+}
+
+.prod_area .prod_info_box.size_sm .prod_name:not(.ellipsis_single) {
+    max-height: calc(22px * 2);
+}
+
+.prod_area .prod_info_box.size_sm .prod_name {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+}
+
+.prod_area .prod_info_box .prod_name {
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    max-height: 46px;
+    line-height: 23px;
+    text-overflow: -o-ellipsis-lastline;
+    white-space: normal;
+    font-weight: 700;
+}
+
+.badge_page_flow {
+    color: #767676;
+    border: 1px solid transparent;
+    background: rgba(23, 23, 237, 0.1);
+}
+
+.badge_sm {
+    min-height: 20px;
+    padding: 0 4px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+}
+
+.prod_area .prod_info_box .prod_info {
+    display: block;
+    height: 100%;
+    font-size: 0;
+}
+
+.prod_area .prod_info_box .prod_option_list {
+    margin-top: 12px;
+    font-size: 0;
+}
+
+.prod_area .prod_info_box .prod_option_list .option_item {
+    display: inline;
+    vertical-align: top;
+}
+
+.prod_area .prod_info_box .prod_option_list .option_item .text,
+.prod_area .prod_info_box .prod_option_list .option_item .val {
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    color: #595959;
+}
+
+.tbl_prod_wrap .tbl_prod tbody td .price .val {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+}
+
+.tbl_prod_wrap.type_myroom .tbl_prod tbody tr td .delivery_info .delivery_state,
+.tbl_prod_wrap.type_notify .tbl_prod tbody tr td .delivery_info .delivery_state {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    color: #5055b1;
+}
+
+.tbl_prod_wrap.type_myroom .tbl_prod tbody tr td .btn_wrap.full .btn_sm,
+.tbl_prod_wrap.type_notify .tbl_prod tbody tr td .btn_wrap.full .btn_sm {
+    position: relative;
+    padding: 0 10px 1px;
+}
+
+.btn_wrap.full [class^=btn_] {
+    width: 100%;
+    min-width: auto;
+}
+
+a.btn_line_gray:hover,
+a.btn_line_gray:focus,
+a.btn_line_gray:active,
+button.btn_line_gray:hover,
+button.btn_line_gray:focus,
+button.btn_line_gray:active {
+    background: #f2f2f2;
+    border-color: #ccc;
+}
+
+.info_text_box.size_lg {
+    padding: 24px;
+    margin-top: 30px;
+}
+
+.info_text_box {
+    display: block;
+    padding: 18px;
+    border-radius: 10px;
+    background-color: #f7f7f7;
+    box-sizing: border-box;
+}
+
+.title_wrap.title_size_xs {
+    padding-bottom: 10px;
+}
+
+.title_wrap.title_size_xs .title_heading {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+}
+
+.bul_item_dot {
+    padding-left: 9px;
+}
+
+.bul_item_dot:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: #999;
+}
+
+[class^=bul_item_].font_size_xxs + .font_size_xxs {
+    margin-top: 6px;
+}
+
+.info_text_box + .info_text_box {
+    margin-top: 30px;
+}
+
+.title_wrap.title_size_sm {
+    min-height: 24px;
+    padding-bottom: 12px;
+}
+
+.title_wrap.title_size_sm .title_heading {
+    font-size: 15px;
+    line-height: 23px;
+    letter-spacing: -0.01em;
+}
+
+[class^=bul_item_].font_size_xxs .info_text_list,
+[class^=bul_item_].font_size_xxs .bul_list {
+    margin-top: 6px;
+}
+
+.bul_item_dash.font_size_xxs {
+    padding-left: 6px;
+}
+
+.bul_item_dot .bul_item_dash {
+    margin-top: 6px;
+}
+
+.bul_item_dash:before {
+    content: "-";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: none;
+}

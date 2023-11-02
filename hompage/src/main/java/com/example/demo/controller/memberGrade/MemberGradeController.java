@@ -1,19 +1,27 @@
 package com.example.demo.controller.memberGrade;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.example.demo.entity.memberGrade.MemberGrade;
 import com.example.demo.service.memberGrade.MemberGradeService;
-
-import java.util.List;
 
 @Controller
 public class MemberGradeController {
   @Autowired
   private MemberGradeService gradeService;
+  
+  @Autowired
 
   @GetMapping("/memberGrades/add")
   @Secured("ROLE_ADMIN")
@@ -35,18 +43,18 @@ public class MemberGradeController {
     return modelAndView;
   }
 
-  @GetMapping("/memberGrades/{gradeCode}/edit")
-  @Secured("ROLE_ADMIN")
-  public ModelAndView showEditMemberGradeForm(@PathVariable Long gradeCode) {
-    ModelAndView modelAndView = new ModelAndView("edit-member-grade");
-    MemberGrade memberGrade = gradeService.findGradeByCode(gradeCode);
-    if (memberGrade != null) {
-      modelAndView.addObject("memberGrade", memberGrade);
-    } else {
-      modelAndView.setViewName("redirect:/memberGrades?error");
-    }
-    return modelAndView;
-  }
+//  @GetMapping("/memberGrades/{gradeCode}/edit")
+//  @Secured("ROLE_ADMIN")
+//  public ModelAndView showEditMemberGradeForm(@PathVariable Long gradeCode) {
+//    ModelAndView modelAndView = new ModelAndView("edit-member-grade");
+//    MemberGrade memberGrade = gradeService.findGradeByCode(gradeCode);
+//    if (memberGrade != null) {
+//      modelAndView.addObject("memberGrade", memberGrade);
+//    } else {
+//      modelAndView.setViewName("redirect:/memberGrades?error");
+//    }
+//    return modelAndView;
+//  }
 
   @PostMapping("/memberGrades/{gradeCode}/edit")
   @Secured("ROLE_ADMIN")
@@ -78,6 +86,20 @@ public class MemberGradeController {
     modelAndView.addObject("memberGrades", memberGrades);
     return modelAndView;
   }
+  
+  //--------------------------------------------------------------------------------------------------------------
+//  @GetMapping("/updateGrade")
+//  public String updateGrade(@RequestParam("memberId") String memberId, @RequestParam("purchaseTotal") Long purchaseTotal, Model model) {
+//      Integer result = gradeService.updateGrade(memberId, purchaseTotal);
+//      model.addAttribute("memberId", memberId);
+//      model.addAttribute("purchaseTotal", purchaseTotal);
+//      if (result != null) {
+//          return "member_grade_page";
+//      } else {
+//          model.addAttribute("error", "There was an error updating the grade.");
+//          return "member_grade_page";
+//      }
+//  }
   /*
    * [참고]
    * 추후에 변동될 사항이 많으니, 기본 예로 볼 것

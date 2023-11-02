@@ -52,7 +52,7 @@ public class OrderDetailsController {
   @GetMapping("/orderDetails")
   public List<OrderDetails> getAllOrderDetails(String memberId, Long ono) {
     // 전체 주문 상세 정보 조회
-    List<OrderDetails> orderDetails = detailService.getAllOrderDetails(memberId, ono);
+    List<OrderDetails> orderDetails = detailService.getAllOrderDetails();
 //    주문 상세가 없거나 비어있다면 NULL 반환
     if (orderDetails == null || orderDetails.isEmpty()) {
       return null;

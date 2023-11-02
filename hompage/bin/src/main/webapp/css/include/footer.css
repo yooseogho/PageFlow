@@ -1,0 +1,191 @@
+@charset "UTF-8";
+
+.footer_wrapper {
+    margin-top: 150px;
+}
+
+.footer_wrapper .footer_header {
+    border-top: 1px solid #d5d5d5;
+}
+
+.footer_wrapper .footer_header.footer_inner {
+    
+    justify-content: flex-start;
+    display: -webkit-flex;
+    align-items: center;
+}
+
+.footer_wrapper .footer_inner {
+    width: 1200px;
+    padding: 19px 0 20px;
+    margin: 0 auto;
+}
+
+.footer_wrapper .footer_header .notice_wrap {
+    flex: 1;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: center
+}
+
+.footer_wrapper .footer_header .notice_wrap .notice_text {
+    flex-shrink: 0;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    vertical-align: top;
+}
+
+.footer_wrapper .footer_header .notice_wrap .notice_link {
+    flex: 1;
+    margin-left: 30px;
+    vertical-align: top;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    text-decoration: underline;
+	color: #000;
+}
+
+.footer_wrapper .footer_body {
+    padding: 40px 0 50px;
+    border-top: 1px solid #eaeaea;
+}
+
+.footer_wrapper .footer_body .footer_logo_box,
+.footer_wrapper .footer_body .logo_box {
+    font-size: 0;
+    display: -webkit-flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.footer_wrapper .footer_body .logo_box .logo_link {
+    width: 168px;
+    height: 48px;
+    display: block;
+}
+.footer_wrapper .footer_body .logo_box .logo_link img {
+    width: 100%;
+}
+
+.footer_wrapper .footer_body .logo_box .sns_share_box {
+    margin-left: 12px;
+    font-size: 0;
+}
+.sns_share_box {
+    box-sizing: border-box;
+}
+.right_box .sns_share_box {
+    display: inline-block;
+    vertical-align: middle;
+}
+.sns_share_box .btn_sns_share.youtube {
+    background-size: 32px 32px;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_footer_sns_youtube@2x.png);
+}
+
+.sns_share_box .btn_sns_share {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    vertical-align: top;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.sns_share_box .btn_sns_share + .btn_sns_share {
+    margin-left: 8px;
+}
+
+.sns_share_box .btn_sns_share.fb {
+    background-size: 32px 32px;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_footer_sns_fb@2x.png);
+}
+
+.sns_share_box .btn_sns_share.insta {
+    background-size: 32px 32px;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_footer_sns_insta@2x.png);
+}
+
+.footer_body .footer_inner .footer_contents_left {
+    margin-top: 28px;
+}
+.footer_body .footer_inner .footer_contents_left {
+    flex: 1;
+}
+.footer_body .footer_inner .footer_contents_left .footer_menu_box {
+    margin-top: 2px;
+}
+
+.footer_body .footer_inner .footer_contents_left .footer_menu_box .footer_menu_list {
+    font-size: 0;
+}
+
+.footer_body .footer_inner .footer_contents_left .footer_menu_box .footer_menu_list .footer_menu_item {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.footer_body .footer_inner .footer_contents_left .footer_menu_box .footer_menu_list .footer_menu_item .footer_menu_link {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    color: #595959;
+}
+
+.footer_body .footer_inner .footer_contents_left .footer_menu_box .footer_menu_list .footer_menu_item + .footer_menu_item:before {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 12px;
+    margin: 4px 12px 0;
+    background-color: #d5d5d5;
+    vertical-align: top;
+}
+
+.footer_contents_left .footer_info_box {
+    margin-top: 20px;
+    font-size: 0;
+}
+
+address {
+    font-style: normal;
+}
+
+.footer_contents_left .footer_info_box .info_text {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    color: #595959;
+    vertical-align: top;
+}
+
+.footer_contents_left .footer_info_box .gap {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 9px;
+    margin: 8px 6px 0;
+    background-color: #d5d5d5;
+    vertical-align: top;
+}
+
+.footer_contents_left .footer_info_box .info_text.call {
+    font-weight: 700;
+}
+
+.footer_contents_left .copyright {
+    margin-top: 23px;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+    color: #767676;
+}

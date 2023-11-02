@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.dao.member.MemberDao;
 import com.example.demo.dto.member.MemberDto;
 import com.example.demo.dto.member.MemberDto.Read;
+import com.example.demo.dto.memberGrade.MemberGradeDto;
 import com.example.demo.entity.member.Member;
 
 @Service
@@ -29,6 +30,7 @@ public class MemberService {
   @Autowired
   private PasswordEncoder encoder;
   
+  
   @Value("${profileFolder}")
   private String profileFolder;
   @Value("${defaultProfile}")
@@ -36,64 +38,78 @@ public class MemberService {
   @Value("${profileUrl}")
   private String profileUrl;
   
+  
 //  1. 아이디 중복 확인 (SELECT 문)
   @Transactional(readOnly=true) // readOnly 속성은 SELECT 문만 사용하겠다고 선언, 큰 의미 없음
   public Boolean idAvailable(String memberId) {
     return memberDao.findById(memberId)==null;  
   }
   
-//  2. 회원가입 (INSERT 문)
-  public Boolean join(MemberDto.Join dto) {
-    MultipartFile profile = dto.getProfile();
-    String profileName = defaultProfile;
+//2. 회원가입 (INSERT 문)
+public Boolean join(MemberDto.Join dto) {
+   MultipartFile profile = dto.getProfile();
+   String profileName = defaultProfile;  // 기본 프로필 사진 이름
 
-    
-//  dtf 객체에 날짜 형식을 지정
+   // 프로필 사진이 존재하고 비어있지 않다면
+   if(profile != null && !profile.isEmpty()) {
+       // 파일의 확장자를 추출하고
+       String extension = FilenameUtils.getExtension(profile.getOriginalFilename());
+       // 파일 이름을 아이디.확장자로 설정하고
+       profileName = dto.getMemberId() + "." + extension;
+       // 파일의 폴더를 profileFolder 객체로,
+       // 파일의 이름을 위 profileName 변수로 설정하고
+       File file = new File(profileFolder, profileName);
+       
+       try {
+           // profile의 내용을 file로 이동시키고 예외 처리함
+           profile.transferTo(file);
+       } catch (IllegalStateException | IOException e) {
+           e.printStackTrace();
+       }
+   } else {
+       // 프로필 사진이 없거나 비어있다면 기본 프로필 사진으로 설정
+       profileName = defaultProfile;
+   }
 
-    // 프로필 사진이 존재하고 비어있지 않다면
-    if(profile != null && !profile.isEmpty()) {
-        // 파일의 확장자를 추출하고
-        String extension = FilenameUtils.getExtension(profile.getOriginalFilename());
-        // 파일 이름을 아이디.확장자로 설정하고
-        profileName = dto.getMemberId() + "." + extension;
-        // 파일의 폴더를 profileFolder 객체로,
-        // 파일의 이름을 위 profileName 변수로 설정하고
-        File file = new File(profileFolder, profileName);
-        
-        try {
-            // profile의 내용을 file로 이동시키고 예외 처리함
-            profile.transferTo(file);
-        } catch (IllegalStateException | IOException e) {
-            e.printStackTrace();
-        }
-    }
-//    프로필 사진을 넣지 않았다면
-//    입력된 비밀번호를 암호화하여 변수에 담고
-//    (BCryptPasswordEncoder 사용)
-    String encodedPassword = encoder.encode(dto.getPassword());
-//    member 객체에 기본 프로필 사진과 위에서 암호화한 비밀번호를 담고
-//    (DTO의 toEntity 메서드 사용)
-    Member member = dto.toEntity(defaultProfile, encodedPassword);
-//    INSERT 문을 반환하여 행을 추가함
-    return memberDao.save(member)==1;
-  }
-  
+   // 입력된 비밀번호를 암호화하여 변수에 담고 (BCryptPasswordEncoder 사용)
+   String encodedPassword = encoder.encode(dto.getPassword());
+   // member 객체에 프로필 사진과 위에서 암호화한 비밀번호를 담고 (DTO의 toEntity 메서드 사용)
+   Member member = dto.toEntity(profileName, encodedPassword);
+   // INSERT 문을 반환하여 행을 추가함
+   boolean saveResult = memberDao.save(member) == 1;
+
+   // 회원 가입이 성공하고 프로필 사진이 있을 경우에만 프로필 사진을 저장
+   if (saveResult && profile != null && !profile.isEmpty()) {
+       try {
+           // 프로필 사진을 저장
+           String profilePath = profileFolder + profileName;
+           File profileFile = new File(profilePath);
+           profile.transferTo(profileFile);
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+   }
+
+   return saveResult;
+}
+
   //------------------------------------------------------------------------------------------------------------
   //10-24 유석호
   // 2-1 member 정보 가져오기 위한 매서드
-  public MemberDto.Profile MemberProfile(String memberId) {
-	    Member member = memberDao.findById(memberId);
+public MemberDto.Profile MemberProfile(String memberId) {
+    Member member = memberDao.findById(memberId);
 
-	    if (member == null) {
-	        throw new UsernameNotFoundException("User not found: " + memberId);
-	    }
+    if (member == null) {
+        throw new UsernameNotFoundException("User not found: " + memberId);
+    }
+    
 
-	    return new MemberDto.Profile(member.getMemberId(), member.getMemberName(), member.getMemberProfile());
-	}
+    return new MemberDto.Profile(member.getMemberId(), member.getMemberName(), member.getMemberProfile());
+}
 
 
   //------------------------------------------------------------------------------------------------------------
-  //2-2 프사변경
+  //2-2 프사변경  10-26
   @Secured("ROLE_USER")
   @Transactional
   public Boolean changeProfile(MultipartFile newProfile, String memberId) {
@@ -137,21 +153,21 @@ public Boolean telAvailable(String memberTel) {
       return memberDao.findByEmail(memberEmail) == null;
   }
   
-  // 3-2 로그인 
-  public Member login(String memberId, String password) {
-	    // 아이디로 사용자 정보를 조회합니다.
-	    Member member = memberDao.findById(memberId);
-
-	    // 사용자 정보가 없으면
-	    if (member == null) {
-	        throw new UsernameNotFoundException("일치하는 아이디가 없습니다.");
-	    }
-	    // 비밀번호가 일치하지 않으면
-	    if (!encoder.matches(password, member.getPassword())) {
-	        throw new BadCredentialsException("입력하신 정보가 일치하지 않습니다.");
-	    }
-	    return member;  // 로그인 성공 시 사용자 정보를 반환합니다.
-	}
+	  // 3-2 로그인 
+	  public Member login(String memberId, String password) {
+		    // 아이디로 사용자 정보를 조회합니다.
+		    Member member = memberDao.findById(memberId);
+	
+		    // 사용자 정보가 없으면
+		    if (member == null) {
+		        throw new UsernameNotFoundException("일치하는 아이디가 없습니다.");
+		    }
+		    // 비밀번호가 일치하지 않으면
+		    if (!encoder.matches(password, member.getPassword())) {
+		        throw new BadCredentialsException("입력하신 정보가 일치하지 않습니다.");
+		    }
+		    return member;  // 로그인 성공 시 사용자 정보를 반환합니다.
+		}
 
   
 //  4. 내 정보 보기 (SELECT 문)
@@ -249,4 +265,19 @@ public Boolean changeTel(String memberId, String memberTel) {
       return encoder.matches(password, m.getPassword());
     }
   }
+  
+  
+// 12. 사용자의 정보를 조회후 등급코드 반환
+  public Long getGradeCodeByMemberId(String memberId) {
+      Member member = memberDao.findById(memberId);
+      return member.getGradeCode();
+  }
+  
+  // 13.
+  public MemberGradeDto.MemberInfoDto getMemberInfo(String memberId) {
+      return memberDao.findMemberInfoById(memberId);
+  }
+
+  
+  
 }

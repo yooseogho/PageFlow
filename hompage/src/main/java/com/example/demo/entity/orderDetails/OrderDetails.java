@@ -6,6 +6,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderDetails {
+	private Long odno;
 	private Long bno;
 	private Long ono;
 	private Long orderCount;

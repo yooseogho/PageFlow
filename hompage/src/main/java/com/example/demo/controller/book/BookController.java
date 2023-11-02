@@ -48,19 +48,19 @@ public class BookController {
   }
 
   // 4. 도서 상세 정보 페이지
-  @GetMapping("/{bno}")
-  public String getBookDetail(@PathVariable Long bno, Model model) {
-    BookDto.Read book = bookService.getBookDetail(bno); // 도서 상세 정보 조회
-    if (book == null) {
-      // 도서를 찾지 못한 경우 처리
-      // 예: 오류 메시지 추가
-      model.addAttribute("error", "해당 도서를 찾을 수 없습니다.");
-      return "bookDetail";
-    } else {
-      model.addAttribute("book", book); // 모델에 도서 상세 정보 추가
-      return "bookDetail"; // 도서 상세 정보 페이지의 이름 (예: bookDetail.jsp)
-    }
-  }
+//  @GetMapping("/{bno}")
+//  public String getBookDetail(@PathVariable Long bno, Model model) {
+//    BookDto.Read book = bookService.getBookDetail(bno); // 도서 상세 정보 조회
+//    if (book == null) {
+//      // 도서를 찾지 못한 경우 처리
+//      // 예: 오류 메시지 추가
+//      model.addAttribute("error", "해당 도서를 찾을 수 없습니다.");
+//      return "bookDetail";
+//    } else {
+//      model.addAttribute("book", book); // 모델에 도서 상세 정보 추가
+//      return "bookDetail"; // 도서 상세 정보 페이지의 이름 (예: bookDetail.jsp)
+//    }
+//  }
 
   // 5. 도서 삭제 처리
   @Secured("ROLE_ADMIN")

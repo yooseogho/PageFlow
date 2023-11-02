@@ -10,7 +10,7 @@
 	<logger name="com.example" level="info" />
 	
 	<!--  스프링의 로깅 레벨을 지정 -->
-	<logger name="org.springframework" level="info" />
+	<logger name="org.springframework" level="debug" />
 	
 	<!-- Controller에서 매핑한 주소들을 출력하도록 설정(trace) -->
 	<logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="trace" />

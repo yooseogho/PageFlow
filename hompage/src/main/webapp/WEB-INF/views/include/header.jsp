@@ -6,6 +6,25 @@
 <head>
 <link rel="stylesheet" href="/css/include/header.css">
 <meta charset="UTF-8">
+<script >
+$('#logout-button').click(function(e) {
+    e.preventDefault();
+    var confirmation = confirm("로그아웃 하시겠습니까?");
+    if (confirmation) {
+        $.ajax({
+            url: '/logout',
+            method: 'post',
+            success: function() {
+                window.location.href = '/';
+            },
+            error: function() {
+                alert("로그아웃에 실패하였습니다. 다시 시도해 주세요.");
+            }
+        });
+    }
+});
+
+</script>
 </head>
 <body>
 	<div class="service_mall_wrap">
@@ -20,12 +39,16 @@
 								href="/member_info_page" class="util_link">내정보보기</a></li>
 							<li class="customer_service_item"><a
 								href="/member_grade_page" class="util_link">회원등급혜택</a></li>
-							<li class="customer_service_item"><a class="util_link"
-								href="/logout">로그아웃</a></li>
+					<li class="customer_service_item">
+    <a class="util_link" href="/logout" onclick="return confirm('로그아웃 하시겠습니까?')">로그아웃</a>
+</li>
+
+
 							<li class="customer_service_item"><a
 								href="/customer_service_page" class="util_link">고객센터</a></li>
 						</sec:authorize>
 					</sec:authorize>
+					
 					<sec:authorize access="isAnonymous()">
 						<li class="customer_service_item"><a
 							href="/member_create_page" class="util_link">회원가입</a></li>
@@ -42,7 +65,10 @@
 					<sec:authorize access="hasRole('ADMIN')">
 						<li class="customer_service_item"><a href="/admin_page"
 							class="util_link">관리자 페이지</a></li>
-						<li class="customer_service_item"><a class="util_link" href="/logout">로그아웃</a></li>
+					<li class="customer_service_item">
+    <a class="util_link" href="/logout" onclick="return confirm('로그아웃 하시겠습니까?')">로그아웃</a>
+</li>
+
 					</sec:authorize>
 				</ul>
 

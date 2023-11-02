@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.notice.NoticeDao">
+	<select id="findAll" resultType="Notice">
+		select * from (
+		select a.*,
+		rownum as rnum from (
+		select /*+ index_desc(notice, notice_pk_bno) */ *
+		from notice ORDER BY nno
+		DESC
+		) a
+		)
+		where rnum between #{startRownum} and
+		#{endRownum}
+	</select>
+
+	<select id="findPrev" resultType="Notice">
+		SELECT * FROM (SELECT * FROM notice WHERE nno <![CDATA[<]]>
+		#{nno} ORDER BY nno DESC) WHERE ROWNUM <![CDATA[<=]]>
+		1
+	</select>
+
+	<select id="findNext" resultType="Notice">
+		SELECT * FROM (SELECT * FROM notice WHERE nno <![CDATA[>]]>
+		#{nno} ORDER BY nno ASC) WHERE ROWNUM <![CDATA[<=]]>
+		1
+	</select>
+</mapper>

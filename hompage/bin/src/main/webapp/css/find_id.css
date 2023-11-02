@@ -1,0 +1,102 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#page {
+	padding-top: 100px;
+	width: 1440px;
+	margin: 0 auto;
+
+}
+
+header,
+main {
+	width: 1440px;
+	margin: 0 auto;
+}
+
+header {
+	height: 60px;
+}
+
+.header_inner {
+	height: 55px;
+	width: 400px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+main {
+	padding-top: 40px;
+	height:940px;
+}
+
+section {
+	height: 720px;
+	margin: 0 auto;
+}
+
+section,
+.check_btn,
+.tab_form,
+.fold_box_header,
+.find_btn {
+	width: 400px;
+}
+
+.tab_form{
+	height: 900px;
+}
+
+.tab_ul {
+	display: flex;
+}
+
+.find_li_btn {
+	width: 200px;
+	height: 42px;
+	border-radius: 10px;
+}
+
+.fold_box_header{
+	margin : 10px auto;
+	border: 1px solid black;
+	height: 580px;
+}
+
+.form_box{
+	height: 450px;
+	padding: 9px 23px 23px 23px;
+}
+
+.fold_box_btn{
+	margin : 10px auto;
+}
+
+.input_check {
+	width: 350px;
+	height: 44px;
+}
+
+.form_input {
+	margin-top:20px;
+}
+
+.check_btn {
+	margin-top:20px;
+	margin-bottom: 10px;
+	height: 50px;
+	border-radius: 10px;
+}
+
+
+.find_btn {
+	height: 50px;
+}
+
+
+

@@ -1,11 +1,12 @@
 package com.example.demo.service.orderDetails;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.example.demo.dao.orderDetails.OrderDetailsDao;
 import com.example.demo.entity.orderDetails.OrderDetails;
-
-import java.util.List;
 
 @Service
 public class OrderDetailsService {
@@ -39,7 +40,7 @@ public class OrderDetailsService {
   }
 
   // 전체 주문 상세 정보 조회
-  public List<OrderDetails> getAllOrderDetails(String memberId, Long ono) {
-    return detailsDao.getAllOrderDetails(memberId, ono);
+  public List<OrderDetails> getAllOrderDetails() {
+    return detailsDao.getAllOrderDetails();
   }
 }

@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access=AccessLevel.PRIVATE)
 public class MemberDto {
+	
 	@Data
 	public static class Join {
 		private String memberId;
@@ -34,6 +35,7 @@ public class MemberDto {
 	}
 	
 	//Read 에서 이름,번호 추가
+	
 	@Data
 	@AllArgsConstructor
 	public static class Read {
@@ -47,17 +49,19 @@ public class MemberDto {
 		private String memberTel;
 	}
 	
-	// profile_page에서 사용
-	@Data
-	@AllArgsConstructor
-	@NoArgsConstructor
-	public static class Profile {
-	    private String memberId;
-	    private String memberName;
-	    private String memberProfile;
-	}
-
+		// profile_page에서 사용
+		@Data
+		@AllArgsConstructor
+		@NoArgsConstructor
+		public static class Profile {
+		    private String memberId;
+		    private String memberName;
+		    private String memberProfile;
+		}
+		
+		
 	
+		
 	
 	// 로그인할 때 팔요함 10-20 유석호
 	@Data

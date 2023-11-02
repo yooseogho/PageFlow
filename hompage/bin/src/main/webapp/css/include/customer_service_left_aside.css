@@ -1,0 +1,107 @@
+@charset "UTF-8";
+
+.aside_wrapper {
+	width: 170px;
+	margin-right: 46px;
+}
+
+.aside_header {
+	margin-bottom: 30px;
+}
+
+.title_size_xxl {
+	position: relative;
+	display: -webkit-flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.title_heading {
+	font-size: 25px;
+	line-height: 40px;
+	letter-spacing: -0.01em;
+	display: inline-block;
+	position: relative;
+	font-weight: 700;
+	overflow-wrap: anywhere;
+}
+
+
+.snb_list {
+	list-style: none;
+	padding-left: 0rem;
+}
+
+.snb_list .snb_item .snb_link.depth_title {
+	margin-bottom: 8px;
+	margin-top: 15px;
+	font-size: 15px;
+	line-height: 23px;
+	letter-spacing: -0.01em;
+	font-weight: 700;
+}
+
+.aside_wrapper .snb_wrap .snb_list .snb_item ~ .snb_item {
+    margin-top: 8px;
+}
+
+.snb_link.depth_title,
+.snb_link,
+.asked_category_list ul li a,
+.inquiry {
+	color: #000;
+	text-decoration: none;
+}
+
+.align_left a {
+	color: #000;
+}
+
+.snb_list .snb_item .snb_link {
+	display: block;
+	position: relative;
+	line-height: 22px;
+}
+
+
+.snb_service_box {
+	margin-top: 50px;
+	padding-top: 24px;
+	border-top: 1px solid #eaeaea;
+}
+
+.snb_service_box .depth_title {
+	display: block;
+	margin-bottom: 16px;
+	font-size: 13px;
+	line-height: 22px;
+	letter-spacing: -0.01em;
+	font-weight: 500;
+}
+
+.ico_customer {
+	display: inline-block;
+	width: 21px;
+	height: 21px;
+	margin-right: 4px;
+	vertical-align: middle;
+	background-size: 21px 21px;
+	background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_customer_21x21@2x.png);
+	transform: translateY(-2px);
+}
+
+.unit {
+	font-size: 13px;
+	line-height: 19px;
+	letter-spacing: -0.01em;
+	color: #767676;
+	margin-left: 3px;
+}
+
+.snb_service_box .desc {
+	margin-top: 8px;
+	font-size: 13px;
+	line-height: 19px;
+	letter-spacing: -0.01em;
+	color: #595959;
+}

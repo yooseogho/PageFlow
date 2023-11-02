@@ -1,0 +1,183 @@
+@charset "UTF-8";
+
+.nav_wrapper {
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.pnf_search_wrap {
+    position: relative;
+    padding: 31px 188px 0 206px;
+}
+
+.pnf_item a {
+	color: #000;
+	text-decoration: none;
+}
+
+
+.pnf_wrap {
+    display: -webkit-flex;
+    position: relative;
+    justify-content: flex-start;
+    padding: 22px 0 20px;
+    align-items: center;
+}
+
+.pnf_search_wrap .logo_box .hidden,
+.pnf_search_wrap .logo_box a {
+	color: #000;
+	text-decoration: none;
+}
+
+.pnf_search_wrap .logo_box {
+    position: absolute;
+    top: 9px;
+    left: 0;
+    display: block;
+    width: 174px;
+    height: 100%;
+}
+
+.pnf_search_wrap .logo_box .logo_link {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.pnf_search_wrap .pnf_search_box {
+    display: -webkit-flex;
+    justify-content: flex-start;
+    width: 560px;
+    height: 48px;
+    padding-right: 14px;
+    border-radius: 25px;
+    background: #fff;
+    border: 1px solid #5055b1;
+    box-sizing: border-box;
+    align-items: center;
+
+}
+
+.pnf_search_wrap .pnf_search_box .search_input_wrap {
+    position: relative;
+    flex: 1;
+    height: 100%;
+    padding-left: 24px;
+}
+
+
+.pnf_search_wrap .pnf_search_box .btn_pnf_search {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_header_search@2x.png);
+}
+
+.pnf_search_wrap .pnf_search_box .search_input_wrap .ip_pnf_search {
+    width: 100%;
+    height: 100%;
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+}
+
+
+.pnf_search_wrap .user_menu_list {
+    position: absolute;
+    top: 31px;
+    right: 0;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.pnf_search_wrap .user_menu_list .user_menu_item.cart {
+    width: 40px;
+    height: 40px;
+    margin-left: 28px;
+}
+
+.pnf_search_wrap .user_menu_list .user_menu_item {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.pnf_search_wrap .user_menu_list .user_menu_item .user_menu_link {
+    display: block;
+    height: 100%;
+}
+
+.pnf_search_wrap .user_menu_list .user_menu_item.cart .user_menu_link:before {
+    content: "";
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_header_cart@2x.png);
+    vertical-align: top;
+}
+
+.pnf_search_wrap .user_menu_list .user_menu_item.my {
+    width: 48px;
+    height: 48px;
+    margin-left: 32px;
+}
+
+.pnf_search_wrap .user_menu_list .user_menu_item.my .user_menu_link {
+    overflow: hidden;
+    border-radius: 100%;
+}
+
+.pnf_search_wrap .user_menu_list .user_menu_item.my .user_menu_link:before {
+    content: "";
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 48px 48px;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_header_my@2x.png);
+    vertical-align: top;
+}
+
+.pnf_wrap .pnf_list .pnf_item {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.pnf_wrap .pnf_list .pnf_item + .pnf_item:before {
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 2px;
+    margin: 15px 0 0;
+    background-color: #000;
+    vertical-align: top;
+}
+
+.pnf_wrap .pnf_list .pnf_item .pnf_link {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    padding: 5px 14px;
+    vertical-align: top;
+}
+
+ul {
+	padding-left: 0px !important;
+}

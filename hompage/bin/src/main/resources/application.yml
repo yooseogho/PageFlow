@@ -1,0 +1,27 @@
+# 10/10 15:25
+# 작성자(수정자) : 갈현
+# 작성(수정) 내용 : 네이버 SMTP 사용을 위한 YML 파일 생성
+# - 참고 -
+# 주석 건들지 말것
+# 탭 간격 수정하면 에러가 발생하니, 수정할 부분이 있으면 나머지 팀원들에게 말할 것
+
+# Naver smtp server 사용
+spring:
+  mail:
+    host: smtp.naver.com #smtp 서버 주소
+    port: 465 # 메일 인증서버 포트
+    username: pageflow #네이버 아이디
+    password: bohemCigarNo.6 #네이버 비밀번호
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+#            required: true
+          auth: true
+#          connectiontimeout: 5000
+#          timeout: 5000
+#          writetimeout: 5000
+          ssl:
+             trust: smtp.naver.com
+#            enable: true #반드시 필요 -> SSL 필요로 되어있으면

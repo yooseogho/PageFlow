@@ -11,6 +11,11 @@ import org.springframework.stereotype.Component;
 import com.example.demo.dao.member.MemberDao;
 import com.example.demo.entity.member.Member;
 
+
+
+
+
+
 @Component
 public class MyUserDetailsService implements UserDetailsService {
 	@Autowired
@@ -29,6 +34,8 @@ public class MyUserDetailsService implements UserDetailsService {
 		return User.builder().username(member.getMemberId()).password(member.getPassword()).roles("USER").build();
 
 	}
+	
+	
 	
 
 	
