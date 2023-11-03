@@ -109,8 +109,8 @@
 }
 
 .my_profile_area .profile_name_box .name {
-    font-size: 18px;
-    line-height: 26px;
+    font-size: 22px;
+    line-height: 32px;
     letter-spacing: -0.01em;
     font-weight: 700;
     color: #fff;
@@ -120,7 +120,7 @@
 .badge_lg.badge_pill {
     padding: 3px 10px 0;
     border-radius: 22px;
-    font-size: 11px;
+    font-size: 21px;
     font-weight: 700;
 }
 
@@ -131,10 +131,13 @@
     vertical-align: top;
 }
 
-.badge_grade_friends {
-    border: 1px solid #33b052;
-    background-color: #33b052;
-}
+.grade_friends { background-color: green !important; }
+.grade_silver { background-color: silver !important; }
+.grade_gold { background-color: gold !important; }
+.grade_platinum { background-color: blue !important; }
+
+
+
 
 .badge_lg {
     min-height: 24px;

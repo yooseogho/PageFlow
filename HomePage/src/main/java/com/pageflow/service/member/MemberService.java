@@ -1,5 +1,6 @@
 package com.pageflow.service.member;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -17,15 +18,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.pageflow.dao.member.*;
-import com.pageflow.dto.member.*;
-import com.pageflow.dto.member.MemberDto.*;
-import com.pageflow.entity.member.*;
+import com.pageflow.dao.member.MemberDao;
+import com.pageflow.dto.member.MemberDto;
+import com.pageflow.dto.member.MemberDto.Read;
+import com.pageflow.dto.memberGrade.MemberGradeDto;
+import com.pageflow.entity.member.Member;
 
 @Service
 public class MemberService {
   @Autowired
-  MemberDao memberDao;
+  private MemberDao memberDao;
   @Autowired
   private PasswordEncoder encoder;
   
@@ -249,4 +251,16 @@ public Boolean changeTel(String memberId, String memberTel) {
       return encoder.matches(password, m.getPassword());
     }
   }
+  
+  
+//12. 사용자의 정보를 조회후 등급코드 반환
+ public Long getGradeCodeByMemberId(String memberId) {
+     Member member = memberDao.findById(memberId);
+     return member.getGradeCode();
+ }
+ 
+ // 13.등급이름 반환
+ public MemberGradeDto.MemberInfoDto getMemberInfo(String memberId) {
+     return memberDao.findMemberInfoById(memberId);
+ }
 }

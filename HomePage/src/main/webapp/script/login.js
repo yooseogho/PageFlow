@@ -1,39 +1,50 @@
-
-
-
 $(document).ready(function() {
+    $('form[action="/login"]').on('submit', function(e) {
+        e.preventDefault(); 
 
+        var memberId = $('[name="memberId"]').val();
+        var password = $('[name="password"]').val();
 
-	$('#login').on('click', function(e) {
-		e.preventDefault(); // 기본 폼 제출 동작 막기
+        if (!memberId || !password) {
+            alert('아이디와 비밀번호를 모두 입력해주세요.');
+            return;
+        }
 
-		var memberId = $('[name="memberId"]').val();
-		var password = $('[name="password"]').val();
+        console.log(memberId, password);  
+        console.log(JSON.stringify({ memberId: memberId, password: password }));
 
-		$.ajax({
-			url: '/login',
-			method: 'post',
-			data: { memberId: memberId, password: password },
-		success: function(response) {
-    // 로그인 성공 시 처리
-    location.reload();  // 현재 페이지 새로고침
-},
+        $.ajax({
+            url: '/api/login',
+            method: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify({ memberId: memberId, password: password}),
+            success: function(response) {
+                console.log(response);
+                window.location.href = '/';
+            },
+            error: function(response) {
+                var msg = response.responseText;
+                $('#login-msg').text(msg).css('color', 'red').css('font-size', '12px');
+            }
+        });
+    });
 
-error: function(jqXHR, textStatus, errorThrown) {
-    if (jqXHR.status === 401) { 
-	var errorMessage = jqXHR.responseText;
-	if(errorMessage === '입력하신 정보가 일치하지 않습니다.') { 
-		$('#login-msg').text(errorMessage).css({ 'color': 'red', 'font-size': '12px' });
-		$('#login-msg1').text('다시 확인해 주세요.').css({ 'color': 'red', 'font-size': '12px' });
-	} else if(errorMessage ==='일치하는 아이디가 없습니다.') {
-		$('#login-msg').text(errorMessage).css({ 'color': 'red', 'font-size': '12px' });
-	}
-	
+    function checkInput() {
+        var memberId = $('input[name="memberId"]').val().trim();
+        var password = $('input[name="password"]').val().trim();
+
+if (!memberId) {
+    $('#login-msg').text('아이디를 입력해주세요.').css('color', 'red').css('font-size', '12px');
+    $('input[name="memberId"]').css('border', '1px solid red');
+} else if (!password) {
+    $('#login-msg').text('비밀번호를 입력해주세요.').css('color', 'red').css('font-size', '12px');
+    $('input[name="password"]').css('border', '1px solid red');
 } else {
-	alert('오류가 발생했습니다. 다시 시도해주세요.');
+    $('#login-msg').text('').css('font-size', '');
+    $('input[name="memberId"], input[name="password"]').css('border', '');
 }
-}
-	
-		});
-	});
+
+    }
+
+    $('input[name="memberId"], input[name="password"]').on('input', checkInput);
 });

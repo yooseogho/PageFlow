@@ -70,10 +70,10 @@ function checkPasswordCheck() {
     const password = $("#password").val();
     const confirmPassword = $("#passwordCheck").val(); 
 
-    if (isPatternValid) { 
-         $("#passwordCheck").prop('disabled', false); // 패스워드 체크 필드 활성화 설정
-         $("#passwordCheck").prop('disabled', true);// 패스워드 체크 필드 비활성화 설정
-     }
+if (isPatternValid) { 
+    $("#passwordCheck").prop('disabled', false); // 패스워드 체크 필드 활성화 설정
+}
+
 
 	if (confirmPassword === "") {
 		return false;

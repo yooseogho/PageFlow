@@ -4,7 +4,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/include/member_info_left_aside.css">
+<script >
+$(document).ready(function() {
+    var gradeElement = document.querySelector('[data-role="grade"]');
+    var gradeName = "${gradeName}".toUpperCase();
+    switch (gradeName) {
+        case 'FRIENDS':
+            gradeElement.classList.add('grade_friends');
+            break;
+        case 'SILVER':
+            gradeElement.classList.add('grade_silver');
+            break;
+        case 'GOLD':
+            gradeElement.classList.add('grade_gold');
+            break;
+        case 'PLATINUM':
+            gradeElement.classList.add('grade_platinum');
+            break;
+    }
+});
+
+
+
+</script>
 </head>
 <body>
 	<div class="aside_body">
@@ -12,11 +37,10 @@
 			<div class="blur_img_box"></div>
 			<div class="profile_inner">
 				<div class="profile_thumb_box">
-					<a href="/member_profile_page" class="btn_setting"> <img
-						src="${member.memberProfile}"
-						style="width: 62px; height: 62px; border-radius: 100%;">
-					</a>
+					<a href="/member_profile_page" class="btn_setting">
+<img src="/profiles/${member.memberProfile}" style="width: 62px; height: 62px; border-radius: 100%;">
 
+					</a>
 				</div>
 
 				<!--  
@@ -24,14 +48,15 @@
 	style="width: 140px; height: 140px; border-radius: 100%;">
 	-->
 
-				<div class="profile_name_box">
-					<span class="name" data-role="">${member.memberName}님</span> <span
-						data-role="badge" class="badge"> <a data-role="grade"
-						class="badge_lg badge_pill badge_grade_friends"
-						href="/member_grade_page"> <span class="text">프렌즈</span>
-					</a>
-					</span>
-				</div>
+	<div class="profile_name_box">
+    <span class="name" data-role="">${member.memberName}님</span> 
+    <span data-role="badge" class="badge"> 
+        <a data-role="grade" class="badge_lg badge_pill badge_grade_friends" href="/member_grade_page"> 
+            <span class="text">${gradeName}</span>
+        </a>
+    </span>
+</div>
+
 			</div>
 		</div>
 		<div class="snb_wrap">
@@ -80,4 +105,5 @@
 		</div>
 	</div>
 </body>
+
 </html>

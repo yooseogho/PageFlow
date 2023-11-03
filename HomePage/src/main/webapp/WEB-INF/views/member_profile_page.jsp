@@ -11,7 +11,10 @@
 </head>
 <script>
 const v = `${member}`;
+const b =`${memberGrade}`;
 console.log(v);
+console.log(b);
+
 
 $(document).ready(function() {
     var isDeleted = false;
