@@ -172,7 +172,6 @@ img {
     font-size: 14px;
     line-height: 22px;
     letter-spacing: -0.01em;
-    vertical-align: middle;
 }
 
 .prod_detail_view_wrap .prod_detail_view_area .col_prod_info .prod_info_text .btn_publish_link {
@@ -337,7 +336,6 @@ button[class^=btn_], a[class^=btn_] {
     height: 100%;
     z-index: 1;
     display: flex;
-    -o-transition-property: transform;
     box-sizing: content-box;
 }
 

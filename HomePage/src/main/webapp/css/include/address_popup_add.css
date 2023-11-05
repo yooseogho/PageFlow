@@ -1,0 +1,141 @@
+@charset "UTF-8";
+
+/** 배송지 입력란 */
+.dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content.has_btn .dialog_contents {
+    max-height: 580px;
+}
+
+.form_wrap .form_box .form_title {
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.form_wrap.type_lg .form_box .form_title .form_label {
+    font-size: 15px;
+    line-height: 23px;
+    letter-spacing: -0.01em;
+}
+
+.form_label {
+    display: inline-block;
+    color: #000;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    cursor: default;
+}
+
+.form_wrap.type_lg .form_box .form_cont {
+    margin-top: 12px;
+}
+
+.form_wrap .form_box .form_cont {
+    color: #595959;
+}
+
+.form_ip {
+    display: inline-block;
+    width: 100%;
+    height: 44px;
+    padding: 0 14px 2px;
+    color: #000;
+    font-size: 14px;
+    line-height: 42px;
+    letter-spacing: -0.01em;
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.form_wrap.type_lg .form_box ~ .form_box {
+    margin-top: 24px;
+}
+
+.form_wrap.type_lg .form_box .form_title.has_btn {
+    min-height: 30px;
+}
+
+.form_wrap .form_box .form_title .right_area {
+    margin-left: auto;
+    flex-shrink: 0;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+a.btn_xs, button.btn_xs {
+	margin-left: 5px;
+    display: -webkit-inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    padding: 0 9px 1px;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 500;
+}
+
+a.btn_xs [class^=ico_], button.btn_xs [class^=ico_] {
+    height: 18px;
+    margin-right: 3px;
+}
+
+button[class^=btn_] [class^=ico_], a[class^=btn_] [class^=ico_] {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+
+.form_ip[readonly] {
+    color: #000;
+    background-color: #f7f7f7;
+    pointer-events: none;
+    cursor: default;
+}
+
+.form_wrap.type_lg .form_box .form_title.has_btn + .form_cont {
+    margin-top: 8px;
+}
+
+.form_wrap.type_lg .form_box ~ .form_box {
+    margin-top: 24px;
+}
+
+a.btn_ip .ico_search, button.btn_ip .ico_search {
+    width: 18px;
+    margin-top: 1px;
+    background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_btn_search@2x.png) center no-repeat;
+    background-size: 18px 18px;
+}
+
+.form_col_group .col_box ~ .col_box {
+    margin-top: 8px;
+}
+
+.bottom_chk_box {
+    margin-top: 20px;
+}
+
+.form_rdo input, .form_chk input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.form_ip ~ .form_ip {
+	margin-top : 5px;
+}

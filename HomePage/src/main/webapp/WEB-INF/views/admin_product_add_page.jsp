@@ -11,7 +11,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.js"></script>
-<title>(관리자)상품 등록</title>
+<title>Insert title here</title>
 <script type="text/javascript">
 	var jq = jQuery.noConflict(); // jQuery.noConflict()를 사용하여 $ 충돌 방지
 	jq(document).ready(function() {
@@ -22,6 +22,12 @@
 			fontNames : fontList,
 			fontNamesIgnoreCheck : fontList,
 		});
+		
+		// RedirectAttribute을 이용한 에러 메세지 처리
+		const msg = '${msg}';
+		if(msg!==''){
+			alert(msg);
+		}
 	});
 </script>
 </head>
@@ -39,6 +45,7 @@
                    	<jsp:include page="/WEB-INF/views/include/admin_left_aside.jsp" />
                 </aside>
                 <section class="section_wrapper">
+               	 <form action="/admin/book/add" method="post" enctype="multipart/form-data"> 
                     <div class="admin_wrap">
                         <div class="title_wrap title_size_lg">
                             <p class="title_heading">상품 등록</p>
@@ -64,11 +71,11 @@
                                                         <div class="valid_check w_full">
                                                             <div class="form_sel_multi">
                                                                 <div class="form_sel">
-                                                                    <select data-kbbfn-field="" id="InquiryQuestList" title="책 유형 분류">
-                                                                        <option value="-1" selected="selected">책 종류를 선택해주세요</option>
-                                                                        <option value="000">소설</option>
-                                                                        <option value="001">만화</option>
-                                                                        <option value="002">참고도서</option>
+                                                                    <select data-kbbfn-field="" id="mainBook" title="책 유형 분류">
+                                                                        <option value="-1" selected="selected" disabled>책 종류를 선택해주세요</option>
+                                                                        <option value="110">소설</option>
+                                                                        <option value="120">만화</option>
+                                                                        <option value="130">참고도서</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -81,7 +88,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="row" class="has_ip">
-                                            <label for="book_genre">책 장르</label>
+                                            <label for="categoryCode">책 장르</label>
                                             <span class="required">
                                             </span>
                                         </th>
@@ -92,22 +99,60 @@
                                                         <div class="valid_check w_full">
                                                             <div class="form_sel_multi">
                                                                 <div class="form_sel">
-                                                                    <select data-kbbfn-field="" id="book_genre" title="책 장르 분류">
-                                                                        <option value="-1" selected="selected">책 장르를 선택해주세요</option>
-                                                                        <option value="000">판타지소설</option>
-                                                                        <option value="001">로맨스소설</option>
-                                                                        <option value="002">SF/과학소설</option>
-                                                                        <option value="003">공포/호러소설</option>
-                                                                        <option value="004">드라마/영화소설</option>
-                                                                        <option value="005">웹툰</option>
-                                                                        <option value="006">요리만화</option>
-                                                                        <option value="007">액션/무협만화</option>
-                                                                        <option value="008">학원만화</option>
-                                                                        <option value="009">중/고등참고서</option>
-                                                                        <option value="010">토익교재</option>
-                                                                        <option value="011">EBS교재</option>
+                                                                    <select data-kbbfn-field="" id="categoryCode" title="책 장르 분류" name="categoryCode">
+                                                                        <option value="-1" selected="selected" disabled>책 장르를 선택해주세요</option>
                                                                     </select>
-                                                                </div>
+                                    <script>
+                                 // HTML 엘리먼트에 대한 참조 가져오기
+                                    var mainBook = document.querySelector('#mainBook');
+                                    var categoryCode = document.querySelector('#categoryCode');
+
+                                    // 책 종류 선택 시 실행할 이벤트 리스너 등록
+                                    mainBook.addEventListener('change', function() {
+                                        var selectedBook = mainBook.value;
+                                        var categoryOptions = categoryCode.getElementsByTagName('option');
+
+                                        // "책 장르를 선택해주세요" 옵션을 제외한 모든 옵션 제거
+                                        for (var i = categoryOptions.length - 1; i > 0; i--) {
+                                            categoryCode.removeChild(categoryOptions[i]);
+                                        }
+
+                                        // 선택한 책 종류에 따라 동적으로 옵션 추가
+                                        switch (selectedBook) {
+                                            case "110": // 소설
+                                                addCategoryOption("111", "판타지소설");
+                                                addCategoryOption("112", "공포/호러소설");
+                                                addCategoryOption("113", "드라마/영화소설");
+                                                addCategoryOption("114", "SF/과학소설");
+                                                addCategoryOption("115", "로맨스소설");
+                                                break;
+                                            case "120": // 만화
+                                                addCategoryOption("121", "웹툰");
+                                                addCategoryOption("122", "요리만화");
+                                                addCategoryOption("123", "액션만화");
+                                                addCategoryOption("124", "학원만화");
+                                                break;
+                                            case "130": // 참고도서
+                                                addCategoryOption("131", "중/고등참고서");
+                                                addCategoryOption("132", "토익교재");
+                                                addCategoryOption("133", "EBS교재");
+                                                break;
+                                            default:
+                                                // 선택한 책 종류가 없는 경우 또는 기본 선택 옵션일 경우
+                                                break;
+                                        }
+                                    });
+
+                                    // 책 장르 옵션을 추가하는 함수
+                                    function addCategoryOption(value, text) {
+                                        var option = document.createElement('option');
+                                        option.value = value;
+                                        option.text = text;
+                                        categoryCode.appendChild(option);
+                                    }
+
+                                    </script>
+                                                            	</div>
                                                             </div>
                                                             <span class="valid_desc"></span>
                                                         </div>
@@ -126,16 +171,29 @@
                                             <div class="form_col_group w_full">
                                                 <div class="col_box">
                                                     <div class="valid_check">
-                                                        <input data-kbbfn-field="" id="bookTitle" type="text" class="form_ip w_full" title="제목 입력" placeholder="제목" maxlength="50">
+                                                        <input data-kbbfn-field="" id="bookTitle" type="text" class="form_ip w_full" title="제목 입력" placeholder="제목" 
+                                                        maxlength="50" name="bookTitle">
                                                         <span class="valid_desc"></span>
                                                     </div>
                                                 </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    	<th scope="row" class="has_ip">
+                                            <label for="bookIntro">책 소개</label>
+                                            <span class="required">
+                                            </span>
+                                        </th>
+                                        <td>
+                                            <div class="form_col_group w_full">
                                                 <div class="col_box">
                                                     <div class="valid_check">
                                                         <div class="byte_check_wrap w_full">
-                                                            <textarea data-kbbfn-field="" id="InquiryContent" class="form_textarea" title="문의 내용 입력" placeholder="책 소개" maxlength="200" style="height: 246px;"></textarea>
+                                                            <textarea data-kbbfn-field="" id="bookIntro" class="form_textarea" title="책 소개" placeholder="책 소개" 
+                                                            maxlength="3000" style="height: 246px;" name="bookIntro"></textarea>
                                                             <div class="byte_check_footer">
-                                                                <div class="byte_check"><span class="count">0</span><span class="total">200</span></div>
+                                                                <div class="byte_check"><span class="count">0</span><span class="total">3000</span></div>
                                                             </div>
                                                         </div>
                                                         <span class="valid_desc"></span>
@@ -146,7 +204,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="row" class="has_ip">
-                                            <label for="InquiryTitle">내용</label>
+                                            <label for="bookContent">내용</label>
                                             <span class="required">
                                             </span>
                                         </th>
@@ -154,7 +212,7 @@
                                           <div class="col_box">
                                              <div class="valid_check">
                                                  <div class="byte_check_wrap w_full">
-                                                     <textarea id="summernote" name="content" class="form_textarea" title="답변 내용 입력"  maxlength="3000" style="height: 246px;"></textarea>
+                                                     <textarea id="summernote" name="bookContent" class="form_textarea" maxlength="3000" style="height: 246px;"></textarea>
                                                      <div class="byte_check_footer">
                                                          <div class="byte_check"><span class="count">0</span><span class="total">3000</span></div>
                                                      </div>
@@ -174,7 +232,8 @@
                                             <div class="form_col_group w_full">
                                                 <div class="col_box">
                                                     <div class="valid_check">
-                                                        <input data-kbbfn-field="" id="authorName" type="text" class="form_ip w_full" title="이름 입력" placeholder="이름" maxlength="30">
+                                                        <input data-kbbfn-field="" id="authorName" type="text" class="form_ip w_full" title="이름 입력" 
+                                                        placeholder="작가명" maxlength="30" name="authorName">
                                                         <span class="valid_desc"></span>
                                                     </div>
                                                 </div>
@@ -189,7 +248,8 @@
                                             <div class="form_col_group w_full">
                                                 <div class="col_box">
                                                     <div class="valid_check">
-                                                        <input data-kbbfn-field="" id="translator" type="text" class="form_ip w_full" title="이름 입력" placeholder="이름" maxlength="30">
+                                                        <input data-kbbfn-field="" id="translator" type="text" class="form_ip w_full"
+                                                         title="이름 입력" placeholder="이름" maxlength="30" name="translator">
                                                         <span class="valid_desc"></span>
                                                     </div>
                                                 </div>
@@ -206,7 +266,8 @@
                                             <div class="form_col_group w_full">
                                                 <div class="col_box">
                                                     <div class="valid_check">
-                                                        <input data-kbbfn-field="" id="publisherName" type="text" class="form_ip w_full" title="출판사 이름 입력" placeholder="출판사명" maxlength="30">
+                                                        <input data-kbbfn-field="" id="publisherName" type="text" class="form_ip w_full" 
+                                                        title="출판사 이름 입력" placeholder="출판사명" maxlength="30" name="publisherName">
                                                         <span class="valid_desc"></span>
                                                     </div>
                                                 </div>
@@ -223,7 +284,8 @@
                                             <div class="form_col_group w_full">
                                                 <div class="col_box">
                                                     <div class="valid_check">
-                                                        <input data-kbbfn-field="" id="bookPrice" type="text" class="form_ip w_full" title="가격" placeholder="가격란" maxlength="10">
+                                                        <input data-kbbfn-field="" id="bookPrice" type="number" class="form_ip w_full" title="가격"
+                                                         placeholder="가격란" maxlength="10" name="bookPrice">
                                                         <span class="valid_desc"></span>
                                                     </div>
                                                 </div>
@@ -240,7 +302,7 @@
                                             <div class="form_col_group w_full">
                                                 <div class="col_box">
                                                     <div class="valid_check">
-                                                        <input data-kbbfn-field="" id="publishDate" type="date" class="form_ip w_full" title="날짜">
+                                                        <input id="publishDate" type="date" class="form_ip w_full" title="날짜" name="publishDate">
                                                         <span class="valid_desc"></span>
                                                     </div>
                                                 </div>
@@ -257,7 +319,7 @@
                                             <div class="form_col_group w_full">
                                                 <div class="col_box">
                                                     <div class="valid_check">
-                                                        <input data-kbbfn-field="" id="stock" type="text" class="form_ip w_full" title="재고" maxlength="5">
+                                                        <input id="stock" type="number" class="form_ip w_full" title="재고" maxlength="5" name="stock" placeholder="재고란">
                                                         <span class="valid_desc"></span>
                                                     </div>
                                                 </div>
@@ -266,7 +328,7 @@
                                     </tr>
                                     <tr id="InquiryFileForm">
                                         <th scope="row" class="has_ip">
-                                            <label for="book_image">사진 첨부</label>
+                                            <label for="bookImage">사진 첨부</label>
                                             <span class="required">
                                             </span>
                                         </th>
@@ -275,20 +337,33 @@
                                                 <li class="list_item">
                                                     <span class="file_item">
                                                         <span class="btn_box">
-                                                            <input id="book_image" type="file">
-                                                            <label for="book_image">
+                                                            <input id="bookImage" type="file" name="bookImage" onchange="readURL(this);">
+                                                            <label for="bookImage" id="bookImageLabel">
                                                                 <span class="hidden">첨부파일 추가</span>
                                                             </label>
-                                                            <span class="attach_img_box">
-                                                                <span class="attach_img_view"></span>
-                                                                <button class="btn_remove_img" type="button">
-                                                                    <span class="hidden">첨부파일 삭제</span>
-                                                                </button>
-                                                            </span>
-                                                        </span>
+                                                         </span>   
+                                                    </span>     
+                                                    <span class="attach_img_box">
+                                                        <span class="attach_img_view"><img id="preview" style="width:100px; height:100px;"></span>
                                                     </span>
                                                 </li>
                                             </ul>
+                                            
+                                            	<!-  라벨 클릭 시 이미지 미리보기 --> 
+                                                <script>
+                                                function readURL(input) {
+                                                	  if (input.files && input.files[0]) {
+                                                	    var reader = new FileReader();
+                                                	    reader.onload = function(e) {
+                                                	      document.getElementById('preview').src = e.target.result;
+                                                	    };
+                                                	    reader.readAsDataURL(input.files[0]);
+                                                	  } else {
+                                                	    document.getElementById('preview').src = "";
+                                                	  }
+                                                	    
+                                                	}
+                                                </script>
                                             <ul class="bul_list">
                                                 <li class="bul_item_asterisk font_size_xxs">JPG, PNG, GIF 파일만 최대 1장 업로드 가능합니다.</li>
                                             </ul>
@@ -298,16 +373,16 @@
                             </table>
                         </div>
 
-                    
                         <div class="btn_wrap page_bottom">
                             <a href="/admin_page" class="btn_light_gray btn_lg">
                                 <span class="text">취소</span>
                             </a>
-                            <button data-kbbfn-form="inquiryForm" data-kbbfn-submit="" type="button" class="btn_primary btn_lg" onclick="location.href='/admin_product_list_page'">
+                            <button data-kbbfn-form="inquiryForm" class="btn_primary btn_lg">
                                 <span class="text">등록</span>
                             </button>
                         </div>
                     </div>
+                  </form>
                 </section>
             </div>
         </main>

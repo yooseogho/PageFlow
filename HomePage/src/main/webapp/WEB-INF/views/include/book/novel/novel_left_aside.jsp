@@ -20,23 +20,23 @@
 			<ul class="snb_list">
 
 				<li class="snb_item"><a
-					href="/category/novel/fantasy_novel_book" class="snb_link">판타지소설</a>
+					href="/category/book/110/111" class="snb_link">판타지소설</a>
 				</li>
 
 				<li class="snb_item"><a
-					href="/category/novel/romance_novel_book" class="snb_link">로맨스소설</a>
+					href="/category/book/110/112" class="snb_link">공포/호러소설</a>
 				</li>
 
 				<li class="snb_item"><a
-					href="/category/novel/science_novel_book" class="snb_link">SF/과학소설</a>
+					href="/category/book/110/113" class="snb_link">드라마/영화소설</a>
 				</li>
 
 				<li class="snb_item"><a
-					href="/category/novel/horror_novel_book" class="snb_link">공포/호러소설</a>
+					href="/category/book/110/114" class="snb_link">SF/과학소설</a>
 				</li>
 
 				<li class="snb_item"><a
-					href="/category/novel/original_novel_book" class="snb_link">드라마/영화소설</a>
+					href="/category/book/110/115" class="snb_link">로맨스소설</a>
 				</li>
 
 			</ul>

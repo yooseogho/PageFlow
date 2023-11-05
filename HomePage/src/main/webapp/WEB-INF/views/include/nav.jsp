@@ -14,13 +14,18 @@
 			</a>
 		</div>
 		<div class="pnf_search_box">
-			<div class="search_input_wrap">
-				<input type="search" class="ip_pnf_search" placeholder="검색어를 입력해주세요">
-			</div>
-			<a href="/product_search_list_page" class="btn_pnf_search"></a>
-		</div>
-		<ul class="user_menu_list">
-			<li class="user_menu_item cart"><a href="/cart_page"
+		    <div class="search_input_wrap">
+		        <form id="searchForm" action="/book/search" method="get">
+		            <input type='search' name='keyword' placeholder='검색어를 입력해주세요' class="ip_pnf_search">
+		        </form>
+		    </div>
+		    <a href='#' class='btn_pnf_search'>
+		    </a>
+		</div> 
+
+
+		<ul class="user_menu_list"> 
+			<li class="user_menu_item cart"><a href="/cart/list"
 				class="user_menu_link"></a></li>
 			<li class="user_menu_item my"><a href="/member_info_page"
 				class="profile-icon user_menu_link done"></a></li>
@@ -28,9 +33,9 @@
 	</div>
 	<div class="pnf_wrap">
 		<ul class="pnf_list">
-			<li class="pnf_item"><a href="/category/novel/novel_book" class="pnf_link"> 소설 </a></li>
-			<li class="pnf_item"><a href="/category/comicBook/comic_book" class="pnf_link"> 만화 </a></li>
-			<li class="pnf_item"><a href="/category/textbook/text_book" class="pnf_link"> 참고도서 </a></li>
+			<li class="pnf_item"><a href="/category/book/110" class="pnf_link"> 소설 </a></li>
+			<li class="pnf_item"><a href="/category/book/120" class="pnf_link"> 만화 </a></li>
+			<li class="pnf_item"><a href="/category/book/130" class="pnf_link"> 참고도서 </a></li>
 		</ul>
 	</div>
 </body>

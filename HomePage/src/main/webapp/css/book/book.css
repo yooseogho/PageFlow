@@ -209,6 +209,10 @@ a[class^=btn_] .text {
 }
 
 
+.fc_green {
+    color: #3c9a17 !important;
+}
+
 .list_result_wrap .right_area .item_group {
     font-size: 0;
     margin-left: 0;
@@ -382,6 +386,7 @@ a[class^=btn_] [class^=ico_] {
 .prod_area.horizontal .prod_thumb_box.size_lg .img_box img {
     max-height: calc((142px - 2px) * 1.618 - 10px);
     width: 100%;
+    min-height: 180px;
 }
 
 .switch_prod_wrap.view_type_list .prod_list .prod_item .prod_area .prod_info_box {

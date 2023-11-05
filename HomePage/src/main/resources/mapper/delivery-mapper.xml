@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pageflow.dao.delivery.DeliveryDao">
+	
+	<!-- 사용자의 배송지 목록 나열 -->
+	<select id="findAll" resultType="Delivery">
+	select * from 
+			(
+				select rownum as rnum, d.* from
+					(select /*+ index_desc(delivery delivery_pk_dno)*/ * from delivery) d
+				where rownum&lt;=#{endRownum} and member_id = #{memberId}
+                order by default_address desc, dno desc
+                
+			)
+		where rnum>=#{startRownum}
+	</select>
+</mapper>
+
+

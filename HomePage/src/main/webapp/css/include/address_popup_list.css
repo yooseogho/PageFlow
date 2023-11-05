@@ -1,0 +1,548 @@
+@charset "UTF-8";
+
+/** 배송지 추가란 */
+html:not(.ios) body.dialog_open .dialog_wrapper.open {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.dialog_wrapper.open {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 20px);
+    padding: 10px 0;
+    overflow-y: hidden;
+}
+.dialog_wrapper {
+    display: none;
+    min-width: 1440px;
+    z-index: 1000;
+    align-items: center;
+}
+
+.dialog_wrapper .ui-dialog {
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    position: relative;
+    width: 560px;
+    max-height: 800px;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+    color: #000;
+}
+
+.ui-dialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.2em;
+    outline: 0;
+}
+.ui-front {
+    z-index: 100;
+}
+
+.dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content.has_btn {
+    padding-bottom: 30px;
+}
+
+.dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content {
+    display: -webkit-flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100% !important;
+    max-height: 800px !important;
+    padding: 0 30px 34px;
+    background: #fff;
+    border-radius: 16px;
+    border: 0;
+    box-sizing: border-box;
+}
+.dialog_wrapper .ui-dialog.dialog_address_change .dialog_wrap {
+    height: 800px !important;
+}
+.ui-dialog .ui-dialog-content {
+    position: relative;
+    border: 0;
+    padding: 0.5em 1em;
+    background: 0 0;
+    overflow: auto;
+}
+
+.dialog_wrapper .ui-dialog .btn_dialog_close {
+    position: absolute;
+    top: 28px;
+    right: 30px;
+    width: 24px;
+    height: 24px;
+}
+
+.dialog_wrapper .ui-dialog .btn_dialog_close .ico_dialog_close {
+    position: relative;
+    z-index: 3;
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_dialog_close@2x.png);
+}
+
+.dialog_wrapper .ui-dialog .dialog_wrap.no_title_line .dialog_header {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content .dialog_header {
+    flex-shrink: 0;
+    padding: 25px 30px 20px 0;
+    text-align: left;
+    background: #fff;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content .dialog_header .dialog_title {
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    overflow: hidden;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    max-height: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dialog_wrapper .ui-dialog .dialog_wrap.no_title_line.has_btn .dialog_contents {
+    max-height: 557px;
+}
+
+.dialog_wrapper .ui-dialog .dialog_wrap.no_title_line .dialog_contents {
+    margin-top: 30px;
+}
+
+.dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content .dialog_contents {
+    flex: 1 1 auto;
+    overflow: hidden;
+    overflow-y: auto;
+    position: relative;
+    max-height: 616px;
+    background: #fff;
+    padding: 0;
+    margin-top: 24px;
+    box-sizing: border-box;
+}
+.dialog_wrapper .ui-dialog.dialog_address_change .dialog_wrap .dialog_contents {
+    height: 100%;
+}
+
+.dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content .dialog_contents .custom_scroll_wrap {
+    max-height: inherit;
+}
+
+.custom_scroll_wrap {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.simplebar-wrapper {
+    overflow: hidden;
+    width: inherit;
+    height: inherit;
+    max-width: inherit;
+    max-height: inherit;
+}
+
+.simplebar-mask {
+    direction: inherit;
+    position: absolute;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: auto!important;
+    height: auto!important;
+    z-index: 0;
+}
+
+.simplebar-offset {
+    direction: inherit!important;
+    box-sizing: inherit!important;
+    resize: none!important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.simplebar-content-wrapper {
+    direction: inherit;
+    box-sizing: border-box!important;
+    position: relative;
+    display: block;
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content .dialog_contents .custom_scroll_wrap .simplebar-content {
+    height: 100%;
+}
+
+.simplebar-content:after, .simplebar-content:before {
+    content: ' ';
+    display: table;
+}
+
+.dialog_wrapper .ui-dialog.dialog_address_change .dialog_wrap .dialog_contents .custom_scroll_inner {
+    min-height: 100%;
+}
+
+.dialog_wrapper .ui-dialog.dialog_address_change .dialog_wrap .dialog_contents .custom_scroll_inner .address_wrap {
+    display: -webkit-flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-items: stretch;
+    flex-direction: column;
+    height: 100%;
+}
+
+a.btn_ip .ico_add, button.btn_ip .ico_add {
+    width: 14px;
+    height: 14px;
+    margin-top: 1px;
+    background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_add@2x.png) center no-repeat;
+    background-size: 14px 14px;
+}
+
+a.btn_ip [class^=ico_], button.btn_ip [class^=ico_] {
+    height: 20px;
+    margin-right: 5px;
+}
+button[class^=btn_] [class^=ico_], a[class^=btn_] [class^=ico_] {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+
+.address_wrap .btn_wrap.full + .address_list {
+    margin-top: 24px;
+    max-height: 415px;
+    overflow-y: auto;
+}
+
+
+.pagination {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.btn_page_num.active {
+	background-color: #767676;
+    color: #fff;
+    border-radius: 12px;
+    width: 20px;
+    height: 19px;
+}
+
+.btn_page_num {
+	width: 20px;
+    height: 19px;
+}
+
+.address_item .address_chk_box {
+    display: inline-block;
+    flex: 0 auto;
+    margin-right: 12px;
+}
+
+.form_rdo.no_label, .form_chk.no_label {
+    width: 22px;
+    height: 22px;
+    min-height: auto;
+}
+
+.form_rdo input, .form_chk input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+
+.form_rdo input + label:before {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    transition: border-color 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+.form_rdo input + label:before, .form_rdo input + label:after, .form_chk input + label:before, .form_chk input + label:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+
+.form_rdo input + label:after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+}
+
+.form_rdo input + label:before, .form_rdo input + label:after, .form_chk input + label:before, .form_chk input + label:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+
+.address_item .btn_wrap {
+    margin-left: 20px;
+}
+.form_rdo input:checked + label:before, .form_chk input:checked + label:before {
+    background-color: #5055b1;
+    border-color: #5055b1;
+}
+
+.form_rdo input:checked + label:after {
+    background-color: #fff;
+}
+
+.badge_line_primary {
+    color: #474c98;
+    border: 1px solid #474c98;
+    background: #fff;
+}
+
+.form_rdo.no_label input + label, .form_chk.no_label input + label {
+    position: static;
+    padding-left: 0;
+    font-size: 0;
+}
+
+.dialog_wrapper .ui-dialog.dialog_address_change .dialog_wrap .dialog_contents .custom_scroll_inner .address_wrap > .no_data {
+    flex: 1;
+    box-sizing: border-box;
+}
+
+.no_data {
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 180px 0;
+}
+
+.no_data .no_data_desc {
+    display: block;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    text-align: center;
+}
+
+.no_data .no_data_desc:before {
+    content: "";
+    display: block;
+    width: 36px;
+    height: 36px;
+    margin: 0 auto 12px;
+    background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_nodata@2x.png) 0% 0% no-repeat;
+    background-size: 36px 36px;
+}
+
+.dialog_wrapper .ui-dialog .dialog_wrap.type_col_btn .dialog_footer.address_footer {
+    margin-top: 20px;
+}
+.dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content .dialog_footer {
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}
+
+.dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content .dialog_footer {
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    margin-top: 34px;
+}
+
+.dialog_wrapper .ui-dialog .dialog_wrap.type_col_btn .dialog_footer.address_footer .def_check_wrap {
+    margin-bottom: 34px;
+}
+
+.form_rdo, .form_chk {
+    display: inline-block;
+    position: relative;
+    min-height: 22px;
+    vertical-align: top;
+}
+
+.form_rdo input, .form_chk input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.form_rdo input + label, .form_chk input + label {
+    display: inline-block;
+    position: relative;
+    padding: 2px 0 0 27px;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    line-height: 20px;
+    color: #000;
+    cursor: pointer;
+    vertical-align: top;
+}
+
+.form_chk input + label:before {
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.form_rdo input + label:before, .form_rdo input + label:after, .form_chk input + label:before, .form_chk input + label:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+
+.form_chk input + label:after {
+    background-position: center 8px;
+    background-repeat: no-repeat;
+    background-size: 10px 7px;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_checkbox@2x.png);
+}
+
+.form_rdo input + label:after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+}
+
+.address_item .address_info_box .address, .address_item .address_info_box .email, .address_item .address_info_box .ebook_info {
+    display: block;
+    margin-top: 8px;
+    color: #000;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+}
+
+.btn_wrap .btn_xs + .btn_xs {
+    margin-left: 3px;
+}
+
+.address_list .address_item + .address_item {
+    margin-top: 10px;
+}
+
+a.btn_light_gray, button.btn_light_gray {
+    color: #fff;
+    background: #767676;
+    border: 1px solid #767676;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.form_chk input:checked + label:after {
+    background-size: 10px 7px;
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_checkbox_active@2x.png);
+}
+
+.form_rdo input:checked + label:before, .form_chk input:checked + label:before {
+    background-color: #5055b1;
+    border-color: #5055b1;
+}
+
+.dialog_wrapper .ui-dialog .dialog_wrap.type_col_btn .dialog_footer .btn_wrap {
+    flex: 1 0 100%;
+}
+
+a.btn_md, button.btn_md {
+    display: -webkit-inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 140px;
+    height: 44px;
+    padding: 0 23px 1px;
+    border-radius: 6px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 23px;
+    letter-spacing: -0.01em;
+}
+
+.dialog_wrapper .ui-widget-overlay {
+    background: #000;
+    opacity: 0.5;
+}
+
+.ui-widget-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

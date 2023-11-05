@@ -66,7 +66,7 @@
     position: relative;
     flex: 1;
     height: 100%;
-    padding-left: 24px;
+    padding: 12px 0 0px 24px;
 }
 
 
@@ -78,6 +78,7 @@
     background-repeat: no-repeat;
     background-size: 18px 18px;
     background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_header_search@2x.png);
+    cursor: pointer;
 }
 
 .pnf_search_wrap .pnf_search_box .search_input_wrap .ip_pnf_search {
@@ -86,7 +87,7 @@
     background: none;
     outline: none;
     border: none;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 22px;
     letter-spacing: -0.01em;
 }

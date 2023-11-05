@@ -1,9 +1,17 @@
 @charset "UTF-8";
 
+
+/* 공통 css 영역 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 body {
@@ -15,30 +23,51 @@ body {
 }
 
 #page {
-    width: 1200px;
     margin: 0 auto;
-
 }
 
-header {
-    border: 1px solid red;
-    height: 100px;
-    display: flex;
-    justify-content: space-between;
+ul {
+    list-style: none;
+}
+
+button {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+input,
+button,
+select,
+textarea {
+    vertical-align: middle;
+}
+
+input,
+button {
+    border: 0;
+    border-radius: 0;
+    background: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+.hidden {
+    position: absolute;
+    visibility: hidden;
+    overflow: hidden;
+    height: 0;
+    line-height: 0;
+    width: 0;
+    margin: 0;
+    padding: 0;
+    font: 0/0 Arial;
 }
 
 
-.h_button_area {
-    height: 49px;
-    display: flex;
-    justify-content: end;
-}
 
-.h_button {
-    height: 49px;
-    margin-left: 10px;
-}
-
+/** main css */
 .container_wrapper {
     min-height: calc(100vh - 80px);
 }
@@ -226,7 +255,7 @@ h6 {
 }
 
 .prod_area.horizontal .prod_thumb_box.size_sm {
-    width: 84px;
+    width: 180px;
 }
 
 .prod_area.horizontal .prod_thumb_box {
@@ -257,6 +286,7 @@ a {
 
 .prod_area.horizontal .prod_thumb_box.size_sm .img_box img {
     max-height: calc((84px - 2px) * 1.618 - 10px);
+    min-height: 150px;
 }
 
 .prod_area.horizontal .prod_info_box.size_sm {
@@ -516,5 +546,9 @@ button.btn_primary {
     color: #fff;
     background: #5055b1;
     border: 1px solid #5055b1;
-    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.payment_complete_price_box {
+	display: block;
+	text-align: end;
 }

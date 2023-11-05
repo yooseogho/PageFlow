@@ -2,18 +2,20 @@ package com.pageflow.entity.orders;
 
 import java.time.*;
 
+import org.springframework.format.annotation.*;
+
 import lombok.*;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Orders {
 	private Long ono;
 	private String memberId;
 	private Long dno;
 	private LocalDate orderDate;
-	private String orderRequest;
 	private Long orderPrice;
-	private Long payment;
+	private String payment;
 	private Long pointEarn;
+	
 }

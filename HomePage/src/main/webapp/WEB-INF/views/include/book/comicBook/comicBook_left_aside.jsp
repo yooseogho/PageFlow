@@ -20,18 +20,18 @@
 			<ul class="snb_list">
 
 				<li class="snb_item"><a
-					href="/category/comicBook/webtoon_book" class="snb_link">웹툰</a></li>
+					href="/category/book/120/121" class="snb_link">웹툰</a></li>
 
 				<li class="snb_item"><a
-					href="/category/comicBook/cooking_comic_book" class="snb_link">요리만화</a>
+					href="/category/book/120/122" class="snb_link">요리만화</a>
 				</li>
 
 				<li class="snb_item"><a
-					href="/category/comicBook/action_comic_book" class="snb_link">액션/무협만화</a>
+					href="/category/book/120/123" class="snb_link">액션만화</a>
 				</li>
 
 				<li class="snb_item"><a
-					href="/category/comicBook/academy_comic_book" class="snb_link">학원만화</a>
+					href="/category/book/120/124" class="snb_link">학원만화</a>
 				</li>
 
 			</ul>

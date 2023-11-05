@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pageflow.dao.orders.OrdersDao">
+	<!-- 주문 목록 불러오기 -->
+	<select id="getOrdersByOno" parameterType="Long" resultMap="OrdersResultMap">
+		SELECT * FROM orders WHERE ono = #{ono}
+	</select>
+
+	<select id="findAll" resultMap="OrdersResultMap" parameterType="String">
+		select
+			o.ono, order_date, book_title, book_image, order_count, order_status, order_total 
+		from orders o 
+		inner join order_details od on o.ono=od.ono 
+		where member_id= #{memberId}
+		order by o.ono desc
+	</select>
+
+	<resultMap id="OrdersResultMap" type="com.pageflow.dto.orders.OrdersDto$OrdersList">
+		<id column="ono" property="ono" />
+		<result column="orderDate" property="orderDate" />
+		<collection property="orderDetails" ofType="OrderDetails" select="findAll" column="ono" />
+	</resultMap>
+
+</mapper>
+
+

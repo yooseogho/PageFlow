@@ -20,15 +20,15 @@
 			<ul class="snb_list">
 
 				<li class="snb_item"><a
-					href="/category/textbook/secondary_book" class="snb_link">중/고등참고서</a>
+					href="/category/book/130/131" class="snb_link">중/고등참고서</a>
 				</li>
 				
 				<li class="snb_item"><a
-					href="/category/textbook/toeic_book" class="snb_link">토익교재</a>
+					href="/category/book/130/132" class="snb_link">토익교재</a>
 				</li>
 
 				<li class="snb_item"><a
-					href="/category/textbook/ebs_book" class="snb_link">EBS교재</a>
+					href="/category/book/130/133" class="snb_link">EBS교재</a>
 				</li>
 
 			</ul>

@@ -158,102 +158,6 @@ img {
     align-items: flex-start;
 }
 
-.search_result_wrap .filter_area {
-    flex: 0 0 170px;
-    flex-shrink: 0;
-    margin-top: 6px;
-}
-
-.search_result_wrap .filter_list_box {
-    border-top: 1px solid #d5d5d5;
-    margin-top: 20px;
-}
-
-.search_result_wrap .filter_list_box .filter_list .item_depth1 {
-    padding: 20px 0;
-    border-bottom: 1px solid #eaeaea;
-    box-sizing: border-box;
-}
-
-.search_result_wrap .filter_list_box .filter_list .btn_filter_depth1 {
-    font-weight: 400;
-}
-
-.search_result_wrap .filter_list_box .filter_list .btn_filter_depth1.active {
-    font-weight: 700;
-}
-
-.search_result_wrap .filter_list .btn_filter_depth1 {
-    display: -webkit-flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    text-align: left;
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: -0.01em;
-    font-weight: 500;
-}
-
-button[class^=btn_],
-a[class^=btn_] {
-    display: inline-block;
-    box-sizing: border-box;
-    vertical-align: top;
-}
-
-button[class^=btn_] .text,
-a[class^=btn_] .text {
-    display: inline-block;
-    position: relative;
-    vertical-align: top;
-}
-
-.search_result_wrap .filter_list_box .filter_list .btn_filter_depth1:after {
-    content: "펼치기";
-    display: inline-block;
-    width: 9px;
-    height: 9px;
-    background-position: center;
-    background-repeat: no-repeat;
-    font-size: 0;
-    background-size: 9px 9px;
-    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_filter_depth1@2x.png);
-}
-
-.search_result_wrap .filter_list_box .filter_list .btn_filter_depth1.active:after {
-    content: "접기";
-    background-size: 9px 1px;
-    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_filter_depth1_active@2x.png);
-}
-
-.search_result_wrap .filter_list .menu_item.item_depth1.active .filter_cont_box {
-    display: block;
-}
-
-.search_result_wrap .filter_list .menu_item .filter_cont_box {
-    display: none;
-}
-
-.search_result_wrap .filter_list_box .filter_list .item_depth1 .filter_list.depth2 {
-    margin-top: 11px;
-    margin-left: 7px;
-}
-
-.search_result_wrap .filter_list .form_chk,
-.search_result_wrap .filter_list .form_rdo {
-    padding: 5px 0;
-}
-
-.form_rdo,
-.form_chk {
-    display: inline-block;
-    position: relative;
-    min-height: 22px;
-    vertical-align: top;
-}
-
-.form_rdo input,
 .form_chk input {
     position: absolute;
     width: 1px;
@@ -265,12 +169,8 @@ a[class^=btn_] .text {
     border: 0;
 }
 
-.search_result_wrap .filter_list .menu_item .form_rdo label,
-.search_result_wrap .filter_list .menu_item .form_chk label {
-    font-size: 13px;
-}
 
-.form_rdo input + label,
+
 .form_chk input + label {
     display: inline-block;
     position: relative;
@@ -283,13 +183,7 @@ a[class^=btn_] .text {
     vertical-align: top;
 }
 
-.form_rdo input + label:before {
-    background-color: #fff;
-    border: 1px solid #ccc;
-}
 
-.form_rdo input + label:before,
-.form_rdo input + label:after,
 .form_chk input + label:before,
 .form_chk input + label:after {
     content: "";
@@ -304,26 +198,17 @@ a[class^=btn_] .text {
     box-sizing: border-box;
 }
 
-.form_rdo input + label:after {
-    content: "";
-    position: absolute;
-    left: 6px;
-    top: 6px;
-    width: 10px;
-    height: 10px;
-    background-color: #ccc;
-}
 
-.form_rdo input:checked + label:before,
+
 .form_chk input:checked + label:before {
     background-color: #5055b1;
     border-color: #5055b1;
 }
 
 
+
 .search_result_wrap .result_area {
-    width: calc(100% - 206px);
-    margin-left: 36px;
+    width: 100%; 
 }
 
 .list_result_wrap {
@@ -434,19 +319,18 @@ a[class^=btn_] [class^=ico_] {
     margin-right: 10px;
 }
 
-.prod_list .prod_item .form_chk,
-.prod_list .prod_item .form_rdo {
+.prod_list .prod_item .form_chk {
     margin-bottom: 10px;
 }
 
-.form_rdo.no_label,
+
 .form_chk.no_label {
     width: 22px;
     height: 22px;
     min-height: auto;
 }
 
-.form_rdo,
+
 .form_chk {
     display: inline-block;
     position: relative;
@@ -455,7 +339,7 @@ a[class^=btn_] [class^=ico_] {
 }
 
 
-.form_rdo.no_label input + label,
+
 .form_chk.no_label input + label {
     position: static;
     padding-left: 0;
@@ -537,6 +421,7 @@ a[class^=btn_] [class^=ico_] {
 .prod_area.horizontal .prod_thumb_box.size_lg .img_box img {
     max-height: calc((142px - 2px) * 1.618 - 10px);
     width: 100%;
+    min-height: 180px;
 }
 
 .switch_prod_wrap.view_type_list .prod_list .prod_item .prod_area .prod_info_box {
@@ -954,3 +839,64 @@ a.btn_primary, button.btn_primary, a.btn_line_primary.active, button.btn_line_pr
     background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_pagination_next@2x.png) center no-repeat;
     background-size: 24px 24px;
 }
+
+/* 검색창에 검색결과가 없을 때의 문구 */
+
+.no_data.has_line {
+    border-bottom: 1px solid #eaeaea;
+}
+
+.no_data {
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 180px 0;
+}
+
+.no_data.has_desc_lg .no_data_desc_lg {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    text-align: center;
+}
+
+.no_data.has_desc_lg .no_data_desc_lg:before {
+    content: "";
+    display: block;
+    width: 36px;
+    height: 36px;
+    margin: 0 auto 12px;
+    background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_nodata@2x.png) 0% 0% no-repeat;
+    background-size: 36px 36px;
+    background-color: lightsteelblue;
+    border-radius: 18px;
+}
+
+.fw_bold {
+    font-weight: 700 !important;
+}
+
+.no_data.has_desc_lg .no_data_desc_lg .search_value {
+    display: inline-block;
+    max-width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+.no_data.has_desc_lg .no_data_desc_lg + .no_data_desc {
+    margin-top: 12px;
+    color: #767676;
+}
+
+.no_data .no_data_desc {
+    display: block;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    text-align: center;
+}
+

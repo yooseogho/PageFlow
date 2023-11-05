@@ -83,6 +83,11 @@ public interface MemberDao {
 	@Select("SELECT m.member_id AS memberId, m.grade_code AS gradeCode, g.grade_name AS gradeName FROM member m INNER JOIN member_grade g ON m.grade_code = g.grade_code WHERE m.member_id = #{memberId}")
 	public MemberGradeDto.MemberInfoDto findMemberInfoById(String memberId);
 	
+	/** 2023-10-30 추가 (feat.원승언) */
+    // 포인트 찾기
+	@Select("select member_point from member where member_id=#{memberId} and rownum=1")
+	public Long findPointByMemberId(String memberId);
+	
 
 
 	

@@ -15,7 +15,7 @@
 	</div>
 	<div class="aside_body">
 		<div class="snb_wrap">
-			<a href="/category/comicBook/comic_book" class="snb_title">요리만화</a>
+			<a href="/category/book/120" class="snb_title">요리만화</a>
 		</div>
 	</div>
 </body>

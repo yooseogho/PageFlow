@@ -1,59 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.dao.cart.CartDao">
-	<select id="sumByUsername" resultType="Long">
-		select sum(b.book_price*c.cart_count) as 총합 from cart c
-		inner join book b on c.bno=b.bno
-		inner join member m on c.member_id=m.member_id 
-		where m.member_id=#{memnerId} and 
-		;
+<mapper namespace="com.pageflow.dao.cart.CartDao">
+	<!-- 장바구니 리스트 -->
+	<select id="findAllByMemberId" resultType="com.pageflow.dto.cart.CartDto$Read">
+		select cart.cno, book.bno, CONCAT('/category/', book_image) as book_image, book.book_title, book.book_price, cart.cart_count,
+            (cart.cart_count * book.book_price) as amount,
+            (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode}) as point_rate,
+            (cart.cart_count * book_price * (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode})) as point_earnings,
+            (select sum(cart.cart_count * book.book_price) from cart where member_id=#{memberId}) as total_amount,
+            (select sum(cart.cart_count * book_price * (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode})) from cart where member_id=#{memberId}) as total_point_earnings
+        from (select /*+ index_desc(cart cart_pk_cno)*/ * from cart) cart
+        inner join book on cart.bno = book.bno
+        inner join member on cart.member_id = member.member_id
+        where member.member_id = #{memberId} 
 	</select>
-
-
-	<update id="increase">
-    <![CDATA[
-        UPDATE cart
-        SET cart_count = cart_count + 1
-        WHERE cno = #{cno}
-        AND member_id = #{memberId}
-        ]]>
-    </update>
-
-		<update id="decrease">
-        <![CDATA[
-        UPDATE cart
-        SET cart_count = cart_count - 1 
-        WHERE cno = #{cno}
-        AND member_id = #{memberId}
-        AND cart_count > 0 -- 수량이 0 이하로 내려가지 않도록 확인
-        ]]>
-    	</update>
-    
-      <select id="findByUsername" parameterType="string" resultType="cart">
-        SELECT 
-        cart.cno,book.bno,member.member_id,cart_count,book.book_title,book.subtitle,book.publish_date,book.book_price,
-		book.stock,member.member_point,book_image.image_name
-        FROM cart 
-        INNER JOIN book ON cart.bno = book.bno
-        INNER JOIN member ON cart.member_id = member.member_id
-        INNER JOIN book_image ON cart.bno = book_image.bno
-        WHERE member.member_id = #{memberId}
+	
+	<select id="selectFromCartList" resultType="com.pageflow.dto.cart.CartDto$Select">
+		select cart.cno, book.bno, CONCAT('/category/', book_image) as book_image, book.book_title, book.book_price, cart.cart_count,
+            (cart.cart_count * book.book_price) as amount,
+            (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode}) as point_rate,
+            (cart.cart_count * book_price * (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode})) as point_earnings,
+            (select sum(cart.cart_count * book.book_price) from cart where member_id=#{memberId}) as total_amount,
+            (select sum(cart.cart_count * book_price * (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode})) from cart where member_id=#{memberId}) as total_point_earnings
+        from (select /*+ index_desc(cart cart_pk_cno)*/ * from cart) cart
+        inner join book on cart.bno = book.bno
+        inner join member on cart.member_id = member.member_id
+        where member.member_id = #{memberId} and 
+        <if test="cnos !=null">
+        cno in
+        <foreach collection="cnos" item="cno" separator="," open="(" close=")">
+        	#{cno}
+        </foreach>
         
-    </select>
-    
-     <select id="findById" parameterType="long" resultType="cart">
-        SELECT *
-        FROM cart 
-        INNER JOIN book ON cart.bno = book.bno
-        INNER JOIN member ON cart.member_id = member.member_id
-        INNER JOIN book_image ON cart.bno = book_image.bno
-        WHERE cart.cno = #{cno}
-    </select>
-    
-    
-    
-
+	    </if>
+	</select>
+	
 </mapper>
-
 
 

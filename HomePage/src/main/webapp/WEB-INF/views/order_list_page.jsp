@@ -1,12 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/order_list.css">
-<title>주문 목록</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<title>Insert title here</title>
 </head>
+<script>
+	const c = '${orderList[0].orderDetails}';
+	console.log(c);
+</script>
 <body>
 	<div id="page">
 		<header class="header_wrapper">
@@ -73,164 +81,93 @@
                             </button>
                         </div>
                     </div>
-                    <div class="tbl_prod_wrap type_myroom">
-                        <div class="tbl_myorder_inner">
-                            <div class="tbl_order_info">
-                                <span class="order_date">주문날짜(주문번호)</span>
-                                <a href="/order_detail_list_page" class="btn_more_view" data-order-detail-link="N">
-                                    <span class="text">상세보기</span>
-                                    <span class="ico_arw"></span>
-                                </a>
-                                <div class="right_area">
-                                    <button type="button" class="btn_delete_text size_xxs" data-order-commodity-delete-button="" style="cursor: pointer;">
-                                        <span class="ico_delete"></span>
-                                        <span class="text">주문내역에서 삭제</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="tbl_prod_inner">
-                                <table class="tbl_prod">
-                                    <colgroup>
-                                        <col>
-                                        <col style="width: 164px;">
-                                        <col style="width: 180px;">
-                                        <col style="width: 130px;">
-                                    </colgroup>
-                                    <thead class="hidden">
-                                        <tr>
-                                            <th scope="col">상품정보</th>
-                                            <th scope="col">금액</th>
-                                            <th scope="col">배송정보</th>
-                                            <th scope="col">취소</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr data-order-commodity="">
-                                            <td class="prod">
-                                                <div class="prod_area horizontal">
-                                                    <div class="prod_thumb_box size_sm">
-                                                        <a href="javascript:void(0);" class="prod_link" data-order-commoditylink="">
-                                                            <span class="img_box">
-                                                                <img src="https://contents.kyobobook.co.kr/sih/fit-in/200x0/pdt/9791159259777.jpg" alt="오늘도 나아가는 중입니다">
-                                                            </span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="prod_info_box size_sm">
-                                                        <span class="badge_sm badge_page_flow ">
-                                                            <span class="text">PageFlow 배송</span>
-                                                        </span>
-                                                        <a href="" class="prod_info" data-order-commoditylink="">
-                                                            <span class="prod_name">[예약] [국내도서] 오늘도 나아가는 중입니다 </span>
-                                                        </a>
-                                                        <ul class="prod_option_list">
-                                                            <li class="option_item">
-                                                                <span class="text">수량 : </span><span class="val">1</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <span class="price">
-                                                    <span class="val">15,120</span>
-                                                    <span class="unit">원</span>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <div class="delivery_info">
-                                                    <span class="delivery_state ">취소완료</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
                     
-                    <div class="tbl_prod_wrap type_myroom">
-                        <div class="tbl_myorder_inner">
-                            <div class="tbl_order_info">
-                                <span class="order_date">주문날짜(주문번호)</span>
-                                <a href="/order_detail_list_page" class="btn_more_view" data-order-detail-link="N">
-                                    <span class="text">상세보기</span>
-                                    <span class="ico_arw"></span>
-                                </a>
-                                <div class="right_area">
-                                    <button type="button" class="btn_delete_text size_xxs" data-order-commodity-delete-button="" style="cursor: pointer;">
-                                        <span class="ico_delete"></span>
-                                        <span class="text">주문내역에서 삭제</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="tbl_prod_inner">
-                                <table class="tbl_prod">
-                                    <colgroup>
-                                        <col>
-                                        <col style="width: 164px;">
-                                        <col style="width: 180px;">
-                                        <col style="width: 130px;">
-                                    </colgroup>
-                                    <thead class="hidden">
-                                        <tr>
-                                            <th scope="col">상품정보</th>
-                                            <th scope="col">금액</th>
-                                            <th scope="col">배송정보</th>
-                                            <th scope="col">취소</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr data-order-commodity="">
-                                            <td class="prod">
-                                                <div class="prod_area horizontal">
-                                                    <div class="prod_thumb_box size_sm">
-                                                        <a href="javascript:void(0);" class="prod_link" data-order-commoditylink="">
-                                                            <span class="img_box">
-                                                                <img src="https://contents.kyobobook.co.kr/sih/fit-in/200x0/pdt/9791159259777.jpg" alt="오늘도 나아가는 중입니다">
-                                                            </span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="prod_info_box size_sm">
-                                                        <span class="badge_sm badge_page_flow ">
-                                                            <span class="text">PageFlow 배송</span>
-                                                        </span>
-                                                        <a href="" class="prod_info" data-order-commoditylink="">
-                                                            <span class="prod_name">[예약] [국내도서] 오늘도 나아가는 중입니다 </span>
-                                                        </a>
-                                                        <ul class="prod_option_list">
-                                                            <li class="option_item">
-                                                                <span class="text">수량 : </span><span class="val">1</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <span class="price">
-                                                    <span class="val">15,120</span>
-                                                    <span class="unit">원</span>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <div class="delivery_info">
-                                                    <span class="delivery_state ">주문접수</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="btn_wrap full" data-event-detail="review">
-                                                    <button type="button" class="btn_sm btn_line_gray" data-order-commodity-cancel-application-button="" style="cursor: pointer;">
-                                                        <span class="text">취소신청</span>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                    <c:forEach items="${orderList}" var="order">
+					    <div class="tbl_prod_wrap type_myroom">
+				       		<div class="tbl_myorder_inner">
+					            <div class="tbl_order_info">
+					                <span class="order_date">${order.orderDate}</span>
+					                <a href="/order/read?ono=${order.ono}" class="btn_more_view">
+					                    <span class="text">상세보기</span>
+					                    <span class="ico_arw"></span>
+					                </a>
+					                <div class="right_area">
+					                    <button type="button" class="btn_delete_text size_xxs" style="cursor: pointer;">
+					                        <span class="ico_delete"></span>
+					                        <span class="text">주문내역에서 삭제</span>
+					                    </button>
+					                </div>
+					            </div>
+					            <c:forEach items="${order.orderDetails}" var="orderDetail">
+					                <div class="tbl_prod_inner">
+					                    <table class="tbl_prod">
+					                        <colgroup>
+					                            <col>
+					                            <col style="width: 164px;">
+					                            <col style="width: 180px;">
+					                            <col style="width: 130px;">
+					                        </colgroup>
+					                        <thead class="hidden">
+					                            <tr>
+					                                <th scope="col">상품정보</th>
+					                                <th scope="col">금액</th>
+					                                <th scope="col">배송정보</th>
+					                                <th scope="col">취소</th>
+					                            </tr>
+					                        </thead>
+					                        <tbody>
+					                            <tr>
+					                                <td class="prod">
+					                                    <div class="prod_area horizontal">
+					                                        <div class="prod_thumb_box size_sm">
+					                                            <a href="/book/read?bno=${orderDetail.bno}" class="prod_link">
+					                                                <span class="img_box">
+					                                                    <img src="${orderDetail.bookImage}" alt="${orderDetail.bookTitle}">
+					                                                </span>
+					                                            </a>
+					                                        </div>
+					                                        <div class="prod_info_box size_sm">
+					                                            <span class="badge_sm badge_page_flow ">
+					                                                <span class="text">PageFlow 배송</span>
+					                                            </span>
+					                                            <a href="" class="prod_info" data-order-commoditylink="">
+					                                                <span class="prod_name">[국내도서] ${orderDetail.bookTitle} </span>
+					                                            </a>
+					                                            <ul class="prod_option_list">
+					                                                <li class="option_item">
+					                                                    <span class="text">수량 : </span><span class="val">${orderDetail.orderCount}</span>
+					                                                </li>
+					                                            </ul>
+					                                        </div>
+					                                    </div>
+					                                </td>
+					                                <td>
+					                                    <span class="price">    
+					                                        <span class="val"><fmt:formatNumber type="number" pattern="#,##0" value="${orderDetail.orderTotal}"></fmt:formatNumber></span>
+					                                        <span class="unit">원</span>
+					                                    </span>
+					                                </td>
+					                                <td>
+					                                    <div class="delivery_info">
+					                                        <span class="delivery_state ">주문접수</span>
+					                                    </div>
+					                                </td>
+					                                <td>
+					                                    <div class="btn_wrap full" data-event-detail="review">
+					                                        <button type="button" class="btn_sm btn_line_gray" style="cursor: pointer;">
+					                                            <span class="text">취소신청</span>
+					                                        </button>
+					                                    </div>
+					                                </td>
+					                            </tr>
+					                        </tbody>
+					                    </table>
+					                </div>
+					            </c:forEach>
+					        </div>
+					    </div>
+					</c:forEach>
+
                     <div class="info_text_box size_lg">
                         <div class="title_wrap title_size_xs">
                             <p class="title_heading">유의사항</p>

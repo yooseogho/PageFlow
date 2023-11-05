@@ -263,4 +263,12 @@ public Boolean changeTel(String memberId, String memberTel) {
  public MemberGradeDto.MemberInfoDto getMemberInfo(String memberId) {
      return memberDao.findMemberInfoById(memberId);
  }
+ 
+ /** 2023-11-05 원승언 추가 */
+ // 14. 포인트 찾기
+ public Long findPoint(String memberId) {
+	  Member member = memberDao.findById(memberId);
+	  return memberDao.findPointByMemberId(member.getMemberId());
+ }
+ 
 }

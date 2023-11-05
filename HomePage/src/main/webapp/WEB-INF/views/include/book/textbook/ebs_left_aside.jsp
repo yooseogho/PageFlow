@@ -13,7 +13,7 @@
 	</div>
 	<div class="aside_body">
 		<div class="snb_wrap">
-			<a href="/category/textbook/text_book" class="snb_title">EBS교재</a>
+			<a href="/category/book/130" class="snb_title">EBS교재</a>
 		</div>
 	</div>
 </body>

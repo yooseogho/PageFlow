@@ -224,7 +224,7 @@ button[class^=btn_] [class^=ico_], a[class^=btn_] [class^=ico_] {
 
 .contents_inner .prod_list .prod_item {
     display: inline-block;
-    width: 142px;
+    width: 150px;
     margin-left: calc((100% - (142px * 6)) / 5);
     vertical-align: top;
 }
@@ -251,6 +251,7 @@ button[class^=btn_] [class^=ico_], a[class^=btn_] [class^=ico_] {
 .prod_area .prod_thumb_box .img_box img {
     width: 100%;
     max-height: calc((100% - 2px) * 1.618 - 10px);
+    min-height: 200px;
 }
 
 .swiper-slide img[loading=lazy] {
@@ -317,4 +318,27 @@ button[class^=btn_] [class^=ico_], a[class^=btn_] [class^=ico_] {
     font-size: 14px;
     line-height: 22px;
     letter-spacing: -0.01em;
+}
+
+/* 2023-10-13 css 추가 */
+
+.prod_area .prod_info_box .prod_price .price + .point:before {
+    margin-top: 7px;
+}
+
+.prod_area .prod_info_box .prod_price .price + .point:before {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 7px;
+    margin: 7px 8px 0;
+    background-color: #d5d5d5;
+    vertical-align: top;
+}
+
+.prod_item .prod_info_box .prod_price .point {
+    font-size: 12px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    padding-top: 1px;
 }

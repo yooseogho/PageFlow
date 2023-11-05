@@ -1,103 +1,144 @@
 package com.pageflow.controller.cart;
 
+import java.security.*;
 import java.util.*;
 
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
-import org.springframework.ui.*;
-import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.*;
 
-import com.pageflow.entity.cart.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.http.*;
+import org.springframework.security.access.annotation.*;
+import org.springframework.stereotype.*;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.*;
+import org.springframework.web.servlet.mvc.support.*;
+
+import com.pageflow.dto.cart.*;
 import com.pageflow.service.cart.*;
 
+@Secured("ROLE_USER")
 @Controller
-@RequestMapping("/cart")
 public class CartController {
-  @Autowired
-  private CartService cartService;
+	@Autowired
+	private CartService cartService;
+	
+	
+	// 1-1. 장바구니 등록
+	@PostMapping("/cart/add")
+	public ModelAndView add(Long bno, Principal principal, Long cartCount, RedirectAttributes ra, HttpServletRequest request) {
+		Boolean result= cartService.add(principal.getName(), bno, cartCount);
+		
+		
+		if(Boolean.FALSE.equals(result)) {
+			ra.addFlashAttribute("msg", "현재 재고량보다 더 많이 장바구니에 담을 수 없습니다.");
+			return new ModelAndView("redirect:/book/read?bno="+bno);
+		}
+		
+		String referer = request.getHeader("Referer");
+		return new ModelAndView("redirect:" + referer);
 
-  // 장바구니 목록 조회
-  @GetMapping
-  public String viewCart(Model model, @RequestParam String memberId) {
-    List<Cart> cartItems = cartService.getCartByMemberId(memberId);
-    Long totalPrice = cartService.calculateTotalPrice(memberId);
-    model.addAttribute("cartItems", cartItems);
-    model.addAttribute("totalPrice", totalPrice);
-    return "cart/view";
-  }
+	}
+	
+	// 1-2 여러 도서 장바구니 등록
+	@PostMapping("cart/multiAdd")
+	public ModelAndView multiadd(Principal principal, CartDto.Add dto, Long cartCount, RedirectAttributes ra, HttpServletRequest request) {
+	    cartService.multiadd(principal.getName(), dto, cartCount);
 
-  // 장바구니에 상품 추가
-  @PostMapping("/add")
-  public String addToCart(@ModelAttribute Cart cart) {
-    boolean isSuccess = cartService.addCart(cart);
-    if (isSuccess) {
-      return "redirect:/cart?memberId=" + cart.getMemberId();
-    } else {
-      // 추가 실패 처리
-      return "error";
-    }
-  }
+	    String referer = request.getHeader("Referer");
+	    return new ModelAndView("redirect:" + referer);
+	}
+	
 
-  // 장바구니에서 상품 제거
-  @PostMapping("/remove")
-  public String removeFromCart(@RequestParam Long cno, @RequestParam String memberId) {
-    boolean isSuccess = cartService.removeCartItem(cno, memberId);
-    if (isSuccess) {
-      return "redirect:/cart?memberId=" + memberId;
-    } else {
-      // 제거 실패 처리
-      return "error";
-    }
-  }
+	
+	// 2-1. 장바구니 목록
+	@GetMapping("/cart/list")
+	public ModelAndView list(HttpServletRequest request) {
+		
+		
+		// 세션에서 사용자 정보 가져오기
+		HttpSession session = request.getSession();
+		String memberId = (String) session.getAttribute("memberId");
+		Long gradeCode = (Long) session.getAttribute("gradeCode");
 
-  // 장바구니 상품 수량 변경
-  @PostMapping("/update-count")
-  public String updateCartItem(@RequestParam Long cartCount, @RequestParam Long cno, @RequestParam String memberId) {
-    boolean isSuccess = cartService.updateCartItemCount(cartCount, cno, memberId);
-    if (isSuccess) {
-      return "redirect:/cart?memberId=" + memberId;
-    } else {
-      // 변경 실패 처리
-      return "error";
-    }
-  }
+		// Principal을 통한 대체
+		Principal principal = request.getUserPrincipal();
+		if (principal != null) {
+			memberId = principal.getName(); // Principal의 이름을 memberId로 사용
+		} else {
+			memberId = "0"; // 비회원인 경우 기본값으로 설정
+			gradeCode = 0L;
+		}
+		
+		Long count = cartService.count(memberId);
+		List<CartDto.Read> cartList = cartService.read(memberId, gradeCode);
+		return new ModelAndView("cart_page").addObject("cartList", cartList).addObject("count", count);
+	}
+	
+	// 2-2 장바구니 목록에서 선택
+	@PostMapping("/cart/select")
+	@ResponseBody
+	public ResponseEntity<List<CartDto.Select>> select(CartDto.Select dto, HttpServletRequest request) {
+		// 세션에서 사용자 정보 가져오기
+				HttpSession session = request.getSession();
+				String memberId = (String) session.getAttribute("memberId");
+				Long gradeCode = (Long) session.getAttribute("gradeCode");
 
-  // 결제 페이지로 이동
-  @GetMapping("/checkout")
-  public String checkout(@RequestParam String memberId, Model model) {
-    List<Cart> cartItems = cartService.getCartByMemberId(memberId);
-    Long totalPrice = cartService.calculateTotalPrice(memberId);
-    model.addAttribute("cartItems", cartItems);
-    model.addAttribute("totalPrice", totalPrice);
-    return "cart/checkout";
-  }
+				// Principal을 통한 대체
+				
+				Principal principal = request.getUserPrincipal();
+				if (principal != null) {
+					memberId = principal.getName(); // Principal의 이름을 memberId로 사용
+				} else {
+					memberId = "0"; // 비회원인 경우 기본값으로 설정
+					gradeCode = 0L;
+				}
+				
+				List<Long> cnos = dto.getCnos();
+				
+				if (cnos == null) {
+				    cnos = new ArrayList<>(); // 또는 다른 기본값 할당
+				}
 
-  // 장바구니 상품 개수 추가
-  @PostMapping("/increase")
-  public String increaseCartItem(@RequestParam Long cno, @RequestParam String memberId) {
-    boolean isSuccess = cartService.increaseCartItem(cno, memberId);
-    if (isSuccess) {
-      return "redirect:/cart?memberId=" + memberId;
-    } else {
-      // 추가 실패 처리
-      return "error";
-    }
-  }
+		
+		List<CartDto.Select> cartList = cartService.select(memberId, gradeCode, cnos);
+		
+		session.setAttribute("cartList", cartList);
+		return ResponseEntity.ok(cartList);
+	}
+	
+	// 3. 장바구니 개수 증가
+	@PostMapping("/cart/increase")
+	@ResponseBody
+	public ResponseEntity<List<CartDto.Read>> increase(Long bno, Long cno, Principal principal) {
+		Boolean result = cartService.increase(bno, cno, principal.getName());
+		if(!result) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build(); // 재고량 초과 시 400 Bad Request 응답
+		}
+		
+		List<CartDto.Read> cartList = cartService.read(principal.getName(), cno);
+	    return ResponseEntity.ok(cartList);
+	}
+	
+	// 4. 장바구니 개수 감소
+	@PostMapping("/cart/decrease")
+	@ResponseBody
+	public ResponseEntity<List<CartDto.Read>> decrease(Long cno, Principal principal, RedirectAttributes ra) {
+	    Boolean result = cartService.decrease(cno, principal.getName());
+	    if(!result) {
+	    	return ResponseEntity.status(HttpStatus.BAD_REQUEST).build(); // 재고량 초과 시 400 Bad Request 응답
+		}
+	    
+	    List<CartDto.Read> cartList = cartService.read(principal.getName(), cno);
+	    return ResponseEntity.ok(cartList);
+	}
 
-  // 장바구니 상품 개수 감소
-  @PostMapping("/decrease")
-  public String decreaseCartItem(@RequestParam Long cno, @RequestParam String memberId) {
-    boolean isSuccess = cartService.decreaseCartItem(cno, memberId);
-    if (isSuccess) {
-      return "redirect:/cart?memberId=" + memberId;
-    } else {
-      // 감소 실패 처리
-      return "error";
-    }
-  }
+	
+	// 5. 장바구니 삭제
+	@PostMapping("/cart/delete")
+	public ModelAndView delete(CartDto.Delete dto) {
+		cartService.delete(dto);
+		return new ModelAndView("redirect:/cart/list");
+	}
 
-  /*
-   * [참고] 추후에 변동될 사항이 많으니, 기본 예로 볼 것 매핑 경로나 반환 경로는 임의로 정해둔 것이니 추후 상황에 맞게 수정할 것
-   * 컨트롤러에 대한 의견/아이디어가 있으면 고민하지 말고 말할 것
-   */
+
 }

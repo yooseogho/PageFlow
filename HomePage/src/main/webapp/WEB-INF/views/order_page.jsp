@@ -1,275 +1,490 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/order.css">
-<title>주문하기</title>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script src="/script/order.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<title>Insert title here</title>  
 </head>
 <body>
+<script>
+$(document).ready(function() {
+	// 신규회원이 배송지 입력 버튼을 클릭했을 때
+	$('#popup_btn').on('click', function() {
+		$('#addressList').css('display','block');
+	});
+	
+	// 배송지 목록에서 닫기 버튼을 눌렀을 때
+	$('#address_popup_list_close').on('click', function(){
+		$('#addressList').css('display','none');
+	})
+	
+	// 배송지 추가란에서 배송지 추가 버튼을 눌렀을 때
+	$('#address_add_btn').on('click', function() {
+		 $('#addressAdd').css('display','flex');
+	})
+	
+	// 배송지 추가란에서 닫기 버튼을 눌렀을 때
+	$('#address_popup_add_close').on('click',function(){
+		$('#addressAdd').css('display','none');
+	})
+	
+	
+	$('#all_point_btn').on('click', function() {
+		const point = '${point}';
+		$('#all_point_text').text(point);
+		$('#all_point_btn').css('display', 'none');
+		$('#cancel_point_btn').css('display', 'block');
+	})
+	
+	$('#cancel_point_btn').on('click', function(){
+		$('#all_point_text').text(0);
+		$('#cancel_point_btn').css('display','none');
+		$('#all_point_btn').css('display','block');
+	})
+	
+		var IMP = window.IMP; 
+        IMP.init("imp16376821"); 
+      
+        var today = new Date();  
+        
+        var hours = today.getHours(); // 시
+        
+        var minutes = today.getMinutes();  // 분
+        
+        var seconds = today.getSeconds();  // 초
+        
+        var milliseconds = today.getMilliseconds();	
+        var makeMerchantUid = hours +  minutes + seconds + milliseconds;
+		var dno = '${delivery.dno}';
+		var pointEarn = "${cartList[cartList.size()- 1].totalPointEarnings}";
+		
+		function requestPay() {	
+            IMP.request_pay({
+                pg : 'kakaopay',
+                pay_method : 'card',
+                merchant_uid: makeMerchantUid, 
+                name : 'PageFlow 결제',
+                amount : '${cartList[cartList.size()- 1].totalAmount}',
+                buyer_email : '${memberId.memberEmail}',
+                buyer_tel : '${delivery.receiverTel}',
+                buyer_addr : '${delivery.deliveryAddress}',
+            }, function (rsp) { // callback
+                if (rsp.success) {
+                	let msg = "결제가 완료되었습니다.";
+                	let result = {
+                		"memberId" : "${memberId.memberId}",
+                		"dno" : dno,
+                		"orderPrice" : rsp.paid_amount,
+                		"pointEarn" : pointEarn,
+                		"payment" : rsp.pg_provider
+                	}
+                	alert(msg);
+                	$.ajax ({
+                		url: '/order',
+                		type: 'POST',
+                		contentType: 'application/json',
+                		data: JSON.stringify(result),
+                		success: function(order) {
+                			location.replace('/order/success?ono=' + order.ono);
+                		},
+                		error: function(err){
+                			console.log(err);
+                		}
+                	})
+                	
+                	
+                }  
+            });
+            
+	}
+	
+	$('#order_btn').on('click', requestPay);
+	
+		
+	
+})
+</script>
+
     <div id="page">
-        <header class="nav_wrapper">
-			<jsp:include page="/WEB-INF/views/include/nav.jsp" />
-		</header>
+        <header class="header_wrapper">
+        	<jsp:include page="/WEB-INF/views/include/header.jsp" />
+        </header>
+        <nav class="nav_wrapper">
+        	<jsp:include page="/WEB-INF/views/include/nav.jsp" />
+        </nav>
 
-        <main class="main">
-            <section class="section">
+        <main class="container_wrapper" style="position: relative;">
+            <section id="contents" class="contents_wrap">
                 <div class="contents_inner">
-                    <div class="inner_top" style="font-size: large; font-weight: bold;">
-                        <p class="inner_top_title">주문/결제</p>
-                    </div>
-                    <div class="order_inner_payment">
-                        <div class="payment_left">
-                            <div class="delivery_info_area">
-                                <div class="delivery_info_detail">
-                                    <table class="detail_table">
-                                        <colgroup class="colgroup">
-                                            <col style="width:210px;">
-                                            <col style="width:auto;">
-                                        </colgroup>
-                                        <tbody>
-                                            <tr class="delivery_address">
-                                                <th scope="row">배송지 정보</th>
-                                                <td>
-                                                    <div class="address_info_box">
-                                                        <div class="address_and_name">
-                                                            <span class="name">이름 : xxx</span>
-                                                            <button class="default_delivery"><span class="text">기본배송지</span></button>
-                                                        </div>
-                                                        <div class="name_and_tel">
-                                                            <span class="name">이름 : xxx</span>
-                                                            <span class="gap">/</span>
-                                                            <span class="tel">010-xxxx-xxxx</span>
-                                                        </div>
-                                                        <div class="address">
-                                                            <span class="address_text">xx도 xx시 xx동 xx빌라 xxx호</span>
-                                                            <a href="/주소변경창"><button class="address_change"><span>변경</span></button></a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="delivery_message">
-                                                <th scope="row">배송요청사항</th>
-                                                <td>
-                                                    <div class="message_btn_area">
-                                                        <button class="message_btn">
-                                                            <span>배송요청사항 메세지</span>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            
-                            <div class="product_info_area">
-                               
-                                <div class="product_info_header">
-                                   <div class="table_head_area">
-                                    <table class="table_head">
-                                        <colgroup class="colgroup">
-                                            <col style="width: 210px;">
-                                            <col style="width: auto;">
-                                        </colgroup>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">주문상품</th>
-                                                <td>
-                                                    <div class="order_count">
-                                                        <span class="label">총</span>
-                                                        <span class="count">1 <span class="order_unit">개</span></span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                    <div class="cart_top_wrap sps">
+                        <div class="cart_top_inner">
+                            <div class="cart_title_box">
+                                <div class="title_wrap title_size_lg">
+                                    <h1 class="title_heading">주문/결제</h1>
+                                    <div class="right_area">
+                                        <ol class="step_round_text_list">
+                                            <li class="step_item"><span class="step_num">1</span>장바구니</li>
+                                            <li class="step_item active"><span class="step_num">2</span>주문/결제</li>
+                                            <li class="step_item"><span class="step_num">3</span>주문완료</li>
+                                        </ol>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="product_info_middle">
-                                    <table class="table_middle">
-                                        <colgroup class="colgroup">
-                                            <col>
-                                            <col style="width: 150px;">
-                                            <col style="width: 100px;">
-                                            <col style="width: 148px;">
-                                        </colgroup>
-                                        <thead class="title">
-                                            <tr>
-                                                <th scope="col">상품정보</th>
-                                                <th scope="col">배송방법</th>
-                                                <th scope="col">수량</th>
-                                                <th scope="col">금액</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="product">
-                                                    <div class="product_area">
-                                                        <div class="product_img">
-                                                            이미지
-                                                        </div>
-                                                        <div class="product_title">
-                                                            <span class="product_name">책 제목</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="product_td">
-                                                    <div class="product_delivery_way"><span>PageFlow 배송</span></div>
-                                                </td>
-                                                <td class="product_td"><span class="product_num">x개</span></td>
-                                                <td class="product_td">
-                                                    <span class="product_price">
-                                                        <span class="product_val">xxx</span>
-                                                        <span class="unit">원</span>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="product_info_bottom">
-                                    <ul class="delivery_info_list">
-                                        <li class="delivery_info_item">
-                                            <span class="delivery_label">
-                                                <span class="delivery_label_text">교보문고배송</span>
-                                            </span>
-                                            <span class="delivery_text_body">
-                                                <strong>주문 후 3일 뒤 도착예정</strong>
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            <div class="point_info_area">
-                                <div class="point_info_header">
-                                    <div class="point_header_text">포인트</div>
-                                    <div class="point_retain">
-                                        <span class="point_retain_label">보유</span>
-                                        <span class="point_retain_amount">
-                                            <span class="point">xxx</span>
-                                            <span class="unit">원</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="point_info_body">
-                                    <div class="point_use_box">
-                                        <table class="point_use_table">
-                                            <colgroup class="colgroup">
-                                                <col style="width: 146px;">
-                                                <col style="width: 150px;">
+                        </div>
+                    </div>
+                    <div class="cart_body_payment">
+                        <div class="cart_body_inner">
+                            <div class="payment_box_wrap" style="display:block;">
+                                <div class="payment_body_wrap">
+                                    <div class="tbl_row_wrap">
+                                        <table class="tbl_row">
+                                            <colgroup>
+                                                <col style="width: 210px;">
                                                 <col style="width: auto;">
                                             </colgroup>
                                             <tbody>
+												<c:choose>
+												  <c:when test="${empty delivery}">
+												    <tr>
+												      <th scope="row">배송지 정보</th>
+												      <td>
+												        <div class="address_item no_line" data-delivery-point-address-info="default-addr-message">
+												          <div class="address_info_box">
+												          </div>
+												        </div>
+												
+												        <div class="btn_wrap full">
+												          <button type="button" class="btn_ip btn_line_gray" id="popup_btn" onclick="location.href='/order/delivery/list';"><span class="ico_write_black"></span><span class="text fw_medium">배송지 입력</span></button>
+												        </div>
+												      </td>
+												    </tr>
+												  </c:when>
+												  <c:otherwise>
+												    <tr>
+	                                                	<th scope="row">배송지 정보</th>
+	                                                    <td>
+	                                                        <div class="address_item no_line">
+	                                                            <div class="address_info_box">
+	                                                                <div class="address_name">
+	                                                                    <span class="name"><i class="ico_location_primary"></i><span class="text">${delivery.addressName}</span></span>
+	                                                                    <c:if test="${delivery.defaultAddress eq 1}">
+	                                                                    	<span class="badge_sm badge_payment_line_purple"><span class="text">기본배송지</span></span>
+																		</c:if>
+	                                                                    <button type="button" class="btn_xs btn_line_gray" onclick="location.href=`/order/delivery/list`"><span class="text">변경</span></button>
+	                                                                </div>
+	                                                                <div class="address_person">
+	                                                                    <span class="name">${delivery.receiverName}</span>
+	                                                                    <span class="gap">/</span>
+	                                                                    <span class="phone_number">${delivery.receiverTel.substring(0,3)}-${delivery.receiverTel.substring(3,7)}-${delivery.receiverTel.substring(7)}</span>
+	                                                                </div>
+	                                                                <div class="address">
+	                                                                    <span class="address_text">[${delivery.zipCode}] ${delivery.deliveryAddress}</span>
+	                                                                </div>
+	                                                            </div>
+	                                                        </div>
+	                                                    </td>
+                                               		</tr>
+												  </c:otherwise>
+												</c:choose>
                                                 <tr>
-                                                    <th scope="row" class="has_point">
-                                                        <label>통합포인트</label>
-                                                    </th>
-                                                    <td>
-                                                        <div class="point_value_box">
-                                                            <span class="point">xxx</span>
-                                                            <span class="unit">원</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="point_input_btn">
-                                                            <div class="point_input_box">
-                                                                <input type="number">
-                                                                <span class="unit">원</span>
-                                                            </div>
-                                                            <button>
-                                                                <span class="point_text">전액사용</span>
+                                                	<th scope="row" class="has_ip">배송요청사항</th>
+                                                	<td>
+								                        <div class="form_info_single">
+								                            <span class="default_text" data-delivery-point-message="message">${delivery.deliveryRequest}</span>
+								                            <a href="/order/delivery/message/${delivery.dno}">
+                                                            <button type="button" class="btn_ip btn_line_gray">
+                                                                <span class="ico_msg_black"></span>
+                                                                <span class="text fw_medium">배송요청사항 메시지 변경</span>
                                                             </button>
-                                                        </div>
-                                                    </td>
+                                                        	</a>  
+								                        </div>
+								                    </td>
                                                 </tr>
+
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                            
-                            
-                            <div class="payment_way_area">
-                                <div class="payment_info_header">
-                                    <div class="payment_header_inner">
-                                        <span class="payment_header_text">결제수단</span>
+
+                            <div class="fold_box_wrap type_box">
+                                <div class="fold_box_list">
+
+                                    <div class="fold_box expanded">
+                                        <div class="fold_box_header">
+                                            <div class="tbl_row_wrap">
+                                                <table class="tbl_row">
+                                                    <colgroup>
+                                                        <col style="width: 210px;">
+                                                        <col style="width: auto;">
+                                                    </colgroup>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">주문상품</th>
+                                                            <td>
+                                                                <div class="number_value_box size_def">
+                                                                    <span class="label">총</span>
+                                                                    <span class="point">
+                                                                        <span class="val fc_spot">${cartList.size()}</span>
+                                                                        <span class="unit">개</span>
+                                                                    </span>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <button type="button" class="btn_fold"><span class="hidden">컨텐츠 닫기</span></button>
+                                        </div>
+                                        <div class="fold_box_contents">
+                                            <div class="tbl_prod_wrap ordering">
+                                                <table class="tbl_prod">
+                                                    <colgroup>
+                                                        <col>
+                                                        <col style="width: 150px;">
+                                                        <col style="width: 100px;">
+                                                        <col style="width: 148px;">
+                                                    </colgroup>
+                                                    <thead class="hidden">
+                                                        <tr>
+                                                            <th scope="col">상품정보</th>
+                                                            <th scope="col">배송방법</th>
+                                                            <th scope="col">수량</th>
+                                                            <th scope="col">금액</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    	<c:forEach var="cartList" items="${cartList}">
+	                                                        <tr>
+	                                                            <td class="prod">
+	                                                                <div class="prod_area horizontal">
+	                                                                    <div class="prod_thumb_box  size_sm">
+	                                                                        <a href="/book/read?bno=${cartList.bno}" class="prod_link">
+	                                                                            <span class="img_box">
+	                                                                                <img src="${cartList.bookImage}" alt="${cartList.bookTitle}">
+	                                                                            </span>
+	                                                                        </a>
+	                                                                    </div>
+	                                                                    <div class="prod_info_box size_sm">
+	                                                                        <span class="prod_info">
+	                                                                            <span class="prod_name">[국내도서] ${cartList.bookTitle}</span>
+	                                                                        </span>
+	                                                                    </div>
+	                                                                </div>
+	                                                            </td>
+	                                                            <td>
+	                                                                <div class="badge_box">
+	                                                                    <span class="badge_sm badge_pill badge_primary_ord"><span class="text">PageFlow배송</span></span>
+	                                                                </div>
+	                                                            </td>
+	                                                            <td>
+	                                                                <span class="prd_num"> ${cartList.cartCount}개 </span>
+	                                                            </td>
+	                                                            <td>
+	                                                                <span class="price">
+	                                                                    <span class="val"><fmt:formatNumber type="number" pattern="#,##0" value="${cartList.amount}" /></span>
+	                                                                    <span class="unit">원</span>
+	                                                                </span>
+	                                                            </td>
+	                                                        </tr>
+                                                        </c:forEach>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fold_box no_fold no_overflow">
+                                        <div class="fold_box_fixed">
+                                            <ul class="delivery_info_list">
+                                                <li class="delivery_info_item">
+                                                    <span class="label">
+                                                        <span class="text">PageFlow배송</span>
+                                                    </span>
+                                                    <span class="text_body">
+                                                        <span class="fc_payment_blue">
+                                                            <strong class="blue">내일(10/28,토) 도착예정</strong>
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="fold_box_wrap type_box" data-type="multi" data-cash-voucher="area">
+                                <div class="fold_box_list">
+                                    <div class="fold_box expanded">
+                                        <div class="fold_box_header">
+                                            <div class="point_header_box">
+                                                <div class="header_text">포인트</div>
+                                                <div class="number_value_box size_def">
+                                                    <span class="label">보유</span>
+                                                    <span class="point">
+                                                        <span class="val fc_spot" data-cash-voucher="total-have"><fmt:formatNumber type="number" pattern="#,##0" value="${point}" /></span>
+                                                        <span class="unit">원</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn_fold"><span class="hidden">컨텐츠 열기</span></button>
+                                        </div>
+                                        <div class="fold_box_contents">
+                                            <div class="point_used_box">
+                                                <div class="tbl_row_wrap form_xs">
+                                                    <table class="tbl_row">
+                                                        <colgroup>
+                                                            <col style="width: 146px;">
+                                                            <col style="width: 150px;">
+                                                            <col style="width: auto;">
+                                                        </colgroup>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="row" class="has_ip">
+                                                                    <label for="rowTblIpPoint01_01">포인트</label>
+                                                                </th>
+                                                                <td>
+                                                                    <div class="number_value_box size_def">
+                                                                        <span class="point">
+                                                                            <span id="all_point_text" class="val fc_spot">0</span>
+                                                                            <span class="unit">원</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="input_btn_price_box">
+                                                                        <div class="input_price_box">
+                                                                            <input type="number" id="myNumberInput" class="form_ip numericOnly" maxlength="7" max="${point}">
+                                                                            <span class="unit">원</span>
+                                                                        </div>
+                                                                        <button id="all_point_btn" type="button" class="btn_ip btn_line_primary"><span class="text">전액사용</span></button>
+                                                                        <button id="cancel_point_btn" type="button" class="btn_ip btn_light_gray" style="display : none;"><span class="text">사용취소</span></button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="payment_info_body">
-                                    <div class="payment_row_list">
-                                        <a href="/결제창"><button class="payment_list_btn"><span>xx카드</span></button></a>
-                                        <a href="/결제창"><button class="payment_list_btn"><span>xx카드</span></button></a>
-                                        <a href="/결제창"><button class="payment_list_btn"><span>xx카드</span></button></a>
-                                        <a href="/결제창"><button class="payment_list_btn"><span>xx카드</span></button></a>
+                            </div>
+
+                            <div class="payment_box_wrap">
+                                <div class="payment_header_wrap">
+                                    <div class="payment_header_inner">
+                                        <span class="header_text">결제수단</span>
+                                    </div>
+                                </div>
+
+                                <div class="payment_body_wrap no_top_line" id="settlementMethodWrapper">
+                                    <div class="payment_etc_wrap">
+                                        <div class="payment_item_row_group">
+
+                                            <a href="javascript:void(0);" class="btn_xl btn_line_gray btn_payment_etc">
+                                                <span class="text">신용카드</span>
+                                            </a>
+
+                                            <a href="javascript:void(0);" class="btn_xl btn_line_gray btn_payment_etc">
+                                                <span class="ico_payment_kbpay"><span class="hidden">KB페이</span></span>
+                                            </a>
+
+                                            <a href="javascript:void(0);" class="btn_xl btn_line_gray btn_payment_etc">
+                                                <span class="ico_payment_npay"><span class="hidden">네이버페이</span></span>
+                                            </a>
+
+                                            <a href="javascript:void(0);" class="btn_xl btn_line_gray btn_payment_etc">
+                                                <span class="ico_payment_kakaopay"><span class="hidden">카카오페이</span></span>
+                                            </a>
+
+                                            <a href="javascript:void(0);" class="btn_xl btn_line_gray btn_payment_etc">
+                                                <span class="ico_payment_toss"><span class="hidden">토스페이</span></span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="payment_right">
-                            <div class="payment_info_area">
-                                <div class="payment_info_box">
-                                    <ul style="list-style-type: none;">
-                                        <li>
+                        <div class="cart_info_wrap" style="top: 0px;">
+                            <div class="payments_info_area">
+                                <div class="payments_info_box">
+                                    <h2 class="hidden">결제금액</h2>
+                                    <ul class="payments_info_list">
+                                        <li class="payments_info_item">
                                             <p class="label">상품금액</p>
-                                            <div class="label_right">
+                                            <div class="right_box">
                                                 <span class="price">
-                                                    <span>xxx</span>
-                                                    <span class="unit">원</span>
+                                                	<c:if test="${not empty cartList}">
+	                                                    <span class="val spot"><fmt:formatNumber type="number" pattern="#,##0" value="${cartList[cartList.size()- 1].totalAmount}" /></span>
+	                                                    <span class="unit">원</span>
+                                                    </c:if>
                                                 </span>
                                             </div>
                                         </li>
-                                        <li>
+                                        <li class="payments_info_item">
                                             <p class="label">배송비</p>
-                                            <div class="label_right">
+                                            <div class="right_box">
                                                 <span class="price">
-                                                    <span>xxx</span>
+                                                    <span class="val">0</span>
                                                     <span class="unit">원</span>
                                                 </span>
                                             </div>
                                         </li>
-                                        <li>
+                                        <li class="payments_info_item">
                                             <p class="label">포인트 사용</p>
-                                            <div class="label_right">
+                                            <div class="right_box">
                                                 <span class="price">
-                                                    <span>xxx</span>
+                                                    <span class="val"></span>
                                                     <span class="unit">원</span>
                                                 </span>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="payment_last_box">
-                                    <ul style="list-style-type: none;">
-                                        <li>
+                                <div class="payments_info_box">
+                                    <ul class="payments_info_list">
+                                        <li class="payments_info_item total">
                                             <p class="label">최종결제금액</p>
-                                            <div class="label_right">
+                                            <div class="right_box">
                                                 <span class="price">
-                                                    <span>xxx</span>
-                                                    <span class="unit">원</span>
+                                                	<c:if test="${not empty cartList}">
+	                                                    <span class="val"><fmt:formatNumber type="number" pattern="#,##0" value="${cartList[cartList.size()- 1].totalAmount}" /></span>
+	                                                    <span class="unit">원</span>
+                                                    </c:if>
                                                 </span>
                                             </div>
                                         </li>
-                                        <li>
+                                        <li class="payments_info_item point">
                                             <p class="label">적립예정포인트</p>
-                                            <div class="label_right">
+                                            <div class="right_box">
                                                 <span class="price">
-                                                    <span>xxx</span>
-                                                    <span class="unit"> P</span>
+                                                	<c:if test="${not empty cartList}">
+	                                                    <span class="val"><fmt:formatNumber type="number" pattern="#,##0" value="${cartList[cartList.size()- 1].totalPointEarnings}" /></span>
+	                                                    <span class="unit">P</span>
+                                                    </c:if>
                                                 </span>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="payment_btn_area">
-                                    <a href="/order_success_page"><button class="payment_btn"><span class="btn_text">결제하기</span></button></a>
+                                <div class="btn_wrap full">
+                                    <button type="button" class="btn_lg btn_primary" id="order_btn">
+                                        <span class="text">결제하기</span>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="payment_agree_text">
-                                <span class="agree_text" style="font-size: small;">위 주문내용을 확인하였으며, 결제에 동의합니다.</span>
+                            <div class="payment_order_agree_wrap">
+                                <span class="text">위 주문내용을 확인하였으며, 결제에 동의합니다.</span>
                             </div>
                         </div>
                     </div>

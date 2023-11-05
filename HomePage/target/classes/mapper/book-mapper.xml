@@ -1,15 +1,190 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.dao.book.BookDao">
-	<select id="findAll" resultType="Book">
-		select * from 
-		(
-			select rownum as rnum, b.* from
+<mapper namespace="com.pageflow.dao.book.BookDao">
+	<!-- 도서 종류별로 5개 목록 출력 -->
+	<select id="find5Recent" resultType="com.pageflow.dto.book.BookDto$Recent">
+	SELECT 
+	        bno, book_title, CONCAT('/category/', book_image) as book_image, author_name, publisher_name, book_price,
+	        (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode}) as point_rate,
+	        (book_price * (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode})) as point_earnings
+	FROM (
+	        SELECT ROWNUM AS rnum, b.*
+	        FROM (
+	            SELECT /*+ index_desc(book, book_pk_bno) */ 
+	                book.*, category.category_parent, category.category_name
+	            FROM book
+	            INNER JOIN category ON book.category_code = category.category_code 
+	            WHERE category.category_parent = #{categoryParent}
+	        ) b
+	        WHERE ROWNUM &lt;= 5
+	    ) 
+	LEFT JOIN member m ON m.member_id = #{memberId} 
+    
+	</select>
+	
+	
+	<!-- 책 정보 읽기 -->
+	<select id="findByBook" resultType="Book">
+	SELECT 
+	       bno, category_code, book_title, CONCAT('/category/', book_image) as book_image, book_intro, book_content, publish_date,
+	       author_name, publisher_name, stock, book_price, translator, (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode}) as point_rate,
+	       (book_price * (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode})) as point_earnings
+	FROM book
+	LEFT JOIN member on member.member_id=#{memberId} where bno=#{bno}
+	</select>
+	
+	
+	<!-- 작가 이름을 통해 책 검색하기 -->
+	<select id="searchAuthorBook" resultType="com.pageflow.dto.book.BookDto$BookList">
+	select
+             rnum, bno, book_title, book_intro, CONCAT('/category/', book_image) as book_image, author_name, publisher_name, book_price, publish_date,
+            (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode}) as point_rate,
+	        (book_price * (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode})) as point_earnings 
+
+	from 
 			(
-				select /*+ index_desc(book, book_pk_bno) */ * from book
-			) b
-			where rownum&lt;#{endRownum}
+				select rownum as rnum, b.* from
+					(select /*+ index_desc(book book_pk_bno)*/ * from book) b
+				where rownum&lt;=#{endRownum} and author_name = #{authorName}
+			)
+    LEFT JOIN member m ON m.member_id =
+     <choose>
+	    	<when test="memberId != null"> #{memberId} </when>
+	    	<otherwise> '0' </otherwise>
+		</choose>
+	where rnum>=#{startRownum}
+	</select>
+	
+	<!-- 출판사 이름을 통해 책 검색하기 -->
+	<select id="searchPublisherBook" resultType="com.pageflow.dto.book.BookDto$BookList">
+	select
+             rnum, bno, book_title, book_intro, CONCAT('/category/', book_image) as book_image, author_name, publisher_name, book_price, publish_date,
+            (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode}) as point_rate,
+	        (book_price * (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode})) as point_earnings 
+
+	from 
+			(
+				select rownum as rnum, b.* from
+					(select /*+ index_desc(book book_pk_bno)*/ * from book) b
+				where rownum&lt;=#{endRownum} and publisher_name = #{publisherName}
+			)
+    LEFT JOIN member m ON m.member_id =
+     <choose>
+	    	<when test="memberId != null"> #{memberId} </when>
+	    	<otherwise> '0' </otherwise>
+		</choose>
+	where rnum>=#{startRownum}
+	</select>
+	
+	
+	<!-- 작가의 다른 작품 읽어오기 -->
+	<select id="findOtherBooksByAuthor" resultType="Book">
+	SELECT 
+	        bno, book_title, CONCAT('/category/', book_image) as book_image, author_name
+	FROM (
+	        SELECT 
+	        	ROWNUM AS rnum, b.*
+	        FROM (
+	            SELECT 
+	            	/*+ index_desc(book, book_pk_bno) */ book.*
+	            FROM book
+	        ) b
+	WHERE author_name=#{authorName} and ROWNUM &lt;= 8)
+	</select>
+	
+	
+	<!-- 작품 카테고리 부모별로 페이징해서 가지고 오기-->
+	<select id="findBookByCategoryParent" resultType="com.pageflow.dto.book.BookDto$BookList">
+	select 
+	        bno, book_title, CONCAT('/category/', book_image) as book_image, author_name, publisher_name, book_price, publish_date, book_intro,
+	        (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode}) as point_rate,
+	        (book_price * (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode})) as point_earnings 
+	from 
+			(
+			select rownum as rnum, b.* from
+				(select /*+ index_desc(book book_pk_bno)*/ * from book
+	            INNER JOIN category ON book.category_code = category.category_code
+	            where category.category_parent = #{categoryParent}
+	            ) b
+			where rownum&lt;=#{endRownum}
 		)
+	LEFT JOIN member m ON m.member_id = #{memberId}
+	where rnum>=#{startRownum}
+	</select>
+	
+	
+	<!-- 작품 카테고리별로 페이징해서 가지고오기 -->
+	<select id="findBookByCategoryCode" resultType="com.pageflow.dto.book.BookDto$BookList">
+	select 
+	         bno, book_title, CONCAT('/category/', book_image) as book_image, author_name, publisher_name, book_price, publish_date, book_intro, category_parent,
+	        (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode}) as point_rate,
+	        (book_price * (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode})) as point_earnings 
+	from 
+			(
+			select rownum as rnum, b.* from
+				(select /*+ index_desc(book book_pk_bno)*/ * from book
+	            INNER JOIN category ON book.category_code = category.category_code
+	            where category.category_parent = #{categoryParent} and category.category_code = #{categoryCode}
+	            ) b
+			where rownum&lt;=#{endRownum}
+		)
+	LEFT JOIN member m ON m.member_id = 
+	    <choose>
+	    	<when test="memberId != null"> #{memberId} </when>
+	    	<otherwise> '0' </otherwise>
+		</choose>
+	where rnum>=#{startRownum}
+	</select>
+	
+	
+	
+	
+	<!-- 검색어에 검색된 단어 통해 작가 / 출판사 / 책제목 중에 검색어와 비슷한 이름이 있는경우 그 도서의 정보를 목록으로 만드는 페이지 -->
+	<select id="searchList" resultType="com.pageflow.dto.book.BookDto$BookList">
+    select
+        bno, book_title, book_intro, CONCAT('/category/', book_image) as book_image,
+        author_name, publisher_name, book_price, publish_date,
+        (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode}) as point_rate,
+        (book_price * (SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode})) as point_earnings 
+    from 
+    (
+        select rownum as rnum, b.* from
+            (select /*+ index_desc(book book_pk_bno)*/ * from book) b
+        where rownum&lt;=#{endRownum} and (author_name like '%' || #{keyword} || '%'       
+            or publisher_name like '%' || #{keyword} || '%' or book_title like '%' || #{keyword} || '%')
+    )
+    LEFT JOIN member m ON m.member_id =
+    <choose>
+    	<when test="memberId != null"> #{memberId} </when>
+    	<otherwise> '0' </otherwise>
+	</choose>   
+    where rnum>=#{startRownum}
+	</select>
+
+	<!-- 관리자 페이지 도서 상품 관리를 위한 리스트 페이지 -->
+	<select id="findAll" resultType="Book">
+		select
+			 bno, book_title, book_intro, CONCAT('/category/', book_image) as book_image, author_name, publisher_name, book_price, publish_date 
+		from 
+			(
+				select rownum as rnum, b.* from
+					(select /*+ index_desc(book book_pk_bno)*/ * from book) b
+				where rownum&lt;=#{endRownum}
+			)
+		where rnum>=#{startRownum}
+	</select>
+	
+	<!-- 관리자 도서 검색 -->
+	<select id="adminSearchList" resultType="Book">
+		select
+			 bno, book_title, book_intro, CONCAT('/category/', book_image) as book_image, author_name, publisher_name, book_price, publish_date 
+		from 
+			(
+				select rownum as rnum, b.* from
+					(select /*+ index_desc(book book_pk_bno)*/ * from book) b
+				where rownum&lt;=#{endRownum} and (author_name like '%' || #{keyword} || '%'       
+        		or publisher_name like '%' || #{keyword} || '%' or book_title like '%' || #{keyword} || '%')
+			)
 		where rnum>=#{startRownum}
 	</select>
 </mapper>

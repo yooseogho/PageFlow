@@ -1,5 +1,7 @@
 package com.pageflow.dao.delivery;
 
+
+
 import java.util.*;
 
 import org.apache.ibatis.annotations.*;
@@ -8,29 +10,52 @@ import com.pageflow.entity.delivery.*;
 
 @Mapper
 public interface DeliveryDao {
-	// 모든 배송 정보 조회
-	@Select("select * from delivery")
-	public List<Delivery> findAll();
+	@SelectKey(statement = "select delivery_seq.nextval from dual", before = true, resultType = long.class, keyProperty = "dno")
+	
+	/** 배송지 등록 */
+	@Insert("insert into delivery values(#{dno}, #{memberId}, #{zipCode}, #{receiverName}, #{deliveryAddress}, #{receiverTel}, '조심히 와주세요', #{defaultAddress}, #{deliveryName})")
+	public Long save(Delivery delivery);
+	
+	/* 기본 배송지 유무 확인 */
+	@Select("select count(*) from delivery where member_id = #{memberId} and default_address=1")
+	public Long findDefaultAddress(String memberId);
+	
+	/** 배송 목록 (delivery mapper에 있음) */
+	public List<Delivery> findAll(Long startRownum, Long endRownum, String memberId);
+    
+	/** 배송목록 카운트 */
+    @Select("select count(*) from delivery where member_id = #{memberId}")
+    public Long deliveryCount(String memberId);
+    
+    /** 배송지 선택 */
+    @Select("select * from delivery where dno = #{dno} and member_id = #{memberId}")
+    public Delivery read(Long dno, String memberId);
+    
+    /** 배송지 수정 */
+    @Update("update delivery set delivery_name = #{deliveryName}, receiver_name = #{receiverName}, receiver_tel = #{receiverTel}, zip_code = #{zipCode}, delivery_address = #{deliveryAddress} "
+    		+ "where dno = #{dno}")
+    public Long update(Delivery delivery);
 
-	// 특정 회원의 배송 정보 조회
-	@Select("select * from delivery where member_id=#{memberId} and rownum=1")
-	public List<Delivery> findByMemberId(String memberId);
-
-	// 특정 배송 정보 조회
-	@Select("select * from delivery where dno=#{dno} and rownum=1")
-	public Delivery findByDno(Long dno);
-
-	// 새로운 배송 정보 추가
-	@Insert("insert into delivery(dno, member_id, zip_code, receiver_name, delivery_address, second_address, third_address, receiver_tel)"
-			+ " values(#{dno}, #{memberId}, #{zipCode}, #{receiverName}, #{deliveryAddress}, #{secondAddress}, #{thirdAddress}, #{receiverTel})")
-	public Integer save(Delivery delivery);
-
-	// 배송 정보 수정
-	@Update("update delivery set member_id=#{memberId}, zip_code=#{zipCode}, receiver_name=#{receiverName}, delivery_address=#{deliveryAddress} "
-			+ ", second_address=#{secondAddress} , third_address=#{thirdAddress} , receiver_tel=#{receiverTel} where dno= #{dno}")
-	public Integer update(Delivery delivery);
-
-	// 특정 배송 정보 삭제
-	@Delete("delete from delivery where dno=#{dno}")
-	public Integer deleteByDno(Long dno);
+    /** 배송지 삭제 */
+    @Delete("delete from delivery where dno = #{dno}")
+    public Long delete(Long dno);
+    
+    /** 기본배송지 해제 */
+    @Update("update delivery set default_address = 0 where default_address = 1 and member_id = #{memberId}")
+    public Long removeDefault(Long defaultAddress, String memberId);
+    
+    /** 기본배송지 설정 */ 
+    @Update("update delivery set default_address = 1 where dno = #{dno} and default_address = 0 and member_id = #{memberId}")
+    public Long settingDefault(Long dno, Long defaultAddress, String memberId);
+    
+    /** 기본 배송지로 설정되어 잇는 배송지 찾기 */
+    @Select("select * from delivery where member_id= #{memberId} and default_address = 1")
+    public Delivery findSettingDefault(String memberId);
+    
+    /** 배송메세지 변경 */
+    @Update("update delivery set delivery_request = #{deliveryRequest} where dno = #{dno}")
+    public Long messageChange(Delivery delivery);
+	
+	
+	
 }

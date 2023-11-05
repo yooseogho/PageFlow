@@ -13,7 +13,7 @@
 	</div>
 	<div class="aside_body">
 		<div class="snb_wrap">
-			<a href="/category/novel/novel_book" class="snb_title">SF/과학소설</a>
+			<a href="/category/book/110" class="snb_title">SF/과학소설</a>
 		</div>
 	</div>
 </body>

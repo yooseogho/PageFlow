@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/order_detail_list.css">
-<title>주문 상세 정보</title>
+<title>Insert title here</title>
 </head>
 <body>
 	<div id="page">

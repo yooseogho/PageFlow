@@ -15,13 +15,13 @@
 		<div class="snb_wrap">
 			<ul class="snb_list">
 
-				<li class="snb_item"><a href="/category/novel/novel_book"
+				<li class="snb_item"><a href="/category/book/110"
 					class="snb_link">소설</a></li>
 
-				<li class="snb_item"><a href="/category/comicBook/comic_book"
+				<li class="snb_item"><a href="/category/book/120"
 					class="snb_link">만화</a></li>
 
-				<li class="snb_item"><a href="/category/textbook/textbook_book"
+				<li class="snb_item"><a href="/category/book/130"
 					class="snb_link">참고도서</a></li>
 
 			</ul>

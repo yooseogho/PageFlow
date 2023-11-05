@@ -1,63 +1,113 @@
 package com.pageflow.service.delivery;
 
-import java.util.List;
+import java.util.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
 
 import com.pageflow.dao.delivery.*;
+import com.pageflow.dao.member.*;
+import com.pageflow.dto.delivery.*;
 import com.pageflow.entity.delivery.*;
+import com.pageflow.entity.member.*;
 
 @Service
 public class DeliveryService {
-  @Autowired
-  private DeliveryDao deliveryDao;
+	@Autowired
+	private DeliveryDao deliveryDao;
+	@Autowired
+	private MemberDao memberDao;
 
-  // 1. 모든 배송 정보 조회
-  public List<Delivery> findAll() {
-    return deliveryDao.findAll();
-  }
+	@Value("${numberOfProductsPerPage}")
+	private Long numberOfProductsPerPage;
 
-  // 2. 특정 회원의 배송 정보 조회
-  public List<Delivery> findByMemberId(String memberId) {
-    return deliveryDao.findByMemberId(memberId);
-  }
+	@Value("${sizeOfPagination}")
+	private Long sizeOfPagination;
 
-  // 3. 배송 번호와 일치하는 배송 정보 조회
-  public Delivery findByDno(Long dno) {
-    return deliveryDao.findByDno(dno);
-  }
+	// 1. 배송지 추가
+	public Boolean deliveryAdd(String memberId, DeliveryDto.Create dto) {
+		Long count = deliveryDao.findDefaultAddress(memberId);
+		if (count == null) {
+			count = 0L;
+		}
 
-  // 4. 배송 정보 추가
-  public Boolean add(Long dno, String memberId, Long zipCode, String receiverName, String deliveryAddress,
-      String secondAddress, String thirdAddress, String receiverTel) {
-    // Delivery 객체 생성
-    Delivery delivery = new Delivery();
-    delivery.setDno(dno);
-    delivery.setMemberId(memberId);
-    delivery.setZipCode(zipCode);
-    delivery.setReceiverName(receiverName);
-    delivery.setDeliveryAddress(deliveryAddress);
-    delivery.setSecondAddress(secondAddress);
-    delivery.setThirdAddress(thirdAddress);
-    delivery.setReceiverTel(receiverTel);
+		Long defaultAddress = (count == 0) ? 1L : 0L;
 
-    // DAO의 save 메서드를 호출하여 Delivery 객체를 저장
-    Integer result = deliveryDao.save(delivery);
+		Delivery delivery = new Delivery(null, memberId, dto.getZipCode(), dto.getReceiverName(),
+				dto.getDeliveryAddress(), dto.getReceiverTel(), null, defaultAddress, dto.getDeliveryName());
+		return deliveryDao.save(delivery) == 1;
+	}
 
-    // 저장 결과를 확인하고 성공 여부를 반환
-    return result == 1;
-  }
+	// 2. 배송지 선택
+	public DeliveryDto.Read read(Long dno, String memberId) {
+		Member member = memberDao.findById(memberId);
+		Delivery delivery = deliveryDao.read(dno, member.getMemberId());
+		return new DeliveryDto.Read(dno,delivery.getReceiverName(), delivery.getDeliveryName(),
+				delivery.getDefaultAddress(), delivery.getReceiverTel(), delivery.getZipCode(),
+				delivery.getDeliveryAddress(), delivery.getDeliveryRequest());
+	}
 
-  // 5. 배송 정보 수정
-  public Boolean update(Delivery delivery) {
-    Integer result = deliveryDao.update(delivery);
-    return result == 1;
-  }
+	// 3. 배송지 리스트
+	public DeliveryPage list(Long pageno, String memberId) {
+		Member member = memberDao.findById(memberId);
+		Long count = deliveryDao.deliveryCount(member.getMemberId());
 
-  // 6. 특정 배송 정보 삭제
-  public Boolean deleteByDno(Long dno) {
-    Integer result = deliveryDao.deleteByDno(dno);
-    return result == 1;
-  }
+		Long numberOfPage = (count - 1) / numberOfProductsPerPage + 1;
+
+		Long startRownum = (pageno - 1) * numberOfProductsPerPage + 1;
+		Long endRownum = pageno * numberOfProductsPerPage;
+		List<Delivery> delivery = deliveryDao.findAll(startRownum, endRownum, member.getMemberId());
+
+		Long start = (pageno - 1) / sizeOfPagination * sizeOfPagination + 1;
+		Long prev = start - 1;
+		Long end = prev + sizeOfPagination;
+		Long next = end + 1;
+
+		// end가 numberOfPage보다 같거나 크다면...처리
+		if (end >= numberOfPage) {
+			end = numberOfPage;
+			next = 0L;
+		}
+		return new DeliveryPage(prev, start, end, next, pageno, delivery);
+	}
+
+	// 4. 배송지 수정
+	public Boolean update(DeliveryDto.Update dto, String memberId) {
+		Member member = memberDao.findById(memberId);
+		Delivery delivery = deliveryDao.read(dto.getDno(), member.getMemberId());
+		delivery.setDeliveryAddress(dto.getDeliveryAddress());
+		delivery.setDeliveryName(dto.getDeliveryName());
+		delivery.setReceiverName(dto.getReceiverName());
+		delivery.setReceiverTel(dto.getReceiverTel());
+		delivery.setZipCode(dto.getZipCode());
+
+		return deliveryDao.update(delivery) == 1;
+	}
+
+	// 5. 배송지 삭제
+	public Boolean delete(Long dno) {
+		return deliveryDao.delete(dno) == 1;
+	}
+
+	// 6. 기본배송지 변경
+	public Boolean change(Long dno, String memberId) {
+		Member member = memberDao.findById(memberId);
+		Delivery delivery = deliveryDao.findSettingDefault(member.getMemberId());
+		if (delivery.getDefaultAddress() == 1L) {
+			deliveryDao.removeDefault(delivery.getDefaultAddress(), delivery.getMemberId());
+		} 
+		
+		Delivery d = deliveryDao.read(dno, member.getMemberId());
+		return deliveryDao.settingDefault(dno, d.getDefaultAddress(), member.getMemberId()) == 1;
+		
+	}
+	
+	// 7. 배송 메세지 수정 
+	public Boolean changeMessage (DeliveryDto.Message dto, String memberId) {
+		Member member = memberDao.findById(memberId);
+		Delivery delivery = deliveryDao.read(dto.getDno(), member.getMemberId());
+		delivery.setDeliveryRequest(dto.getDeliveryRequest());
+		return deliveryDao.messageChange(delivery) == 1;
+	}
+
 }
