@@ -7,9 +7,10 @@ create table member_grade (
 );  
 
     insert into member_grade values(0,'',0);
-    insert into member_grade values(2, 'Silver', 0.03);
-    insert into member_grade values(3, 'Gold', 0.04);
-    insert into member_grade values(4, 'Platinum', 0.05);   
+    insert into member_grade values(1, 'FRIENDS', 0.02)
+    insert into member_grade values(2, 'SILVER', 0.03);
+    insert into member_grade values(3, 'GOLD', 0.04);
+    insert into member_grade values(4, 'PLATINUM', 0.05);   
 
 create table member (
 	member_id	varchar2(20 char)		not null,
@@ -46,10 +47,10 @@ create table orders(
 	member_id	varchar2 (20 char)		not null,
 	dno	number(7)		not null,
 	order_date	date	default sysdate	not null,
-	order_request	varchar2 (100 char)	default '조심히 와주세요'	not null,
 	order_price	number(7)		not null,
 	payment	varchar2 (50 char)	not null,
 	point_earn	number(5)		not null,
+	orders_buyer varchar2 (20 char) not null,
     constraint orders_pk_ono primary key(ono),
     constraint orders_fk_dno foreign key(dno) references delivery(dno),
     constraint orders_fk_member_id foreign key(member_id) references member(member_id)
@@ -63,7 +64,7 @@ create table category (
     constraint category_fk_category_parent foreign key(category_parent) references category(category_code)
 );
 
-    insert into category(category_code, category_name) values(100, '도서');
+  insert into category(category_code, category_name) values(100, '도서');
   insert into category values(110, '소설', 100);
   insert into category values(111, '판타지소설', 110);
   insert into category values(112, '호러/공포소설', 110);
@@ -96,6 +97,19 @@ create table book (
     constraint book_pk_bno primary key(bno),
     constraint book_fk_category_code foreign key(category_code) references category(category_code)
 );
+
+CREATE TABLE order_details (
+    odno NUMBER(7) NOT NULL,
+    bno NUMBER(7) NOT NULL,
+    ono NUMBER(7) NOT NULL,
+    order_count NUMBER(3) NOT NULL,
+    order_total NUMBER(7) NOT NULL,
+    book_title VARCHAR2 (50 CHAR) NOT NULL,
+    order_status VARCHAR2 (100 CHAR) DEFAULT '주문이 완료되었습니다.' NOT NULL,
+    CONSTRAINT order_details_pk_odno PRIMARY KEY(odno),
+    CONSTRAINT order_details_fk_bno FOREIGN KEY(bno) REFERENCES book(bno),
+    CONSTRAINT order_details_fk_ono FOREIGN KEY(ono) REFERENCES orders(ono)
+);
     
 create table book_review (
 	rno	number(7)		not null,
@@ -121,18 +135,6 @@ create table cart (
     constraint cart_fk_member_id foreign key(member_id) references member(member_id)
 );
 
-CREATE TABLE order_details (
-    odno NUMBER(7) NOT NULL,
-    bno NUMBER(7) NOT NULL,
-    ono NUMBER(7) NOT NULL,
-    order_count NUMBER(3) NOT NULL,
-    order_total NUMBER(7) NOT NULL,
-    book_title VARCHAR2 (50 CHAR) NOT NULL,
-    order_status VARCHAR2 (100 CHAR) DEFAULT '주문이 완료되었습니다.' NOT NULL,
-    CONSTRAINT order_details_pk_odno PRIMARY KEY(odno),
-    CONSTRAINT order_details_fk_bno FOREIGN KEY(bno) REFERENCES book(bno),
-    CONSTRAINT order_details_fk_ono FOREIGN KEY(ono) REFERENCES orders(ono)
-);
     
 create table inquiry (
 	inno	number(7)		not null,
@@ -160,5 +162,4 @@ create table notice (
   CREATE SEQUENCE member_grade_seq;
   CREATE SEQUENCE cart_seq;
   CREATE SEQUENCE order_details_seq;
-  CREATE SEQUENCE orders_seq;
   CREATE SEQUENCE delivery_seq; 

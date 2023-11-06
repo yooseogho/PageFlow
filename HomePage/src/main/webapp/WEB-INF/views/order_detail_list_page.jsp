@@ -48,7 +48,9 @@
                                     <p class="label">입금금액</p>
                                     <div class="right_box">
                                         <span class="price">
-                                            <span class="val" data-online-deposit-amount="">${read.orderPrice}</span>
+                                            <span class="val">
+                                            	<fmt:formatNumber type="number" pattern="#,##0" value="${read.orderPrice}" />
+                                            </span>
                                             <span class="unit">원</span>
                                         </span>
                                     </div>
@@ -90,14 +92,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${read.orderDetails}" var="details">
+                                <c:forEach items="${read.orderDetails}" var="details">
                                 <tr>
                                     <td class="prod">
                                         <div class="prod_area horizontal">
                                             <div class="prod_thumb_box size_sm">
-                                                <a href="#" class="prod_link" data-order-detail-commodity-link="">
+                                                <a href="/book/read?bno=${details.bno}" class="prod_link">
                                                     <span class="img_box">
-                                                        <img src="https://contents.kyobobook.co.kr/sih/fit-in/200x0/pdt/9791197021633.jpg" alt="검은 꽃">
+                                                        <img src="${details.bookImage }" alt="${details.bookTitle }">
                                                     </span>
                                                 </a>
                                             </div>
@@ -106,12 +108,12 @@
 
                                                     <span class="text">교보문고 배송</span>
                                                 </span>
-                                                <a href="#" class="prod_info" data-order-detail-commodity-link="">
-                                                    <span class="prod_name ellipsis_none">[국내도서] 검은 꽃 </span>
+                                                <a href="#" class="prod_info">
+                                                    <span class="prod_name ellipsis_none">[국내도서] ${details.bookTitle } </span>
                                                 </a>
                                                 <ul class="prod_option_list">
                                                     <li class="option_item">
-                                                        <span class="text">수량 : </span><span class="val">1</span>
+                                                        <span class="text">수량 : </span><span class="val">${details.orderCount}</span>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -120,58 +122,69 @@
                                     <td>
                                         <span class="price">
 
-                                            <span class="val">9,900</span>
+                                            <span class="val"><fmt:formatNumber type="number" pattern="#,##0" value="${details.orderTotal}" /></span>
                                             <span class="unit">원</span>
                                         </span>
                                     </td>
                                     <td>
                                         <div class="delivery_info">
-                                            <span class="delivery_state ">취소완료</span>
-                                            <div class="btn_wrap auto">
-                                                <button type="button" class="btn_xxs btn_line_gray" data-order-detail-commodity-cancel-detail-button=""><span class="text">취소 상세</span><span class="ico_arw"></span></button>
-                                            </div>
+                                            <span class="delivery_state ">주문접수</span>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="btn_wrap full">
+                                            <button type="button" class="btn_sm btn_line_gray"><span class="text">취소신청</span></button>
                                         </div>
                                     </td>
                                 </tr>
-                                </c:forEach>
-
+								</c:forEach>
                             </tbody>
                         </table>
                     </div>
 
-                    <div style="margin-top: 50px;" data-order-detail-baro-delivery="">
-                        <div class="title_wrap title_size_md" style="" data-delivery-point-zone="">
+                    <div style="margin-top: 50px;" >
+                        <div class="title_wrap title_size_md" >
                             <h2 class="title_heading">배송정보</h2>
                         </div>
 
-                        <div class="tbl_row_wrap" style="" data-delivery-point-zone="">
+                        <div class="tbl_row_wrap" >
                             <table class="tbl_row">
                                 <colgroup>
                                     <col style="width: 140px;">
                                     <col style="width: auto;">
                                 </colgroup>
-                                <tbody data-delivery-point-information="">
-                                    <tr data-delivery-point-division="100">
+                                <tbody >
+                                    <tr >
                                         <th scope="row">기본정보</th>
                                         <td>
                                             <div class="address_item no_line">
-                                                <div class="address_info_box" data-delivery-point-main="">
+                                                <div class="address_info_box" >
                                                     <div class="address_person">
-                                                        <span class="name"><span data-delivery-point-name="">원승언</span> / </span>
-                                                        <span class="phone_number" data-delivery-point-cellular-phone-number="">010-2572-4233</span>
-                                                        <button type="button" class="btn_xxs btn_line_gray" style="" data-delivery-point-modification-button=""><span class="text">변경</span><span class="ico_arw"></span></button>
+                                                        <span class="name"><span >${read.receiverName }</span> / </span>
+                                                        <span class="phone_number">${read.receiverTel.substring(0,3)}-${read.receiverTel.substring(3,7)}-${read.receiverTel.substring(7)}</span>
+                                                        <button type="button" class="btn_xxs btn_line_gray"><span class="text">변경</span><span class="ico_arw"></span></button>
                                                     </div>
-                                                    <div class="address" data-delivery-point-address="">
-                                                        [xxxxx] xx도 xx시 xxxxxx번길 xxx(xx동, xxx빌라), xxx호
+                                                    <div class="address" >
+                                                    	[${read.zipCode }] ${read.deliveryAddress}
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
+                                    <tr>
+                                  		<th scope="row" class="has_ip">배송요청사항</th>
+                                       	<td>
+		                        			<div class="form_info_single" style="display:flex; align-items: center;">
+			                            		<span class="default_text">${read.deliveryRequest}</span>
+			                            		<a href="/order/delivery/message/${read.dno}">
+	                                            	<button type="button" class="btn_ip btn_line_gray">
+	                                                	<span class="ico_msg_black"></span>
+	                                                	<span class="text fw_medium" style="margin-left: 5px;">배송요청사항 메시지 변경</span>
+	                                                </button>
+	                                            </a>  
+		                        			</div>
+		                    			</td>
+                                   </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -181,14 +194,14 @@
                         <h2 class="title_heading">결제정보</h2>
                     </div>
 
-                    <div class="payment_info_wrap" id="settlementInfoContents" data-settlement-information="">
+                    <div class="payment_info_wrap" id="settlementInfoContents">
                         <div class="payment_info_area">
                             <div class="payment_total_item">
                                 <div class="payment_info_box">
                                     <p class="label">주문금액</p>
                                     <div class="right_box">
                                         <span class="price">
-                                            <span class="val">9,900</span>
+                                            <span class="val"><fmt:formatNumber type="number" pattern="#,##0" value="${read.orderPrice}" /></span>
                                             <span class="unit">원</span>
                                         </span>
                                     </div>
@@ -200,7 +213,7 @@
                                         <p class="label">상품금액</p>
                                         <div class="right_box">
                                             <span class="price">
-                                                <span class="val">9,900</span>
+                                                <span class="val"><fmt:formatNumber type="number" pattern="#,##0" value="${read.orderPrice}" /></span>
                                                 <span class="unit">원</span>
                                             </span>
                                         </div>
@@ -229,7 +242,7 @@
                                     <p class="label">결제금액</p>
                                     <div class="right_box">
                                         <span class="price">
-                                            <span class="val">9,900</span>
+                                            <span class="val"><fmt:formatNumber type="number" pattern="#,##0" value="${read.orderPrice}" /></span>
                                             <span class="unit">원</span>
                                         </span>
                                     </div>
@@ -238,10 +251,12 @@
                             <ul class="payment_info_list">
                                 <li class="payment_info_item">
                                     <div class="payment_info_box">
-                                        <p class="label"><span class="fc_black">온라인입금</span></p>
+                                        <p class="label"><span class="fc_black">${read.payment} 결제</span></p>
                                         <div class="right_box">
                                             <span class="price">
-                                                <span class="val">9,900</span>
+                                                <span class="val">
+													<span class="val"><fmt:formatNumber type="number" pattern="#,##0" value="${read.orderPrice}" /></span>
+												</span>
                                                 <span class="unit">원</span>
                                             </span>
                                             <span class="payment_method"></span>
@@ -249,26 +264,21 @@
                                     </div>
                                 </li>
                             </ul>
-                            <div class="payment_util_box">
-                                <button type="button" class="btn_xxs btn_line_gray" data-settlement-information-receipt-button="" style="display: none;"><span class="text">영수증</span><span class="ico_arw"></span></button>
-                                <button type="button" class="btn_xxs btn_line_gray" data-settlement-information-credit-card-sales-statement-button="" style="display: none;"><span class="text">신용카드매출전표</span><span class="ico_arw"></span></button>
-                                <button type="button" class="btn_xxs btn_line_gray" data-settlement-information-cash-receipt-button="" style="display: none;"><span class="text">현금영수증</span><span class="ico_arw"></span></button>
-                            </div>
                         </div>
                     </div>
 
-                    <div class="title_wrap title_size_md" style="" data-accumulation-information-zone="">
+                    <div class="title_wrap title_size_md">
                         <h2 class="title_heading">적립정보</h2>
                     </div>
 
-                    <div class="payment_info_wrap" style="" data-accumulation-information-zone="" data-accumulation-information="">
+                    <div class="payment_info_wrap">
                         <div class="payment_info_area">
                             <div class="payment_total_item">
                                 <div class="payment_info_box">
                                     <p class="label">통합포인트 적립 예정</p>
                                     <div class="right_box">
                                         <span class="price">
-                                            <span class="val">1,810</span>
+                                            <span class="val"><fmt:formatNumber type="number" pattern="#,##0" value="${read.pointEarn}" /></span>
                                             <span class="unit">P</span>
                                         </span>
                                     </div>
@@ -281,7 +291,7 @@
                                         <div class="right_box">
 
                                             <span class="price">
-                                                <span class="val">1,810</span>
+                                                <span class="val"><fmt:formatNumber type="number" pattern="#,##0" value="${read.pointEarn}" /></span>
                                                 <span class="unit">P</span>
                                             </span>
                                         </div>

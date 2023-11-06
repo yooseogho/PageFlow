@@ -53,7 +53,7 @@
                         <div class="order_history_box">
                             <button type="button" class="btn_filter_history">
                                 <span class="history_val" data-order-summary-preparation="">0</span>
-                                <span class="history_desc">준비중</span>
+                                <span class="history_desc">주문 완료</span>
                             </button>
                         </div>
                         <div class="order_history_box">
@@ -149,7 +149,7 @@
 					                                </td>
 					                                <td>
 					                                    <div class="delivery_info">
-					                                        <span class="delivery_state ">주문접수</span>
+					                                        <span class="delivery_state ">${orderDetail.orderStatus}</span>
 					                                    </div>
 					                                </td>
 					                                <td>

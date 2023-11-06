@@ -597,7 +597,7 @@ button.btn_sm {
 }
 
 .tbl_row_wrap .tbl_row tbody th {
-    padding: 12px 10px;
+    padding: 23px 10px;
     font-size: 14px;
     line-height: 22px;
     letter-spacing: -0.01em;
@@ -679,6 +679,30 @@ button.btn_xxs {
     line-height: 18px;
     letter-spacing: -0.01em;
     font-weight: 500;
+}
+
+a.btn_ip, button.btn_ip {
+    display: -webkit-inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 86px;
+    height: 44px;
+    padding: 0 19px 1px;
+    border-radius: 6px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    margin-left: 20px;
+}
+
+a.btn_ip .ico_msg_black, button.btn_ip .ico_msg_black {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_msg_black_h18@2x.png) 0% 0% no-repeat;
+    background-size: 18px 18px;
 }
 
 .tbl_row_wrap .tbl_row tbody td .address_item .address,
