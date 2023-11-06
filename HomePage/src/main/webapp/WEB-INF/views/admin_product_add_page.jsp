@@ -409,7 +409,7 @@
 								</a>
 								<!-- 등록 버튼 -->
 								<button data-kbbfn-form="inquiryForm" class="btn_primary btn_lg"
-									id="add-book">
+									id="add-book" onclick="return confirm('내용을 모두 확인했습니까?')">
 									<span class="text">등록</span>
 								</button>
 							</div>
