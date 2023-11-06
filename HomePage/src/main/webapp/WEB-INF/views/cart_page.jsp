@@ -93,11 +93,7 @@ $(document).ready(function(){
                         <div class="cart_title_box has_order_type">
                             <div class="title_wrap title_size_lg" data-cart-totalcnt>
                                 <h1 class="title_heading" id='totalCnt'>장바구니(${count})</h1>
-                                <div class="order_type_box">
-                                    <div class="locate_btn_box">
-                                        <button type="button" class="btn_sm btn_line_gray"><span class="ico_locate_black"></span><span class="text" data-role="btn-dialog">기준배송지</span></button>
-                                    </div>
-                                </div>
+                                
                                 <div class="right_area">
                                     <ol class="step_round_text_list">
                                         <li class="step_item active"><span class="step_num">1</span>장바구니</li>

@@ -9,6 +9,7 @@ import javax.servlet.http.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
+import org.springframework.security.access.annotation.*;
 import org.springframework.security.core.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.*;
 
 import com.pageflow.dao.book.*;
 import com.pageflow.dto.book.*;
+import com.pageflow.dto.cart.*;
 import com.pageflow.entity.book.*;
 import com.pageflow.service.book.*;
 
@@ -393,6 +395,49 @@ public class BookController {
     return new ModelAndView("publisher_search_list_page").addObject("page", pageData).addObject("count", count)
         .addObject("memberId", memberId);
   }
+  
+  	//8. 바로 구매 구현
+	@Secured("ROLE_USER")
+	@PostMapping("/buy/{bno}")
+	public String buyNow(@PathVariable Long bno, HttpServletRequest request, Long gradeCode) {
+		
+		// 세션에서 사용자 정보 가져오기
+		HttpSession session = request.getSession();
+		String memberId = (String) session.getAttribute("memberId");
+		gradeCode = (Long) session.getAttribute("gradeCode");
+
+		// Principal을 통한 대체
+		Principal principal = request.getUserPrincipal();
+		// 로그인한 사용자가 있다면 그 사용자의 아이디를 가져오고 회원등급도 가져온다
+		if (principal != null) {
+			memberId = principal.getName(); // Principal의 이름을 memberId로 사용
+
+			// 만약 그게 아니라면, 즉 비회원이라면 memberId를 임의로 '0'으로 설정한 후 gradeCode 또한 0으로 설정함
+		} else {
+			memberId = "0"; // 비회원인 경우 기본값으로 설정
+			gradeCode = 0L;
+		}
+		
+		// 책 정보 조회
+	    BookDto.Read book = bookService.read(bno, memberId, gradeCode);
+
+	    // 장바구니 리스트를 세션에 저장
+	    List<CartDto.Select> cartList = new ArrayList<>();
+	    CartDto.Select cartItem = new CartDto.Select();
+	    cartItem.setBno(book.getBno());
+	    cartItem.setBookTitle(book.getBookTitle());
+	    cartItem.setBookImage(book.getBookImage());
+	    cartItem.setCartCount(1L);  // 수량은 1로 설정
+	    cartItem.setAmount(book.getBookPrice());  // 가격은 책의 가격으로 설정
+		cartItem.setTotalAmount(book.getBookPrice());
+		cartItem.setTotalPointEarnings(book.getPointEarnings());
+	    cartList.add(cartItem);
+	    
+	    session.setAttribute("cartList", cartList);
+
+	    // 결제 페이지로 리다이렉트
+	    return "redirect:/order";
+	}
 
   // 도서 이미지 보여주기 위한 설정
   @GetMapping("/category/{imageName}")

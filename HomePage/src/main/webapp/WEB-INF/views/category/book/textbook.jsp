@@ -12,8 +12,78 @@
 <title>Insert title here</title>
 </head>
 <script>
-	const t = '${textbookPage}';
-	console.log(t);
+$(document).ready(function(){
+	
+	// 장바구니에 담기
+	$('.cart_add').on('click', function() {
+	const bno = $(this).attr('data-bno');
+	const member = '${memberId}';
+		
+		if (member == 0) {
+		const choice = confirm('장바구니는 회원만 담을 수 있습니다. 로그인하시겠습니까?');
+		    if (choice == false) {
+		    	return;
+		    } else {
+		        // 확인 버튼을 선택한 경우
+		        location.href = "localhost:8081/login";
+		    }
+		}
+		
+		const form = `
+			<form action='/cart/add' method='post'>
+				<input type='hidden' name='bno' value='\${bno}'>
+				<input type='hidden' name='cartCount' value='1'>
+			</form>
+		`;
+		
+		$(form).appendTo($('body')).submit();
+		
+		alert('상품이 장바구니에 담겼습니다.');		
+		
+	})
+	
+	// 여러 도서 장바구니에 담기
+	$('.btn_cart').on('click', function() {
+		const member = '${memberId}';
+		
+		if (member == 0) {
+		const choice = confirm('장바구니는 회원만 담을 수 있습니다. 로그인하시겠습니까?');
+		    if (choice == false) {
+		    	return;
+		    } else {
+		        // 확인 버튼을 선택한 경우
+		        location.href = "localhost:8081/login";
+		    }
+		}
+	    var bnos = [];
+	    // 체크된 체크박스를 순회
+	    $("input[name='chkList']:checked").each(function() {
+	        bnos.push($(this).attr('id')); // 체크박스의 id를 bno로 사용
+	    });
+	
+	    var form = `
+	        <form action='/cart/multiAdd' method='post'>
+	            <input type='hidden' name='bnos' value='\${bnos.join(",")}'>
+	            <input type='hidden' name='cartCount' value='1'>
+	        </form>
+	    `;
+	    $(form).appendTo($('body')).submit();
+	    alert('상품이 장바구니에 담겼습니다.');
+	    
+	});
+	
+	// 바로 구매
+	$('.order').on('click', function(){
+		const bno = $(this).attr('data-bno');
+		
+		const form = `
+			<form action="/buy/\${bno}" method="post">
+				<input type="hidden" name="bno" value="\${bno}">
+			</form>
+		`;
+		$(form).appendTo($('body')).submit();
+	})
+})
 </script>
 <body>
 	<div id="page">
@@ -46,7 +116,7 @@
 												</p>
 												<div class="right_area">
 													<div class="item_group">
-														<button type="button" class="btn_sm btn_line_gray">
+														<button type="button" class="btn_sm btn_line_gray btn_cart">
 															<span class="ico_cart"></span><span class="text">장바구니
 																담기</span>
 														</button>
@@ -62,7 +132,7 @@
 													<c:forEach var="book" items="${page.books }">
 														<li class="prod_item">
 															<span class="form_chk no_label">
-																<input class="result_checkbox spec_checkbox" id="${book.bno }" type="checkbox">
+																<input class="result_checkbox spec_checkbox" id="${book.bno }" type="checkbox" name="chkList">
 																<label for="${book.bno}">
 																	<span class="hidden">상품선택</span>
 																</label>
@@ -143,17 +213,19 @@
 																	<span class="fw_bold">3일 후 </span>
 																	<br>도착예정
 																</p>
-															</div> <!-- 장바구니 or 바로구매 버튼 영역 -->
+															</div>
+															<!-- 장바구니 or 바로구매 버튼 영역 -->
 															<div class="prod_btn_wrap">
 																<div class="btn_wrap full">
-																	<a href="/cart_page" class="btn_sm btn_light_gray">
+																	<button class="btn_sm btn_light_gray cart_add" data-bno="${book.bno}">
 																		<span class="text">장바구니</span>
-																	</a> 
-																	<a href="/order_page" class="btn_sm btn_primary">
+																	</button> 
+																	<button class="btn_sm btn_primary order" data-bno="${book.bno}">
 																		<span class="text">바로구매</span>
-																	</a>
+																	</button>
 																</div>
-															</div></li>
+															</div>
+															</li>
 													</c:forEach>
 
 												</ul>

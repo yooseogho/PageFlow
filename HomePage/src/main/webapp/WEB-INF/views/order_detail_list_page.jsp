@@ -8,11 +8,11 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/order_detail_list.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <title>Insert title here</title>
 </head>
 <script>
-	const c = '${read}';
-	console.log(c);
+	
 </script>
 <body>
 	<div id="page">
@@ -75,7 +75,7 @@
                     </div>
 
                     <div class="tbl_prod_wrap type_myroom" id="commodityList" style="">
-                        <h3 class="tbl_summary" data-order-detail-commodity-group-name="">배송</h3>
+                        <h3 class="tbl_summary">배송</h3>
                         <table class="tbl_prod">
                             <colgroup>
                                 <col>
@@ -108,7 +108,7 @@
 
                                                     <span class="text">교보문고 배송</span>
                                                 </span>
-                                                <a href="#" class="prod_info">
+                                                <a href="/book/read?bno=${details.bno}" class="prod_info">
                                                     <span class="prod_name ellipsis_none">[국내도서] ${details.bookTitle } </span>
                                                 </a>
                                                 <ul class="prod_option_list">
@@ -162,7 +162,6 @@
                                                     <div class="address_person">
                                                         <span class="name"><span >${read.receiverName }</span> / </span>
                                                         <span class="phone_number">${read.receiverTel.substring(0,3)}-${read.receiverTel.substring(3,7)}-${read.receiverTel.substring(7)}</span>
-                                                        <button type="button" class="btn_xxs btn_line_gray"><span class="text">변경</span><span class="ico_arw"></span></button>
                                                     </div>
                                                     <div class="address" >
                                                     	[${read.zipCode }] ${read.deliveryAddress}
@@ -175,13 +174,7 @@
                                   		<th scope="row" class="has_ip">배송요청사항</th>
                                        	<td>
 		                        			<div class="form_info_single" style="display:flex; align-items: center;">
-			                            		<span class="default_text">${read.deliveryRequest}</span>
-			                            		<a href="/order/delivery/message/${read.dno}">
-	                                            	<button type="button" class="btn_ip btn_line_gray">
-	                                                	<span class="ico_msg_black"></span>
-	                                                	<span class="text fw_medium" style="margin-left: 5px;">배송요청사항 메시지 변경</span>
-	                                                </button>
-	                                            </a>  
+			                            		<span class="default_text" style="margin-right: 20px;">${read.deliveryRequest}</span>
 		                        			</div>
 		                    			</td>
                                    </tr>
@@ -301,13 +294,8 @@
                         </div>
                     </div>
 
-                    <ul class="bul_list" style="" data-accumulation-information-zone="">
-                        <li class="bul_item_dot font_size_xxs fc_light_gray">적립금은 결제이후 예상적립금이 안내됩니다. 결제 사용금액과 적립시점에 따라 최종적립이 완료 되면 [적립완료]로 안내가 변경됩니다.</li>
-                        <li class="bul_item_dot font_size_xxs fc_light_gray">제휴포인트의 경우 적립완료 금액은 각 제휴사페이지에서 확인 가능합니다.</li>
-                    </ul>
-
                     <div class="btn_wrap page_bottom">
-                        <a href="/order_list_page" class="btn_lg btn_primary" data-order-list-move-button=""><span class="text">주문/배송 목록</span></a>
+                        <a href="/order/list" class="btn_lg btn_primary" data-order-list-move-button=""><span class="text">주문/배송 목록</span></a>
                     </div>
                     
                 </section>
@@ -317,5 +305,6 @@
 			<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 		</footer>
 	</div>
+	
 </body>
 </html>

@@ -64,7 +64,7 @@
             <div id="popDeliveryAddressDetail" class="dialog_wrap has_btn ui-dialog-content ui-widget-content initialized" style="width: auto; min-height: 0px; max-height: none; height: auto;">
                 <button type="button" class="btn_dialog_close" id="address_popup_add_close" onclick="location.href=`/order`"><span class="ico_dialog_close"></span><span class="hidden">닫기</span></button>
                 <div class="dialog_header">
-                    <h1 class="dialog_title" data-pop-delivery-detail="title">배송지 추가</h1>
+                    <h1 class="dialog_title" data-pop-delivery-detail="title">배송지 변경</h1>
                 </div>
             	<form action="/order/delivery/update/${delivery.dno}" method="post">
 	                <div class="dialog_contents">

@@ -16,12 +16,21 @@
 		<div class="pnf_search_box">
 		    <div class="search_input_wrap">
 		        <form id="searchForm" action="/book/search" method="get">
-		            <input type='search' name='keyword' placeholder='검색어를 입력해주세요' class="ip_pnf_search">
+		            <input id="searchInput" type='search' name='keyword' placeholder='검색어를 입력해주세요' class="ip_pnf_search">
 		        </form>
 		    </div>
-		    <a href='#' class='btn_pnf_search'>
+		    <a href='#' class='btn_pnf_search' onclick="searchBook();">
 		    </a>
 		</div> 
+		
+		<script>
+		    function searchBook() {
+		        var keyword = document.getElementById("searchInput").value;
+		        var url = "/book/search?keyword=" + keyword;
+		        window.location.href = url;
+		    }
+		</script>
+
 
 
 		<ul class="user_menu_list"> 

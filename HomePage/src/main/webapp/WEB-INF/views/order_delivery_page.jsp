@@ -397,7 +397,5 @@ $(document).ready(function() {
     <div id="addressAdd" class="dialog_wrapper open" style="top: 0px; z-index: 1003; display:none;">
         <jsp:include page="/WEB-INF/views/include/address_popup_add.jsp" />
     </div>
-    
-    
 </body>
 </html>

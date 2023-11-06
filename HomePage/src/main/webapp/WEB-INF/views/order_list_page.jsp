@@ -12,8 +12,20 @@
 <title>Insert title here</title>
 </head>
 <script>
-	const c = '${orderList}';
-	console.log(c);
+	$(document).ready(function(){
+		// 주문 삭제
+		$('.delete').on('click', function(){
+			const ono = $(this).attr('data-ono');
+			
+			const form = `
+				<form action="/order/delete" method="post">
+					<input type="hidden" name="ono" value="\${ono}">
+				</form>
+			`;
+			$(form).appendTo($('body')).submit();
+					
+		})
+	})
 </script>
 <body>
 	<div id="page">
@@ -33,7 +45,7 @@
                     <div class="title_wrap title_size_md has_btn">
                         <p class="title_heading">주문/배송 목록</p>
                         <div class="right_area">
-                            <p class="bul_item_asterisk font_size_xxs" data-order-period-guidance="">최근 1개월 주문내역 입니다.</p>
+                            <p class="bul_item_asterisk font_size_xxs">최근 1개월 주문내역 입니다.</p>
                             <div class="prod_filter_wrap">
                                 <button type="button" class="btn_sm btn_line_gray" style="cursor: pointer;">
                                     <span class="ico_calendar"></span>
@@ -47,36 +59,36 @@
                             <span class="history_val">주문내역</span>
                             <span class="history_desc">
                                 주문/배송안내
-                                <button type="button" class="btn_info_popup" data-role="btn-dialog" data-target="#popOrderdeliveryinfo"></button>
+                                <button type="button" class="btn_info_popup" ></button>
                             </span>
                         </div>
                         <div class="order_history_box">
                             <button type="button" class="btn_filter_history">
-                                <span class="history_val" data-order-summary-preparation="">0</span>
+                                <span class="history_val" >0</span>
                                 <span class="history_desc">주문 완료</span>
                             </button>
                         </div>
                         <div class="order_history_box">
                             <button type="button" class="btn_filter_history">
-                                <span class="history_val" data-order-summary-delivery="">0</span>
+                                <span class="history_val" >0</span>
                                 <span class="history_desc">배송중</span>
                             </button>
                         </div>
                         <div class="order_history_box">
                             <button type="button" class="btn_filter_history">
-                                <span class="history_val" data-order-summary-delivery-finish="">0</span>
+                                <span class="history_val">0</span>
                                 <span class="history_desc">배송완료</span>
                             </button>
                         </div>
                         <div class="order_history_box">
                             <button type="button" class="btn_filter_history">
-                                <span class="history_val" data-order-summary-cancel="">0</span>
+                                <span class="history_val">0</span>
                                 <span class="history_desc">취소</span>
                             </button>
                         </div>
                         <div class="order_history_box">
                             <button type="button" class="btn_filter_history">
-                                <span class="history_val" data-order-summary-exchange-returned-goods="">0</span>
+                                <span class="history_val">0</span>
                                 <span class="history_desc">교환/반품</span>
                             </button>
                         </div>
@@ -92,7 +104,7 @@
 					                    <span class="ico_arw"></span>
 					                </a>
 					                <div class="right_area">
-					                    <button type="button" class="btn_delete_text size_xxs" style="cursor: pointer;">
+					                    <button type="button" class="btn_delete_text size_xxs delete" data-ono="${order.ono}" style="cursor: pointer;">
 					                        <span class="ico_delete"></span>
 					                        <span class="text">주문내역에서 삭제</span>
 					                    </button>
@@ -130,7 +142,7 @@
 					                                            <span class="badge_sm badge_page_flow ">
 					                                                <span class="text">PageFlow 배송</span>
 					                                            </span>
-					                                            <a href="" class="prod_info" data-order-commoditylink="">
+					                                            <a href="/book/read?bno=${orderDetail.bno}" class="prod_info" data-order-commoditylink="">
 					                                                <span class="prod_name">[국내도서] ${orderDetail.bookTitle} </span>
 					                                            </a>
 					                                            <ul class="prod_option_list">

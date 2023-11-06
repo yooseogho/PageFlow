@@ -109,7 +109,8 @@ $(document).ready(function() {
 	}
 	
 	$('#order_btn').on('click', requestPay);
-	
+	const v = '${cartList}';
+	console.log(v);
 		
 	
 })

@@ -6,6 +6,12 @@ html:not(.ios) body.dialog_open .dialog_wrapper.open {
     overflow-y: scroll;
 }
 
+a.btn_line_primary, button.btn_line_primary {
+    color: #474c98;
+    border: 1px solid #5055b1;
+    background: #fff;
+}
+
 .dialog_wrapper.open {
     display: flex;
     position: absolute;

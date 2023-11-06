@@ -67,10 +67,23 @@ $(document).ready(function(){
 	            <input type='hidden' name='cartCount' value='1'>
 	        </form>
 	    `;
-	    $(form).appendTo($('body')).submit();
 	    
+	    $(form).appendTo($('body')).submit();
+	    alert('상품이 장바구니에 담겼습니다.');		
 	    
 	});
+	
+	// 바로 구매
+	$('.order').on('click', function(){
+		const bno = $(this).attr('data-bno');
+		
+		const form = `
+			<form action="/buy/\${bno}" method="post">
+				<input type="hidden" name="bno" value="\${bno}">
+			</form>
+		`;
+		$(form).appendTo($('body')).submit();
+	})
 })
 </script>
 <body>
@@ -193,7 +206,8 @@ $(document).ready(function(){
 																		</span>
 																	</div>
 																</div>
-															</div> <!-- 예상 배송 날짜 입력란 -->
+															</div>
+															<!-- 예상 배송 날짜 입력란 -->
 															<div class="prod_order_state">
 																<span class="badge_sm badge_pill badge_primary">
 																	<span class="text">배송</span>
@@ -202,7 +216,8 @@ $(document).ready(function(){
 																	<span class="fw_bold">3일 후 </span>
 																	<br>도착예정
 																</p>
-															</div> <!-- 장바구니 or 바로구매 버튼 영역 -->
+															</div> 
+															<!-- 장바구니 or 바로구매 버튼 영역 -->
 															<div class="prod_btn_wrap">
 																<div class="btn_wrap full">
 																	<button class="btn_sm btn_light_gray cart_add" data-bno="${book.bno}">
@@ -212,7 +227,8 @@ $(document).ready(function(){
 																		<span class="text">바로구매</span>
 																	</button>
 																</div>
-															</div></li>
+															</div>
+														</li>
 													</c:forEach>
 
 												</ul>
