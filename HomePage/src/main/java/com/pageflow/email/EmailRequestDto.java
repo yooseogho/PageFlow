@@ -10,4 +10,3 @@ public class EmailRequestDto {
   @Email
   private String email;
 }
-

@@ -99,13 +99,13 @@ $(document).ready(function() {
 										<td>
 											<div class="profile_	_box no_img">
 													<div class="thumb_box">
-														<img src="${member.memberProfile}" 
+														<img src="/profiles/${member.memberProfile}" 
 															style="width: 140px; height: 140px; border-radius: 100%;">
 													</div>
 
 											</div>
 											<div class="btn_wrap">
-												<span class="btn_attach"> <input type="file"
+												<span class="btn_attach"> <input type="file" accept="image/*"
 													id="uploadFileImg" name="newProfile"> <label
 													for="uploadFileImg"><span class="ico_picture"></span>이미지
 														변경</label>

@@ -25,21 +25,21 @@ public class BookReviewController {
     return reviewService.findBookReviewsByBno(bno);
   }
 
-  @Secured({"ROLE_ADMIN", "ROLE_USER", "ROLE_FAMILY", "ROLE_SILVER", "ROLE_GOLD", "ROLE_PLATINUM"})
+  @Secured({ "ROLE_ADMIN", "ROLE_USER", "ROLE_FAMILY", "ROLE_SILVER", "ROLE_GOLD", "ROLE_PLATINUM" })
   @PostMapping("/insert")
   public BookReview saveBookReview(@RequestBody BookReview bookReview) {
     // 새로운 리뷰를 저장하고 저장된 리뷰 객체를 반환
     return reviewService.saveBookReview(bookReview);
   }
 
-  @Secured({"ROLE_ADMIN", "ROLE_USER", "ROLE_FAMILY", "ROLE_SILVER", "ROLE_GOLD", "ROLE_PLATINUM"})
+  @Secured({ "ROLE_ADMIN", "ROLE_USER", "ROLE_FAMILY", "ROLE_SILVER", "ROLE_GOLD", "ROLE_PLATINUM" })
   @PostMapping("/update")
   public Integer updateBookReview(@RequestBody BookReview bookReview) {
     // 리뷰글을 수정하고 수정된 행의 개수를 반환
     return reviewService.changeBookReviewContent(bookReview);
   }
 
-  @Secured({"ROLE_ADMIN", "ROLE_USER", "ROLE_FAMILY", "ROLE_SILVER", "ROLE_GOLD", "ROLE_PLATINUM"})
+  @Secured({ "ROLE_ADMIN", "ROLE_USER", "ROLE_FAMILY", "ROLE_SILVER", "ROLE_GOLD", "ROLE_PLATINUM" })
   @PostMapping("/delete")
   public Integer deleteBookReview(@RequestParam Long rno, @RequestParam String reviewWriter) {
     // 리뷰를 삭제하고 삭제된 행의 개수를 반환

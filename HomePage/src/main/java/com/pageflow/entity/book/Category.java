@@ -6,8 +6,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Category {
-	private Long level;
-	private Long categoryCode;
-	private String categoryName;
-	private Long categoryParent;
+  private Long level;
+  private Long categoryCode;
+  private String categoryName;
+  private Long categoryParent;
 }

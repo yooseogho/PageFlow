@@ -6,8 +6,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MemberGrade {
-	private Long gradeCode;
-	private String gradeName;
-	private Double pointRate;		
+  private Long gradeCode;
+  private String gradeName;
+  private Double pointRate;
 }
-	

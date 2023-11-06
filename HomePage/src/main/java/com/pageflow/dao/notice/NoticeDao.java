@@ -38,20 +38,18 @@ public interface NoticeDao {
   @Delete("delete from notice where nno=#{nno}")
   public Integer deleteByNno(Long nno);
 
- //	글 모두 불러오기
+  // 글 모두 불러오기
   @Select("select * from notice Notices ORDER BY nno DESC")
   public List<Notice> getAllNotices();
-  
+
   // 고객센터 공지사항 최신순 3개 불러오기
   @Select("SELECT * FROM (SELECT * FROM notice ORDER BY nno DESC) WHERE ROWNUM <= 3")
   public List<Notice> findTop3ByOrderByNoticeWritedayDesc();
-  
-  
+
   // 공지사항 이전글 불러오기
   public Notice findPrev(Long nno);
-  
+
   // 공지사항 다음글 불러오기
   public Notice findNext(Long nno);
- 
 
 }

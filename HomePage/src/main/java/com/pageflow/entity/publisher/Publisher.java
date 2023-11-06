@@ -6,6 +6,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Publisher {
-	private Long publisherCode;
-	private String publisherName;
+  private Long publisherCode;
+  private String publisherName;
 }
