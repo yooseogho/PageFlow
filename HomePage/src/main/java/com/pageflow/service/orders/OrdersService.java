@@ -1,16 +1,17 @@
 package com.pageflow.service.orders;
 
-import java.time.*;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
+import com.pageflow.dao.delivery.*;
 import com.pageflow.dao.member.*;
 import com.pageflow.dao.orderDetails.*;
 import com.pageflow.dao.orders.*;
 import com.pageflow.dto.cart.*;
 import com.pageflow.dto.orders.*;
+import com.pageflow.entity.delivery.*;
 import com.pageflow.entity.member.*;
 import com.pageflow.entity.orderDetails.*;
 import com.pageflow.entity.orders.*;
@@ -25,6 +26,9 @@ public class OrdersService {
 	
 	@Autowired
 	private OrderDetailsDao orderDetailsDao;
+	
+	@Autowired
+	private DeliveryDao deliveryDao;
 	
 	// 1. 주문 추가
 	public Boolean add(Orders orders, String memberId, List<CartDto.Select> cartList) {
@@ -55,28 +59,38 @@ public class OrdersService {
 		return ordersDao.findByOno(ono);
 	}
 	
-	// 3-1. 주문 목록
+	// 3. 주문 목록
 	public List<OrdersDto.OrdersList> getOrdersList(String memberId) {
 		Member member = memberDao.findById(memberId);
         List<OrdersDto.OrdersList> orders = ordersDao.findAll(member.getMemberId());
         
+        System.out.println(orders);
         for(OrdersDto.OrdersList order : orders) {
         	order.setMemberId(member.getMemberId());
-            List<OrderDetails> details = orderDetailsDao.findAll(order.getOno());
+            List<OrderDetails> details = orderDetailsDao.findAllByOno(order.getOno());
             order.setOrderDetails(details);
+            System.out.println(orders);
         }
         return orders;
     }
 	
-    
-	// 3-3. 주문 상세 내역 목록 
-    public OrdersDto.OrdersList getOrdersByOno(Long ono) {
-    	Orders order = ordersDao.findByOno(ono);
-        OrdersDto.OrdersList orders = ordersDao.getOrdersByOno(order.getOno());
-        List<OrderDetails> details = orderDetailsDao.findAll(order.getOno());
-        orders.setOrderDetails(details);
-        return orders;
-    }
+    // 4. 주문 읽기
+	public OrdersDto.Read readOrders(Long ono, String memberId) {
+		
+		Orders orders = ordersDao.findByOno(ono);
+		
+		OrdersDto.Read read = ordersDao.read(orders.getOno());
+		
+	    
+	    if (read != null) {
+	        List<OrderDetails> details = orderDetailsDao.findAllByOno(ono);
+	        read.setOrderDetails(details);
+	    }
+	    
+	    return read;
+			
+	}
+	
 	
 	
 }

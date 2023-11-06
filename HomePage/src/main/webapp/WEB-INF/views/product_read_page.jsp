@@ -10,9 +10,7 @@
 <link rel="stylesheet" href="/css/product_read.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <title>Insert title here</title>
-<sec:authorize access="isAuthenticated()">
-	<sec:authentication property="principal.username" var="loginId"/>
-</sec:authorize>
+
 <script>
 	<!-- 재고량보다 더 많이 장바구니에 담는 경우 -->
 	const msg = '${msg}';

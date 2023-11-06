@@ -12,7 +12,7 @@
 <title>Insert title here</title>
 </head>
 <script>
-	const c = '${orderList[0].orderDetails}';
+	const c = '${orderList}';
 	console.log(c);
 </script>
 <body>

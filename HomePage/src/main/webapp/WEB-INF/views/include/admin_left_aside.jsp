@@ -20,11 +20,9 @@
 					<ul id="category_sublist" class="snb_list">
 						<li class="snb_item"><a href="/admin_notice_write_page" class="snb_link">공지사항 작성</a>
 						</li>
-						<li class="snb_item"><a href="/admin_notice_list_page" class="snb_link">공지사항 수정</a>
-						</li>
 						<li class="snb_item"><a href="/admin_inquiry_list_page" class="snb_link">1:1 문의사항 답변</a>
 						</li>
-						<li class="snb_item"><a href="/admin_product_list_page" class="snb_link">도서 상품 관리</a>
+						<li class="snb_item"><a href="/admin/book/list" class="snb_link">도서 상품 관리</a>
 						</li>
 					</ul>
 				</li>

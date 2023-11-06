@@ -8,18 +8,20 @@
 
 	<select id="findAll" resultMap="OrdersResultMap" parameterType="String">
 		select
-			o.ono, order_date, book_title, book_image, order_count, order_status, order_total 
-		from orders o 
-		inner join order_details od on o.ono=od.ono 
+		*
+		from orders  
 		where member_id= #{memberId}
-		order by o.ono desc
+		order by ono desc
 	</select>
 
 	<resultMap id="OrdersResultMap" type="com.pageflow.dto.orders.OrdersDto$OrdersList">
 		<id column="ono" property="ono" />
-		<result column="orderDate" property="orderDate" />
-		<collection property="orderDetails" ofType="OrderDetails" select="findAll" column="ono" />
+		<result column="order_date" property="orderDate" />
 	</resultMap>
+	
+	<select id="read" resultType="com.pageflow.dto.orders.OrdersDto$Read">
+		select * from orders inner join delivery on orders.dno = delivery.dno where orders.ono = #{ono}
+	</select>
 
 </mapper>
 

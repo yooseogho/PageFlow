@@ -14,7 +14,8 @@ public interface OrderDetailsDao {
 	@Insert("insert into order_details values(#{odno}, #{bno}, #{ono}, #{orderCount}, #{orderTotal}, #{bookTitle}, #{orderStatus}, #{bookImage})")
 	public Long save(OrderDetails orderdetails);
 	
+	/* 주문 목록에서 주문 상세 목록 보여주기 */
 	@Select("select * from order_details where ono = #{ono}")
-	public List<OrderDetails> findAll(Long ono);
+	public List<OrderDetails> findAllByOno(Long ono);
 	
 }

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +10,10 @@
 <link rel="stylesheet" href="/css/order_detail_list.css">
 <title>Insert title here</title>
 </head>
+<script>
+	const c = '${read}';
+	console.log(c);
+</script>
 <body>
 	<div id="page">
 		<header class="header_wrapper">
@@ -28,45 +35,40 @@
                     <div class="order_summary_box">
                         <div class="box_header">
                             <div class="label">
-                                <span class="order_date" data-order-date="">2023.09.22</span>
+                                <span class="order_date" data-order-date="">${read.orderDate}</span>
                                 <span class="gap">|</span>
-                                <span class="order_num">주문번호 <span class="num" data-order-id="">xxxxxxxxx</span></span>
+                                <span class="order_num">주문번호 <span class="num" data-order-id="">${read.ono}</span></span>
                             </div>
                         </div>
 
 
-                        <div class="box_body" style="" data-online-deposit="">
+                        <div class="box_body" >
                             <ul class="order_summary_list">
                                 <li class="order_summary_item">
                                     <p class="label">입금금액</p>
                                     <div class="right_box">
                                         <span class="price">
-                                            <span class="val" data-online-deposit-amount="">12,400</span>
+                                            <span class="val" data-online-deposit-amount="">${read.orderPrice}</span>
                                             <span class="unit">원</span>
                                         </span>
                                     </div>
                                 </li>
                                 <li class="order_summary_item">
                                     <p class="label">예금주명</p>
-                                    <div class="right_box">㈜교보문고
+                                    <div class="right_box">㈜PageFlow
                                     </div>
                                 </li>
                                 <li class="order_summary_item">
                                     <p class="label">입금자명</p>
-                                    <div class="right_box" data-online-deposit-depositor="">원승언</div>
+                                    <div class="right_box" data-online-deposit-depositor="">${read.ordersBuyer}</div>
                                 </li>
                                 <li class="order_summary_item">
-                                    <p class="label">입금은행</p>
+                                    <p class="label">결제은행</p>
                                     <div class="right_box">
-                                        <span data-online-deposit-bank-name="">국민은행</span>
-                                        <span class="bank_account" data-online-deposit-bank-account="">56349073566358</span>
-                                        <button type="button" class="btn_more_view" data-online-deposit-account-copy-button=""><span class="text">복사하기</span><span class="ico_arw"></span></button>
+                                        <span data-online-deposit-bank-name="">${read.payment}</span>
                                     </div>
                                 </li>
                             </ul>
-                            <div class="valid_check fail">
-                                <span class="valid_desc"><span data-online-deposit-finish-date="">2023.10.02</span> 00:00까지 입금해 주세요. 미입금 시 자동 취소 됩니다.</span>
-                            </div>
                         </div>
                     </div>
 
@@ -87,8 +89,9 @@
                                     <th scope="col">취소</th>
                                 </tr>
                             </thead>
-                            <tbody data-order-detail-commodity-list="">
-                                <tr data-order-detail-commodity="">
+                            <tbody>
+                            <c:forEach items="${read.orderDetails}" var="details">
+                                <tr>
                                     <td class="prod">
                                         <div class="prod_area horizontal">
                                             <div class="prod_thumb_box size_sm">
@@ -134,50 +137,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr data-order-detail-commodity="">
-                                    <td class="prod">
-                                        <div class="prod_area horizontal">
-                                            <div class="prod_thumb_box size_sm">
-                                                <a href="#" class="prod_link" data-order-detail-commodity-link="">
-                                                    <span class="img_box">
-                                                        <img src="https://contents.kyobobook.co.kr/sih/fit-in/200x0/pdt/9791197021633.jpg" alt="검은 꽃">
-                                                    </span>
-                                                </a>
-                                            </div>
-                                            <div class="prod_info_box size_sm">
-                                                <span class="badge_sm badge_kyobo">
-
-                                                    <span class="text">교보문고 배송</span>
-                                                </span>
-                                                <a href="#" class="prod_info" data-order-detail-commodity-link="">
-                                                    <span class="prod_name ellipsis_none">[국내도서] 검은 꽃 </span>
-                                                </a>
-                                                <ul class="prod_option_list">
-                                                    <li class="option_item">
-                                                        <span class="text">수량 : </span><span class="val">1</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="price">
-
-                                            <span class="val">9,900</span>
-                                            <span class="unit">원</span>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <div class="delivery_info">
-                                            <span class="delivery_state ">주문접수</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="btn_wrap full">
-                                            <button type="button" class="btn_sm btn_line_gray" data-order-detail-commodity-cancel-application-button=""><span class="text">취소신청</span></button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                </c:forEach>
 
                             </tbody>
                         </table>

@@ -17,5 +17,5 @@ public class Orders {
 	private Long orderPrice;
 	private String payment;
 	private Long pointEarn;
-	
+	private String ordersBuyer;
 }

@@ -65,7 +65,6 @@ $(document).ready(function() {
         var makeMerchantUid = hours +  minutes + seconds + milliseconds;
 		var dno = '${delivery.dno}';
 		var pointEarn = "${cartList[cartList.size()- 1].totalPointEarnings}";
-		
 		function requestPay() {	
             IMP.request_pay({
                 pg : 'kakaopay',
@@ -78,15 +77,18 @@ $(document).ready(function() {
                 buyer_addr : '${delivery.deliveryAddress}',
             }, function (rsp) { // callback
                 if (rsp.success) {
+                	
                 	let msg = "결제가 완료되었습니다.";
                 	let result = {
                 		"memberId" : "${memberId.memberId}",
                 		"dno" : dno,
                 		"orderPrice" : rsp.paid_amount,
                 		"pointEarn" : pointEarn,
-                		"payment" : rsp.pg_provider
+                		"payment" : rsp.pg_provider,
+                		"ordersBuyer" : "${memberId.memberName}"
                 	}
                 	alert(msg);
+                	
                 	$.ajax ({
                 		url: '/order',
                 		type: 'POST',

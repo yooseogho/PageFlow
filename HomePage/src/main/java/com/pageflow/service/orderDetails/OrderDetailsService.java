@@ -15,6 +15,6 @@ public class OrderDetailsService {
 	
 	/* 주문 번호를 통해서 주문 상세 목록보기 */
 	public List<OrderDetails> list(Long ono) {
-		return orderDetailsDao.findAll(ono);
+		return orderDetailsDao.findAllByOno(ono);
 	}
 }

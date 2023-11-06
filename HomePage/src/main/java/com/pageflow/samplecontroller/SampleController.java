@@ -58,11 +58,6 @@ public class SampleController {
 	public void non_user_order_list() {
 	}
 
-	// 주문상세 및 배송지 확인하는 페이지
-	@GetMapping("/order_detail_list_page")
-	public void order_detail_page() {
-	}
-
 	// 공지 사항 페이지
 	@GetMapping("/notice_list_page")
 	public void notice_list_page() {

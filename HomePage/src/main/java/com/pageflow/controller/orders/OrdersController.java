@@ -165,10 +165,17 @@ public class OrdersController {
 	
 	// 3. 주문 목록 페이지
 	@GetMapping("/order/list")
-	public ModelAndView orderList(Long ono, Principal principal) {
+	public ModelAndView orderList(Principal principal) {
 		List<OrdersDto.OrdersList> orderList = ordersService.getOrdersList(principal.getName());
-		
 		return new ModelAndView("order_list_page").addObject("orderList", orderList);
+	}
+	
+	// 4. 주문 읽기
+	@GetMapping("/order/read")
+	public ModelAndView read(@RequestParam(required = false) Long ono, Principal principal) {
+		OrdersDto.Read read = ordersService.readOrders(ono, principal.getName());
+		System.out.println(read);
+		return new ModelAndView("order_detail_list_page").addObject("read", read);
 	}
 	
 	

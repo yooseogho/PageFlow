@@ -2,7 +2,9 @@
 
 import java.util.*;
 
+import com.pageflow.entity.delivery.*;
 import com.pageflow.entity.orderDetails.*;
+import com.pageflow.entity.orders.*;
 
 import lombok.*;
 
@@ -18,5 +20,24 @@ public class OrdersDto {
 		private List<OrderDetails> orderDetails;
 	}
 	
+	@Data
+	@AllArgsConstructor
+	@NoArgsConstructor
+	public static class Read {
+		private Long ono;
+		private String memberId; 
+		private Long dno;
+		private String orderDate;
+		private Long orderPrice;
+		private String payment;
+		private Long pointEarn;
+		private String ordersBuyer;
+		private Long zipCode;
+		private String receiverName;
+		private String deliveryAddress;
+		private String receiverTel;
+		private String deliveryRequest;
+		private List<OrderDetails> orderDetails;
+	}
 }
 
