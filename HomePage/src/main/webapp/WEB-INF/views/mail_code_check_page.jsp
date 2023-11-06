@@ -9,95 +9,108 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <title>PageFlow - 이메일 인증하기</title>
 <script>
-  function appearAuthCode() {
-    document.getElementById('hasAuthcode').style.display='flex';
-  }
+	function appearAuthCode() {
+		document.getElementById('hasAuthcode').style.display = 'flex';
+	}
 
-  $(document).ready(function() {
-    let authCode; // 서버에서 받은 인증코드 저장 변수
+	$(document).ready(function() {
+		let authCode; // 서버에서 받은 인증코드 저장 변수
 
-    // 인증 코드 전송 버튼 클릭 이벤트
-    $("#sendEmail").click(function(e) {
-      e.preventDefault();
-      let email = $("input[name='email']").val(); // 이메일 값 가져오기
-      let re = /\S+@\S+\.\S+/;
-      
-      if (email === "") { 
-        alert("이메일을 입력해주세요.");
-        return; 
-      }
-      
-      if (!re.test(email)) {  
-        alert("유효한 이메일 주소를 입력해주세요.");
-        return;  
-      }
-    
-      $.ajax({
-        type : "POST",
-        url : "/login/mailConfirm",
-        data : JSON.stringify({
-          email : email
-        }),
-        contentType : "application/json",
-        success : function(data) {
-          authCode = data; // 서버에서 받은 인증 코드 저장
-          alert("인증 코드가 발송되었습니다. 이메일을 확인해주세요.");
-          appearAuthCode();
-	      },
-	      error : function(err) {
-	        console.log(err);
-	        alert("이메일 전송 중 오류가 발생했습니다.");
-	      }
-	    });
+		// 인증 코드 전송 버튼 클릭 이벤트
+		$("#sendEmail").click(function(e) {
+			e.preventDefault();
+			let email = $("input[name='email']").val(); // 이메일 값 가져오기
+			let re = /\S+@\S+\.\S+/;
 
-	    const Timer = document.getElementById('Timer'); //스코어 기록창-분
-	    let time = 180000;
-	    let min = 3;
-	    let sec = 60;
+			if (email === "") {
+				alert("이메일을 입력해주세요.");
+				return;
+			}
 
-	    Timer.value = min + ":" + '00';
+			if (!re.test(email)) {
+				alert("유효한 이메일 주소를 입력해주세요.");
+				return;
+			}
 
-	    function TIMER() {
-	      PlAYTIME = setInterval(function () {
-	        time -= 1000; 
-	        min = time / (60 * 1000); 
+			$.ajax({
+				type : "POST",
+				url : "/login/mailConfirm",
+				data : JSON.stringify({
+					email : email
+				}),
+				contentType : "application/json",
+				success : function(data) {
+					authCode = data; // 서버에서 받은 인증 코드 저장
+					alert("인증 코드가 발송되었습니다. 이메일을 확인해주세요.");
+					appearAuthCode();
+				},
+				error : function(err) {
+					console.log(err);
+					alert("이메일 전송 중 오류가 발생했습니다.");
+				}
+			});
 
-	        if (sec > 0) { 
-	          sec -=1;
-	          Timer.value = Math.floor(min) + ':' + sec;
+			const Timer = document.getElementById('Timer'); //스코어 기록창-분
+			let time = 180000;
+			let min = 3;
+			let sec = 60;
 
-	        }
-	        
-	        if (sec === 0) {  
-	          sec=60;
-	          Timer.value=Math.floor(min)+':'+'00'
-	        }
+			Timer.value = min + ":" + '00';
 
-	      },1000);
-    	}
+			function TIMER() {
+				PlAYTIME = setInterval(function() {
+					time -= 1000;
+					min = time / (60 * 1000);
 
-    	TIMER();
+					if (sec > 0) {
+						sec -= 1;
+						Timer.value = Math.floor(min) + ':' + sec;
 
-    	setTimeout(function () {
-      	clearInterval(PlAYTIME);
-    	},180000);   
-  	});
+					}
 
-  	// 인증 코드 확인 버튼 클릭 이벤트
-  	$("#emailConfirm").click(function(e) {
-  	  e.preventDefault();
-  	  let inputAuthCode=$("input[name='authCode']").val(); 
+					if (sec === 0) {
+						sec = 60;
+						Timer.value = Math.floor(min) + ':' + '00'
+					}
 
-  	  if(inputAuthCode===authCode){ 
-  	  	alert("인증에 성공했습니다.");
+				}, 1000);
+			}
 
-  	  	window.location.href="/member_create_page";
+			TIMER();
 
-  	  }else{
-  	  	alert("인증에 실패했습니다. 다시 시도해주세요.");
-  	  }
-	  });
-});
+			setTimeout(function() {
+				clearInterval(PlAYTIME);
+			}, 180000);
+		});
+
+		// 인증 코드 확인 버튼 클릭 이벤트
+		$("#emailConfirm").click(function(e) {
+			e.preventDefault();
+			let inputAuthCode = $("input[name='authCode']").val();
+
+			if (inputAuthCode === authCode) {
+				alert("인증에 성공했습니다.");
+				isAuthCompleted = true; // 인증 완료 상태로 변경
+				window.location.href = "/member_create_page";
+			} else {
+				alert("인증에 실패했습니다. 다시 시도해주세요.");
+			}
+		});
+
+		let isAuthCompleted = false; // 인증 완료 여부를 저장하는 변수
+
+		// 페이지를 벗어날 때 이벤트
+		window.onbeforeunload = function(e) {
+			// 인증이 완료되지 않은 상태에서만 요청
+			if (!isAuthCompleted) {
+				$.ajax({
+					type : "POST",
+					url : "/session/removeEmail",
+					async : true
+				});
+			}
+		};
+	});
 </script>
 
 
