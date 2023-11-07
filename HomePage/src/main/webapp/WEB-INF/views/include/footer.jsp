@@ -35,7 +35,8 @@
 				</div>
 				<div class="footer_contents_left">
 					<address class="footer_info_box">
-						<span class="info_text">대표이사 : 원승언</span> <span class="gap">|</span>
+						<span class="info_text">PL : 원승언</span> <span class="gap">|</span>
+						<span class="info_text">PE : 갈현, 유석호, 장준명</span> <span class="gap">|</span>
 						<span class="info_text">인천 미추홀구 매소홀로488번길 6-32 태승빌딩 5층 502호</span>
 						<span class="gap">|</span><br> <span class="info_text call">대표전화
 							: 010-7266-XXXX(+82 10-7266-XXXX)</span> <span class="gap">|</span> <span

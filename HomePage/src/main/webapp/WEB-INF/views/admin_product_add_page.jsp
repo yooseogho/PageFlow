@@ -163,6 +163,9 @@
 																									addCategoryOption(
 																											"124",
 																											"학원만화");
+																									addCategoryOption(
+																											"125",
+																											"판타지만화");
 																									break;
 																								case "130": // 참고도서
 																									addCategoryOption(

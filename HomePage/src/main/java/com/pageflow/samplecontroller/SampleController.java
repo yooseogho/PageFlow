@@ -67,5 +67,10 @@ public class SampleController {
   public ModelAndView mailCodeCheckPage() {
     return new ModelAndView("mail_code_check_page");
   }
+  
+  @GetMapping("/cart_page")
+  public void cart_page() {
+    
+  }
 
 }

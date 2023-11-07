@@ -218,6 +218,9 @@ public class BookController {
     CATEGORY_VIEW_MAP2.put(122L, "/category/book/comicBook/cooking_comic_book");
     CATEGORY_VIEW_MAP2.put(123L, "/category/book/comicBook/action_comic_book");
     CATEGORY_VIEW_MAP2.put(124L, "/category/book/comicBook/academy_comic_book");
+    /* ---------------------------------------------------------------------- */
+    CATEGORY_VIEW_MAP2.put(125L, "/category/book/comicBook/fantasy_comic_book");
+    /* ---------------------------------------------------------------------- */
     CATEGORY_VIEW_MAP2.put(131L, "/category/book/textbook/secondary_book");
     CATEGORY_VIEW_MAP2.put(132L, "/category/book/textbook/toeic_book");
     CATEGORY_VIEW_MAP2.put(133L, "/category/book/textbook/ebs_book");

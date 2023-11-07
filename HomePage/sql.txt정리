@@ -76,6 +76,7 @@ create table category (
   insert into category values(122, '요리만화', 120);
   insert into category values(123, '액션만화', 120);
   insert into category values(124, '학원만화', 120);
+  insert into category values(125, '판타지만화', 120);
   insert into category values(130, '참고도서', 100);
   insert into category values(131, '중/고등참고서', 130);
   insert into category values(132, '토익교재', 130);

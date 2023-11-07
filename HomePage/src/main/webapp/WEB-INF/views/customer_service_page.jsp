@@ -26,7 +26,7 @@
 					<div class="customer_wrap">
 						<div class="title_wrap title_size_lg">
 							<h1 class="title_heading">
-								<span class="fw_regular">무엇을 도와드릴까요?</span><br> FageFlow
+								<span class="fw_regular">무엇을 도와드릴까요?</span><br> PageFlow
 								고객센터<span class="fw_regular">입니다.</span>
 							</h1>
 						</div>

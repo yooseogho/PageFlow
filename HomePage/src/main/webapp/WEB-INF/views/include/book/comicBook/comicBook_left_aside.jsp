@@ -33,6 +33,10 @@
 				<li class="snb_item"><a
 					href="/category/book/120/124" class="snb_link">학원만화</a>
 				</li>
+				
+				<li class="snb_item"><a
+					href="/category/book/120/125" class="snb_link">판타지만화</a>
+				</li>
 
 			</ul>
 
