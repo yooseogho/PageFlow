@@ -245,20 +245,6 @@
 	                                        </div>
 	                                    </div>
 	
-	                                    <div class="info_text_box">
-	
-	                                        <div class="title_wrap title_size_xs">
-	                                            <p class="title_heading"><span class="ico_speech"></span>알립니다.</p>
-	                                        </div>
-	                                        <div class="info_text_inner">
-	                                            <ul class="bul_list">
-	                                                <li class="bul_item_dot font_size_xxs">본 상품은 <span id="reservationSale"><strong class="blue">10월 11일 출고예정</strong></span>인 예약판매 상품입니다. 단, 거래처의 사정으로 출고가 지연될 수 있으니, 이 점 양해 부탁드립니다.</li>
-	                                                <li class="bul_item_dot font_size_xxs">예약판매 상품의 경우 실제 출간/출시 후 상품정보가 달라질 수 있습니다. 이 점 양해 부탁드립니다.</li>
-	                                            </ul>
-	                                        </div>
-	
-	                                    </div>
-	
 	                                </div>
 	                            </div>
 	                        </div>

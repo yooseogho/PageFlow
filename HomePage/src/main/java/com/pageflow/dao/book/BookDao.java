@@ -71,7 +71,7 @@ public interface BookDao {
   public Long adminBookListCount();
 
   /** 도서 삭제 */
-  @Delete("delete from book where bno=#{bno}")
+  @Delete("delete from book where bno= #{bno}")
   public Long deleteById(Long bno);
 
   /** 도서를 찾기 위해서 BNO 를 통해 책 정보 출력 */

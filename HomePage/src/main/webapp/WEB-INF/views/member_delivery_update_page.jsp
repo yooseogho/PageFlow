@@ -13,40 +13,7 @@
 </head>
 <script>
 	$(document).ready(function(){
-		
-		// 기본 배송지 변경
-		$('#defaultChange-btn').on('click', function(){
-			$('input[name="deliverySelect"]:checked').each(function() {
-				var dno = $(this).attr('id');
 				
-				const form =`
-					<form action="/delivery/default/change" method="post">
-						<input type="hidden" name="dno" value="\${dno}">
-					</form>
-				`;
-				$(form).appendTo($('body')).submit();
-			})
-		})
-		
-		// 새 배송지 등록 버튼을 누를경우 배송지 추가 팝업창이 나옴
-		$('.add').on('click', function(){
-			$('#addressAdd').css('display','block');
-		})
-		
-		// 배송지 삭제
-		$('.delete-btn').on('click', function(){
-			const dno = $(this).attr('data-dno');
-			
-			const form = `
-				<form action="/delivery/delete" method="post">
-					<input type="hidden" name="dno" value="\${dno}">
-				</form>
-			`;
-			$(form).appendTo($('body')).submit();
-		})
-			
-		
-		
 	})
 </script>
 <body>
@@ -104,7 +71,7 @@
                         <span class="fc_green">${count}</span>개
                     </p>
                     <div class="right_area">
-                        <button class="btn_sm add">
+                        <button class="btn_sm">
                             <span class="ico_plus_primary"></span>
                             <span class="text">새 배송지 등록</span>
                         </button>
@@ -147,11 +114,11 @@
 			                    </td>
 			                    <td>
 			                        <div class="btn_wrap">
-			                            <button type="button" class="btn_sm btn_line_gray" onclick="location.href=`/delivery/update/${delivery.dno}`">
+			                            <button type="button" class="btn_sm btn_line_gray edit" data-dno="${delivery.dno}">
 			                                <span class="ico_edit_black"></span><span class="text">수정</span>
 			                            </button>
 			                            <c:if test="${delivery.defaultAddress eq 0 }">
-				                            <button type="button" class="btn_sm btn_line_gray delete-btn" data-dno="${delivery.dno}">
+				                            <button type="button" class="btn_sm btn_line_gray delete" data-dno="${delivery.dno}">
 				                                <span class="ico_delete"></span><span class="text">삭제</span>
 				                            </button>
 			                            </c:if>
@@ -209,9 +176,9 @@
         <jsp:include page="/WEB-INF/views/include/delivery_address_popup_list.jsp" />
     </div>
     
-    <!-- 배송지 추가 -->
-    <div id="addressAdd" class="dialog_wrapper open" style="top: 0px; z-index: 1003; display : none;">
-        <jsp:include page="/WEB-INF/views/include/delivery_address_popup_add.jsp" />
+    <!-- 배송지 수정 -->
+    <div id="addressUpdate" class="dialog_wrapper open" style="top: 0px; z-index: 1003;">
+        <jsp:include page="/WEB-INF/views/include/delivery_address_popup_update.jsp" />
     </div>
 </body>
 </html>

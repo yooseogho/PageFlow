@@ -8,110 +8,215 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/order.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <script src="/script/order.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <title>Insert title here</title>  
 </head>
 <body>
 <script>
 $(document).ready(function() {
-	// 신규회원이 배송지 입력 버튼을 클릭했을 때
-	$('#popup_btn').on('click', function() {
-		$('#addressList').css('display','block');
-	});
+	/** 결제할 때 필요한 요소들 */	
+	var IMP = window.IMP;
+	IMP.init("imp16376821");
+
+	var today = new Date();
+
+	var hours = today.getHours(); // 시
+
+	var minutes = today.getMinutes();  // 분
+
+	var seconds = today.getSeconds();  // 초
+
+	var milliseconds = today.getMilliseconds();
+	var makeMerchantUid = hours + minutes + seconds + milliseconds;
+	var dno = '${delivery.dno}';
+	var pointEarn = "${cartList[cartList.size()- 1].totalPointEarnings}";
 	
-	// 배송지 목록에서 닫기 버튼을 눌렀을 때
-	$('#address_popup_list_close').on('click', function(){
-		$('#addressList').css('display','none');
-	})
-	
-	// 배송지 추가란에서 배송지 추가 버튼을 눌렀을 때
-	$('#address_add_btn').on('click', function() {
-		 $('#addressAdd').css('display','flex');
-	})
-	
-	// 배송지 추가란에서 닫기 버튼을 눌렀을 때
-	$('#address_popup_add_close').on('click',function(){
-		$('#addressAdd').css('display','none');
-	})
-	
-	
-	$('#all_point_btn').on('click', function() {
-		const point = '${point}';
-		$('#all_point_text').text(point);
-		$('#all_point_btn').css('display', 'none');
-		$('#cancel_point_btn').css('display', 'block');
-	})
-	
-	$('#cancel_point_btn').on('click', function(){
-		$('#all_point_text').text(0);
-		$('#cancel_point_btn').css('display','none');
-		$('#all_point_btn').css('display','block');
-	})
-	
-		var IMP = window.IMP; 
-        IMP.init("imp16376821"); 
-      
-        var today = new Date();  
-        
-        var hours = today.getHours(); // 시
-        
-        var minutes = today.getMinutes();  // 분
-        
-        var seconds = today.getSeconds();  // 초
-        
-        var milliseconds = today.getMilliseconds();	
-        var makeMerchantUid = hours +  minutes + seconds + milliseconds;
-		var dno = '${delivery.dno}';
-		var pointEarn = "${cartList[cartList.size()- 1].totalPointEarnings}";
-		function requestPay() {	
-            IMP.request_pay({
-                pg : 'kakaopay',
-                pay_method : 'card',
-                merchant_uid: makeMerchantUid, 
-                name : 'PageFlow 결제',
-                amount : '${cartList[cartList.size()- 1].totalAmount}',
-                buyer_email : '${memberId.memberEmail}',
-                buyer_tel : '${delivery.receiverTel}',
-                buyer_addr : '${delivery.deliveryAddress}',
-            }, function (rsp) { // callback
-                if (rsp.success) {
-                	
-                	let msg = "결제가 완료되었습니다.";
-                	let result = {
-                		"memberId" : "${memberId.memberId}",
-                		"dno" : dno,
-                		"orderPrice" : rsp.paid_amount,
-                		"pointEarn" : pointEarn,
-                		"payment" : rsp.pg_provider,
-                		"ordersBuyer" : "${memberId.memberName}"
-                	}
-                	alert(msg);
-                	
-                	$.ajax ({
-                		url: '/order',
-                		type: 'POST',
-                		contentType: 'application/json',
-                		data: JSON.stringify(result),
-                		success: function(order) {
-                			location.replace('/order/success?ono=' + order.ono);
-                		},
-                		error: function(err){
-                			console.log(err);
-                		}
-                	})
-                	
-                	
-                }  
-            });
-            
+	/** 나이스 페이 결제할 때 */
+	function nicePay() {
+		IMP.request_pay({
+			pg: 'nice',
+			pay_method: 'card',
+			merchant_uid: makeMerchantUid,
+			name: 'PageFlow 결제',
+			amount: '${cartList[cartList.size()- 1].totalAmount}',
+			buyer_email: '${memberId.memberEmail}',
+			buyer_tel: '${delivery.receiverTel}',
+			buyer_addr: '${delivery.deliveryAddress}',
+			buyer_name : "${memberId.memberName}"
+		}, function(rsp) { // callback
+			if (rsp.success) {
+				alert(rsp);
+				let msg = "결제가 완료되었습니다.";
+				let result = {
+					"memberId": "${memberId.memberId}",
+					"dno": dno,
+					"orderPrice": rsp.paid_amount,
+					"pointEarn": pointEarn,
+					"payment": rsp.pg_provider,
+					"ordersBuyer": rsp.buyer_name
+				}
+				alert(msg);
+
+				$.ajax({
+					url: '/order',
+					type: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify(result),
+					success: function(order) {
+						location.replace('/order/success?ono=' + order.ono);
+					},
+					error: function(err) {
+						console.log(err);
+					}
+				})
+
+
+			}
+		});
+
 	}
 	
-	$('#order_btn').on('click', requestPay);
-	const v = '${cartList}';
-	console.log(v);
-		
+	$('#order_btn').on('click', nicePay);
+	
+	/** 카카오페이 결제 */
+	function kakaoPay() {
+		IMP.request_pay({
+			pg: 'kakaopay',
+			pay_method: 'card',
+			merchant_uid: makeMerchantUid,
+			name: 'PageFlow 결제',
+			amount: '${cartList[cartList.size()- 1].totalAmount}',
+			buyer_email: '${memberId.memberEmail}',
+			buyer_tel: '${delivery.receiverTel}',
+			buyer_addr: '${delivery.deliveryAddress}',
+			buyer_name : "${memberId.memberName}"
+		}, function(rsp) { // callback
+			if (rsp.success) {
+				let msg = "결제가 완료되었습니다.";
+				let result = {
+					"memberId": "${memberId.memberId}",
+					"dno": dno,
+					"orderPrice": rsp.paid_amount,
+					"pointEarn": pointEarn,
+					"payment": rsp.pg_provider,
+					"ordersBuyer": rsp.buyer_name
+				}
+				alert(msg);
+
+				$.ajax({
+					url: '/order',
+					type: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify(result),
+					success: function(order) {
+						location.replace('/order/success?ono=' + order.ono);
+					},
+					error: function(err) {
+						console.log(err);
+					}
+				})
+
+
+			}
+		});
+
+	}
+	
+	$('#kakaoPay-btn').on('click', kakaoPay);
+	
+	/** 토스페이 결제 */
+	function tossPay() {
+		IMP.request_pay({
+			pg: 'tosspay',
+			pay_method: 'card',
+			merchant_uid: makeMerchantUid,
+			name: 'PageFlow 결제',
+			amount: '${cartList[cartList.size()- 1].totalAmount}',
+			buyer_email: '${memberId.memberEmail}',
+			buyer_tel: '${delivery.receiverTel}',
+			buyer_addr: '${delivery.deliveryAddress}',
+		}, function(rsp) { // callback
+			if (rsp.success) {
+
+				let msg = "결제가 완료되었습니다.";
+				let result = {
+					"memberId": "${memberId.memberId}",
+					"dno": dno,
+					"orderPrice": rsp.paid_amount,
+					"pointEarn": pointEarn,
+					"payment": rsp.pg_provider,
+					"ordersBuyer": "${memberId.memberName}"
+				}
+				alert(msg);
+
+				$.ajax({
+					url: '/order',
+					type: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify(result),
+					success: function(order) {
+						location.replace('/order/success?ono=' + order.ono);
+					},
+					error: function(err) {
+						console.log(err);
+					}
+				})
+
+
+			}
+		});
+
+	}
+	
+	$('#tossPay-btn').on('click', tossPay);
+	
+	/** 페이코페이 결제 */
+	function paycoPay() {
+		IMP.request_pay({
+			pg: 'payco',
+			pay_method: 'card',
+			merchant_uid: makeMerchantUid,
+			name: 'PageFlow 결제',
+			amount: '${cartList[cartList.size()- 1].totalAmount}',
+			buyer_email: '${memberId.memberEmail}',
+			buyer_tel: '${delivery.receiverTel}',
+			buyer_addr: '${delivery.deliveryAddress}',
+		}, function(rsp) { // callback
+			if (rsp.success) {
+
+				let msg = "결제가 완료되었습니다.";
+				let result = {
+					"memberId": "${memberId.memberId}",
+					"dno": dno,
+					"orderPrice": rsp.paid_amount,
+					"pointEarn": pointEarn,
+					"payment": rsp.pg_provider,
+					"ordersBuyer": "${memberId.memberName}"
+				}
+				alert(msg);
+
+				$.ajax({
+					url: '/order',
+					type: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify(result),
+					success: function(order) {
+						location.replace('/order/success?ono=' + order.ono);
+					},
+					error: function(err) {
+						console.log(err);
+					}
+				})
+
+
+			}
+		});
+
+	}
+	
+	$("#paycoPay-btn").on('click', paycoPay);
 	
 })
 </script>
@@ -393,26 +498,17 @@ $(document).ready(function() {
                                 <div class="payment_body_wrap no_top_line" id="settlementMethodWrapper">
                                     <div class="payment_etc_wrap">
                                         <div class="payment_item_row_group">
+                                            <button id="paycoPay-btn" class="btn_xl btn_line_gray btn_payment_etc">
+                                                <span class="ico_payment_payco"><span class="hidden">PAYCO</span></span>
+                                            </button>
 
-                                            <a href="javascript:void(0);" class="btn_xl btn_line_gray btn_payment_etc">
-                                                <span class="text">신용카드</span>
-                                            </a>
-
-                                            <a href="javascript:void(0);" class="btn_xl btn_line_gray btn_payment_etc">
-                                                <span class="ico_payment_kbpay"><span class="hidden">KB페이</span></span>
-                                            </a>
-
-                                            <a href="javascript:void(0);" class="btn_xl btn_line_gray btn_payment_etc">
-                                                <span class="ico_payment_npay"><span class="hidden">네이버페이</span></span>
-                                            </a>
-
-                                            <a href="javascript:void(0);" class="btn_xl btn_line_gray btn_payment_etc">
+                                            <button id="kakaoPay-btn" class="btn_xl btn_line_gray btn_payment_etc">
                                                 <span class="ico_payment_kakaopay"><span class="hidden">카카오페이</span></span>
-                                            </a>
+                                            </button>
 
-                                            <a href="javascript:void(0);" class="btn_xl btn_line_gray btn_payment_etc">
+                                            <button id="tossPay-btn" class="btn_xl btn_line_gray btn_payment_etc">
                                                 <span class="ico_payment_toss"><span class="hidden">토스페이</span></span>
-                                            </a>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -487,7 +583,8 @@ $(document).ready(function() {
                                 </div>
                             </div>
                             <div class="payment_order_agree_wrap">
-                                <span class="text">위 주문내용을 확인하였으며, 결제에 동의합니다.</span>
+                                <span class="text" style="margin-bottom : 10px; display : block;">위 주문내용을 확인하였으며, 결제에 동의합니다.</span><br>
+                                <span class="text">밑의 결제수단에서 결제할 수 없는 경우 결제하기 버튼을 누르면 결제창으로 넘어갑니다.</span>
                             </div>
                         </div>
                     </div>

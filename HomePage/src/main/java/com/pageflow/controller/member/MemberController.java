@@ -460,7 +460,7 @@ public class MemberController {
     }
   }
 
-//회원 이미지 보여주기 위한 설정
+  //회원 이미지 보여주기 위한 설정
   @GetMapping("/profiles/{imageName}")
   public ResponseEntity<byte[]> viewProfile(@PathVariable String imageName) {
     File file = new File("c:/upload/profiles", imageName);

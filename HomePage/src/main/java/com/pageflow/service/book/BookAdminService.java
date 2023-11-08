@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.*;
 import org.springframework.web.multipart.*;
 
 import com.pageflow.dao.book.*;
+import com.pageflow.dao.cart.*;
 import com.pageflow.dto.book.*;
 import com.pageflow.entity.book.*;
 
@@ -33,6 +34,9 @@ public class BookAdminService {
 
   @Value("${defaultBookImage}")
   private String defaultBookImage;
+  
+  @Autowired
+  private CartDao cartDao;
 
   /** 1. 상품 등록 Service */
   @Transactional
@@ -94,12 +98,12 @@ public class BookAdminService {
   /** 3. 상품 삭제 */
   public Boolean deleteByBno(Long bno) {
     Book b = bookDao.findByBno(bno);
+    cartDao.deletebyBno(bno);
     String fileName = defaultBookImage;
     File file = new File(imageFolder, b.getBookImage());
     if (!(b.getBookImage().equals(fileName)) && file.exists()) {
       file.delete();
     }
-    System.out.println(file.exists());
     return bookDao.deleteById(bno) == 1;
   }
 
@@ -133,7 +137,7 @@ public class BookAdminService {
       imageName = UUID.randomUUID() + "_" + dto.getAuthorName() + "_" + dto.getBookTitle() + "." + extension;
       // 폴더에 파일명을 주고 파일 객체를 생성 -> 0바이트 파일 생성
       File file = new File(imageFolder, imageName);
-      // profile의 내용을 file로 이동시키자
+      // profile의 내용을 file로 이동시키자 
       if (existImage != null && !existImage.equals(defaultBookImage)) {
         File existFile = new File(imageFolder, existImage);
         existFile.delete();
@@ -145,23 +149,7 @@ public class BookAdminService {
       }
       // 사진을 등록 하지 않은 경우
     } else {
-      // 사용자가 사진을 등록하지 않은 경우
-      File image = new File(imageFolder, defaultBookImage);
-      imageName = UUID.randomUUID() + "_" + dto.getAuthorName() + "_" + dto.getBookTitle() + "." + "png";
-
-      if (existImage != null && !existImage.equals(defaultBookImage)) {
-        File existFile = new File(imageFolder, existImage);
-        existFile.delete();
-      }
-
-      if (image.exists()) {
-        File file = new File(imageFolder, imageName);
-        try {
-          Files.copy(image.toPath(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-      }
+      imageName = book.getBookImage();
     }
 
     book.setBookImage(imageName); // 이미지 이름 설정

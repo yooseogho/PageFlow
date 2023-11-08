@@ -410,12 +410,12 @@ $(document).ready(function() {
     
     <!-- 배송지 목록 -->
     <div id="addressList" class="dialog_wrapper open" style="top: 0px; z-index: 1001; display : none;">
-        <jsp:include page="/WEB-INF/views/include/address_popup_list.jsp" />
+        <jsp:include page="/WEB-INF/views/include/order_address_popup_list.jsp" />
     </div>
     
     <!-- 배송지 추가 -->
     <div id="addressAdd" class="dialog_wrapper open" style="top: 0px; z-index: 1003;">
-        <jsp:include page="/WEB-INF/views/include/address_popup_update.jsp" />
+        <jsp:include page="/WEB-INF/views/include/order_address_popup_update.jsp" />
     </div>
     
     

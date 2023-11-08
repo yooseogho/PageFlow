@@ -29,6 +29,7 @@ $(document).ready(function() {
 	
 	    if (lnb <= windowScroll) {
 	        $(".cart_info_wrap").css("position", "fixed").css('right',rightOffset);
+//	        $(".cart_info_wrap").css("position", "sticky").css('margin-left','auto');
 	    } else {
 	        $(".cart_info_wrap").css("position", "absolute").css('right', 0);
 	    }

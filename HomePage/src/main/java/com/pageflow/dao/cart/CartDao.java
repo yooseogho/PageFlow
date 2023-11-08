@@ -48,6 +48,10 @@ public interface CartDao {
 	@Delete("delete from cart where cno=#{cno}")
 	public Long delete(Long cno);
 	
+	/** 장바구니 삭제 (관리자가 책을 삭제했을 경우) */
+	@Delete("delete from cart where bno = #{bno}")
+	public Long deletebyBno(Long bno);
+	
 	/** 장바구니 수량 체크 */
 	@Select("select cart_count from cart where cno = #{cno}")
 	public Long cartCount(Long cno);

@@ -1,95 +1,71 @@
 package com.pageflow.controller.delivery;
 
-import java.util.*;
+import java.security.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.access.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
+import org.springframework.web.servlet.mvc.support.*;
 
+import com.pageflow.dto.delivery.*;
 import com.pageflow.entity.delivery.*;
 import com.pageflow.service.delivery.*;
 
+@Secured("ROLE_USER")
 @Controller
 public class DeliveryController {
-//  @Autowired
-//  private DeliveryService deliveryService;
-//
-////  1. 관리자 권한으로서 모든 배송 정보를 조회
-//  @Secured("ROLE_ADMIN")
-//  @GetMapping("/listOfDelivery")
-//  public ModelAndView listOfDelivery() {
-//    List<Delivery> list = deliveryService.findAll();
-//
-//    ModelAndView modelAndView = new ModelAndView("deliveryList"); // 배송 정보 목록 페이지의 이름 (예: deliveryList.jsp)
-//    modelAndView.addObject("deliveries", list); // 모델에 배송 정보 목록 추가
-//    return modelAndView;
-//  }
-//
-////  2. 특정 회원으로서 본인의 배송 정보를 조회
-//  @GetMapping("/deliveries/{memberId}")
-//  public ModelAndView deliveriesForMember(@PathVariable String memberId) {
-//    List<Delivery> list = deliveryService.findByMemberId(memberId);
-//
-//    ModelAndView modelAndView = new ModelAndView("memberDeliveryList"); // 회원별 배송 정보 목록 페이지의 이름 (예:
-//                                                                        // memberDeliveryList.jsp)
-//    modelAndView.addObject("deliveries", list); // 모델에 회원별 배송 정보 목록 추가
-//    return modelAndView;
-//  }
-//
-////  3. 배송 상세 정보 조회
-//  @GetMapping("/delivery/{dno}")
-//  public ModelAndView getDeliveryDetail(@PathVariable Long dno) {
-//    Delivery delivery = deliveryService.findByDno(dno);
-//
-//    ModelAndView modelAndView = new ModelAndView("deliveryDetail"); // 배송 정보 상세 페이지의 이름 (예: deliveryDetail.jsp)
-//    modelAndView.addObject("delivery", delivery); // 모델에 배송 정보 추가
-//    return modelAndView;
-//  }
-//
-////  4. 배송 정보 추가
-//  @PostMapping("/addDelivery")
-//  public ModelAndView addDelivery(@RequestParam Long dno, @RequestParam String memberId, @RequestParam Long zipCode,
-//      @RequestParam String receiverName, @RequestParam String deliveryAddress, @RequestParam String secondAddress,
-//      @RequestParam String thirdAddress, @RequestParam String receiverTel) {
-//
-//    Boolean isAdded = deliveryService.add(dno, memberId, zipCode, receiverName, deliveryAddress, secondAddress,
-//        thirdAddress, receiverTel);
-//
-//    ModelAndView modelAndView = new ModelAndView("redirect:/listOfDelivery"); // 배송 정보 목록 페이지로 리다이렉트
-//    if (!isAdded) {
-//      modelAndView.addObject("error", "배송 정보 추가에 실패했습니다.");
-//    }
-//    return modelAndView;
-//  }
-//
-////  5. 배송 정보 변경
-//  @PostMapping("/updateDelivery")
-//  public ModelAndView updateDelivery(@ModelAttribute Delivery delivery) {
-//    Boolean isUpdated = deliveryService.update(delivery);
-//
-//    ModelAndView modelAndView = new ModelAndView("redirect:/listOfDelivery"); // 배송 정보 목록 페이지로 리다이렉트
-//    if (!isUpdated) {
-//      modelAndView.addObject("error", "배송 정보 수정에 실패했습니다.");
-//    }
-//    return modelAndView;
-//  }
-//
-////  6. 주문 취소
-//  @PostMapping("/deleteDelivery/{dno}")
-//  public ModelAndView deleteDelivery(@PathVariable Long dno) {
-//    Boolean isDeleted = deliveryService.deleteByDno(dno);
-//
-//    ModelAndView modelAndView = new ModelAndView("redirect:/listOfDelivery"); // 배송 정보 목록 페이지로 리다이렉트
-//    if (!isDeleted) {
-//      modelAndView.addObject("error", "배송 정보 삭제에 실패했습니다.");
-//    }
-//    return modelAndView;
-//  }
+	@Autowired
+	private DeliveryService deliveryService;
+	
+	// 1-1. 배송주소록의 배송지 페이지
+	@GetMapping("/delivery/list")
+	public ModelAndView deliveryList(@RequestParam(defaultValue = "1") Long pageno, Principal principal) {
+		Delivery defaultDelivery = deliveryService.defaultDelivery(principal.getName());
+		DeliveryPage page = deliveryService.list(pageno, principal.getName());
+		Long count = deliveryService.deliveryCount(principal.getName());
+		return new ModelAndView("member_delivery_list_page").addObject("defaultDelivery", defaultDelivery)
+				.addObject("page", page).addObject("count", count);		
+	}
+	
+	// 1-2. 배송지 추가
+	@PostMapping("/delivery/add")
+	public ModelAndView deliveryAdd(Principal principal, DeliveryDto.Create dto) {
+		deliveryService.deliveryAdd(principal.getName(), dto);
+		return new ModelAndView("redirect:/delivery/list");
+	}
+	
+	// 2. 기본 배송지 변경
+	@PostMapping("/delivery/default/change")
+	public ModelAndView chaangeDefault(Long dno, Principal principal) {
+		deliveryService.change(dno, principal.getName());
+		return new ModelAndView("redirect:/delivery/list");
+	}
+	
+	// 3-1. 배송지 수정 페이지
+	@GetMapping("/delivery/update/{dno}")
+	public ModelAndView update(@PathVariable Long dno, Principal principal) {
+		DeliveryDto.Read delivery = deliveryService.read(dno, principal.getName());
+		return new ModelAndView("member_delivery_update_page").addObject("delivery", delivery);
+	}
 
-  /*
-   * [참고] 추후에 변동될 사항이 많으니, 기본 예로 볼 것 매핑 경로나 반환 경로는 임의로 정해둔 것이니 추후 상황에 맞게 수정할 것
-   * 컨트롤러에 대한 의견/아이디어가 있으면 고민하지 말고 말할 것
-   */
+	// 3-2. 배송지 수정
+	@PostMapping("/delivery/update/{dno}")
+	public ModelAndView update(@PathVariable Long dno, DeliveryDto.Update dto, Principal principal) {
+		deliveryService.update(dto, principal.getName());
+		return new ModelAndView("redirect:/delivery/list");
+	}
+	
+	// 4. 배송지 삭제
+	@PostMapping("/delivery/delete")
+	public ModelAndView delete(Long dno, Principal principal, RedirectAttributes ra) {
+		Boolean result = deliveryService.delete(dno);
+		System.out.println(result);
+		if(!result) {
+			ra.addFlashAttribute("msg", "배송지 삭제는 주문 확정 혹은 주문을 하지 않은 배송지에 해당되는 경우에만 삭제가 가능합니다.");
+			return new ModelAndView("redirect:/delivery/list");
+		}
+		return new ModelAndView("redirect:/delivery/list");
+	}
 }

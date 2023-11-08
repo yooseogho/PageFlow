@@ -97,7 +97,7 @@ $(document).ready(function() {
 					<ul class="snb_list">
 						<li class="snb_item"><a href="/member_check_page">회원정보관리</a></li>
 						<li class="snb_item"><a href="/member_profile_page">프로필설정</a></li>
-						<li class="snb_item"><a href="/member_delivery_list_page">배송주소록</a></li>
+						<li class="snb_item"><a href="/delivery/list">배송주소록</a></li>
 						<li class="snb_item"><a href="/member_grade_page">나의 회원등급</a></li>
 					</ul>
 				</li>

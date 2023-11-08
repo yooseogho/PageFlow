@@ -1227,6 +1227,8 @@ button[class^=btn_] .text, a[class^=btn_] .text {
 
 .payment_etc_wrap .payment_item_row_group {
     font-size: 0;
+    display: flex;
+    justify-content: space-between;
 }
 
 .payment_etc_wrap .btn_payment_etc:nth-child(5n+1) {
@@ -1295,9 +1297,9 @@ button[class^=btn_] [class^=ico_], a[class^=btn_] [class^=ico_] {
     border: 1px solid #5055b1;
 }
 
-.payment_etc_wrap .btn_payment_etc [class^=ico_payment_].ico_payment_kbpay {
+.payment_etc_wrap .btn_payment_etc [class^=ico_payment_].ico_payment_payco {
     background-size: 125px 32px;
-    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_payment_kbpay@2x.png);
+    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_payment_payco@2x.png);
 }
 
 .payment_etc_wrap .btn_payment_etc [class^=ico_payment_] {

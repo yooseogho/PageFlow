@@ -128,12 +128,14 @@
                                     </td>
                                     <td>
                                         <div class="delivery_info">
-                                            <span class="delivery_state ">주문접수</span>
+                                            <span class="delivery_state ">${details.orderStatus}</span>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="btn_wrap full">
-                                            <button type="button" class="btn_sm btn_line_gray"><span class="text">취소신청</span></button>
+                                        	<c:if test="${details.orderStatus !='주문 확정' && details.orderStatus != '취소 완료'}">
+                                            	<button type="button" class="btn_sm btn_line_gray"><span class="text">취소신청</span></button>
+                                            </c:if>
                                         </div>
                                     </td>
                                 </tr>

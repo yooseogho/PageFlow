@@ -7,6 +7,8 @@ import org.springframework.stereotype.*;
 
 import com.pageflow.dao.delivery.*;
 import com.pageflow.dao.member.*;
+import com.pageflow.dao.orderDetails.*;
+import com.pageflow.dao.orders.*;
 import com.pageflow.dto.delivery.*;
 import com.pageflow.entity.delivery.*;
 import com.pageflow.entity.member.*;
@@ -15,14 +17,22 @@ import com.pageflow.entity.member.*;
 public class DeliveryService {
   @Autowired
   private DeliveryDao deliveryDao;
+  
   @Autowired
   private MemberDao memberDao;
 
+  @Autowired
+  private OrderDetailsDao orderDetailsDao;
+  
+  @Autowired
+  private OrdersDao ordersDao;
+  
   @Value("${numberOfProductsPerPage}")
   private Long numberOfProductsPerPage;
 
   @Value("${sizeOfPagination}")
   private Long sizeOfPagination;
+  
 
   // 1. 배송지 추가
   public Boolean deliveryAdd(String memberId, DeliveryDto.Create dto) {
@@ -44,7 +54,7 @@ public class DeliveryService {
     Delivery delivery = deliveryDao.read(dno, member.getMemberId());
     return new DeliveryDto.Read(dno, delivery.getReceiverName(), delivery.getDeliveryName(),
         delivery.getDefaultAddress(), delivery.getReceiverTel(), delivery.getZipCode(), delivery.getDeliveryAddress(),
-        delivery.getDeliveryRequest());
+        delivery.getDeliveryRequest(), delivery.getDeliveryName());
   }
 
   // 3. 배송지 리스트
@@ -86,7 +96,7 @@ public class DeliveryService {
 
   // 5. 배송지 삭제
   public Boolean delete(Long dno) {
-    return deliveryDao.delete(dno) == 1;
+	return deliveryDao.delete(dno) == 1; 
   }
 
   // 6. 기본배송지 변경
@@ -108,6 +118,16 @@ public class DeliveryService {
     Delivery delivery = deliveryDao.read(dto.getDno(), member.getMemberId());
     delivery.setDeliveryRequest(dto.getDeliveryRequest());
     return deliveryDao.messageChange(delivery) == 1;
+  }
+  
+  // 8. 기본배송지 설정된 것 정보 가져오기
+  public Delivery defaultDelivery(String memberId) {
+	  return deliveryDao.findSettingDefault(memberId);
+  }
+  
+  // 9. 배송지 리스트에서 등록된 배송지가 몇개인지 카운트
+  public Long deliveryCount(String memberId) {
+	  return deliveryDao.deliveryCount(memberId);
   }
 
 }

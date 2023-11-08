@@ -102,7 +102,7 @@ public class OrdersController {
 
 	// 1-6. 주문결제 페이지에서 배송지 수정 페이지
 	@GetMapping("/order/delivery/update/{dno}")
-	public ModelAndView update(@PathVariable Long dno, Principal principal, DeliveryDto.Update dto) {
+	public ModelAndView update(@PathVariable Long dno, Principal principal) {
 		Delivery delivery = deliveryDao.read(dno, principal.getName());
 		return new ModelAndView("order_delivery_update_page").addObject("delivery", delivery);
 	}
@@ -161,7 +161,12 @@ public class OrdersController {
 	@GetMapping("/order/list")
 	public ModelAndView orderList(Principal principal) {
 		List<OrdersDto.OrdersList> orderList = ordersService.getOrdersList(principal.getName());
-		return new ModelAndView("order_list_page").addObject("orderList", orderList);
+		Long completeCount = orderDetailsService.orderCompleteCount(principal.getName());
+		Long cancelCount = orderDetailsService.orderCancelCount(principal.getName());
+		Long confirmCount = orderDetailsService.orderConfirmCount(principal.getName());
+		return new ModelAndView("order_list_page").addObject("orderList", orderList)
+				.addObject("cancelCount", cancelCount).addObject("completeCount", completeCount)
+				.addObject("confirmCount", confirmCount);
 	}
 
 	// 4. 주문 읽기
@@ -171,7 +176,7 @@ public class OrdersController {
 		session.setAttribute("orderRead", read);
 		return new ModelAndView("order_detail_list_page").addObject("read", read);
 	}
-	
+
 	// 5. 주문 삭제
 	@PostMapping("/order/delete")
 	public ModelAndView orderDelete(Long ono) {
@@ -179,8 +184,36 @@ public class OrdersController {
 		return new ModelAndView("redirect:/order/list");
 	}
 
-	
+	// 6. 주문 취소
+	@PostMapping("/order/cancel")
+	@ResponseBody
+	public ResponseEntity<OrderDetails> orderCancel(@RequestBody Map<String, Long> map) {
+		Long odno = map.get("odno");
+		Boolean result = orderDetailsService.updateCancel(odno);
 
+		if (!result) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+
+		OrderDetails orderDetails = orderDetailsService.read(odno);
+		 
+		return ResponseEntity.ok(orderDetails);
+	}
 	
+	// 7. 구매 확정
+	@PostMapping("/order/confirm")
+	@ResponseBody
+	public ResponseEntity<OrderDetails> orderConfirm(@RequestBody Map<String, Long> map) {
+		Long odno = map.get("odno");
+		Boolean result = orderDetailsService.updateConfirm(odno);
+
+		if (!result) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+
+		OrderDetails orderDetails = orderDetailsService.read(odno);
+		 
+		return ResponseEntity.ok(orderDetails);
+	}
 
 }

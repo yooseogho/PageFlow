@@ -16,15 +16,68 @@
 		// 주문 삭제
 		$('.delete').on('click', function(){
 			const ono = $(this).attr('data-ono');
-			
-			const form = `
-				<form action="/order/delete" method="post">
-					<input type="hidden" name="ono" value="\${ono}">
-				</form>
-			`;
-			$(form).appendTo($('body')).submit();
-					
+			const choice = confirm("정말로 삭제하시겠습니까? 삭제할 경우 다시 복구할 수 없습니다.");
+			if(choice === true) {
+				const form = `
+					<form action="/order/delete" method="post">
+						<input type="hidden" name="ono" value="\${ono}">
+					</form>
+				`;
+				$(form).appendTo($('body')).submit();
+			} else {
+				return false;
+			}		
 		})
+		
+	   // 주문 취소신청
+	   $('.cancel').click(function() {
+	       var odno = $(this).data('odno');
+	       var $thisRow = $(this).closest('tr');
+	       const choice = confirm('정말로 취소하시겠습니까? 취소할 경우 다시 복구할 수 없습니다.');
+	       if(choice === true) {
+		       $.ajax({
+		    	    type: "POST",
+		    	    url: "/order/cancel",
+		    	    data: JSON.stringify({ odno: odno }),
+		    	    contentType: "application/json",
+		    	    success: function(response) {
+		    	        alert("주문 취소가 완료되었습니다.");
+		    	        $thisRow.find('.delivery_state').text(response.orderStatus);
+		    	        location.href=`/order/list`;
+		    	    },
+		    	    error: function(jqXHR, textStatus, errorThrown) {
+		    	        alert("주문 취소에 실패했습니다.");
+		    	    }
+		    	});
+	       } else{
+	    	   return false;
+	       }
+	   });
+		
+		// 구매 확정 신청
+		   $('.confirm').click(function() {
+		       var odno = $(this).data('odno');
+		       var $thisRow = $(this).closest('tr');
+		       const choice = confirm('정말로 구매 확정하시겠습니까? 구매 확정시 취소 및 환불처리는 불가능합니다.');
+		       if(choice === true) {
+			       $.ajax({
+			    	    type: "POST",
+			    	    url: "/order/confirm",
+			    	    data: JSON.stringify({ odno: odno }),
+			    	    contentType: "application/json",
+			    	    success: function(response) {
+			    	        alert("주문 확정이 완료되었습니다.");
+			    	        $thisRow.find('.delivery_state').text(response.orderStatus);
+			    	        location.href=`/order/list`;
+			    	    },
+			    	    error: function(jqXHR, textStatus, errorThrown) {
+			    	        alert("주문 확정에 실패했습니다.");
+			    	    }
+			    	});
+		       } else{
+		    	   return false;
+		       }
+		   });
 	})
 </script>
 <body>
@@ -64,32 +117,20 @@
                         </div>
                         <div class="order_history_box">
                             <button type="button" class="btn_filter_history">
-                                <span class="history_val" >0</span>
+                                <span class="history_val" >${completeCount}</span>
                                 <span class="history_desc">주문 완료</span>
                             </button>
                         </div>
                         <div class="order_history_box">
                             <button type="button" class="btn_filter_history">
-                                <span class="history_val" >0</span>
-                                <span class="history_desc">배송중</span>
+                                <span class="history_val">${confirmCount}</span>
+                                <span class="history_desc">주문 확정</span>
                             </button>
                         </div>
                         <div class="order_history_box">
                             <button type="button" class="btn_filter_history">
-                                <span class="history_val">0</span>
-                                <span class="history_desc">배송완료</span>
-                            </button>
-                        </div>
-                        <div class="order_history_box">
-                            <button type="button" class="btn_filter_history">
-                                <span class="history_val">0</span>
-                                <span class="history_desc">취소</span>
-                            </button>
-                        </div>
-                        <div class="order_history_box">
-                            <button type="button" class="btn_filter_history">
-                                <span class="history_val">0</span>
-                                <span class="history_desc">교환/반품</span>
+                                <span class="history_val">${cancelCount}</span>
+                                <span class="history_desc">취소 완료</span>
                             </button>
                         </div>
                     </div>
@@ -166,11 +207,19 @@
 					                                </td>
 					                                <td>
 					                                    <div class="btn_wrap full" data-event-detail="review">
-					                                        <button type="button" class="btn_sm btn_line_gray" style="cursor: pointer;">
-					                                            <span class="text">취소신청</span>
-					                                        </button>
+						                                 	<c:if test="${orderDetail.orderStatus != '취소 완료' && orderDetail.orderStatus != '주문 확정'}">   
+						                                        <button type="button" class="btn_sm btn_line_gray cancel" style="cursor: pointer;" data-odno="${orderDetail.odno}">
+						                                            <span class="text">취소 신청</span>
+						                                        </button>
+						                                 	</c:if>
+						                                 	<c:if test="${orderDetail.orderStatus != '취소 완료' && orderDetail.orderStatus != '주문 확정'}">
+						                                 		<button type="button" class="btn_sm btn_line_gray confirm" style="cursor: pointer; margin-top: 10px;" data-odno="${orderDetail.odno}">
+						                                            <span class="text">주문 확정</span>
+						                                        </button>
+						                                    </c:if>    
 					                                    </div>
 					                                </td>
+					                                	
 					                            </tr>
 					                        </tbody>
 					                    </table>

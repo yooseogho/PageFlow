@@ -168,7 +168,7 @@
                                                 </ul>
                                             </div>
 
-                                       		 <!-- 페이지 설정 -->
+                                       		<!-- 페이지 설정 -->
                                             <div class="pagination">
                                                 <c:if test="${page.prev>0}">
                                                     <a class="btn_page prev" href="/book/search?keyword=${page.keyword}&pageno=${page.prev}">

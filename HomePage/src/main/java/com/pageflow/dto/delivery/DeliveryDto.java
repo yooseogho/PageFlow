@@ -28,6 +28,7 @@ public class DeliveryDto {
     private Long zipCode;
     private String deliveryAddress;
     private String deliveryRequest;
+    private String deliveryName;
   }
 
   @Data
@@ -48,5 +49,15 @@ public class DeliveryDto {
   public static class Message {
     private Long dno;
     private String deliveryRequest;
+  }
+  
+  @Data
+  @NoArgsConstructor
+  @AllArgsConstructor
+  public static class Delete {
+	  private Long dno;
+	  private Long ono;
+	  private String memberId;
+	  private String orderStatus;
   }
 }
