@@ -89,28 +89,19 @@ $(document).ready(function() {
 								                    </td>
 												</tr>
                                                 <tr>
-                                                	<th scope="row">배송지 정보</th>
+													<th scope="row">배송지 정보</th>
                                                     <td>
-                                                        <div class="address_item no_line">
-                                                            <div class="address_info_box">
-                                                                <div class="address_name">
-                                                                    <span class="name"><i class="ico_location_primary"></i><span class="text">원승언</span></span>
-                                                                    <span class="badge_sm badge_payment_line_purple"><span class="text">기본배송지</span></span>
-
-                                                                    <button type="button" class="btn_xs btn_line_gray"><span class="text">변경</span></button>
-                                                                </div>
-                                                                <div class="address_person">
-                                                                    <span class="name">원승언</span>
-                                                                    <span class="gap">/</span>
-                                                                    <span class="phone_number">010-2572-4233</span>
-                                                                </div>
-                                                                <div class="address">
-                                                                    <span class="address_text">[14921] 경기도 시흥시 수인로3247번길 112(은행동, 새천년빌라) 402호</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+								                       <div class="address_item no_line" data-delivery-point-address-info="default-addr-message">
+								                          <div class="address_info_box">
+								                             
+								                          </div>
+								                       </div>
+								                      
+								                        <div class="btn_wrap full">
+								                            <button type="button" class="btn_ip btn_line_gray" id="popup_btn"><span class="ico_write_black"></span><span class="text fw_medium">배송지 입력</span></button>
+								                        </div>
+								                    </td>
+												</tr>
 
                                                 <tr>
                                                     <th scope="row" class="has_ip">배송요청사항</th>

@@ -13,7 +13,6 @@
 </head>
 <script>
 $(document).ready(function(){
-	
 	// 장바구니에 담기
 	$('.cart_add').on('click', function() {
 	const bno = $(this).attr('data-bno');
@@ -46,9 +45,9 @@ $(document).ready(function(){
 	$('.btn_cart').on('click', function() {
 		const member = '${memberId}';
 		
-		if (member == 0) {
+		if (member === 0) {
 		const choice = confirm('장바구니는 회원만 담을 수 있습니다. 로그인하시겠습니까?');
-		    if (choice == false) {
+		    if (choice === false) {
 		    	return;
 		    } else {
 		        // 확인 버튼을 선택한 경우
@@ -60,6 +59,12 @@ $(document).ready(function(){
 	    $("input[name='chkList']:checked").each(function() {
 	        bnos.push($(this).attr('id')); // 체크박스의 id를 bno로 사용
 	    });
+	    
+		// bnos 배열이 비어있는지 확인
+	    if (bnos.length === 0) {
+	        alert('장바구니에 담긴 도서가 없습니다.');
+	        return;
+	    }
 	
 	    var form = `
 	        <form action='/cart/multiAdd' method='post'>
@@ -119,8 +124,7 @@ $(document).ready(function(){
 												<div class="right_area">
 													<div class="item_group">
 														<button type="button" class="btn_sm btn_line_gray btn_cart">
-															<span class="ico_cart"></span><span class="text">장바구니
-																담기</span>
+															<span class="ico_cart"></span><span class="text">장바구니 담기</span>
 														</button>
 													</div>
 												</div>

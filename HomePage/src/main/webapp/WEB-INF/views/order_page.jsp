@@ -418,9 +418,20 @@ $(document).ready(function() {
                                                         <span class="text">PageFlow배송</span>
                                                     </span>
                                                     <span class="text_body">
-                                                        <span class="fc_payment_blue">
-                                                            <strong class="blue">내일(10/28,토) 도착예정</strong>
+                                                        <span id="delivery_dateText" class="fc_payment_blue">
+                                                            <strong class="blue"></strong>
                                                         </span>
+                                                        <script>
+															var dayNames = ["일", "월", "화", "수", "목", "금", "토"];
+															    var now = new Date();
+															    now.setDate(now.getDate() + 3);
+															    var year = now.getFullYear();
+															    var month = now.getMonth() + 1;
+															    var date = now.getDate();
+															    var day = dayNames[now.getDay()];
+															    var message = "(" + month + "/" + date + "," + day + ") 도착 예정";
+															    document.getElementById('delivery_dateText').innerHTML = '<strong class="blue">' + message + '</strong>';
+														</script>
                                                     </span>
                                                 </li>
                                             </ul>

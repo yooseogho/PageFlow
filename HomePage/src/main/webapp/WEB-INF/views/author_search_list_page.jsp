@@ -11,7 +11,86 @@
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <title>Insert title here</title>
 </head>
-
+<script>
+	$(document).ready(function(){
+		// 장바구니에 담기
+		$('.cart_add').on('click', function() {
+		const bno = $(this).attr('data-bno');
+		const member = '${memberId}';
+			
+			if (member == 0) {
+			const choice = confirm('장바구니는 회원만 담을 수 있습니다. 로그인하시겠습니까?');
+			    if (choice == false) {
+			    	return;
+			    } else {
+			        // 확인 버튼을 선택한 경우
+			        location.href = "localhost:8081/login";
+			    }
+			}
+			
+			const form = `
+				<form action='/cart/add' method='post'>
+					<input type='hidden' name='bno' value='\${bno}'>
+					<input type='hidden' name='cartCount' value='1'>
+				</form>
+			`;
+			
+			$(form).appendTo($('body')).submit();
+			
+			alert('상품이 장바구니에 담겼습니다.');		
+			
+		})
+		
+		// 여러 도서 장바구니에 담기
+		$('.btn_cart').on('click', function() {
+			const member = '${memberId}';
+			
+			if (member === 0) {
+			const choice = confirm('장바구니는 회원만 담을 수 있습니다. 로그인하시겠습니까?');
+			    if (choice === false) {
+			    	return;
+			    } else {
+			        // 확인 버튼을 선택한 경우
+			        location.href = "localhost:8081/login";
+			    }
+			}
+		    var bnos = [];
+		    // 체크된 체크박스를 순회
+		    $("input[name='chkList']:checked").each(function() {
+		        bnos.push($(this).attr('id')); // 체크박스의 id를 bno로 사용
+		    });
+		    
+			// bnos 배열이 비어있는지 확인
+		    if (bnos.length === 0) {
+		        alert('장바구니에 담긴 도서가 없습니다.');
+		        return;
+		    }
+		
+		    var form = `
+		        <form action='/cart/multiAdd' method='post'>
+		            <input type='hidden' name='bnos' value='\${bnos.join(",")}'>
+		            <input type='hidden' name='cartCount' value='1'>
+		        </form>
+		    `;
+		    
+		    $(form).appendTo($('body')).submit();
+		    alert('상품이 장바구니에 담겼습니다.');		
+		    
+		});
+		
+		// 바로 구매
+		$('.order').on('click', function(){
+			const bno = $(this).attr('data-bno');
+			
+			const form = `
+				<form action="/buy/\${bno}" method="post">
+					<input type="hidden" name="bno" value="\${bno}">
+				</form>
+			`;
+			$(form).appendTo($('body')).submit();
+		})
+	})
+</script>
 <body>
 	<div id="page">
 		<header class="header_wrapper">
@@ -41,7 +120,7 @@
                                             <p class="result_count">전체 <b class="fc_green">${count }</b>건</p>
                                             <div class="right_area">
                                                 <div class="item_group">
-                                                    <button type="button" class="btn_sm btn_line_gray">
+                                                    <button type="button" class="btn_sm btn_line_gray btn_cart">
                                                         <span class="ico_cart"></span><span class="text">장바구니 담기</span>
                                                     </button>
                                                 </div>
@@ -55,7 +134,7 @@
 	                                                	<c:when test ="${not empty page.books}">
 		                                                   <c:forEach var="book" items="${page.books }">
 		                                                       <li class="prod_item"><span class="form_chk no_label">
-		                                                               <input class="result_checkbox spec_checkbox" id="${book.bno }" type="checkbox">
+		                                                               <input class="result_checkbox spec_checkbox" id="${book.bno }" type="checkbox" name="chkList">
 		                                                               <label for="${book.bno }"><span class="hidden">상품선택</span></label>
 		                                                           </span> <!-- 상품 이미지 & 정보 영역 -->
 		                                                           <div class="prod_area horizontal">
@@ -135,12 +214,18 @@
 		                                                               <p class="order_state_desc">
 		                                                                   주문 시<br> <span class="fw_bold">3일 후 </span><br>도착예정
 		                                                               </p>
-		                                                           </div> <!-- 장바구니 or 바로구매 버튼 영역 -->
-		                                                           <div class="prod_btn_wrap">
-		                                                               <div class="btn_wrap full">
-		                                                                   <a href="/cart_page" class="btn_sm btn_light_gray"><span class="text">장바구니</span></a> <a href="/order_page" class="btn_sm btn_primary"><span class="text">바로구매</span></a>
-		                                                               </div>
 		                                                           </div>
+		                                                            <!-- 장바구니 or 바로구매 버튼 영역 -->
+																	<div class="prod_btn_wrap">
+																		<div class="btn_wrap full">
+																			<button class="btn_sm btn_light_gray cart_add" data-bno="${book.bno}">
+																				<span class="text">장바구니</span>
+																			</button> 
+																			<button class="btn_sm btn_primary order" data-bno="${book.bno}">
+																				<span class="text">바로구매</span>
+																			</button>
+																		</div>
+																	</div>
 		                                                       </li>
 		                                                   </c:forEach>
 		                                                </c:when>

@@ -59,6 +59,21 @@
 	    	
 	    })
 	    
+	    
+	    // 바로 구매
+		$('#buy').on('click', function(){
+			const bno = $('#buy').attr('data-bno');
+			let quantityInput = $('.form_spinner.ui-spinner-input').val();
+			const form = `
+				<form action="/buy/\${bno}" method="post">
+					<input type="hidden" name="bno" value="\${bno}">
+					<input type='hidden' name='cartCount' value='\${quantityInput}'>
+				</form>
+			`;
+			$(form).appendTo($('body')).submit();
+			alert('주문 페이지로 이동합니다.')
+		})
+	    
   	})
   	
 	    
@@ -769,7 +784,7 @@
 	                                <div id="prodBtnWrap" class="btn_wrap">
 	                                    <button id="cart_add" type="button" class="btn_lg btn_line_primary"><span class="text">장바구니</span></button>
 	                                    <div id="prodBuyWrap" class="btn_wrap overlap single">
-	                                        <a href="javascript:void(0)" id="buy" type="button" class="btn_lg btn_primary"><span class="text">바로구매</span></a>
+	                                        <button id="buy" type="button" class="btn_lg btn_primary" data-bno="${book.bno}"><span class="text">바로구매</span></button>
 	                                  	</div>
 	                                </div>
 	                                <%-- 수량에 따라 가격 변경시키는 Script --%>
@@ -812,6 +827,8 @@
 									     increaseButton.addEventListener('click', function() {
 									          if (quantityInput.value < stock) { // 재고보다 작은 경우에만 증가 가능하게 함.
 									              quantityInput.value++;
+									          } else {
+									              alert('재고량보다 많은 수량을 선택할 수 없습니다.'); // 재고량보다 많을 때 알림창 띄우기
 									          }
 									          updateTotalPrice();
 									     });

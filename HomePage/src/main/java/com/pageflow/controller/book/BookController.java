@@ -402,7 +402,7 @@ public class BookController {
   	//8. 바로 구매 구현
 	@Secured("ROLE_USER")
 	@PostMapping("/buy/{bno}")
-	public String buyNow(@PathVariable Long bno, HttpServletRequest request, Long gradeCode) {
+	public String buyNow(@PathVariable Long bno, HttpServletRequest request, Long gradeCode, @RequestParam(required = false, defaultValue = "1") Long cartCount) {
 		
 		// 세션에서 사용자 정보 가져오기
 		HttpSession session = request.getSession();
@@ -430,7 +430,7 @@ public class BookController {
 	    cartItem.setBno(book.getBno());
 	    cartItem.setBookTitle(book.getBookTitle());
 	    cartItem.setBookImage(book.getBookImage());
-	    cartItem.setCartCount(1L);  // 수량은 1로 설정
+	    cartItem.setCartCount(cartCount);  // 수량은 1로 설정
 	    cartItem.setAmount(book.getBookPrice());  // 가격은 책의 가격으로 설정
 		cartItem.setTotalAmount(book.getBookPrice());
 		cartItem.setTotalPointEarnings(book.getPointEarnings());
