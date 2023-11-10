@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/customer_inquiry_write.css">
 <title>Insert title here</title>
+</head>
 <script>
 	window.onload = function() {
 		var radioContact = document.getElementById('contactPhone1');
@@ -60,8 +61,6 @@
 						});
 	};
 </script>
-</head>
-
 <body>
 	<div id="page">
 		<header class="header_wrapper">
@@ -81,10 +80,7 @@
 						<div class="title_wrap title_size_lg">
 							<p class="title_heading">1:1 문의 접수</p>
 						</div>
-						<form action="/customer_inquiry_write_page" method="post"
-							onsubmit="return submitForm();">
-							<input type="hidden" name="notifyRequest" id="notifyRequest"
-								value="false">
+						<form action="/customer_inquiry_edit_page/${inno}" method="post">
 							<div class="tbl_row_wrap">
 								<table class="tbl_row">
 									<colgroup>
@@ -105,19 +101,33 @@
 																	<div class="form_sel">
 																		<select data-kbbfn-field="" name="inquiryType"
 																			id="InquiryQuestList" title="문의유형 분류">
-																			<option value="-1" selected="selected">문의
+																			<option value="-1"
+																				${inquiry.inquiryType == "-1" ? "selected" : ""}>문의
 																				유형을 선택해 주세요.</option>
-																			<option value="배송/수령예정일안내">배송/수령예정일안내</option>
-																			<option value="주문/결제">주문/결제</option>
-																			<option value="검색 기능 관련">검색 기능 관련</option>
-																			<option value="반품/교환/환불">반품/교환/환불</option>
-																			<option value="도서/상품정보">도서/상품정보</option>
-																			<option value="회원정보서비스">회원정보서비스</option>
-																			<option value="웹사이트 이용 관련">웹사이트 이용 관련</option>
-																			<option value="시스템불편사항">시스템불편사항</option>
-																			<option value="택배사사례">택배사사례</option>
-																			<option value="고객제안/친절불친절">고객제안/친절불친절</option>
-																			<option value="파본/상품불량신고">파본/상품불량신고</option>
+																			<option value="배송/수령예정일안내"
+																				${inquiry.inquiryType == "배송/수령예정일안내" ? "selected" : ""}>배송/수령예정일안내</option>
+																			<option value="주문/결제"
+																				${inquiry.inquiryType == "주문/결제" ? "selected" : ""}>주문/결제</option>
+																			<option value="검색 기능 관련"
+																				${inquiry.inquiryType == "검색 기능 관련" ? "selected" : ""}>검색
+																				기능 관련</option>
+																			<option value="반품/교환/환불"
+																				${inquiry.inquiryType == "반품/교환/환불" ? "selected" : ""}>반품/교환/환불</option>
+																			<option value="도서/상품정보"
+																				${inquiry.inquiryType == "도서/상품정보" ? "selected" : ""}>도서/상품정보</option>
+																			<option value="회원정보서비스"
+																				${inquiry.inquiryType == "회원정보서비스" ? "selected" : ""}>회원정보서비스</option>
+																			<option value="웹사이트 이용 관련"
+																				${inquiry.inquiryType == "웹사이트 이용 관련" ? "selected" : ""}>웹사이트
+																				이용 관련</option>
+																			<option value="시스템불편사항"
+																				${inquiry.inquiryType == "시스템불편사항" ? "selected" : ""}>시스템불편사항</option>
+																			<option value="택배사사례"
+																				${inquiry.inquiryType == "택배사사례" ? "selected" : ""}>택배사사례</option>
+																			<option value="고객제안/친절불친절"
+																				${inquiry.inquiryType == "고객제안/친절불친절" ? "selected" : ""}>고객제안/친절불친절</option>
+																			<option value="파본/상품불량신고"
+																				${inquiry.inquiryType == "파본/상품불량신고" ? "selected" : ""}>파본/상품불량신고</option>
 																		</select>
 																	</div>
 																</div>
@@ -139,8 +149,9 @@
 														<div class="valid_check">
 															<input data-kbbfn-field="" name="inquiryTitle"
 																id="InquiryTitle" type="text" class="form_ip w_full"
-																title="제목 입력" placeholder="제목을 입력해 주세요." maxlength="30">
-															<span class="valid_desc"></span>
+																title="제목 입력" placeholder="제목을 입력해 주세요." maxlength="30"
+																value="${inquiry.inquiryTitle}"> <span
+																class="valid_desc"></span>
 														</div>
 													</div>
 													<div class="col_box">
@@ -149,7 +160,7 @@
 																<textarea data-kbbfn-field="" id="InquiryContent"
 																	name="content" class="form_textarea" title="문의 내용 입력"
 																	placeholder="문의 유형을 먼저 선택 후 입력해주세요." maxlength="3000"
-																	style="height: 246px;"></textarea>
+																	style="height: 246px;">${inquiry.content}</textarea>
 																<div class="byte_check_footer">
 																	<div class="byte_check">
 																		<span class="count">0</span><span class="total">3000</span>
@@ -192,15 +203,14 @@
 																		checked> <label for="contactPhone1">휴대폰번호</label>
 																</span></li>
 															</ul>
-															<div class="form_cont">
-																<div class="valid_check">
-																	<input data-kbbfn-form="inquiryForm"
-																		data-kbbfn-field="" id="InquiryPhoneNumber" type="tel"
-																		class="form_ip" placeholder="-없이 입력해 주세요."
-																		title="연락처 입력" maxlength="30"
-																		value="${member.memberTel}"> <span
-																		class="valid_desc"></span>
-																</div>
+														</div>
+														<div class="form_cont">
+															<div class="valid_check">
+																<input data-kbbfn-form="inquiryForm" data-kbbfn-field=""
+																	id="InquiryPhoneNumber" type="tel" class="form_ip"
+																	placeholder="-없이 입력해 주세요." title="연락처 입력"
+																	maxlength="30" value="${member.memberTel}"> <span
+																	class="valid_desc"></span>
 															</div>
 															<span class="form_chk"> <input
 																data-kbbfn-form="inquiryForm" data-kbbfn-field=""

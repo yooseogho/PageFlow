@@ -143,6 +143,7 @@ create table inquiry (
 	member_id	varchar2 (20 char)		not null,
 	content	clob		not null,
 	inquiry_type	varchar2 (30 char)		not null,
+	inquiry_answer clob
     constraint inquiry_pk_inno primary key(inno),
     constraint inquiry_fk_member_id foreign key(member_id) references member(member_id)
 );

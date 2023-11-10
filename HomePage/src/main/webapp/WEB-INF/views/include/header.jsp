@@ -20,9 +20,9 @@
 								href="/member_info_page" class="util_link">내정보보기</a></li>
 							<li class="customer_service_item"><a
 								href="/member_grade_page" class="util_link">회원등급혜택</a></li>
-											<li class="customer_service_item">
-    <a class="util_link" href="/logout" onclick="return confirm('로그아웃 하시겠습니까?')">로그아웃</a>
-</li>
+							<li class="customer_service_item"><a class="util_link"
+								href="/logout" onclick="return confirm('로그아웃 하시겠습니까?')">로그아웃</a>
+							</li>
 							<li class="customer_service_item"><a
 								href="/customer_service_page" class="util_link">고객센터</a></li>
 						</sec:authorize>
@@ -37,13 +37,15 @@
 								onclick="location.href=`/member_grade_page`">
 								<span class="text">회원혜택</span>
 							</button></li>
+					</sec:authorize>
+
+					<sec:authorize access="hasRole('ADMIN')">
 						<li class="customer_service_item"><a
 							href="/customer_service_page" class="util_link">고객센터</a></li>
-					</sec:authorize>
-					<sec:authorize access="hasRole('ADMIN')">
 						<li class="customer_service_item"><a href="/admin_page"
 							class="util_link">관리자 페이지</a></li>
-						<li class="customer_service_item"><a class="util_link" href="/logout">로그아웃</a></li>
+						<li class="customer_service_item"><a class="util_link"
+							href="/logout">로그아웃</a></li>
 					</sec:authorize>
 				</ul>
 

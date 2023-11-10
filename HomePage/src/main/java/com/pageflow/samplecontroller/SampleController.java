@@ -6,30 +6,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class SampleController {
-
-  // 관리자 1:1 문의사항 답변 페이지
-  @GetMapping("/admin_inquiry_answer_page")
-  public void admin_inquiry_answer() {
-  }
-
-  // 관리자 1:1 문의사항 리스트 페이지
-  @GetMapping("/admin_inquiry_list_page")
-  public void admin_inquiry_list() {
-  }
-
   // 관리자 페이지
   @GetMapping("/admin_page")
   public void admin_page() {
-  }
-
-  // 1:1 문의 내역 페이지
-  @GetMapping("/customer_inquiry_list_page")
-  public void inquiry_list() {
-  }
-
-  // 1:1 문의하기 페이지
-  @GetMapping("customer_inquiry_write_page")
-  public void customer_inquiry_write_page() {
   }
 
   // 루트 페이지
@@ -58,10 +37,6 @@ public class SampleController {
   public void non_user_order_list() {
   }
 
-  // 공지 사항 페이지
-  @GetMapping("/notice_list_page")
-  public void notice_list_page() {
-  }
 
   @GetMapping("/mail_code_check_page")
   public ModelAndView mailCodeCheckPage() {

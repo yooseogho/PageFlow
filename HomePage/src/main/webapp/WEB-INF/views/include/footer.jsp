@@ -9,8 +9,7 @@
 	<div class="footer_header default">
 		<div class="footer_inner">
 			<div class="notice_wrap">
-				<span class="notice_text">공지사항</span><a href="#" class="notice_link">최신
-					공지사항(혹은 중요 공지사항)</a>
+				<span class="notice_text">공지사항</span><a href="/customer_notice_read_page?nno=${notice.nno}" class="notice_link">${notice.noticeTitle}</a>
 			</div>
 		</div>
 		<div class="footer_body">
