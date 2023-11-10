@@ -33,5 +33,13 @@ public interface OrdersDao {
 	@Delete("delete from orders where ono = #{ono}")
 	public Long deleteByOno(Long ono);
 	
+	/** 배송지 dno를 가지고 와서 order 테이블 정보 리스트 */
+	@Select("select * from orders where dno = #{dno}")
+	public List<Orders> findAllByDno(Long dno);
+	
+	/** 배송지 dno를 가지고 와서 해당되는 것 삭제 */
+	@Delete("delete from orders where dno = #{dno}")
+	public Long deleteByDno(Long dno);
+	
 	
 }

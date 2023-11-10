@@ -4,6 +4,9 @@
 <html>
 <head>
 <link rel="stylesheet" href="/css/include/nav.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
+integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
+crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 	<div class="pnf_search_wrap">
@@ -35,7 +38,7 @@
 			<li class="user_menu_item cart"><a href="/cart/list"
 				class="user_menu_link"></a></li>
 			<li class="user_menu_item my"><a href="/member_info_page"
-				class="profile-icon user_menu_link done"></a></li>
+				class="profile-icon user_menu_link done"><i class="fa-regular fa-user fa-3x fa-bounce" style="color : #f5f5f5; width : 27px;"></i></a></li>
 		</ul>
 	</div>
 	<div class="pnf_wrap">

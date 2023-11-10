@@ -16,12 +16,15 @@ import com.pageflow.dao.delivery.*;
 import com.pageflow.dto.cart.*;
 import com.pageflow.dto.delivery.*;
 import com.pageflow.dto.member.*;
+import com.pageflow.dto.member.MemberDto.*;
+import com.pageflow.dto.memberGrade.*;
 import com.pageflow.dto.orders.*;
 import com.pageflow.entity.delivery.*;
 import com.pageflow.entity.orderDetails.*;
 import com.pageflow.entity.orders.*;
 import com.pageflow.service.delivery.*;
 import com.pageflow.service.member.*;
+import com.pageflow.service.memberGrade.*;
 import com.pageflow.service.orderDetails.*;
 import com.pageflow.service.orders.*;
 
@@ -45,12 +48,15 @@ public class OrdersController {
 
 	@Autowired
 	private OrderDetailsService orderDetailsService;
+	
+	@Autowired 
+	private MemberGradeService gradeService;
 
 	// 1. 주문결제 페이지 보여주기
 	@GetMapping("/order")
 	public ModelAndView order(HttpServletRequest request, Principal principal, Long dno) {
 		HttpSession session = request.getSession();
-
+		
 		List<CartDto.Select> cartList = (List<CartDto.Select>) session.getAttribute("cartList");
 		DeliveryDto.Read delivery = (DeliveryDto.Read) session.getAttribute("delivery");
 		MemberDto.Read memberId = memberService.read(principal.getName());
@@ -117,7 +123,11 @@ public class OrdersController {
 	// 1-8. 주문 결제 페이지에서 배송지 삭제
 	@PostMapping("/order/delivery/delete")
 	public ModelAndView delete(Long dno) {
-		deliveryService.delete(dno);
+		try {
+			deliveryService.delete(dno);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return new ModelAndView("redirect:/order/delivery/list");
 	}
 
@@ -160,13 +170,32 @@ public class OrdersController {
 	// 3. 주문 목록 페이지
 	@GetMapping("/order/list")
 	public ModelAndView orderList(Principal principal) {
+		// 주문 목록
 		List<OrdersDto.OrdersList> orderList = ordersService.getOrdersList(principal.getName());
+		
+		// 주문 완료 개수
 		Long completeCount = orderDetailsService.orderCompleteCount(principal.getName());
+		
+		// 취소 완료 개수
 		Long cancelCount = orderDetailsService.orderCancelCount(principal.getName());
+		
+		// 주문 확정 개수 
 		Long confirmCount = orderDetailsService.orderConfirmCount(principal.getName());
+		
+		// 프로필 가져오기
+		Profile memberProfile = memberService.MemberProfile(principal.getName());
+		
+	    // MemberGradeDto.MemberInfoDto 객체에서 gradeCode를 가져오기.
+		MemberGradeDto.MemberInfoDto memberInfo = memberService.getMemberInfo(principal.getName());
+		Long gradeCode = memberInfo.getGradeCode();
+		
+		// gradeCode를 이용해서 gradeName을 가져오기.
+	    String gradeName = gradeService.getGradeNameByCode(gradeCode);
+		
 		return new ModelAndView("order_list_page").addObject("orderList", orderList)
 				.addObject("cancelCount", cancelCount).addObject("completeCount", completeCount)
-				.addObject("confirmCount", confirmCount);
+				.addObject("confirmCount", confirmCount).addObject("member", memberProfile)
+				.addObject("gradeName", gradeName);
 	}
 
 	// 4. 주문 읽기

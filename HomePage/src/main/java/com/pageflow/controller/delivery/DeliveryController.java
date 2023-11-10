@@ -10,8 +10,14 @@ import org.springframework.web.servlet.*;
 import org.springframework.web.servlet.mvc.support.*;
 
 import com.pageflow.dto.delivery.*;
+import com.pageflow.dto.member.MemberDto.*;
+import com.pageflow.dto.memberGrade.*;
 import com.pageflow.entity.delivery.*;
 import com.pageflow.service.delivery.*;
+import com.pageflow.service.member.*;
+import com.pageflow.service.memberGrade.*;
+
+import ch.qos.logback.core.joran.spi.*;
 
 @Secured("ROLE_USER")
 @Controller
@@ -19,14 +25,37 @@ public class DeliveryController {
 	@Autowired
 	private DeliveryService deliveryService;
 	
+	@Autowired 
+	private MemberGradeService gradeService;
+	
+	@Autowired
+	private MemberService memberService;
+	
 	// 1-1. 배송주소록의 배송지 페이지
 	@GetMapping("/delivery/list")
 	public ModelAndView deliveryList(@RequestParam(defaultValue = "1") Long pageno, Principal principal) {
+		// 기본 배송지를 가진 배송지 불러오기
 		Delivery defaultDelivery = deliveryService.defaultDelivery(principal.getName());
+		
+		// 배송 목록 페이징
 		DeliveryPage page = deliveryService.list(pageno, principal.getName());
+		
+		// 배송 개수
 		Long count = deliveryService.deliveryCount(principal.getName());
+		
+		// 프로필 가져오기
+		Profile memberProfile = memberService.MemberProfile(principal.getName());
+		
+	    // MemberGradeDto.MemberInfoDto 객체에서 gradeCode를 가져오기.
+		MemberGradeDto.MemberInfoDto memberInfo = memberService.getMemberInfo(principal.getName());
+		Long gradeCode = memberInfo.getGradeCode();
+		
+		// gradeCode를 이용해서 gradeName을 가져오기.
+	    String gradeName = gradeService.getGradeNameByCode(gradeCode);
+		
 		return new ModelAndView("member_delivery_list_page").addObject("defaultDelivery", defaultDelivery)
-				.addObject("page", page).addObject("count", count);		
+				.addObject("page", page).addObject("count", count).addObject("gradeName", gradeName)
+				.addObject("member", memberProfile);		
 	}
 	
 	// 1-2. 배송지 추가
@@ -59,13 +88,14 @@ public class DeliveryController {
 	
 	// 4. 배송지 삭제
 	@PostMapping("/delivery/delete")
-	public ModelAndView delete(Long dno, Principal principal, RedirectAttributes ra) {
-		Boolean result = deliveryService.delete(dno);
-		System.out.println(result);
-		if(!result) {
-			ra.addFlashAttribute("msg", "배송지 삭제는 주문 확정 혹은 주문을 하지 않은 배송지에 해당되는 경우에만 삭제가 가능합니다.");
-			return new ModelAndView("redirect:/delivery/list");
-		}
-		return new ModelAndView("redirect:/delivery/list");
+	public ModelAndView delete(Long dno, RedirectAttributes ra) {
+        Boolean result = deliveryService.delete(dno);
+        if (!result) {
+            ra.addFlashAttribute("msg", "배송지 삭제는 주문 확정 혹은 취소 완료 혹은 주문을 하지 않은 배송지에 해당되는 경우에만 삭제가 가능합니다.");
+            return new ModelAndView("redirect:/delivery/list");
+        }
+	    
+	    return new ModelAndView("redirect:/delivery/list");
 	}
+
 }

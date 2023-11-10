@@ -1,256 +1,272 @@
 @charset "UTF-8";
 
+/* 공통 css 영역 */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
 }
 
 body {
-    font-size: 14px;
-    line-height: 1.4;
-    font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
-    min-width: 1440px;
-    color: #000;
+	font-size: 14px;
+	line-height: 1.4;
+	font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
+	min-width: 1440px;
+	color: #000;
 }
 
 #page {
-    width: 1200px;
-    margin: 0 auto;
-
+	margin: 0 auto;
 }
 
-header {
-    border: 1px solid red;
-    height: 100px;
-    display: flex;
-    justify-content: space-between;
+ul {
+	list-style: none;
 }
 
-
-.h_button_area {
-    height: 49px;
-    display: flex;
-    justify-content: end;
+button {
+	background-color: transparent;
+	cursor: pointer;
 }
 
-.h_button {
-    height: 49px;
-    margin-left: 10px;
+input,
+button,
+select,
+textarea {
+	vertical-align: middle;
+}
+
+input,
+button {
+	border: 0;
+	border-radius: 0;
+	background: none;
+}
+
+img {
+	vertical-align: middle;
+}
+
+.hidden {
+	position: absolute;
+	visibility: hidden;
+	overflow: hidden;
+	height: 0;
+	line-height: 0;
+	width: 0;
+	margin: 0;
+	padding: 0;
+	font: 0/0 Arial;
 }
 
 .contents_wrap {
-    padding-top: 42px;
+	padding-top: 42px;
+	width: 1200px;
+	margin: 0 auto;
 }
 
 .contents_inner {
-    width: 1200px;
-    margin: 0 auto;
+	width: 1200px;
+	margin: 0 auto;
 }
 
 .inner_header {
-    width: 1200px;
-    margin: 0 auto 50px;
+	width: 1200px;
+	margin: 0 auto 50px;
 
 }
-
-.header_text {
-    line-height: 30px;
-    height: 30px;
-    font-weight: 700;
-    font-size: 18px;
-
-}
-
-
 
 .inner_main {
-    padding: 0;
-    background: #fff;
-    box-sizing: border-box;
-    outline: none;
+	padding: 0;
+	background: #fff;
+	box-sizing: border-box;
+	outline: none;
 }
 
 .inner_main_top {
-    padding-bottom: 30px;
-    display: -webkit-flex;
-    flex-direction: column;
+	padding-bottom: 30px;
+	display: -webkit-flex;
+	flex-direction: column;
 }
 
 .main_top_top {
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .main_top_title {
-    font-size: 24px;
-    line-height: 36px;
-    letter-spacing: -0.01em;
-    position: relative;
-    font-weight: 700;
+	font-size: 24px;
+	line-height: 36px;
+	letter-spacing: -0.01em;
+	position: relative;
+	font-weight: 700;
 }
 
-.main_top_bottom > .main_top_title {
-    font-size: 18px;
+.main_top_bottom>.main_top_title {
+	font-size: 18px;
 }
 
 .info_text {
-    margin-top: 10px;
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: -0.01em;
-    color: #595959;
+	margin-top: 10px;
+	font-size: 14px;
+	line-height: 22px;
+	letter-spacing: -0.01em;
+	color: #595959;
 }
 
 .inner_main_mid {
-    display: block;
-    width: 100%;
-    padding: 18px 0;
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #eaeaea;
-    box-sizing: border-box;
+	display: block;
+	width: 100%;
+	padding: 18px 0;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #eaeaea;
+	box-sizing: border-box;
 }
 
 .tbl_row {
-    width: 100%;
-    table-layout: fixed;
+	width: 100%;
+	table-layout: fixed;
 }
 
 .has_ip {
-    padding: 24px 10px 12px 10px;
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: -0.01em;
-    text-align: left;
-    color: #000;
-    font-weight: 500;
-    vertical-align: top;
+	padding: 24px 10px 12px 10px;
+	font-size: 14px;
+	line-height: 22px;
+	letter-spacing: -0.01em;
+	text-align: left;
+	color: #000;
+	font-weight: 500;
+	vertical-align: top;
 }
 
 tbody td {
-    padding: 12px 10px;
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: -0.01em;
-    text-align: left;
-    color: #767676;
-    font-weight: 400;
-    vertical-align: top;
+	padding: 12px 10px;
+	font-size: 14px;
+	line-height: 22px;
+	letter-spacing: -0.01em;
+	text-align: left;
+	color: #767676;
+	font-weight: 400;
+	vertical-align: top;
 }
 
 .valid_check {
-    width: 450px;
+	width: 450px;
 }
 
 
 .form_ip_pw {
-    position: relative;
+	position: relative;
 }
 
 
-.form_ip_pw > input {
-    padding: 0 48px 0 14px;
-    display: inline-block;
-    width: 100%;
-    height: 44px;
-    padding: 0 14px 2px;
-    color: #000;
-    font-size: 14px;
-    line-height: 42px;
-    letter-spacing: -0.01em;
-    font-family: "Noto Sans KR", sans-serif;
-    background-color: #fff;
-    border: 1px solid #d5d5d5;
-    border-radius: 6px;
-    box-sizing: border-box;
-    transition: border-color 0.2s ease-out;
-    outline: none;
+.form_ip_pw>input {
+	padding: 0 48px 0 14px;
+	display: inline-block;
+	width: 100%;
+	height: 44px;
+	padding: 0 14px 2px;
+	color: #000;
+	font-size: 14px;
+	line-height: 42px;
+	letter-spacing: -0.01em;
+	font-family: "Noto Sans KR", sans-serif;
+	background-color: #fff;
+	border: 1px solid #d5d5d5;
+	border-radius: 6px;
+	box-sizing: border-box;
+	transition: border-color 0.2s ease-out;
+	outline: none;
 }
 
 
-.changeEmail_passwordCheck > input ,
-.changeTel_passwordCheck > input,
-.changeTel > input
-{
-    padding: 0 48px 0 14px;
-    display: inline-block;
-    width: 50%;
-    height: 44px;
-    padding: 0 14px 2px;
-    color: #000;
-    font-size: 14px;
-    line-height: 42px;
-    letter-spacing: -0.01em;
-    font-family: "Noto Sans KR", sans-serif;
-    background-color: #fff;
-    border: 1px solid #d5d5d5;
-    border-radius: 6px;
-    box-sizing: border-box;
-    transition: border-color 0.2s ease-out;
-    outline: none;
+.changeEmail_passwordCheck>input,
+.changeTel_passwordCheck>input,
+.changeTel>input {
+	padding: 0 48px 0 14px;
+	display: inline-block;
+	width: 50%;
+	height: 44px;
+	padding: 0 14px 2px;
+	color: #000;
+	font-size: 14px;
+	line-height: 42px;
+	letter-spacing: -0.01em;
+	font-family: "Noto Sans KR", sans-serif;
+	background-color: #fff;
+	border: 1px solid #d5d5d5;
+	border-radius: 6px;
+	box-sizing: border-box;
+	transition: border-color 0.2s ease-out;
+	outline: none;
 }
 
-.changeEmail > input {
+.changeEmail>input {
 	margin-top: 10px;
-    padding: 0 48px 0 14px;
-    display: inline-block;
-    width: 50%;
-    height: 44px;
-    padding: 0 14px 2px;
-    color: #000;
-    font-size: 14px;
-    line-height: 42px;
-    letter-spacing: -0.01em;
-    font-family: "Noto Sans KR", sans-serif;
-    background-color: #fff;
-    border: 1px solid #d5d5d5;
-    border-radius: 6px;
-    box-sizing: border-box;
-    transition: border-color 0.2s ease-out;
-    outline: none;
+	padding: 0 48px 0 14px;
+	display: inline-block;
+	width: 50%;
+	height: 44px;
+	padding: 0 14px 2px;
+	color: #000;
+	font-size: 14px;
+	line-height: 42px;
+	letter-spacing: -0.01em;
+	font-family: "Noto Sans KR", sans-serif;
+	background-color: #fff;
+	border: 1px solid #d5d5d5;
+	border-radius: 6px;
+	box-sizing: border-box;
+	transition: border-color 0.2s ease-out;
+	outline: none;
 }
 
 .changeEmail_passwordCheck .btn_ip,
 .changeEmail .btn_ip,
-.changeTelPassword_btn
-.changeTel_btn,
+.changeTelPassword_btn .changeTel_btn,
 .changeTelPassword_btn,
-.changeTel_btn
-{
-	
+.changeTel_btn,
+.btn_ip {
+
 	margin-left: 6px;
 	padding: 0 5px;
-    min-width: 133px;
-    width: 133px;
-     color: #474c98;
-    border: 1px solid #5055b1;
-    background: #fff;
-    display: -webkit-inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 86px;
-    height: 44px;
-    padding: 0 19px 1px;
-    border-radius: 6px;
-    font-family: "Noto Sans KR", sans-serif;
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: -0.01em;
-    font-weight: 500;
-    cursor: pointer;
-    
+	min-width: 133px;
+
+	color: #474c98;
+	border: 1px solid #5055b1;
+	background: #fff;
+	display: -webkit-inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 86px;
+	height: 44px;
+	padding: 0 19px 1px;
+	border-radius: 6px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 14px;
+	line-height: 22px;
+	letter-spacing: -0.01em;
+	font-weight: 500;
+	cursor: pointer;
+
 }
 
-button[class^=btn_], a[class^=btn_] {
-    display: inline-block;
-    box-sizing: border-box;
-    vertical-align: top;
+button[class^=btn_],
+a[class^=btn_] {
+	display: inline-block;
+	box-sizing: border-box;
+	vertical-align: top;
 }
 
-button[class^=btn_] .text, a[class^=btn_] .text {
-    display: inline-block;
-    position: relative;
-    vertical-align: top;
+button[class^=btn_] .text,
+a[class^=btn_] .text {
+	display: inline-block;
+	position: relative;
+	vertical-align: top;
 }
 
 .changeEmail .btn_ip {
@@ -258,83 +274,79 @@ button[class^=btn_] .text, a[class^=btn_] .text {
 }
 
 
-	label span {
-    position: relative;
-    top: -20px;  /* 위로 10px 이동 */
+label span {
+	position: relative;
+	top: -20px;
+	/* 위로 10px 이동 */
 }
 
 
-	#emailChangeButton,
-	#telChange_btn,
-	#quit
-	
-	{
-		
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    display: -webkit-inline-flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-justify-content: center;
-    -webkit-box-align: center;
-    -moz-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -moz-box-orient: horizontal;
-    -moz-box-direction: normal;
-    -ms-flex-direction: row;
-    -webkit-flex-direction: row;
-    flex-direction: row;
-    height: 38px;
-    padding: 0 13px 1px;
-    border-radius: 6px;
-    font-family: "Noto Sans KR", sans-serif;
-    font-size: 13px;
-    line-height: 19px;
-    letter-spacing: -0.01em;
-    }
+#emailChangeButton,
+#telChange_btn,
+#quit {
+
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	display: -webkit-inline-flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-justify-content: center;
+	-webkit-box-align: center;
+	-moz-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-moz-box-orient: horizontal;
+	-moz-box-direction: normal;
+	-ms-flex-direction: row;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	height: 38px;
+	padding: 0 13px 1px;
+	border-radius: 6px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 13px;
+	line-height: 19px;
+	letter-spacing: -0.01em;
+}
 
 
 .inner_main_bottom {
-    margin-top: 40px;
-    text-align: center;
+	margin-top: 40px;
+	text-align: center;
 }
 
 .confirm_btn,
 .cancel_btn {
-    color: #fff;
-    border: 1px solid #a6a9d7;
-    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
-    min-width: 200px;
-    height: 50px;
-    padding: 0 23px 1px;
-    border-radius: 6px;
-    font-family: "Noto Sans KR", sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: -0.01em;
-    font-weight: 700;
+	color: #fff;
+	border: 1px solid #a6a9d7;
+	min-width: 200px;
+	height: 50px;
+	padding: 0 23px 1px;
+	border-radius: 6px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: -0.01em;
+	font-weight: 700;
 }
 
 .cancel_btn :hover,
 .confirm_btn :hover {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .cancel_btn {
-    background: #767676;
+	background: #767676;
 }
 
 .confirm_btn {
-    background: #5055b1;
+	background: #5055b1;
 }
 
 footer {
-	margin : 50px auto;
+	margin: 50px auto;
 }
-
-

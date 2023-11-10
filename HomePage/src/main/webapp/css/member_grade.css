@@ -1,577 +1,615 @@
 	@charset "UTF-8";
-	
-	* {
-	    margin: 0;
-	    padding: 0;
-	    box-sizing: border-box;
-	}
-	
-	body {
-	    font-size: 14px;
-	    line-height: 1.4;
-	    font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
-	    min-width: 1440px;
-	    color: #000;
-	}
-	
-	#page {
-	    width: 1200px;
-	    margin: 0 auto;
-	
-	}
-	
-	header {
-	    border: 1px solid red;
-	    height: 100px;
-	    display: flex;
-	    justify-content: space-between;
-	}
-	
-	
-	.h_button_area {
-	    height: 49px;
-	    display: flex;
-	    justify-content: end;
-	}
-	
-	.h_button {
-	    height: 49px;
-	    margin-left: 10px;
-	}
-	
-	.contents_wrap {
-	    padding-top: 42px;
-	}
-	
-	.contents_inner {
-	    width: 1200px;
-	    margin: 0 auto;
-	}
-	
-	.inner_header {
-	    width: 1200px;
-	    margin: 0 auto 50px;
-	
-	}
-	
-	.header_text {
-	    line-height: 30px;
-	    height: 30px;
-	    font-weight: 700;
-	    font-size: 18px;
-	
-	}
-	
-	
-	
-	.inner_main {
-	    padding: 0;
-	    background: #fff;
-	    box-sizing: border-box;
-	    outline: none;
-	}
-	
-	.inner_main_top {
-	    
-	    display: -webkit-flex;
-	    flex-direction: column;
-	}
-	
-	.main_top_top {
-	    padding-bottom: 20px;
-	    margin-bottom: 20px;
-	}
-	
-	.main_top_title {
-	    font-size: 24px;
-	    line-height: 36px;
-	    letter-spacing: -0.01em;
-	    position: relative;
-	    font-weight: 700;
-	}
-	
-	.main_top_bottom > .main_top_title {
-	    font-size: 18px;
-	}
-	
-	.info_text {
-	    margin-top: 10px;
-	    font-size: 14px;
-	    line-height: 22px;
-	    letter-spacing: -0.01em;
-	    color: #595959;
-	}
-	
-	.inner_main_mid {
-	    display: block;
-	    width: 100%;
-	    padding: 18px 0;
-	    border-top: 1px solid #000;
-	    border-bottom: 1px solid #eaeaea;
-	    box-sizing: border-box;
-	}
-	
-	.tbl_row {
-	    width: 100%;
-	    table-layout: fixed;
-	}
-	
-	.has_ip {
-	    padding: 24px 10px 12px 10px;
-	    font-size: 14px;
-	    line-height: 22px;
-	    letter-spacing: -0.01em;
-	    text-align: left;
-	    color: #000;
-	    font-weight: 500;
-	    vertical-align: top;
-	}
-	
-	tbody td {
-	    padding: 12px 10px;
-	    font-size: 14px;
-	    line-height: 22px;
-	    letter-spacing: -0.01em;
-	    text-align: left;
-	    color: #767676;
-	    font-weight: 400;
-	    vertical-align: top;
-	}
-	
-	.valid_check {
-	    width: 450px;
-	}
-	
-	.form_ip_pw {
-	    position: relative;
-	}
-	
-	.form_ip_pw > input {
-	    padding: 0 48px 0 14px;
-	    display: inline-block;
-	    width: 100%;
-	    height: 44px;
-	    padding: 0 14px 2px;
-	    color: #000;
-	    font-size: 14px;
-	    line-height: 42px;
-	    letter-spacing: -0.01em;
-	    font-family: "Noto Sans KR", sans-serif;
-	    background-color: #fff;
-	    border: 1px solid #d5d5d5;
-	    border-radius: 6px;
-	    box-sizing: border-box;
-	    transition: border-color 0.2s ease-out;
-	    outline: none;
-	}
-	
-	.inner_main_bottom {
-	    margin-top: 40px;
-	    text-align: center;
-	}
-	
 
-	
+	/* 공통 css 영역 */
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	a {
+		color: #000;
+		text-decoration: none;
+	}
+
+	body {
+		font-size: 14px;
+		line-height: 1.4;
+		font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
+		min-width: 1440px;
+		color: #000;
+	}
+
+	#page {
+		margin: 0 auto;
+	}
+
+	ul {
+		list-style: none;
+	}
+
+	button {
+		background-color: transparent;
+		cursor: pointer;
+	}
+
+	input,
+	button,
+	select,
+	textarea {
+		vertical-align: middle;
+	}
+
+	input,
+	button {
+		border: 0;
+		border-radius: 0;
+		background: none;
+	}
+
+	img {
+		vertical-align: middle;
+	}
+
+	.hidden {
+		position: absolute;
+		visibility: hidden;
+		overflow: hidden;
+		height: 0;
+		line-height: 0;
+		width: 0;
+		margin: 0;
+		padding: 0;
+		font: 0/0 Arial;
+	}
+
+
+	.contents_wrap {
+		padding-top: 42px;
+	}
+
+	.contents_inner {
+		width: 1200px;
+		margin: 0 auto;
+	}
+
+	.inner_main {
+		padding: 0;
+		background: #fff;
+		box-sizing: border-box;
+		outline: none;
+	}
+
+	.inner_main_top {
+
+		display: -webkit-flex;
+		flex-direction: column;
+	}
+
+	.main_top_top {
+		padding-bottom: 20px;
+		margin-bottom: 20px;
+	}
+
+	.main_top_title {
+		font-size: 24px;
+		line-height: 36px;
+		letter-spacing: -0.01em;
+		position: relative;
+		font-weight: 700;
+	}
+
+	.main_top_bottom>.main_top_title {
+		font-size: 18px;
+	}
+
+	.info_text {
+		margin-top: 10px;
+		font-size: 14px;
+		line-height: 22px;
+		letter-spacing: -0.01em;
+		color: #595959;
+	}
+
+	.inner_main_mid {
+		display: block;
+		width: 100%;
+		padding: 18px 0;
+		border-top: 1px solid #000;
+		border-bottom: 1px solid #eaeaea;
+		box-sizing: border-box;
+	}
+
+	.tbl_row {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	.has_ip {
+		padding: 24px 10px 12px 10px;
+		font-size: 14px;
+		line-height: 22px;
+		letter-spacing: -0.01em;
+		text-align: left;
+		color: #000;
+		font-weight: 500;
+		vertical-align: top;
+	}
+
+	tbody td {
+		padding: 12px 10px;
+		font-size: 14px;
+		line-height: 22px;
+		letter-spacing: -0.01em;
+		text-align: left;
+		color: #767676;
+		font-weight: 400;
+		vertical-align: top;
+	}
+
+	.valid_check {
+		width: 450px;
+	}
+
+	.form_ip_pw {
+		position: relative;
+	}
+
+	.form_ip_pw>input {
+		padding: 0 48px 0 14px;
+		display: inline-block;
+		width: 100%;
+		height: 44px;
+		padding: 0 14px 2px;
+		color: #000;
+		font-size: 14px;
+		line-height: 42px;
+		letter-spacing: -0.01em;
+		font-family: "Noto Sans KR", sans-serif;
+		background-color: #fff;
+		border: 1px solid #d5d5d5;
+		border-radius: 6px;
+		box-sizing: border-box;
+		transition: border-color 0.2s ease-out;
+		outline: none;
+	}
+
+	.inner_main_bottom {
+		margin-top: 40px;
+		text-align: center;
+	}
+
+
+
 	.confirm_btn,
 	.cancel_btn {
-	    color: #fff;
-	    border: 1px solid #a6a9d7;
-	    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
-	    min-width: 200px;
-	    height: 50px;
-	    padding: 0 23px 1px;
-	    border-radius: 6px;
-	    font-family: "Noto Sans KR", sans-serif;
-	    font-size: 16px;
-	    line-height: 24px;
-	    letter-spacing: -0.01em;
-	    font-weight: 700;
+		color: #fff;
+		border: 1px solid #a6a9d7;
+		transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+		min-width: 200px;
+		height: 50px;
+		padding: 0 23px 1px;
+		border-radius: 6px;
+		font-family: "Noto Sans KR", sans-serif;
+		font-size: 16px;
+		line-height: 24px;
+		letter-spacing: -0.01em;
+		font-weight: 700;
 	}
-	
+
 	.cancel_btn :hover,
 	.confirm_btn :hover {
-	    cursor: pointer;
+		cursor: pointer;
 	}
-	
+
 	.cancel_btn {
-	    background: #767676;
+		background: #767676;
 	}
-	
+
 	.confirm_btn {
-	    background: #5055b1;
+		background: #5055b1;
 	}
-	
+
 	footer {
-	    margin: 50px auto;
+		margin: 50px auto;
 	}
-	
+
 	.tab_item {
-	    background-color: #5055b1;
-	    border-color: #5055b1;
+		background-color: #5055b1;
+		border-color: #5055b1;
 	}
-	
+
 	.my_grade_info {
-	    display: block;
-	    border: 1px solid #eaeaea;
-	    border-radius: 16px;
-	    box-sizing: border-box;
+		display: block;
+		border: 1px solid #eaeaea;
+		border-radius: 16px;
+		box-sizing: border-box;
 	}
-	
+
 	.grade_info_header {
-	    display: -webkit-flex;
-	    justify-content: flex-start;
-	    align-items: center;
-	    flex-direction: row;
-	    padding: 30px 50px;
-	    border-radius: 16px 16px 0 0;
-	    background-color: #f7f7f7;
-	    box-sizing: border-box;
-	
+		display: -webkit-flex;
+		justify-content: flex-start;
+		align-items: center;
+		flex-direction: row;
+		padding: 30px 50px;
+		border-radius: 16px 16px 0 0;
+		background-color: #f7f7f7;
+		box-sizing: border-box;
+
 	}
-	
+
 	.left_area {
-	    margin: 0 20px 0 180px;
-	
+		margin: 0 20px 0 180px;
+
 	}
-	
+
 	.ico_grade_friends {
-	    background-size: 90px 90px;
-	    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_grade_friends@2x.png);
+		background-size: 90px 90px;
+		background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_grade_friends@2x.png);
 	}
-	
+
 	.grade_info_title,
 	.name {
-	    display: inline-block;
-	    color: #000;
-	    font-size: 20px;
-	    line-height: 30px;
-	    letter-spacing: -0.01em;
-	    vertical-align: top;
-	    word-break: break-all;
+		display: inline-block;
+		color: #000;
+		font-size: 20px;
+		line-height: 30px;
+		letter-spacing: -0.01em;
+		vertical-align: top;
+		word-break: break-all;
 	}
-	
+
 	.name {
-	    font-weight: 700;
+		font-weight: 700;
 	}
-	
+
 	.grade {
-	    color: #474c98;
-	    font-weight: 700;
-	    font-size: 20px;
-	    line-height: 30px;
-	    letter-spacing: -0.01em;
-	    vertical-align: top;
-	    word-break: break-all;
+		color: #474c98;
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 30px;
+		letter-spacing: -0.01em;
+		vertical-align: top;
+		word-break: break-all;
 	}
-	
+
 	.grade_state_info_list {
-	    margin-top: 15px;
-	    font-size: 14px;
-	    line-height: 22px;
-	    letter-spacing: -0.01em;
+		margin-top: 15px;
+		font-size: 14px;
+		line-height: 22px;
+		letter-spacing: -0.01em;
 	}
-	
+
 	.state_info_title {
-	    display: inline;
-	    margin-right: 5px;
-	    color: #000;
-	    font-weight: 700;
-	    font-size: 14px;
-	    line-height: 22px;
-	    letter-spacing: -0.01em;
+		display: inline;
+		margin-right: 5px;
+		color: #000;
+		font-weight: 700;
+		font-size: 14px;
+		line-height: 22px;
+		letter-spacing: -0.01em;
 	}
-	
-	
-	
-	
+
+
+
+
 	.state_info_desc {
-	    display: inline;
-	    font-size: 14px;
-	    margin-right: 30px;
-	    line-height: 22px;
-	    letter-spacing: -0.01em;
+		display: inline;
+		font-size: 14px;
+		margin-right: 30px;
+		line-height: 22px;
+		letter-spacing: -0.01em;
 	}
-	
-	
+
+
 	.right_area {
-	    display: block;
+		display: block;
 	}
-	
+
 	.grade_info_contents {
-	    display: -webkit-flex;
-	    align-items: center;
-	    justify-content: flex-start;
-	    flex-direction: row;
-	    padding: 40px 49px 40px 39px;
-	    box-sizing: border-box;
-	
+		display: -webkit-flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-direction: row;
+		padding: 40px 49px 40px 39px;
+		box-sizing: border-box;
+
 	}
-	
+
 	.state_gauge_wrap {
-	    display: block;
-	    width: 100%;
+		display: block;
+		width: 100%;
 	}
-	
+
 	.state_guage_title {
-	    text-align: center;
-	    margin-bottom: 30px;
-	    font-size: 13px;
-	    line-height: 19px;
-	    letter-spacing: -0.01em;
-	    vertical-align: top;
-	    min-height: 19px;
+		text-align: center;
+		margin-bottom: 30px;
+		font-size: 13px;
+		line-height: 19px;
+		letter-spacing: -0.01em;
+		vertical-align: top;
+		min-height: 19px;
 	}
-	
+
 	.val {
-	    font-weight: 700;
-	    text-align: center;
-	    color: #000;
-	    font-size: 13px;
-	    line-height: 19px;
-	    letter-spacing: -0.01em;
+		font-weight: 700;
+		text-align: center;
+		color: #000;
+		font-size: 13px;
+		line-height: 19px;
+		letter-spacing: -0.01em;
 	}
 
 
 
 
 	.state_bar {
-	    width: 60px;
-	    margin: auto;
-	    height: 14px;
-	    border-radius: 7px;
-	    background-color: #f2f2f2;
-	    position: relative;
-	    display: block;
+		width: 60px;
+		margin: auto;
+		height: 14px;
+		border-radius: 7px;
+		background-color: #f2f2f2;
+		position: relative;
+		display: block;
 	}
-	
-
-.dot_group {	
-   display:flex;
-   justify-content : space-between;
-   width: 100%; /* dot_group의 너비를 state_guage_bar와 동일하게 설정합니다. */
-}
-.state_guage_bar {
-	background-color: #f2f2f2;	
-    height: 20px; /* 진형율 바의 높이를 줄입니다. */
-    display: flex; /* Flexbox를 이용해 내부 요소를 정렬합니다. */
-    align-items: center; /* 내부 요소를 수직 중앙에 배치합니다. */
-    margin: 0px; /* 외부 여백을 없앱니다. */
-    padding: 0px; /* 내부 여백을 없앱니다. */
-    border-radius: 12px;
-}
-.gradient_bar {
-    position: absolute; /* 점들 위에 배경색을 표시하기 위해 */
-    top: 0; left: 23px; right: 23px; bottom: 0; /* "F"와 "P"점 외부까지만 영역 설정 */
-    background-image: linear-gradient(to right, #47C867 0%, #8F99BF 33%, #F6A621 66%, #5D59E1 100%);
-}
-
-.state_dot {
-    width: 50px; /* 도트의 크기를 늘립니다. */
-    height: 50px;
-    border-radius: 50%; /* 도트를 원형으로 만듭니다. */
-    color: #fff; /* 텍스트 색상을 흰색으로 설정합니다. */
-    display: flex; /* Flexbox를 이용해 텍스트를 중앙에 배치합니다. */
-    align-items: center;
-    justify-content: center;
-    font-size: 25px; /* 텍스트 크기를 유지합니다. */
-    white-space: nowrap; /* 텍스트가 한 줄로 표시되도록 설정합니다. */
-    overflow: hidden; /* 넘치는 텍스트를 숨깁니다. */
-    text-overflow: ellipsis; /* 넘치는 텍스트를 ...으로 표시합니다. */
-}
 
 
-#F {
-   background-color: #47C867; /* 초록색 배경 설정 */
-}
+	.dot_group {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		/* dot_group의 너비를 state_guage_bar와 동일하게 설정합니다. */
+	}
 
-#S {
-   background-color: #C0C0C0; /* 실버색 배경 설정 */
-}
+	.state_guage_bar {
+		background-color: #f2f2f2;
+		height: 20px;
+		/* 진형율 바의 높이를 줄입니다. */
+		display: flex;
+		/* Flexbox를 이용해 내부 요소를 정렬합니다. */
+		align-items: center;
+		/* 내부 요소를 수직 중앙에 배치합니다. */
+		margin: 0px;
+		/* 외부 여백을 없앱니다. */
+		padding: 0px;
+		/* 내부 여백을 없앱니다. */
+		border-radius: 12px;
+	}
 
-#G {
-   background-color: #FFD700; /* 골드색 배경 설정 */
-}
+	.gradient_bar {
+		position: absolute;
+		/* 점들 위에 배경색을 표시하기 위해 */
+		top: 0;
+		left: 23px;
+		right: 23px;
+		bottom: 0;
+		/* "F"와 "P"점 외부까지만 영역 설정 */
+		background-image: linear-gradient(to right, #47C867 0%, #8F99BF 33%, #F6A621 66%, #5D59E1 100%);
+	}
 
-#P {
-   background-color:blue ;/*플래티넘색 배경설정*/
-}
+	.state_dot {
+		width: 50px;
+		/* 도트의 크기를 늘립니다. */
+		height: 50px;
+		border-radius: 50%;
+		/* 도트를 원형으로 만듭니다. */
+		color: #fff;
+		/* 텍스트 색상을 흰색으로 설정합니다. */
+		display: flex;
+		/* Flexbox를 이용해 텍스트를 중앙에 배치합니다. */
+		align-items: center;
+		justify-content: center;
+		font-size: 25px;
+		/* 텍스트 크기를 유지합니다. */
+		white-space: nowrap;
+		/* 텍스트가 한 줄로 표시되도록 설정합니다. */
+		overflow: hidden;
+		/* 넘치는 텍스트를 숨깁니다. */
+		text-overflow: ellipsis;
+		/* 넘치는 텍스트를 ...으로 표시합니다. */
+	}
+
+
+	#F {
+		background-color: #47C867;
+		/* 초록색 배경 설정 */
+	}
+
+	#S {
+		background-color: #C0C0C0;
+		/* 실버색 배경 설정 */
+	}
+
+	#G {
+		background-color: #FFD700;
+		/* 골드색 배경 설정 */
+	}
+
+	#P {
+		background-color: blue;
+		/*플래티넘색 배경설정*/
+	}
 
 
 
 
 	.state_dot.active {
-	   /* 활성화 상태의 배경색 */
-	   background-color: #47C867;
+		/* 활성화 상태의 배경색 */
+		background-color: #47C867;
 	}
-	
+
 	.title_wrap {
-	    padding-bottom: 30px;
-	    position: relative;
-	    display: -webkit-flex;
-	    justify-content: flex-start;
-	    align-items: center;
-	    margin-top: 50px;
+		padding-bottom: 30px;
+		position: relative;
+		display: -webkit-flex;
+		justify-content: flex-start;
+		align-items: center;
+		margin-top: 50px;
 	}
-	
-	
-	
+
+
+
 	.title_heading {
-	    font-size: 24px;
-	    line-height: 36px;
-	    letter-spacing: -0.01em;
-	    display: inline-block;
-	    position: relative;
-	    font-weight: 700;
-	    overflow-wrap: anywhere;
+		font-size: 24px;
+		line-height: 36px;
+		letter-spacing: -0.01em;
+		display: inline-block;
+		position: relative;
+		font-weight: 700;
+		overflow-wrap: anywhere;
 	}
-	
+
 	.tbl_grade_wrap {
-	    display: block;
-	    width: 100%;
-	    border-bottom: 1px solid #eaeaea;
-	    box-sizing: border-box;
+		display: block;
+		width: 100%;
+		border-bottom: 1px solid #eaeaea;
+		box-sizing: border-box;
 	}
-	
+
 	.tbl_col {
-	    width: 100%;
-	    table-layout: fixed;
+		width: 100%;
+		table-layout: fixed;
 	}
-	
+
 	.tbl_col th {
-	    padding: 40px 10px;
-	    text-align: center;
-	    font-size: 14px;
-	    line-height: 22px;
-	    letter-spacing: -0.01em;
-	    color: #767676;
-	    font-weight: 500;
-	    border-top: 1px solid #000;
-	    vertical-align: middle;
+		padding: 40px 10px;
+		text-align: center;
+		font-size: 14px;
+		line-height: 22px;
+		letter-spacing: -0.01em;
+		color: #767676;
+		font-weight: 500;
+		border-top: 1px solid #000;
+		vertical-align: middle;
 	}
-	
-	.tbl_col th ~ th {
-	    border-left: 1px solid #eaeaea;
+
+	.tbl_col th~th {
+		border-left: 1px solid #eaeaea;
 	}
-	
+
 	.img_box {
-	    display: block;
-	    margin-bottom: 6px;
-	    text-align: center;
-	
+		display: block;
+		margin-bottom: 6px;
+		text-align: center;
+
 	}
-	
+
 	.ico_grade_platinum {
-	    background-size: 90px 90px;
-	    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_grade_platinum@2x.png);
+		background-size: 90px 90px;
+		background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_grade_platinum@2x.png);
 	}
-	
+
 	.grade_title {
-	    display: inline-block;
-	    position: relative;
-	    padding: 0 6px;
-	    color: #000;
-	    font-size: 16px;
-	    line-height: 24px;
-	    letter-spacing: -0.01em;
-	    font-weight: 700;
-	    vertical-align: top;
+		display: inline-block;
+		position: relative;
+		padding: 0 6px;
+		color: #000;
+		font-size: 16px;
+		line-height: 24px;
+		letter-spacing: -0.01em;
+		font-weight: 700;
+		vertical-align: top;
 	}
-	
+
 	.grade_desc {
-	    display: block;
-	    margin-top: 6px;
-	    color: #767676;
-	    font-size: 13px;
-	    line-height: 19px;
-	    letter-spacing: -0.01em;
-	    font-weight: 400;
+		display: block;
+		margin-top: 6px;
+		color: #767676;
+		font-size: 13px;
+		line-height: 19px;
+		letter-spacing: -0.01em;
+		font-weight: 400;
 	}
-	
-	.grade_desc > .val {
-	    display: block;
+
+	.grade_desc>.val {
+		display: block;
 	}
-	
+
 	.ico_grade_gold {
-	    background-size: 90px 90px;
-	    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_grade_gold@2x.png);
+		background-size: 90px 90px;
+		background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_grade_gold@2x.png);
 	}
-	
+
 	.ico_grade_silver {
-	    background-size: 90px 90px;
-	    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_grade_silver@2x.png);
+		background-size: 90px 90px;
+		background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_grade_silver@2x.png);
 	}
-	
-	.ico_grade_platinum, .ico_grade_gold, .ico_grade_silver, .ico_grade_friends {
-	    display: inline-block;
-	    width: 90px;
-	    height: 90px;
-	    vertical-align: top;
+
+	.ico_grade_platinum,
+	.ico_grade_gold,
+	.ico_grade_silver,
+	.ico_grade_friends {
+		display: inline-block;
+		width: 90px;
+		height: 90px;
+		vertical-align: top;
 	}
-	
+
 	.active {
-	    background-color: #f5f5fa;
+		background-color: #f5f5fa;
 	}
-	
+
 	.tbl_grade_wrap .tbl_col tbody td {
-	    border-top: 1px solid #eaeaea;
+		border-top: 1px solid #eaeaea;
 	}
-	
+
 	.vertical_middle {
-	    padding: 40px 10px;
-	    text-align: center;
-	    font-size: 14px;
-	    line-height: 22px;
-	    letter-spacing: -0.01em;
-	    font-weight: 400;
-	    vertical-align: middle;
+		padding: 40px 10px;
+		text-align: center;
+		font-size: 14px;
+		line-height: 22px;
+		letter-spacing: -0.01em;
+		font-weight: 400;
+		vertical-align: middle;
 	}
-	
-	.tbl_col td ~ td {
-	    border-left: 1px solid #eaeaea;
+
+	.tbl_col td~td {
+		border-left: 1px solid #eaeaea;
 	}
-	
-	
+
+
 	.ico_point_plus {
-	    display: inline-block;
-	    width: 15px;
-	    height: 15px;
-	    margin-top: 2px;
-	    vertical-align: top;
-	    background-repeat: no-repeat;
-	    background-size: 15px 15px;
-	    background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_point_plus@2x.png);
-	    margin-right: 2px;
+		display: inline-block;
+		width: 15px;
+		height: 15px;
+		margin-top: 2px;
+		vertical-align: top;
+		background-repeat: no-repeat;
+		background-size: 15px 15px;
+		background-image: url(https://contents.kyobobook.co.kr/resources/fo/images/common/ink/ico_point_plus@2x.png);
+		margin-right: 2px;
 	}
-	
+
 	.tbl_row_wrap {
-	    display: block;
-	    width: 100%;
-	    padding: 18px 0;
-	    border-top: 1px solid #000;
-	    border-bottom: 1px solid #eaeaea;
-	    box-sizing: border-box;
+		display: block;
+		width: 100%;
+		padding: 18px 0;
+		border-top: 1px solid #000;
+		border-bottom: 1px solid #eaeaea;
+		box-sizing: border-box;
 	}
-	
+
 	.tbl_row_wrap .tbl_row tbody th {
-	    padding: 12px 10px;
-	    font-size: 14px;
-	    line-height: 22px;
-	    letter-spacing: -0.01em;
-	    text-align: left;
-	    color: #000;
-	    font-weight: 700;
-	    vertical-align: top;
+		padding: 12px 10px;
+		font-size: 14px;
+		line-height: 22px;
+		letter-spacing: -0.01em;
+		text-align: left;
+		color: #000;
+		font-weight: 700;
+		vertical-align: top;
 	}
+
 	.fc_black {
-	    color: #000 !important;
+		color: #000 !important;
 	}
-	
+
 	.bul_list {
-	    margin-top: 6px;
-	    list-style: none;
-	    font-size: 14px;
-	    line-height: 22px;
-	    letter-spacing: -0.01em;
-	    color: #767676;
-	    font-weight: 400;
+		margin-top: 6px;
+		list-style: none;
+		font-size: 14px;
+		line-height: 22px;
+		letter-spacing: -0.01em;
+		color: #767676;
+		font-weight: 400;
 	}

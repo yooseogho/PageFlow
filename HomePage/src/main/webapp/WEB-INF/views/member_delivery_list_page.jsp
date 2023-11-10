@@ -36,16 +36,25 @@
 		// 배송지 삭제
 		$('.delete-btn').on('click', function(){
 			const dno = $(this).attr('data-dno');
+			const choice = confirm('정말로 배송지를 삭제하시겠습니까? 만약 삭제하실 경우 배송지와 관련된 주문 정보 또한 사라지게됩니다.');
 			
-			const form = `
-				<form action="/delivery/delete" method="post">
-					<input type="hidden" name="dno" value="\${dno}">
-				</form>
-			`;
-			$(form).appendTo($('body')).submit();
+			if(choice == true) {
+				const form = `
+					<form action="/delivery/delete" method="post">
+						<input type="hidden" name="dno" value="\${dno}">
+					</form>
+				`;
+				$(form).appendTo($('body')).submit();
+			} else {
+				return false;
+			}
 		})
 			
-		
+		// RedirectAttribute을 이용한 에러 메세지 처리
+		const msg = '${msg}';
+		if (msg !== '') {
+			alert(msg);
+		}
 		
 	})
 </script>

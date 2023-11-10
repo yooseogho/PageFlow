@@ -123,7 +123,7 @@
 										<td>
 											<div class="btn_text_box">
 												<span class="black_text">${member.memberEmail }</span>
-												<button class="btn_text" id="emailChangeButton">
+												<button class="btn_text btn_ip" id="emailChangeButton">
 													<span class="text">변경</span>
 												</button>
 
@@ -164,7 +164,7 @@
 										<td>
 											<div class="btn_text_box">
 												<span class="black_text">${member.memberTel}</span>
-												<button class="btn_text" id="telChange_btn">
+												<button class="btn_text btn_ip" id="telChange_btn">
 													<span class="text">변경</span>
 												</button>
 											</div>
@@ -198,13 +198,13 @@
 						<ul class="list">
 							<li class="list_items"><span>회원탈퇴 후 동일 아이디로 재가입이
 									불가합니다.</span>
-								<button class="quit_btn" id="quit">회원탈퇴</button></li>
+								<button class="quit_btn btn_ip" id="quit">회원탈퇴</button></li>
 						</ul>
 						<div class="inner_main_bottom">
 							<button class="cancel_btn go_home">
 								<span class="bottom_text">취소</span>
 							</button>
-							<button class="cancel_btn" id="edit">
+							<button class="confirm_btn" id="edit">
 								<span class="bottom_text">확인</span>
 							</button>
 						</div>

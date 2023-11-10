@@ -45,4 +45,5 @@ public interface OrderDetailsDao {
 	/** 주문 확정 상태 count */
 	@Select("select count(*) from order_details inner join orders on order_details.ono =orders.ono where member_id =#{memberId} and order_status='주문 확정'")
 	public Long orderDetailsConfirmCount(String memberId);
+	
 }

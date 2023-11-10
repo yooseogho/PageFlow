@@ -91,6 +91,9 @@
 		<header class="header_wrapper">
 			<jsp:include page="/WEB-INF/views/include/header.jsp" />
 		</header>
+		<nav class="nav_wrapper">
+			<jsp:include page="/WEB-INF/views/include/nav.jsp" />
+		</nav>
 
 		<main>
 			<section class="contents_wrap">
