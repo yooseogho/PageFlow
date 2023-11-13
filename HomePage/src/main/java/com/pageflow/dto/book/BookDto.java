@@ -118,5 +118,20 @@ public class BookDto {
     private String publisherName;
     private String authorName;
   }
+  
+  /** Welcome 페이지에서 최근 나온 책 소개할 때 */
+  @Data
+  @NoArgsConstructor
+  @AllArgsConstructor
+  public static class NewBook {
+	  private Long bno;
+	  private Long categoryCode;
+	  private Long categoryParent;
+	  private String categoryName;
+	  private String bookImage;
+	  private String bookTitle;
+	  private String authorName;
+	  private String publisherName;
+  }
 
 }

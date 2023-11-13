@@ -493,6 +493,11 @@ public class BookService {
 
 		return new SearchListPage(prev, start, end, next, pageno, keyword, books);		
 	}
+	
+	/** 8. 최근에 나온 책 */
+	public List<BookDto.NewBook> newBook() {
+		return bookDao.newBook();
+	}
 
 
 }

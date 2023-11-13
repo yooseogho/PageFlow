@@ -16,10 +16,12 @@ import org.springframework.web.servlet.mvc.support.*;
 
 import com.pageflow.dto.inquiry.*;
 import com.pageflow.dto.inquiry.InquiryDto.*;
+import com.pageflow.dto.memberGrade.*;
 import com.pageflow.entity.inquiry.*;
 import com.pageflow.entity.member.*;
 import com.pageflow.service.inquiry.*;
 import com.pageflow.service.member.*;
+import com.pageflow.service.memberGrade.*;
 
 @Secured("ROLE_USER")
 @Controller
@@ -29,6 +31,9 @@ public class InquiryController {
 
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private MemberGradeService gradeService;
 
 	// 문의사항 리스트 페이지
 	@GetMapping("/customer_inquiry_list_page")
@@ -36,10 +41,19 @@ public class InquiryController {
 		String memberId = principal.getName();
 		Member member = memberService.findById(memberId);
 		
+	    // MemberGradeDto.MemberInfoDto 객체에서 gradeCode를 가져옵니다.
+	    MemberGradeDto.MemberInfoDto memberInfo = memberService.getMemberInfo(principal.getName());
+	    Long gradeCode = memberInfo.getGradeCode();
+
+	    // gradeCode를 이용해서 gradeName을 가져옵니다.
+	    String gradeName = gradeService.getGradeNameByCode(gradeCode);
+		
+		
 		List<Read> inquiryDtos = inquiryService.getInquiriesByMemberId(principal.getName());
 		ModelAndView mav = new ModelAndView("customer_inquiry_list_page");
 		mav.addObject("inquirys", inquiryDtos);
 		model.addAttribute("member", member);
+		model.addAttribute("gradeName", gradeName);
 
 		return mav;
 	}

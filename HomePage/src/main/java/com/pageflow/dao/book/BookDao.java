@@ -96,5 +96,9 @@ public interface BookDao {
 
   /** 관리자 상품 검색 리스트 (book-mapper에 있음) */
   public List<Book> adminSearchList(Long startRownum, Long endRownum, String keyword);
+  
+  /** 새로나온 책 소개 */
+  @Select("select * from book b inner join category c on b.category_code = c.category_code order by publish_date desc")
+  public List<BookDto.NewBook> newBook();
 
 }

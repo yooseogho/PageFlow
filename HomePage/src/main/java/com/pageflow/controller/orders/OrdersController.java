@@ -203,7 +203,17 @@ public class OrdersController {
 	public ModelAndView read(@RequestParam(required = false) Long ono, Principal principal, HttpSession session) {
 		OrdersDto.Read read = ordersService.readOrders(ono, principal.getName());
 		session.setAttribute("orderRead", read);
-		return new ModelAndView("order_detail_list_page").addObject("read", read);
+		Profile memberProfile = memberService.MemberProfile(principal.getName());
+
+	    // MemberGradeDto.MemberInfoDto 객체에서 gradeCode를 가져옵니다.
+	    MemberGradeDto.MemberInfoDto memberInfo = memberService.getMemberInfo(principal.getName());
+	    Long gradeCode = memberInfo.getGradeCode();
+
+	    // gradeCode를 이용해서 gradeName을 가져옵니다.
+	    String gradeName = gradeService.getGradeNameByCode(gradeCode);
+
+		return new ModelAndView("order_detail_list_page").addObject("read", read)
+				.addObject("member", memberProfile).addObject("gradeName", gradeName);
 	}
 
 	// 5. 주문 삭제

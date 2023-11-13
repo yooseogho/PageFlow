@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
 import com.pageflow.dao.orderDetails.*;
+import com.pageflow.dto.orderDetails.*;
 import com.pageflow.entity.orderDetails.*;
 
 @Service
@@ -50,6 +51,11 @@ public class OrderDetailsService {
   /** 구매 확정 상태보기 */
   public Long orderConfirmCount(String memberId) {
 	  return orderDetailsDao.orderDetailsConfirmCount(memberId);
+  }
+  
+  /** 주문 순 나열 */
+  public List<OrderDetailsDto.ManyOrder> manyOrder() {
+	  return orderDetailsDao.manyOrder();
   }
   
 }

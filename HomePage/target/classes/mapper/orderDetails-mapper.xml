@@ -2,20 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo.dao.orderDetails.OrderDetailsDao">
+<mapper namespace="com.pageflow.dao.orderDetails.OrderDetailsDao">
 
-    <select id="findDetailsByMemberId" parameterType="OrderDetails" resultType="OrderDetails">
-        SELECT bi.image_name, b.book_title, b.book_price, od.order_count,
-               (b.book_price * od.order_count) AS total_price,od.order_status
-        FROM order_details od
-        JOIN book b ON od.bno = b.bno
-        JOIN orders o ON od.ono = o.ono
-        JOIN book_image bi ON bi.bno = b.bno
-        WHERE o.member_id = #{memberId} and o.ono=#{ono}
-   </select>
-    
-    
-    
-    
+    <select id="manyOrder" resultType="com.pageflow.dto.orderDetails.OrderDetailsDto$ManyOrder">
+   	  select 
+	    od.bno, sum(order_count) as count, od.book_title, od.book_image, b.category_code, category_parent, author_name, publisher_name, category_name  
+	  from order_details od 
+	  inner join book b on b.bno = od.bno
+	  inner join category c on c.category_code = b.category_code
+	  where order_status='주문 확정'
+	  group by od.bno, od.book_title, od.book_image, b.category_code, category_parent ,author_name, publisher_name, category_name
+	  order by count desc
+    </select>
     
 </mapper>

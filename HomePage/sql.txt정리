@@ -106,7 +106,7 @@ CREATE TABLE order_details (
     order_count NUMBER(3) NOT NULL,
     order_total NUMBER(7) NOT NULL,
     book_title VARCHAR2 (50 CHAR) NOT NULL,
-    order_status VARCHAR2 (100 CHAR) DEFAULT '주문이 완료되었습니다.' NOT NULL,
+    order_status VARCHAR2 (100 CHAR) DEFAULT '주문 완료.' NOT NULL,
     book_image varchar2 (300 char) not null,
     CONSTRAINT order_details_pk_odno PRIMARY KEY(odno),
     CONSTRAINT order_details_fk_bno FOREIGN KEY(bno) REFERENCES book(bno),
