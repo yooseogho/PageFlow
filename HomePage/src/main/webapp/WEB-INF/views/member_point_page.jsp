@@ -88,31 +88,32 @@
 									</thead>
 									<tbody id="pointDataWrapper">
 										<tr>
+<c:set var="lastOrderNo" value=""/>
+
 <c:forEach var="order" items="${orders}">
-    <tr>
-        <td class="align_left"><span class="my_benefit_history">구매</span> <span class="my_benefit_ord_num"> <span class="label">주문번호 : </span> <a href="/order/read?ono=${order.ono}" class="btn_text_link"> <span class="text">${order.ono}</span></a></span></td>
-        <td><span class="fc_light_gray" id="pointOrdrDt_${order.ono}">${order.orderDate}</span></td>
-        <c:choose>
-            <c:when test="${order.orderStatus eq '취소 완료'}">
-                <td><span class="fc_light_gray text-green">취소</span></td>
-                <td><span class="my_benefit_point text-green"> <span class="sign">+</span> <span class="val">${order.pointUsed}</span><span class="unit">P</span></span></td>
-            </c:when>
-            <c:when test="${order.pointUsed > 0}">
-                <td><span class="fc_light_gray text-red">사용</span></td>
-                <td><span class="my_benefit_point text-red"> <span class="sign">-</span> <span class="val">${order.pointUsed}</span><span class="unit">P</span></span></td>
-            </c:when>
-            <c:otherwise>
-                <td><span class="fc_light_gray text-green">적립</span></td>
-            <td><span class="my_benefit_point text-green"> <span class="sign">+</span> <span class="val">${order.pointEarn}</span><span class="unit">P</span></span></td>
-
-            </c:otherwise>
-        </c:choose>	
-        <td></td>
-    </tr>
+    <c:if test="${order.ono ne lastOrderNo}">
+        <tr>
+            <td class="align_left"><span class="my_benefit_history">구매</span> <span class="my_benefit_ord_num"> <span class="label">주문번호 : </span> <a href="/order/read?ono=${order.ono}" class="btn_text_link"> <span class="text">${order.ono}</span></a></span></td>
+            <td><span class="fc_light_gray" id="pointOrdrDt_${order.ono}">${order.orderDate}</span></td>
+            <c:choose>
+                <c:when test="${order.orderStatus eq '취소 완료'}">
+                    <td><span class="fc_light_gray text-green">취소</span></td>
+                    <td><span class="my_benefit_point text-green"> <span class="sign">+</span> <span class="val">${order.pointUsed}</span><span class="unit">P</span></span></td>
+                </c:when>
+                <c:when test="${order.pointUsed > 0}">
+                    <td><span class="fc_light_gray text-red">사용</span></td>
+                    <td><span class="my_benefit_point text-red"> <span class="sign">-</span> <span class="val">${order.pointUsed}</span><span class="unit">P</span></span></td>
+                </c:when>
+                <c:otherwise>
+                    <td><span class="fc_light_gray text-green">적립</span></td>
+                    <td><span class="my_benefit_point text-green"> <span class="sign">+</span> <span class="val">${order.pointEarn}</span><span class="unit">P</span></span></td>
+                </c:otherwise>
+            </c:choose>	
+            <td></td>
+        </tr>
+    </c:if>
+    <c:set var="lastOrderNo" value="${order.ono}"/>
 </c:forEach>
-
-
-
 
 										</tr>
 									</tbody>
