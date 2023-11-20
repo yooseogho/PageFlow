@@ -1,11 +1,16 @@
 package com.pageflow.dao.orderDetails;
 
-import java.util.*;
+import java.util.List;
 
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
+import org.apache.ibatis.annotations.Update;
 
-import com.pageflow.dto.orderDetails.*;
-import com.pageflow.entity.orderDetails.*;
+import com.pageflow.dto.orderDetails.OrderDetailsDto;
+import com.pageflow.entity.orderDetails.OrderDetails;
 
 @Mapper
 public interface OrderDetailsDao {
@@ -49,5 +54,7 @@ public interface OrderDetailsDao {
 	
 	/** 주문 많은 순으로 리스트 */
 	public List<OrderDetailsDto.ManyOrder> manyOrder();
+
 	
+
 }

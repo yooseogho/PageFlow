@@ -27,12 +27,31 @@ $(document).ready(function() {
 	var minutes = today.getMinutes();  // 분
 
 	var seconds = today.getSeconds();  // 초
+	
+    var inputElem = document.getElementById('myNumberInput');  // 포인트 입력란 요소를 가져옵니다.
+    var inputVal = parseInt(inputElem.value);  // 입력란의 값을 숫자로 변환하여 저장합니다.
 
 	var milliseconds = today.getMilliseconds();
 	var makeMerchantUid = hours + minutes + seconds + milliseconds;
 	var dno = '${delivery.dno}';
 	var pointEarn = "${cartList[cartList.size()- 1].totalPointEarnings}";
-	
+	$('#all_point_btn').on('click', function() {
+	    const point = '${point}';
+	    $('#all_point_text').text(point);
+	    $('#myNumberInput').val(point);  // 이 부분을 추가했습니다.
+	    $('#all_point_btn').css('display', 'none');
+	    $('#cancel_point_btn').css('display', 'block');
+	    updatePoint();  // 이 부분을 추가했습니다. 포인트 값이 변경되었으므로 updatePoint 함수를 호출하여 최종 결제 금액을 갱신합니다.
+	})
+
+		
+	$('#cancel_point_btn').on('click', function() {
+	    $('#all_point_text').text(0);
+	    $('#myNumberInput').val(0);  // 이 부분을 추가했습니다.
+	    $('#cancel_point_btn').css('display', 'none');
+	    $('#all_point_btn').css('display', 'block');
+	    updatePoint();  // 이 부분을 추가했습니다. 포인트 값이 변경되었으므로 updatePoint 함수를 호출하여 최종 결제 금액을 갱신합니다.
+	})
 	/** 나이스 페이 결제할 때 */
 	function nicePay() {
 		IMP.request_pay({
@@ -47,31 +66,42 @@ $(document).ready(function() {
 			buyer_name : "${memberId.memberName}"
 		}, function(rsp) { // callback
 			if (rsp.success) {
+				
 				alert(rsp);
 				let msg = "결제가 완료되었습니다.";
+				
+				
+				  var pointUsed = parseInt($('#myNumberInput').val(), 10) || 0;  // 사용한 포인트 금액을 숫자로 변환하고, 값이 없으면 0을 설정합니다.
+		            var orderPrice = rsp.paid_amount - pointUsed;  // 주문 금액에서 사용한 포인트 금액을 뺍니다.
 				let result = {
 					"memberId": "${memberId.memberId}",
 					"dno": dno,
-					"orderPrice": rsp.paid_amount,
-					"pointEarn": pointEarn,
+					  "orderPrice": orderPrice,  // 최종 결제 금액을 수정합니다.
+					"pointEarn": 0,
 					"payment": rsp.pg_provider,
-					"ordersBuyer": rsp.buyer_name
+					"ordersBuyer": rsp.buyer_name,
+					 "pointUsed": $('#myNumberInput').val()  // 사용자가 입력한 포인트 사용량을 추가합니다.
 				}
 				alert(msg);
+				
 
 				$.ajax({
-					url: '/order',
-					type: 'POST',
-					contentType: 'application/json',
-					data: JSON.stringify(result),
-					success: function(order) {
-						location.replace('/order/success?ono=' + order.ono);
-					},
-					error: function(err) {
-						console.log(err);
-					}
+				    url: '/order',
+				    type: 'POST',
+				    contentType: 'application/json',
+				    data: JSON.stringify({
+				        ...result,
+				        orderPrice: finalPrice,
+				        pointUsed: $('#myNumberInput').val(),
+				        pointEarn: $('#myNumberInput').val() > 0 ? 0 : '${cartList[cartList.size()- 1].totalPointEarnings}'
+				    }),
+				    success: function(order) {   
+				        location.replace('/order/success?ono=' + order.ono);
+				    },
+				    error: function(err){
+				        console.log(err);
+				    }
 				})
-
 
 			}
 		});
@@ -95,13 +125,16 @@ $(document).ready(function() {
 		}, function(rsp) { // callback
 			if (rsp.success) {
 				let msg = "결제가 완료되었습니다.";
+				  var pointUsed = parseInt($('#myNumberInput').val(), 10) || 0;  // 사용한 포인트 금액을 숫자로 변환하고, 값이 없으면 0을 설정합니다.
+		            var orderPrice = rsp.paid_amount - pointUsed;  // 주문 금액에서 사용한 포인트 금액을 뺍니다.
 				let result = {
 					"memberId": "${memberId.memberId}",
 					"dno": dno,
-					"orderPrice": rsp.paid_amount,
-					"pointEarn": pointEarn,
+					  "orderPrice": orderPrice,  // 최종 결제 금액을 수정합니다.
+					"pointEarn": 0,
 					"payment": rsp.pg_provider,
-					"ordersBuyer": rsp.buyer_name
+					"ordersBuyer": rsp.buyer_name,
+					 "pointUsed": $('#myNumberInput').val()  // 사용자가 입력한 포인트 사용량을 추가합니다.
 				}
 				alert(msg);
 
@@ -112,6 +145,7 @@ $(document).ready(function() {
 					data: JSON.stringify(result),
 					success: function(order) {
 						location.replace('/order/success?ono=' + order.ono);
+						console.log(order);
 					},
 					error: function(err) {
 						console.log(err);
@@ -141,13 +175,16 @@ $(document).ready(function() {
 			if (rsp.success) {
 
 				let msg = "결제가 완료되었습니다.";
+				  var pointUsed = parseInt($('#myNumberInput').val(), 10) || 0;  // 사용한 포인트 금액을 숫자로 변환하고, 값이 없으면 0을 설정합니다.
+		            var orderPrice = rsp.paid_amount - pointUsed;  // 주문 금액에서 사용한 포인트 금액을 뺍니다.
 				let result = {
 					"memberId": "${memberId.memberId}",
 					"dno": dno,
-					"orderPrice": rsp.paid_amount,
-					"pointEarn": pointEarn,
+					  "orderPrice": orderPrice,  // 최종 결제 금액을 수정합니다.
+					"pointEarn": 0,
 					"payment": rsp.pg_provider,
-					"ordersBuyer": "${memberId.memberName}"
+					"ordersBuyer": "${memberId.memberName}",
+						 "pointUsed": $('#myNumberInput').val()  // 사용자가 입력한 포인트 사용량을 추가합니다.
 				}
 				alert(msg);
 
@@ -187,38 +224,94 @@ $(document).ready(function() {
 			if (rsp.success) {
 
 				let msg = "결제가 완료되었습니다.";
+				  var pointUsed = parseInt($('#myNumberInput').val(), 10) || 0;  // 사용한 포인트 금액을 숫자로 변환하고, 값이 없으면 0을 설정합니다.
+		            var orderPrice = rsp.paid_amount - pointUsed;  // 주문 금액에서 사용한 포인트 금액을 뺍니다.
 				let result = {
 					"memberId": "${memberId.memberId}",
 					"dno": dno,
-					"orderPrice": rsp.paid_amount,
-					"pointEarn": pointEarn,
+				    "orderPrice": orderPrice,  // 최종 결제 금액을 수정합니다.
+					"pointEarn": 0,
 					"payment": rsp.pg_provider,
-					"ordersBuyer": "${memberId.memberName}"
+					"ordersBuyer": "${memberId.memberName}",
+					"pointUsed": pointUsed  // 사용한 포인트 금액을 추가합니다.
+					
 				}
 				alert(msg);
 
-				$.ajax({
-					url: '/order',
-					type: 'POST',
-					contentType: 'application/json',
-					data: JSON.stringify(result),
-					success: function(order) {
-						location.replace('/order/success?ono=' + order.ono);
-					},
-					error: function(err) {
-						console.log(err);
-					}
-				})
 
+            	$.ajax({
+            	    url: '/order',
+            	    type: 'POST',
+            	    contentType: 'application/json',
+            	    data: JSON.stringify({
+            	        ...result,
+            	        orderPrice: finalPrice,  // 최종 결제 금액을 추가합니다.
+            	        pointUsed: $('#myNumberInput').val(),  // 사용자가 입력한 포인트 사용량을 추가합니다.
+            	        pointEarn: !isNaN(inputVal) && inputVal > 0 ? 0 : '${cartList[cartList.size()- 1].totalPointEarnings}'  // 포인트를 사용하면 적립예정포인트를 0으로 설정하고, 그렇지 않으면 원래 값으로 설정합니다.
+            	    }),
+            	    success: function(order) {   
+            	        location.replace('/order/success?ono=' + order.ono);
+            	    },
+            	    error: function(err){
+            	        console.log(err);
+            	    }
+            	})
 
 			}
 		});
 
 	}
-	
 	$("#paycoPay-btn").on('click', paycoPay);
 	
-})
+})//document 끝마침.
+
+// 상품 가격을 저장하는 변수를 선언하고 초기화합니다.
+var initialProductPrice = parseInt('${cartList[cartList.size()- 1].totalAmount}'); // 적절한 값을 사용하세요.
+
+var finalPrice = 0; // 전역 변수로 선언
+
+function updatePoint() {
+    var inputVal = parseInt(document.getElementById("myNumberInput").value);
+    var maxPoint = parseInt('${point}');  // 사용자의 보유 포인트를 가져옵니다.
+
+    // 입력된 포인트 사용량이 없거나 유효하지 않으면 0으로 설정
+    if (isNaN(inputVal)) {
+        inputVal = 0;
+        document.getElementById("myNumberInput").value = 0;  // 입력 필드의 값을 0으로 재설정합니다.
+    }
+
+    if (inputVal > maxPoint) {
+        alert("입력하신 포인트가 보유 포인트를 초과합니다.");
+        document.getElementById("myNumberInput").value = maxPoint;  // 입력 필드의 값을 보유 포인트로 재설정합니다.
+        inputVal = maxPoint;
+    }
+
+    document.getElementById("all_point_text").innerText = inputVal;
+    var pointUseItems = document.querySelectorAll('.payments_info_item .price .val'); // 모든 .payments_info_item 요소를 가져옵니다.
+    pointUseItems[2].innerText = inputVal.toLocaleString() ;  // 세 번째 요소(포인트 사용 부분)만 변경
+
+    finalPrice = initialProductPrice - inputVal;  // 상품의 금액에서 포인트 사용 금액을 빼서 최종 금액을 계산합니다.
+
+    // 최종 결제금액이 0보다 작으면 상품 금액 그대로 표시
+    if (finalPrice < 0) {
+        finalPrice = initialProductPrice;
+    }
+    
+    // 최종 결제 금액 부분을 변경
+    document.getElementById('finalPrice').innerText = finalPrice.toLocaleString()  ;
+    
+    var expectedPointElem = document.querySelector('.payments_info_item.point .val');  // 예정 포인트를 표시하는 요소를 가져옵니다.
+
+    if (!isNaN(inputVal) && inputVal > 0) {
+        expectedPointElem.innerText = '0';  // 포인트를 사용하면 예정 포인트를 0으로 설정합니다.
+    } else {
+        // 포인트 사용 입력란이 비어있으면 예정 포인트를 원래 값으로 복원합니다.
+        // 원래 값은 서버에서 받아온 값이나 다른 적절한 값으로 설정해야 합니다.
+        var originalExpectedPoint = '${cartList[cartList.size()- 1].totalPointEarnings}';
+        expectedPointElem.innerText = originalExpectedPoint;
+    }
+}
+
 </script>
 
     <div id="page">
@@ -469,7 +562,7 @@ $(document).ready(function() {
                                                         <tbody>
                                                             <tr>
                                                                 <th scope="row" class="has_ip">
-                                                                    <label for="rowTblIpPoint01_01">포인트</label>
+                                                                                    <label for="rowTblIpPoint01_01">포인트</label>
                                                                 </th>
                                                                 <td>
                                                                     <div class="number_value_box size_def">
@@ -482,12 +575,12 @@ $(document).ready(function() {
                                                                 <td>
                                                                     <div class="input_btn_price_box">
                                                                         <div class="input_price_box">
-                                                                            <input type="number" id="myNumberInput" class="form_ip numericOnly" maxlength="7" max="${point}">
+                           <input type="number" id="myNumberInput" class="form_ip numericOnly" maxlength="7" max="${point}" onkeyup="updatePoint()">
                                                                             <span class="unit">원</span>
                                                                         </div>
                                                                         <button id="all_point_btn" type="button" class="btn_ip btn_line_primary"><span class="text">전액사용</span></button>
                                                                         <button id="cancel_point_btn" type="button" class="btn_ip btn_light_gray" style="display : none;"><span class="text">사용취소</span></button>
-                                                                    </div>
+                                                                    </div>	
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -525,7 +618,7 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </div>
-                        <div class="cart_info_wrap" style="top: 0px;">
+                      <div class="cart_info_wrap" style="top: 0px;">
                             <div class="payments_info_area">
                                 <div class="payments_info_box">
                                     <h2 class="hidden">결제금액</h2>
@@ -563,17 +656,20 @@ $(document).ready(function() {
                                 </div>
                                 <div class="payments_info_box">
                                     <ul class="payments_info_list">
-                                        <li class="payments_info_item total">
-                                            <p class="label">최종결제금액</p>
-                                            <div class="right_box">
-                                                <span class="price">
-                                                	<c:if test="${not empty cartList}">
-	                                                    <span class="val"><fmt:formatNumber type="number" pattern="#,##0" value="${cartList[cartList.size()- 1].totalAmount}" /></span>
-	                                                    <span class="unit">원</span>
-                                                    </c:if>
-                                                </span>
-                                            </div>
-                                        </li>
+	                                        <li class="payments_info_item total">
+	                                            <p class="label">최종결제금액</p>
+	                                            <div class="right_box">
+	                                                <span class="price">
+	                                                	<c:if test="${not empty cartList}">
+		                                                    <span class="val" id="finalPrice" data-final-price="${cartList[cartList.size()- 1].totalAmount}">
+    <fmt:formatNumber type="number" pattern="#,##0" value="${cartList[cartList.size()- 1].totalAmount}" />
+</span>
+
+		                                                    <span class="unit">원</span>
+	                                                    </c:if>
+	                                                </span>
+	                                            </div>
+	                                        </li>
                                         <li class="payments_info_item point">
                                             <p class="label">적립예정포인트</p>
                                             <div class="right_box">

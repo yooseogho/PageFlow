@@ -38,9 +38,14 @@ import com.pageflow.dto.member.MemberDto.Login;
 import com.pageflow.dto.member.MemberDto.Profile;
 import com.pageflow.dto.member.MemberDto.Read;
 import com.pageflow.dto.memberGrade.MemberGradeDto;
+import com.pageflow.dto.orders.OrdersDto;
 import com.pageflow.entity.member.Member;
+import com.pageflow.entity.orderDetails.OrderDetails;
+import com.pageflow.entity.orders.Orders;
 import com.pageflow.service.member.MemberService;
 import com.pageflow.service.memberGrade.MemberGradeService;
+import com.pageflow.service.orderDetails.OrderDetailsService;
+import com.pageflow.service.orders.OrdersService;
 
 /*
  * 10-24 유석호 
@@ -63,6 +68,10 @@ public class MemberController {
   private PasswordEncoder encoder;
   @Autowired
   private MemberGradeService gradeService;
+  @Autowired
+  private OrdersService ordersService;
+  @Autowired
+  private OrderDetailsService orderDetailsService;
 
   // 1.회원가입 페이지를 반환
   @PreAuthorize("isAnonymous()")
@@ -135,31 +144,41 @@ public class MemberController {
   public void member_create_success_page() {
   }
 
-  // 1-7 회원 포인트 확인하는 페이지
+	//1-7 회원 포인트 확인하는 페이지
   @Secured("ROLE_USER")
   @GetMapping("/member_point_page")
   public String pointpage(Model model, Principal principal) {
-    // 로그인한 사용자의 ID를 얻습니다.
-    String memberId = principal.getName();
+      // 로그인한 사용자의 ID를 얻습니다.
+      String memberId = principal.getName();
 
-    // 데이터베이스에서 회원 정보를 조회합니다.
-    Profile memberProfile = memberService.MemberProfile(memberId);
+      // 데이터베이스에서 회원 정보를 조회합니다.
+      Profile memberProfile = memberService.MemberProfile(memberId);
 
-    // 모델에 회원 정보를 추가합니다.
-    model.addAttribute("member", memberProfile);
+      // 모델에 회원 정보를 추가합니다.
+      model.addAttribute("member", memberProfile);
 
-    // MemberGradeDto.MemberInfoDto 객체에서 gradeName를 가져옵니다.
-    MemberGradeDto.MemberInfoDto memberInfo = memberService.getMemberInfo(memberId);
-    String gradeName = memberInfo.getGradeName();
+      // MemberGradeDto.MemberInfoDto 객체에서 gradeName를 가져옵니다.
+      MemberGradeDto.MemberInfoDto memberInfo = memberService.getMemberInfo(memberId);
+      String gradeName = memberInfo.getGradeName();
 
-    // 모델에 현재 등급 이름 추가
-    model.addAttribute("gradeName", gradeName);
+      // 모델에 현재 등급 이름 추가
+      model.addAttribute("gradeName", gradeName);
 
-    Long purchaseTotal = gradeService.getPurchaseTotal(memberId);
-    model.addAttribute("purchaseTotal", purchaseTotal);
+      // 주문 정보를 모델에 추가합니다.
+      List<OrdersDto.Point> point = ordersService.point(principal.getName());
+      model.addAttribute("orders", point);
+      
+      // 보유 포인트를 모델에 추가합니다.
+      Long memberPoint = memberService.getMemberPoint(memberId);
+      model.addAttribute("memberPoint", memberPoint);
 
-    return "/member_point_page";
+      Long purchaseTotal = gradeService.getPurchaseTotal(memberId);
+      model.addAttribute("purchaseTotal", purchaseTotal);
+
+      return "/member_point_page";
   }
+
+
 
   // 11-01 회원등급 업데이트
   // 1-8 회원등급 페이지 (누적 금액을 알 수 있음)
@@ -258,6 +277,8 @@ public class MemberController {
     return "/member_grade_page"; // 회원 등급 페이지 반환
   }
 
+  
+  
   // 2. 회원가입 처리( 새로운 회원을 생성하고, 성공 시 로그인 페이지로 리다이렉트하며, 실패 시 오류 메시지와 함께 회원 가입 페이지로
   // 다시 이동합니다.)
   @PreAuthorize("isAnonymous()")

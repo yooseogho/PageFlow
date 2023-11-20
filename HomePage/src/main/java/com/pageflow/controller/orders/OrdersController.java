@@ -1,34 +1,47 @@
 package com.pageflow.controller.orders;
 
-import java.security.*;
-import java.util.*;
+import java.security.Principal;
+import java.util.List;
+import java.util.Map;
 
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.http.*;
-import org.springframework.security.access.annotation.*;
-import org.springframework.stereotype.*;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.pageflow.dao.delivery.*;
-import com.pageflow.dto.cart.*;
-import com.pageflow.dto.delivery.*;
-import com.pageflow.dto.member.*;
-import com.pageflow.dto.member.MemberDto.*;
-import com.pageflow.dto.memberGrade.*;
-import com.pageflow.dto.orders.*;
-import com.pageflow.entity.delivery.*;
-import com.pageflow.entity.orderDetails.*;
-import com.pageflow.entity.orders.*;
-import com.pageflow.service.delivery.*;
-import com.pageflow.service.member.*;
-import com.pageflow.service.memberGrade.*;
-import com.pageflow.service.orderDetails.*;
-import com.pageflow.service.orders.*;
+import com.pageflow.dao.delivery.DeliveryDao;
+import com.pageflow.dao.member.MemberDao;
+import com.pageflow.dao.memberGrade.MemberGradeDao;
+import com.pageflow.dao.orders.OrdersDao;
+import com.pageflow.dto.cart.CartDto;
+import com.pageflow.dto.delivery.DeliveryDto;
+import com.pageflow.dto.delivery.DeliveryPage;
+import com.pageflow.dto.member.MemberDto;
+import com.pageflow.dto.member.MemberDto.Profile;
+import com.pageflow.dto.memberGrade.MemberGradeDto;
+import com.pageflow.dto.orders.OrdersDto;
+import com.pageflow.entity.delivery.Delivery;
+import com.pageflow.entity.member.Member;
+import com.pageflow.entity.orderDetails.OrderDetails;
+import com.pageflow.entity.orders.Orders;
+import com.pageflow.service.delivery.DeliveryService;
+import com.pageflow.service.member.MemberService;
+import com.pageflow.service.memberGrade.MemberGradeService;
+import com.pageflow.service.orderDetails.OrderDetailsService;
+import com.pageflow.service.orders.OrdersService;
 
-import lombok.extern.slf4j.*;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Secured("ROLE_USER")
@@ -49,8 +62,17 @@ public class OrdersController {
 	@Autowired
 	private OrderDetailsService orderDetailsService;
 	
-	@Autowired 
-	private MemberGradeService gradeService;
+	@Autowired
+	private MemberDao memberDao;
+	
+	@Autowired
+	private OrdersDao ordersDao;
+	@Autowired
+	private MemberGradeService gradeService;;
+	@Autowired
+	private MemberGradeDao memberGradeDao;
+	
+
 
 	// 1. 주문결제 페이지 보여주기
 	@GetMapping("/order")
@@ -68,22 +90,23 @@ public class OrdersController {
 	}
 
 	// 1-2. 주문하기
-	@PostMapping("/order")
-	@ResponseBody
-	public ResponseEntity<Orders> order(@RequestBody Orders order, Principal principal, HttpSession session) {
+		@PostMapping("/order")
+		@ResponseBody
+		public ResponseEntity<Orders> order(@RequestBody Orders order, Principal principal, HttpSession session) {
 
-		List<CartDto.Select> cartList = (List<CartDto.Select>) session.getAttribute("cartList");
-		DeliveryDto.Read delivery = deliveryService.read(order.getDno(), principal.getName());
-		session.setAttribute("delivery", delivery);
-		Boolean result = ordersService.add(order, principal.getName(), cartList);
+		    List<CartDto.Select> cartList = (List<CartDto.Select>) session.getAttribute("cartList");
+		    DeliveryDto.Read delivery = deliveryService.read(order.getDno(), principal.getName());
+		    session.setAttribute("delivery", delivery);
+		    Long pointUsed = (order.getPointUsed() != null) ? order.getPointUsed() : 0L;
+		    System.out.println(pointUsed);
+		    Boolean result = ordersService.add(order, principal.getName(), cartList, pointUsed);
 
-		if (!result) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		    if (!result) {
+		        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		    }
+
+		    return ResponseEntity.ok(order);
 		}
-
-		return ResponseEntity.ok(order);
-	}
-
 	// 1-3 주문결제 페이지에서 배송지 목록 페이지 보여주기
 	@GetMapping("/order/delivery/list")
 	public ModelAndView deliveryList(@RequestParam(defaultValue = "1") Long pageno, Principal principal) {
@@ -160,12 +183,16 @@ public class OrdersController {
 	// 2. 주문 성공 페이지
 	@GetMapping("order/success")
 	public ModelAndView orderSuccess(@RequestParam Long ono, HttpSession session) {
-		List<OrderDetails> list = orderDetailsService.list(ono);
-		Orders order = ordersService.findOrder(ono);
-		DeliveryDto.Read delivery = (DeliveryDto.Read) session.getAttribute("delivery");
-		return new ModelAndView("order_success_page").addObject("list", list).addObject("delivery", delivery)
-				.addObject("order", order);
+	    List<OrderDetails> list = orderDetailsService.list(ono);
+	    Orders order = ordersService.findOrder(ono);
+	    DeliveryDto.Read delivery = (DeliveryDto.Read) session.getAttribute("delivery");
+	    return new ModelAndView("order_success_page")
+	            .addObject("list", list)
+	            .addObject("delivery", delivery)
+	            .addObject("order", order)
+	            .addObject("pointUsed", order.getPointUsed()); // pointUsed 추가
 	}
+
 
 	// 3. 주문 목록 페이지
 	@GetMapping("/order/list")
@@ -223,36 +250,89 @@ public class OrdersController {
 		return new ModelAndView("redirect:/order/list");
 	}
 
-	// 6. 주문 취소
+	/*주문 취소시에 포인트 반환 유석호 11-17
+	 * 
+	 * */
+			// 6. 주문 취소
 	@PostMapping("/order/cancel")
 	@ResponseBody
 	public ResponseEntity<OrderDetails> orderCancel(@RequestBody Map<String, Long> map) {
-		Long odno = map.get("odno");
-		Boolean result = orderDetailsService.updateCancel(odno);
+	    Long odno = map.get("odno");
+	    OrderDetails orderDetails = orderDetailsService.readOrderDetails(odno);
+	    
+	    if (orderDetails == null) {
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	    }
 
-		if (!result) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-		}
+	    Long ono = orderDetails.getOno(); // ono 초기화
+	    Orders orders = ordersService.findOrder(ono);
 
-		OrderDetails orderDetails = orderDetailsService.read(odno);
-		 
-		return ResponseEntity.ok(orderDetails);
+	    // 주문 취소
+	    Boolean cancelResult = orderDetailsService.updateCancel(odno);
+
+	    // 포인트 환불
+	    Boolean refundResult = memberService.refundPoints(orders.getMemberId(), orders.getPointUsed());
+
+	    if (!cancelResult || !refundResult) {
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+	    }
+
+	    return ResponseEntity.ok(orderDetails);
 	}
-	
-	// 7. 구매 확정
+
+
+
+	/*
+	 * 유석호 11-09 주문확정 누를시 포인트가 적립되게 수정
+	 * */
 	@PostMapping("/order/confirm")
 	@ResponseBody
 	public ResponseEntity<OrderDetails> orderConfirm(@RequestBody Map<String, Long> map) {
-		Long odno = map.get("odno");
-		Boolean result = orderDetailsService.updateConfirm(odno);
+	    Long odno = map.get("odno");
 
-		if (!result) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-		}
+	    // 주문 상태를 "확정"으로 변경
+	    Boolean result = orderDetailsService.updateConfirm(odno);
+	    if (!result) {
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+	    }
 
-		OrderDetails orderDetails = orderDetailsService.read(odno);
-		 
-		return ResponseEntity.ok(orderDetails);
+	    OrderDetails orderDetails = orderDetailsService.read(odno);
+	    if (orderDetails == null) {
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();  // orderDetails 객체가 null이면 요청을 거부합니다.
+	    }
+
+	    // OrderDetails 객체에서 ono를 사용해 Orders 객체를 가져옵니다.
+	    // 이 부분은 null 체크를 추가했습니다.
+	    Orders orders = ordersDao.findByOno(orderDetails.getOno());
+	    if (orders == null) {
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();  // orders 객체가 null이면 요청을 거부합니다.
+	    }
+
+	    // 포인트를 사용하여 구매한 경우에는 포인트 적립을 하지 않습니다.
+	    if (orders.getPointUsed() > 0) {
+	        return ResponseEntity.ok(orderDetails);
+	    }
+
+	    // 포인트가 아직 적립되지 않은 경우에만 적립을 진행합니다.
+	    if (orders.getPointEarn() == 0) {
+	        // 회원의 포인트 적립
+	        String memberId = orders.getMemberId();  // Orders 객체에서 회원 아이디를 가져옵니다.
+	        Member member = memberDao.findById(memberId);  // 회원 아이디로 회원 정보를 가져옵니다.
+
+	        // 적립률 가져오기
+	        double pointRate = memberGradeDao.getPointRateByGradeCode(member.getGradeCode());
+	        
+	     // 적립 포인트 계산 (가격 * 적립률)
+	        long totalPointEarn = (long) Math.round(orders.getOrderPrice() * pointRate);
+
+	        // 회원의 포인트를 먼저 업데이트합니다. (기존 포인트 + 적립될 포인트)
+	        memberDao.updateMemberPoint(member.getMemberId(), totalPointEarn);
+
+	        // 이후에 적립 포인트를 Orders 객체에 저장하고 DB에 업데이트합니다.
+	        orders.setPointEarn(totalPointEarn);
+	        ordersDao.updatePointEarn(orders.getOno(), totalPointEarn);
+	    }
+	    return ResponseEntity.ok(orderDetails);
 	}
 
 }

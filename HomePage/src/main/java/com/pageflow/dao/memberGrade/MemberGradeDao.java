@@ -38,7 +38,7 @@ public interface MemberGradeDao {
   @Select("SELECT SUM(order_price) FROM orders WHERE member_id = #{memberId} AND order_date >= #{threeMonthsAgo}")
   public Long PurchaseTotalForLastThreeMonths(@Param("memberId") String memberId,
       @Param("threeMonthsAgo") LocalDateTime threeMonthsAgo);
-
+  
   // 모든 등급
   @Select("select * from member_grade")
   public List<MemberGrade> getAllMemberGrade();
@@ -51,4 +51,7 @@ public interface MemberGradeDao {
   @Select("SELECT grade_code FROM member WHERE member_id = #{memberId}")
   public Long getGradeByMemberId(String memberId);
 
+  // 등급 적립률을 가져오는 쿼리
+  @Select("SELECT point_rate FROM member_grade WHERE grade_code = #{gradeCode}")
+  public Double getPointRateByGradeCode(Long gradeCode);
 }

@@ -12,7 +12,8 @@
 <title>Insert title here</title>
 </head>
 <script>
-	
+	const c =  '${read}';
+	console.log(c);
 </script>
 <body>
 	<div id="page">
@@ -196,7 +197,7 @@
                                     <p class="label">주문금액</p>
                                     <div class="right_box">
                                         <span class="price">
-                                            <span class="val"><fmt:formatNumber type="number" pattern="#,##0" value="${read.orderPrice}" /></span>
+                                            <span class="val"><fmt:formatNumber type="number" pattern="#,##0" value="${read.orderPrice + read.pointUsed }" /></span>
                                             <span class="unit">원</span>
                                         </span>
                                     </div>
@@ -208,7 +209,7 @@
                                         <p class="label">상품금액</p>
                                         <div class="right_box">
                                             <span class="price">
-                                                <span class="val"><fmt:formatNumber type="number" pattern="#,##0" value="${read.orderPrice}" /></span>
+                                                <span class="val"><fmt:formatNumber type="number" pattern="#,##0" value="${read.orderPrice + read.pointUsed }" /></span>
                                                 <span class="unit">원</span>
                                             </span>
                                         </div>
@@ -222,7 +223,7 @@
                                     <p class="label">할인/포인트 금액</p>
                                     <div class="right_box">
                                         <span class="price">
-                                            <span class="val">0</span>
+                                            <span class="val"><fmt:formatNumber type="number" pattern="#,##0" value="${read.pointUsed }" /></span>
                                             <span class="unit">원</span>
                                         </span>
                                     </div>
@@ -261,16 +262,15 @@
                             </ul>
                         </div>
                     </div>
-
+                    <c:if test="${read.orderDetails[0].orderStatus eq '주문 확정'}">
                     <div class="title_wrap title_size_md">
                         <h2 class="title_heading">적립정보</h2>
                     </div>
-
                     <div class="payment_info_wrap">
                         <div class="payment_info_area">
                             <div class="payment_total_item">
                                 <div class="payment_info_box">
-                                    <p class="label">통합포인트 적립 예정</p>
+                                    <p class="label">통합포인트 적립</p>
                                     <div class="right_box">
                                         <span class="price">
                                             <span class="val"><fmt:formatNumber type="number" pattern="#,##0" value="${read.pointEarn}" /></span>
@@ -295,6 +295,7 @@
                             </ul>
                         </div>
                     </div>
+                    </c:if>
 
                     <div class="btn_wrap page_bottom">
                         <a href="/order/list" class="btn_lg btn_primary" data-order-list-move-button=""><span class="text">주문/배송 목록</span></a>

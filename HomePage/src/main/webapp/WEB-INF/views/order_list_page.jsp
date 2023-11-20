@@ -29,55 +29,63 @@
 			}		
 		})
 		
-	   // 주문 취소신청
-	   $('.cancel').click(function() {
-	       var odno = $(this).data('odno');
-	       var $thisRow = $(this).closest('tr');
-	       const choice = confirm('정말로 취소하시겠습니까? 취소할 경우 다시 복구할 수 없습니다.');
-	       if(choice === true) {
-		       $.ajax({
-		    	    type: "POST",
-		    	    url: "/order/cancel",
-		    	    data: JSON.stringify({ odno: odno }),
-		    	    contentType: "application/json",
-		    	    success: function(response) {
-		    	        alert("주문 취소가 완료되었습니다.");
-		    	        $thisRow.find('.delivery_state').text(response.orderStatus);
-		    	        location.href=`/order/list`;
-		    	    },
-		    	    error: function(jqXHR, textStatus, errorThrown) {
-		    	        alert("주문 취소에 실패했습니다.");
-		    	    }
-		    	});
-	       } else{
-	    	   return false;
-	       }
-	   });
+		   // 주문 취소신청
+	$('.cancel').click(function() {
+	    var odno = $(this).data('odno');
+	    var $thisRow = $(this).closest('tr');
+	    const choice = confirm('정말로 취소하시겠습니까? 취소할 경우 다시 복구할 수 없습니다.');
+	    if(choice === true) {
+	        $.ajax({
+	            type: "POST",
+	            url: "/order/cancel",
+	            data: JSON.stringify({ odno: odno }),
+	            contentType: "application/json",
+	            success: function(response) {
+	                alert("주문 취소가 완료되었습니다.");
+	                // 취소된 주문 정보를 표시
+	                $thisRow.find('.delivery_state').text("주문 취소됨");
+	                $thisRow.find('.order_price').text(response.orderPrice);
+	                $thisRow.find('.payment').text(response.payment);
+	                $thisRow.find('.point_used').text(response.pointUsed);
+	                location.href=`/order/list`;
+	            },
+	            error: function(jqXHR, textStatus, errorThrown) {
+	                alert("주문 취소에 실패했습니다.");
+	            }
+	        });
+	    } else{
+	        return false;
+	    }
+	});
+
 		
-		// 구매 확정 신청
-		   $('.confirm').click(function() {
-		       var odno = $(this).data('odno');
-		       var $thisRow = $(this).closest('tr');
-		       const choice = confirm('정말로 구매 확정하시겠습니까? 구매 확정시 취소 및 환불처리는 불가능합니다.');
-		       if(choice === true) {
-			       $.ajax({
-			    	    type: "POST",
-			    	    url: "/order/confirm",
-			    	    data: JSON.stringify({ odno: odno }),
-			    	    contentType: "application/json",
-			    	    success: function(response) {
-			    	        alert("주문 확정이 완료되었습니다.");
-			    	        $thisRow.find('.delivery_state').text(response.orderStatus);
-			    	        location.href=`/order/list`;
-			    	    },
-			    	    error: function(jqXHR, textStatus, errorThrown) {
-			    	        alert("주문 확정에 실패했습니다.");
-			    	    }
-			    	});
-		       } else{
-		    	   return false;
-		       }
-		   });
+		// 주문 확정 버튼 클릭 이벤트
+		$('.confirm').click(function() {
+			var odno = $(this).data('odno');
+			var $thisRow = $(this).closest('tr');
+			const choice = confirm('정말로 구매 확정하시겠습니까? 구매 확정시 취소 및 환불처리는 불가능합니다.');
+			
+			if(choice === true) {
+				$.ajax({
+					type: "POST",
+					url: "/order/confirm",
+					data: JSON.stringify({ odno: odno }),
+					contentType: "application/json",
+					success: function(response) {
+						alert("주문 확정이 완료되었습니다.");
+						$thisRow.find('.delivery_state').text(response.orderStatus);
+						location.href=`/order/list`;
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						alert("주문 확정에 실패했습니다.");
+					}
+				});
+			} else{
+				return false;
+			}
+		});
+		
+		
 	})
 </script>
 <body>
@@ -207,16 +215,16 @@
 					                                </td>
 					                                <td>
 					                                    <div class="btn_wrap full" data-event-detail="review">
-						                                 	<c:if test="${orderDetail.orderStatus != '취소 완료' && orderDetail.orderStatus != '주문 확정'}">   
-						                                        <button type="button" class="btn_sm btn_line_gray cancel" style="cursor: pointer;" data-odno="${orderDetail.odno}">
-						                                            <span class="text">취소 신청</span>
-						                                        </button>
-						                                 	</c:if>
-						                                 	<c:if test="${orderDetail.orderStatus != '취소 완료' && orderDetail.orderStatus != '주문 확정'}">
-						                                 		<button type="button" class="btn_sm btn_line_gray confirm" style="cursor: pointer; margin-top: 10px;" data-odno="${orderDetail.odno}">
-						                                            <span class="text">주문 확정</span>
-						                                        </button>
-						                                    </c:if>    
+						                           <c:if test="${orderDetail.orderStatus != '취소 완료' && orderDetail.orderStatus != '주문 확정'}">   
+    <button type="button" class="btn_sm btn_line_gray cancel" style="cursor: pointer;" data-odno="${orderDetail.odno}">
+        <span class="text">취소 신청</span>
+    </button>
+</c:if>
+<c:if test="${orderDetail.orderStatus != '취소 완료' && orderDetail.orderStatus != '주문 확정'}">
+    <button type="button" class="btn_sm btn_line_gray confirm" style="cursor: pointer; margin-top: 10px;" data-odno="${orderDetail.odno}">
+        <span class="text">주문 확정</span>
+    </button>
+</c:if>  
 					                                    </div>
 					                                </td>
 					                                	

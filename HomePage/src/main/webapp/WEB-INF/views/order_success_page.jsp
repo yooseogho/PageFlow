@@ -119,17 +119,18 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <th scope="row">할인금액</th>
-                                                    <td>
-                                                        <div class="payment_complete_price_box">
-                                                            <span class="price">
-                                                                <span class="val">0</span>
-                                                                <span class="unit">원</span>
-                                                            </span>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+<tr>
+    <th scope="row">할인금액</th>
+    <td>
+        <div class="payment_complete_price_box">
+            <span class="price">
+                <span class="val"><%= request.getAttribute("pointUsed") %></span> <!-- pointUsed 출력 -->
+                <span class="unit">원</span>
+            </span>
+        </div>
+    </td>
+</tr>
+
                                             </tbody>
                                             <tfoot>
                                                 <tr>

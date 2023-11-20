@@ -9,7 +9,8 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.pageflow.dto.memberGrade.MemberGradeDto;
-import com.pageflow.entity.member.*;
+import com.pageflow.entity.member.Member;
+import com.pageflow.entity.orders.Orders;
 
 @Mapper
 public interface MemberDao {
@@ -80,5 +81,21 @@ public interface MemberDao {
   // 포인트 찾기
   @Select("select member_point from member where member_id=#{memberId} and rownum=1")
   public Long findPointByMemberId(String memberId);
+  
+	// 유석호 11-06 로그인한 사용자의 주문정보 반환./member_point_page 에 활용	
+	@Select("SELECT * FROM orders WHERE member_id = #{memberId}")
+	List<Orders> findByMemberId(String memberId);
+	
+
+	/** 2023-11-06 현재 보유 포인트 조회하는 쿼리*/ //유석호
+	// 회원의 포인트 업데이트 
+	@Update("UPDATE member SET member_point = member_point + #{newPoint} WHERE member_id = #{memberId}")
+	public Long updateMemberPoint(String memberId, Long newPoint);
+
+
+	
+
+
+
 
 }

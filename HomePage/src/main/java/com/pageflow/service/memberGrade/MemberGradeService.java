@@ -73,6 +73,7 @@ public class MemberGradeService {
     // 3개월 동안의 구매액을 조회합니다.
     return gradeDao.PurchaseTotalForLastThreeMonths(memberId, threeMonthsAgo);
   }
+  
 
 //다음 등급까지 얼마를 사용해야 등업이 되는지 알수있는 매서드
   public int calculatePurchaseRequired(int purchaseTotalForLastThreeMonths, int currentGradeCode) {

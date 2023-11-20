@@ -8,6 +8,10 @@ import lombok.*;
 
 @NoArgsConstructor(access=AccessLevel.PRIVATE)
 public class OrdersDto {
+	
+	
+	
+	
 	@Data
 	@AllArgsConstructor
 	@NoArgsConstructor
@@ -15,6 +19,8 @@ public class OrdersDto {
 		private Long ono;
 		private String orderDate;
 		private String memberId;
+		private Long pointEarn;
+		private Long pointUsed;
 		private List<OrderDetails> orderDetails;
 	}
 	
@@ -29,6 +35,7 @@ public class OrdersDto {
 		private Long orderPrice;
 		private String payment;
 		private Long pointEarn;
+		private Long pointUsed;
 		private String ordersBuyer;
 		private Long zipCode;
 		private String receiverName;
@@ -37,5 +44,18 @@ public class OrdersDto {
 		private String deliveryRequest;
 		private List<OrderDetails> orderDetails;
 	}
+	
+	@Data
+	@NoArgsConstructor
+	@AllArgsConstructor
+	public static class Point {
+		private Long ono;
+		private String orderDate;
+		private Long pointUsed;
+		private Long pointEarn;
+		private String orderStatus;
+	}
+	
+	
 }
 

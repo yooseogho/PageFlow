@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +17,19 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.pageflow.dao.member.MemberDao;
 import com.pageflow.dto.member.MemberDto;
 import com.pageflow.dto.member.MemberDto.Read;
 import com.pageflow.dto.memberGrade.MemberGradeDto;
+import com.pageflow.dto.orderDetails.OrderDetailsDto;
+import com.pageflow.dto.orders.OrdersDto;
 import com.pageflow.entity.member.Member;
+import com.pageflow.entity.orderDetails.OrderDetails;
+import com.pageflow.service.orderDetails.OrderDetailsService;
+import com.pageflow.service.orders.OrdersService;
 
 @Service
 public class MemberService {
@@ -29,6 +37,10 @@ public class MemberService {
 	private MemberDao memberDao;
 	@Autowired
 	private PasswordEncoder encoder;
+	@Autowired
+	private OrdersService ordersService;
+	@Autowired
+	private OrderDetailsService orderDetailsService;
 
 	@Value("${profileFolder}")
 	private String profileFolder;
@@ -267,5 +279,31 @@ public class MemberService {
 	public Member findById(String memberId) {
 		return memberDao.findById(memberId);
 	}
+	
+
+
+	  /** 유석호 11-07*/
+	 //17. 회원의 보유 포인트 조회
+	  public Long getMemberPoint(String memberId) {
+	 	  return memberDao.findPointByMemberId(memberId);
+	 	}
+	  
+	  /** 유석호 11-17*/
+	//18. 주문취소시 사용하는 포인트 환불 
+	  // 포인트 환불
+	  public boolean refundPoints(String memberId, Long usedPoints) {
+		    try {
+		        System.out.println("Refunding points for member: " + memberId + ", usedPoints: " + usedPoints);
+		        Long result = memberDao.updateMemberPoint(memberId, usedPoints);
+		        return result == 1;
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        System.out.println("Error in refundPoints: " + e.getMessage());
+		        return false;
+		    }
+		}
+
+
+
 
 }

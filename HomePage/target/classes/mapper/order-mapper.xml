@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pageflow.dao.orders.OrdersDao">
-	<!-- 주문 목록 불러오기 -->
-	<select id="getOrdersByOno" parameterType="Long" resultMap="OrdersResultMap">
-		SELECT * FROM orders WHERE ono = #{ono}
-	</select>
+    <resultMap id="OrdersResultMap" type="com.pageflow.dto.orders.OrdersDto$OrdersList">
+        <id column="ono" property="ono" />
+        <result column="order_date" property="orderDate" />
+    </resultMap>
 
-	<select id="findAll" resultMap="OrdersResultMap" parameterType="String">
-		select
-		*
-		from orders  
-		where member_id= #{memberId}
-		order by ono desc
-	</select>
+    <select id="getOrdersByOno" parameterType="Long" resultMap="OrdersResultMap">
+        SELECT * FROM orders WHERE ono = #{ono}
+    </select>
 
-	<resultMap id="OrdersResultMap" type="com.pageflow.dto.orders.OrdersDto$OrdersList">
-		<id column="ono" property="ono" />
-		<result column="order_date" property="orderDate" />
-	</resultMap>
-	
-	<select id="read" resultType="com.pageflow.dto.orders.OrdersDto$Read">
-		select * from orders inner join delivery on orders.dno = delivery.dno where orders.ono = #{ono}
-	</select>
+<resultMap id="OrdersResultMap1" type="com.pageflow.dto.orders.OrdersDto$OrdersList">
+    <id column="ono" property="ono" />
+    <result column="order_date" property="orderDate" />
+    <result column="point_earn" property="pointEarn" />
+</resultMap>
+<select id="findAll" resultMap="OrdersResultMap1" parameterType="String">
+    select
+    *
+    from orders  
+    where member_id= #{memberId}
+    order by ono desc
+</select>
 
+    <select id="read" resultType="com.pageflow.dto.orders.OrdersDto$Read">
+        select * from orders inner join delivery on orders.dno = delivery.dno where orders.ono = #{ono}
+    </select>
 </mapper>
-
-

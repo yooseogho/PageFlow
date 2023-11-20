@@ -1,7 +1,7 @@
 
 create table member_grade (
 	grade_code	number(7)		not null,
-	grade_name	varchar2 (20 char)	default 'friends',
+	grade_name	varchar2 (20 char)	default 'FRIENDS',
 	point_rate	number(5,2)		not null,
     constraint member_grade_pk_grade_code primary key(grade_code)
 );  
@@ -51,6 +51,7 @@ create table orders(
 	payment	varchar2 (50 char)	not null,
 	point_earn	number(5)		not null,
 	orders_buyer varchar2 (20 char) not null,
+	point_used number(7)		not null,
     constraint orders_pk_ono primary key(ono),
     constraint orders_fk_dno foreign key(dno) references delivery(dno),
     constraint orders_fk_member_id foreign key(member_id) references member(member_id)

@@ -34,4 +34,12 @@ public class OrderDetailsDto {
 	  private Long categoryCode;
 	  private Long categoryParent;
   }
+  
+  @Data
+  @AllArgsConstructor
+  @NoArgsConstructor
+  public static class Status {
+	  private String orderStatus;
+  }
+  
 }
